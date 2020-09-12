@@ -1,0 +1,31 @@
+#content {
+    position: relative;
+}
+#right img {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#left img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+img {
+    width: 10%;
+    height: auto;
+}
+
+body {
+    background-color: #000000;
+    color:#FFFFFF;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
