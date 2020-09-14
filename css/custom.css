@@ -23,6 +23,12 @@ body {
     color:#FFFFFF;
 }
 
+.treeStyle {
+  background-color: #505050;
+  height: 100%;
+  box-sizing:border-box;
+}
+
 .footer {
     position: fixed;
     left: 0;
@@ -41,3 +47,43 @@ body {
     width: 25%;
     height: auto;
 }
+
+ul, #eTree {
+    list-style-type: none;
+  }
+
+  #myUL {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .caret {
+    cursor: pointer;
+    user-select: none; 
+  }
+
+  .caret::after {
+    content: "\25B6";
+    color: black;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .caret-down::after {
+    transform: rotate(90deg);
+  }
+  
+  .nested {
+    display: none;
+  }
+
+  .active {
+    display: block;
+  }
+
+  a:link{
+    color:white;
+  }
+  a:visited{
+    color:white;
+  }

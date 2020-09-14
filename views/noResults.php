@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <?php include '../templates/header.php';?>
+</head>
+<body>
+    <h3 class = "text-center"><br/><br/><br/><strong>No results found!</strong></h3>
+</body>
+<footer class="footer">
+    <?php include '../templates/footer.php';?>
+</footer>
+</html>
+
+<!--Temporary class for demo purposes-->
