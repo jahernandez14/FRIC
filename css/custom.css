@@ -29,3 +29,15 @@ body {
     bottom: 0;
     width: 100%;
 }
+
+.float-right {
+    float: right;
+    width: 25%;
+    height: auto;
+}
+
+.float-left{
+    float: left;
+    width: 25%;
+    height: auto;
+}
