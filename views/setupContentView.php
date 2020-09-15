@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <?php include '../templates/header.php';?>
-	<?php include 'notificationSample.php';?>
 </head>
 <body>
 <?php
