@@ -1,32 +1,33 @@
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-<title> Task Content View</title>        
+    <?php include '../templates/header.php';?>
+</head>
 <body>
-<h3>Task Overview</h3>
+    <h1>Task Overview</h1>
+    <?php
+    class SampleTask{
+        public $title;
+        public $system;
+        public $analyst;
+        public $priority;
+        public $progress;
+        public $numSubtask;
+        public $numFindings;
+        public $dueDate;
 
-<?php
-class SampleTask{
-    public $title;
-    public $system;
-    public $analyst;
-    public $priority;
-    public $progress;
-    public $numSubtask;
-    public $numFindings;
-    public $dueDate;
+        function __construct($title, $system, $analyst, $priority, $progress, $numSubtask, $numFindings, $dueDate){
+            $this->title        = $title;
+            $this->system       = $system;
+            $this->analyst      = $analyst;
+            $this->priority     = $priority;
+            $this->progress     = $progress;
+            $this->numSubtask   = $numSubtask;
+            $this->numFindings  = $numFindings;
+            $this->dueDate      = $dueDate;
+        }
 
-    function __construct($title, $system, $analyst, $priority, $progress, $numSubtask, $numFindings, $dueDate){
-        $this->title        = $title;
-        $this->system       = $system;
-        $this->analyst      = $analyst;
-        $this->priority     = $priority;
-        $this->progress     = $progress;
-        $this->numSubtask   = $numSubtask;
-        $this->numFindings  = $numFindings;
-        $this->dueDate      = $dueDate;
     }
-
-}
     $sampleTaskList = array(new SampleTask('Task 1', 'System 3', 'am.123.1.123.2', 'high', 'InProgress', 0, 3, '9/12/2020'),
     new SampleTask('Task 2', 'System 5', 'kl.123.1.127.5', 'low', 'InProgress', 2, 5, '9/12/2020'),
     new SampleTask('Task 3', 'System 2', 'wb.123.1.124.2', 'low', 'Assigned', 0, 0, '9/12/2020'),
@@ -36,43 +37,41 @@ class SampleTask{
     new SampleTask('Task 7', 'System 6', 'oq.123.1.129.6', 'medium', 'InProgress', 0, 5, '9/12/2020'),
     new SampleTask('Task 8', 'System 7', 'am.123.1.123.2', 'low', 'Assigned', 0, 0, '9/12/2020'),
     );
-?>
+    ?>
 
-<table border='1'>
-    <tr>
-        <th></th>
-        <?php
-        $arrowBtns = "<div class=\"arrow-group\"><button>&uarr;</button><button>&darr;</button></div>";
+    <table border='1'>
+        <tr>
+            <th></th>
+            <?php
+            $arrowBtns = "<div class=\"arrow-group\"><button>&uarr;</button><button>&darr;</button></div>";
 
-        print "<th>Title $arrowBtns</th>";
-        print "<th>System $arrowBtns</th>";
-        print "<th>Analyst $arrowBtns</th>";
-        print "<th>Priority $arrowBtns</th>";
-        print "<th>Progress $arrowBtns</th>";
-        print "<th>No. of Subtask $arrowBtns</th>";
-        print "<th>No. of Findings $arrowBtns</th>";
-        print "<th>Due dates $arrowBtns</th>";
-        ?>
-    <tr>
-<?php
-foreach($sampleTaskList as $task){
-    print "<tr><td><input type =\"checkbox\"></td>";
-    print "<td>$task->title</td>";
-    print "<td>$task->system</td>";
-    print "<td>$task->analyst</td>";
-    print "<td>$task->priority</td>";
-    print "<td>$task->progress</td>";
-    print "<td>$task->numSubtask</td>";
-    print "<td>$task->numFindings</td>";
-    print "<td>$task->dueDate</td><tr>";
-}
-?>
-</table>
-<button type="button">+</button>
-</body>
+            print "<th>Title $arrowBtns</th>";
+            print "<th>System $arrowBtns</th>";
+            print "<th>Analyst $arrowBtns</th>";
+            print "<th>Priority $arrowBtns</th>";
+            print "<th>Progress $arrowBtns</th>";
+            print "<th>No. of Subtask $arrowBtns</th>";
+            print "<th>No. of Findings $arrowBtns</th>";
+            print "<th>Due dates $arrowBtns</th>";
+            ?>
+        <tr>
+    <?php
+    foreach($sampleTaskList as $task){
+        print "<tr><td><input type =\"checkbox\"></td>";
+        print "<td>$task->title</td>";
+        print "<td>$task->system</td>";
+        print "<td>$task->analyst</td>";
+        print "<td>$task->priority</td>";
+        print "<td>$task->progress</td>";
+        print "<td>$task->numSubtask</td>";
+        print "<td>$task->numFindings</td>";
+        print "<td>$task->dueDate</td><tr>";
+    }
+    ?>
+    </table>
+    <button type="button">+</button>
 
-<body>
-<h3>Task Detailed View</h3>
+    <h1>Task Detailed View</h1>
 
     <button type="button">?</button>
     
@@ -144,14 +143,14 @@ foreach($sampleTaskList as $task){
 
     <label type="attachment">Attachments:</label>
     <input type="file" id="attachment", name="attachment">
+    <br>
 
-
-<br>
+    <button type="button">Archive</button>
+    <button type="button">Demote</button>
+    <button type="button">Save</button>
+    <button type="button">Cancel</button>
 </body>
-
-
-<button type="button">Archive</button>
-<button type="button">Demote</button>
-<button type="button">Save</button>
-<button type="button">Cancel</button>
+<footer class="footer">
+    <?php include '../templates/footer.php';?>
+</footer>
 </html>
