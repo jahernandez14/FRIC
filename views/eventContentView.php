@@ -15,10 +15,10 @@
                 <thead>
                     <tr>
                     <th scope="col"><input type="checkbox"></th>
-                    <th scope="col">Event Name</th>
-                    <th scope="col">No. of Systems</th>
-                    <th scope="col">No. of Findings</th>
-                    <th scope="col">Progress</th>
+                    <th scope="col">Event Name &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">No. of Systems &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">No. of Findings &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Progress &nbsp;<button>&uarr;</button><button>&darr;</button></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +59,60 @@
                     </tr>
                 </tbody>
                 </table>
+
+                <h2 class = "text-center">Event Detailed View</h2>
+                <h4>Event Basic Information</h4>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                        <label>Event Name</label>
+                        <input type="text" class="form-control" placeholder="Event 1">
+                        </div>
+                        <div class="col-3">
+                        <label>Event Type</label>
+                        <input type="text" class="form-control" placeholder="Event Type">
+                        </div>
+                        <div class="col-2">
+                        <label>Event Version</label>
+                        <input type="text" class="form-control" placeholder="Event Version">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <label>Event Description</label>
+                        <textarea class="form-control" id="Desc" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <label>Organization Name</label>
+                        <input type="text" class="form-control" placeholder="Org Name">
+                        </div>
+                        <div class="col-2">
+                        <label>Assessment Data</label>
+                        <input type="text" class="form-control" placeholder="3/3/2020">
+                        </div>
+                        <div class="col-2">
+                        <label>Security Classification Title Guide</label>
+                        <input type="text" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <label>Client Name</label>
+                        <input type="text" class="form-control" placeholder="Client Name">
+                        </div>
+                        <div class="col-2">
+                        <label>Event Classification</label>
+                        <input type="text" class="form-control" placeholder="">
+                        </div>
+                        <div class="col-2">
+                        <label>Declassification Date</label>
+                        <input type="text" class="form-control" placeholder="">
+                        </div>
+                    </div>
+                </form>
+                <h4><br/>Event Team Information</h4>
             </div>
             <div class="col-2"  style = "background-color:#0f0f0f">
             <?php include '../templates/search.php';?>

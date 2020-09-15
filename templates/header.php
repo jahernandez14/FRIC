@@ -3,6 +3,7 @@
 echo <<< HEADER
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/custom.css">
+    <link rel="stylesheet" href="../css/all.css">
     <link rel="icon" href="../images/fav.ico">
     <title>FRIC</title>
     <div class="container-fluid">
