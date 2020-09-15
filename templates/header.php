@@ -1,6 +1,5 @@
   
 <?php
-include 'overlay.php';
 echo <<< HEADER
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/custom.css">
@@ -53,5 +52,6 @@ echo <<< HEADER
             </ul>
         </div>
     </nav>  
-HEADER
+HEADER;
+    include 'overlay.php';
 ?>
