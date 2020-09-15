@@ -24,9 +24,6 @@ echo <<< HEADER
         <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="../views/analystProgressSummaryContentView.php">Progress</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="../views/eventContentView.php">Event</a>
             </li>
             <li class="nav-item">
