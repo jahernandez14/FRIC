@@ -70,7 +70,6 @@ tfoot {
 
   <a href="javascript:void(0)" class="closebtn" onclick="closeNotification()">&times;</a>
 
-  <!-- Overlay content -->
   <div class="overlay-content">
 	<h2> Notification </h2>
 	<center>
@@ -97,6 +96,10 @@ tfoot {
 			</tr>
 		</tbody>
 	</table>
+	<form method="post"> 
+        <input type="submit" name="button2"
+                class="button" value="OK" />
+	</form>
 	</center>
   </div>
 
@@ -113,3 +116,19 @@ function closeNotification() {
 }
 </script>
 </body>
+
+<?php
+	if(array_key_exists('button1', $_POST)) { 
+        button1(); 
+    }
+	if(array_key_exists('button2', $_POST)) { 
+        button2(); 
+    }
+	
+	function button1() {
+		echo "<script type='text/javascript'>openNotification();</script>";
+	}
+	function button2() {
+		echo "<script type='text/javascript'>closeNotification();</script>";
+	}
+?>
