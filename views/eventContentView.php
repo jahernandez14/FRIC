@@ -6,7 +6,7 @@
 <body>
     <div class="container-fluid">
         <div class="row fluid-col">
-            <div class="col-2" style = "background-color:#0f0f0f">
+            <div class="col-2" style = "background-color:#202020">
             <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-8">
@@ -114,7 +114,7 @@
                 </form>
                 <h4><br/>Event Team Information</h4>
             </div>
-            <div class="col-2"  style = "background-color:#0f0f0f">
+            <div class="col-2"  style = "background-color:#202020">
             <?php include '../templates/search.php';?>
             </div>
         </div>
