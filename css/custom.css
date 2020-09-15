@@ -1,6 +1,7 @@
 #content {
     position: relative;
 }
+
 #right img {
     position: absolute;
     top: 0px;
@@ -23,17 +24,10 @@ body {
     color:#FFFFFF;
 }
 
-.treeStyle {
-  background-color: #505050;
-  height: 100%;
-  box-sizing:border-box;
-}
-
-.footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+#search{
+  padding-top: 15px;
+  display:block;
+  text-align:center;
 }
 
 .float-right {
@@ -49,41 +43,54 @@ body {
 }
 
 ul, #eTree {
-    list-style-type: none;
-  }
+  list-style-type: none;
+}
 
-  #myUL {
-    margin: 0;
-    padding: 0;
-  }
-  
-  .caret {
-    cursor: pointer;
-    user-select: none; 
-  }
+#eTree {
+  margin: 0;
+  padding: 0;
+}
 
-  .caret::after {
-    content: "\25B6";
-    color: black;
-    display: inline-block;
-    margin-right: 10px;
-  }
-  
-  .caret-down::after {
-    transform: rotate(90deg);
-  }
-  
-  .nested {
-    display: none;
-  }
+.caret {
+  cursor: pointer;
+  user-select: none; 
+}
 
-  .active {
-    display: block;
-  }
+.caret::after {
+  content: "\25B8";
+  display: inline-block;
+  margin-right: 6px;
+}
 
-  a:link{
-    color:white;
-  }
-  a:visited{
-    color:white;
-  }
+.caret-down::after {
+  transform: rotate(90deg);
+}
+
+.nested {
+  display: block;
+}
+
+.active {
+  display: none;
+}
+
+a:link{
+  color:white;
+}
+a:visited{
+  color:white;
+}
+
+.footer {
+  background-color: #343a40;
+  width: 100%;
+  margin:0 auto;
+  height:auto;
+  overflow:hidden;
+  position: fixed;
+  bottom: 0px;
+}
+
+.fluid-col {
+  height: 9999px;
+}

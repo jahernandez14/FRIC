@@ -4,11 +4,23 @@
     <?php include '../templates/header.php';?>
 </head>
 <body>
-    <!--Test lines
-    <p>Test content.</p>
-    <img src="../images/army.png" alt="Army Emblem Image">
-    -->
+    <div class="container-fluid">
+        <div class="row fluid-col">
+            <div class="col-2" style = "background-color:#0f0f0f">
+            <?php include '../templates/eventTree.php';?>
+            </div>
+            <div class="col-8">
+            <p>Event Content View</p>
+            <p>Event Content View</p>
+            <p>Event Content View</p>
+            </div>
+            <div class="col-2"  style = "background-color:#0f0f0f">
+            <?php include '../templates/search.php';?>
+            </div>
+        </div>
+    </div>
 </body>
+
 <footer class="footer">
     <?php include '../templates/footer.php';?>
 </footer>

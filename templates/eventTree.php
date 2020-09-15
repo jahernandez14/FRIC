@@ -1,10 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <?php include '../templates/header.php';?>
-</head>
-<body>
-    <h2>Event Tree Menu</h2>
+<?php
+    echo <<< TREE
+    <h3 class="text-center">Event Tree Menu</h3>
     <ul id="eTree">
         <li><a href="../views/eventContentView.php">Event</a><span class="caret"></span>
             <ul class="nested">
@@ -14,8 +10,8 @@
                         <ul class="nested">
                             <li><a href="../views/subtaskContentView.php">Subtask 1</a><span class="caret"></span>
                             <ul class="nested">
-                                <li><a href="../views/findingsContentView.php">Finding 1 (This finding is associated to Subtask 1)</a></li>
-                                <li><a href="../views/findingsContentView.php">Finding 2 (This finding is associated to Subtask 1)</a></li>
+                                <li><a href="../views/findingsContentView.php">Finding 1</a></li>
+                                <li><a href="../views/findingsContentView.php">Finding 2</a></li>
                             </ul>
                             </li>
                             <li><a href="../views/subtaskContentView.php">Subtask 2</a></li>
@@ -23,10 +19,10 @@
                         </li>
                         <li><a href="../views/taskContentView.php">Task 2</a><span class="caret"></span>
                             <ul class="nested">
-                                <li><a href="../views/findingsContentView.php">Finding 3 (This finding is associated to Task 2)</a></li>
+                                <li><a href="../views/findingsContentView.php">Finding 3</a></li>
                             </ul>
                         </li>
-                        <li><a href="../views/findingsContentView.php">Finding 4 (This finding is associated to System 1)</a><li>
+                        <li><a href="../views/findingsContentView.php">Finding 4</a><li>
                     </ul><!--end of System 1 tree-->
                 </li>
                 <li><a href="../views/systemContentView.php">System 2</a></li>
@@ -43,8 +39,5 @@
     });
     }
     </script>
-</body>
-<footer class="footer">
-    <?php include '../templates/footer.php';?>
-</footer>
-</html>
+    TREE
+?>

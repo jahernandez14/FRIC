@@ -4,7 +4,13 @@
     <?php include '../templates/header.php';?>
 </head>
 <body>
-    <h1>Subtask Overview</h1>
+<div class="container-fluid">
+        <div class="row fluid-col">
+            <div class="col-2" style = "background-color:#0f0f0f">
+            <?php include '../templates/eventTree.php';?>
+            </div>
+            <div class="col-8">
+            <h1>Subtask Overview</h1>
     <?php
     class SampleSubtask{
         public $title;
@@ -130,6 +136,12 @@
     <button type="button">Promote</button>
     <button type="button">Save</button>
     <button type="button">Cancel</button>
+            </div>
+            <div class="col-2"  style = "background-color:#0f0f0f">
+            <?php include '../templates/search.php';?>
+            </div>
+        </div>
+    </div>
 </body>
 <footer class="footer">
     <?php include '../templates/footer.php';?>

@@ -1,3 +1,4 @@
+  
 <?php
 include 'overlay.php';
 echo <<< HEADER
@@ -7,21 +8,24 @@ echo <<< HEADER
     <title>FRIC</title>
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
+            <div class="col-2">
                 <img  class="float-left" src="../images/cead.png"/>
             </div>
-            <div class="col-md-6">
+            <div class="col-8">
                 <h1 class="text-center"><strong>Findings and Reporting Information Console</strong></h1>
             </div>
-            <div class="col">
+            <div class="col-2">
                 <img class= "float-right" src="../images/army.png"/>
             </div>
         </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="../views/general.php">FRIC</a>
+        <a class="navbar-brand" href="../views/eventContentView.php"><strong>FRIC</strong></a>
         <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="../views/analystProgressSummaryContentView.php">Progress</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="../views/eventContentView.php">Event</a>
             </li>
@@ -50,10 +54,6 @@ echo <<< HEADER
                 <a class="nav-link" href="#">Help</a>
             </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <a href= "../views/noResults.php" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</a>
-            </form>
         </div>
     </nav>  
 HEADER

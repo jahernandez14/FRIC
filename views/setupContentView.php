@@ -4,7 +4,14 @@
     <?php include '../templates/header.php';?>
 </head>
 <body>
-<?php
+
+<div class="container-fluid">
+        <div class="row fluid-col">
+            <div class="col-2" style = "background-color:#0f0f0f">
+            <?php include '../templates/eventTree.php';?>
+            </div>
+            <div class="col-8">
+            <?php
 	if(array_key_exists('button1', $_POST)) { 
         button1(); 
     }
@@ -17,6 +24,12 @@
         <input type="submit" name="button1"
                 class="button" value="Button1" />
 	</form>
+            </div>
+            <div class="col-2"  style = "background-color:#0f0f0f">
+            <?php include '../templates/search.php';?>
+            </div>
+        </div>
+    </div>
 </body>
 <footer class="footer">
     <?php include '../templates/footer.php';?>

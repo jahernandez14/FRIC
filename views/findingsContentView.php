@@ -4,7 +4,13 @@
     <?php include '../templates/header.php';?>
 </head>
 <body>
-    <h1>Finding Overview</h1>
+    <div class="container-fluid">
+        <div class="row fluid-col">
+            <div class="col-2" style = "background-color:#0f0f0f">
+            <?php include '../templates/eventTree.php';?>
+            </div>
+            <div class="col-8">
+            <h1>Finding Overview</h1>
     <?php
     class SampleFinding{
         public $id;
@@ -310,6 +316,12 @@
     <label for="impact">Impact Score:</label>
     <input type="text" id="impact", name="impact"> 
     <br>
+            </div>
+            <div class="col-2"  style = "background-color:#0f0f0f">
+            <?php include '../templates/search.php';?>
+            </div>
+        </div>
+    </div>
 </body>
 <footer class="footer">
     <?php include '../templates/footer.php';?>

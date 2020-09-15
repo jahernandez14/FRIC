@@ -4,7 +4,19 @@
     <?php include '../templates/header.php';?>
 </head>
 <body>
-    <!--Write Your code here-->
+<div class="container-fluid">
+        <div class="row fluid-col">
+            <div class="col-2" style = "background-color:#0f0f0f">
+            <?php include '../templates/eventTree.php';?>
+            </div>
+            <div class="col-8">
+            <!--Code goes here-->
+            </div>
+            <div class="col-2"  style = "background-color:#0f0f0f">
+            <?php include '../templates/search.php';?>
+            </div>
+        </div>
+    </div>
 </body>
 <footer class="footer">
     <?php include '../templates/footer.php';?>
