@@ -102,11 +102,11 @@
                         <label>Client Name</label>
                         <input type="text" class="form-control" placeholder="Client Name">
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
                         <label>Event Classification</label>
                         <input type="text" class="form-control" placeholder="">
                         </div>
-                        <div class="col-4">
+                        <div class="col-3">
                         <label>Declassification Date</label>
                         <input type="text" class="form-control" placeholder="">
                         </div>
