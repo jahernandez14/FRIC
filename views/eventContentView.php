@@ -92,7 +92,7 @@
                         <label>Assessment Data</label>
                         <input type="text" class="form-control" placeholder="3/3/2020">
                         </div>
-                        <div class="col-2">
+                        <div class="col-4">
                         <label>Security Classification Title Guide</label>
                         <input type="text" class="form-control" placeholder="">
                         </div>
@@ -106,7 +106,7 @@
                         <label>Event Classification</label>
                         <input type="text" class="form-control" placeholder="">
                         </div>
-                        <div class="col-2">
+                        <div class="col-4">
                         <label>Declassification Date</label>
                         <input type="text" class="form-control" placeholder="">
                         </div>
