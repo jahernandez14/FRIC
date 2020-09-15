@@ -97,7 +97,7 @@ tfoot {
 		</tbody>
 	</table>
 	<form method="post"> 
-        <input type="submit" name="button2"
+        <input type="submit" name="closeOverlayButton"
                 class="button" value="OK" />
 	</form>
 	</center>
@@ -118,17 +118,11 @@ function closeNotification() {
 </body>
 
 <?php
-	if(array_key_exists('button1', $_POST)) { 
-        button1(); 
-    }
-	if(array_key_exists('button2', $_POST)) { 
-        button2(); 
+	if(array_key_exists('closerOverlayButton', $_POST)) { 
+        closeOverlay(); 
     }
 	
-	function button1() {
-		echo "<script type='text/javascript'>openNotification();</script>";
-	}
-	function button2() {
+	function closeOverlay() {
 		echo "<script type='text/javascript'>closeNotification();</script>";
 	}
 ?>
