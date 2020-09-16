@@ -9,28 +9,30 @@
 	<h2> Notification </h2>
 	<center>
     <table>
-		<thead>
-			<tr>
-				<th>Task Title</th>
-				<th>Due Date</th>
-				<th>Subtask Title</th>
-				<th>Due Date</th>
-			<tr>
-		<tbody>
-			<tr>
-				<td>Prototype Presentation</td>
-				<td>9/17/2020</td>
-				<td>Complete Notification Overlay</td>
-				<td>9/13/2020</td>
-			</tr>
-			<tr>
-				<td> </td>
-				<td> </td>
-				<td>Demo Overlay</td>
-				<td>9/14/2020</td>
-			</tr>
-		</tbody>
-	</table>
+      <thead>
+        <tr>
+          <th scope="col">Task Title</th>
+          <th scope="col">Due Date</th>
+          <th scope="col">Subtask Title</th>
+          <th scope="col">Due Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+				  <td>Prototype Presentation</td>
+				  <td>9/17/2020</td>
+				  <td>Complete Notification Overlay</td>
+				  <td>9/13/2020</td>
+			  </tr>
+			  <tr>
+				  <td> </td>
+				  <td> </td>
+				  <td>Demo Overlay</td>
+				  <td>9/14/2020</td>
+			  </tr>
+      </tbody>
+    </table>
+		
 	<form method="post"> 
         <input type="submit" name="closeOverlayButton"
                 class="button" value="OK" />
