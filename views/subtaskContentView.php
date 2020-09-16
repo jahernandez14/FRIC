@@ -10,132 +10,166 @@
             <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-8">
-            <h1>Subtask Overview</h1>
-    <?php
-    class SampleSubtask{
-        public $title;
-        public $task;
-        public $analyst;
-        public $progress;
-        public $numSubtask;
-        public $numFindings;
-        public $dueDate;
+            <h2 class = "text-center">Subtask Overview</h2>
+            <table class="table table-light table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <th scope="col">Title &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Task &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Analyst &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Progress &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">No. of Findings &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Due Date &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <td>Subtask 1</td>
+                    <td>Task 3</td>
+                    <td>am.123.1.123.2</td>
+                    <td>InProgress</td>
+                    <td>3</td>
+                    <td>9/12/2020</td>
+                    </tr>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <td>Subtask 1</td>
+                    <td>Task 3</td>
+                    <td>am.123.1.123.2</td>
+                    <td>InProgress</td>
+                    <td>3</td>
+                    <td>9/12/2020</td>
+                    </tr>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <td>Subtask 1</td>
+                    <td>Task 3</td>
+                    <td>am.123.1.123.2</td>
+                    <td>InProgress</td>
+                    <td>3</td>
+                    <td>9/12/2020</td>
+                    </tr>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <td>Subtask 1</td>
+                    <td>Task 3</td>
+                    <td>am.123.1.123.2</td>
+                    <td>InProgress</td>
+                    <td>3</td>
+                    <td>9/12/2020</td>
+                    </tr>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <td>Subtask 1</td>
+                    <td>Task 3</td>
+                    <td>am.123.1.123.2</td>
+                    <td>InProgress</td>
+                    <td>3</td>
+                    <td>9/12/2020</td>
+                    </tr>
+                </tbody>
+                </table>
 
-        function __construct($title, $task, $analyst, $progress, $numSubtask, $numFindings, $dueDate){
-            $this->title        = $title;
-            $this->task         = $task;
-            $this->analyst      = $analyst;
-            $this->progress     = $progress;
-            $this->numSubtask   = $numSubtask;
-            $this->numFindings  = $numFindings;
-            $this->dueDate      = $dueDate;
-        }
+                <button type="button">+</button>
+                <button type="button">Archive</button>
+                <button type="button">Demote</button>
+                <button type="button">Save</button>
+                <button type="button">Cancel</button>
 
-    }
-    $sampleSubtaskList = array(new SampleSubtask('Subtask 1', 'Task 3', 'am.123.1.123.2', 'InProgress', 0, 3, '9/12/2020'),
-    new SampleSubtask('Subtask 2', 'Task 5', 'kl.123.1.127.5', 'InProgress', 2, 5, '9/12/2020'),
-    new SampleSubtask('Subtask 3', 'Task 2', 'wb.123.1.124.2', 'Assigned', 0, 0, '9/12/2020'),
-    new SampleSubtask('Subtask 4', 'Task 4', 'do.123.1.121.1', 'Complete', 0, 10, '9/12/2020'),
-    new SampleSubtask('Subtask 5', 'Task 1', 'jh.123.1.122.5', 'InProgress', 1, 13, '9/12/2020'),
-    new SampleSubtask('Subtask 6', 'Task 2', 'am.123.1.123.2', 'Complete', 0, 9, '9/12/2020'),
-    new SampleSubtask('Subtask 7', 'Task 6', 'oq.123.1.129.6', 'InProgress', 0, 5, '9/12/2020'),
-    new SampleSubtask('Subtask 8', 'Task 7', 'am.123.1.123.2', 'Assigned', 0, 0, '9/12/2020'),
-    );
-    ?>
-
-    <table border='1'>
-        <tr>
-            <th></th>
-            <?php
-            $arrowBtns = "<div class=\"arrow-group\"><button>&uarr;</button><button>&darr;</button></div>";
-
-            print "<th>Title $arrowBtns</th>";
-            print "<th>Task $arrowBtns</th>";
-            print "<th>Analyst $arrowBtns</th>";
-            print "<th>Progress $arrowBtns</th>";
-            print "<th>No. of Subtask $arrowBtns</th>";
-            print "<th>No. of Findings $arrowBtns</th>";
-            print "<th>Due dates $arrowBtns</th>";
-            ?>
-        <tr>
-    <?php
-    foreach($sampleSubtaskList as $subtask){
-        print "<tr><td><input type =\"checkbox\"></td>";
-        print "<td>$subtask->title</td>";
-        print "<td>$subtask->task</td>";
-        print "<td>$subtask->analyst</td>";
-        print "<td>$subtask->progress</td>";
-        print "<td>$subtask->numSubtask</td>";
-        print "<td>$subtask->numFindings</td>";
-        print "<td>$subtask->dueDate</td><tr>";
-    }
-    ?>
-    </table>
-    <button type="button">+</button>
-
-    <h1>Subtask Detailed View</h1>
-
-    <button type="button">?</button>
-    
-    <label for="title">Title:</label>
-    <input type="text" id="title" name="title">
-    
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description">
-
-    <label for="progress">Progress:</label>
-    <select name="progress" id="progress">
-        <option value="notStarted">Not Started</option>
-        <option value="assigned">Assigned</option>
-        <option value="transferred">Transferred</option>
-        <option value="inProgress">In Progress</option>
-        <option value="complete">Complete</option>
-        <option value="notApplicable">Not Applicable</option>
-    </select>
-
-    <label for="analyst">Analyst(s):</label>
-    <select name="analyst" id="analyst" multiple>
-        <option value="analyst1">am.123.1.123.2</option>
-        <option value="analyst2">kl.123.1.127.5</option>
-        <option value="analyst3">jh.123.1.122.5</option>
-        <option value="analyst4">wb.123.1.124.2</option>
-    </select>
-
-    <label for="collaborator">Collaborator(s):</label>
-    <select name="collaborator" id="collaborator" multiple>
-        <option value="analyst1">am.123.1.123.2</option>
-        <option value="analyst2">kl.123.1.127.5</option>
-        <option value="analyst3">jh.123.1.122.5</option>
-        <option value="analyst4">wb.123.1.124.2</option>
-    </select>
-
-    <label for="task">Task(s):</label>
-    <select name="task" id="task" multiple>
-        <option value="task1">System 1</option>
-        <option value="task2">System 2</option>
-        <option value="task3">System 3</option>
-        <option value="task4">System 4</option>
-    </select>
-
-    <label for="subtask">Subtask(s):</label>
-    <select name="subtask" id="subtask" multiple>
-        <option value="subtask1">Task 1</option>
-        <option value="subtask2">Task 2</option>
-        <option value="subtask3">Task 3</option>
-        <option value="subtask4">Task 4</option>
-    </select>
-
-    <label type="date">Date:</label>
-    <input type="date" id="date", name="date">
-
-    <label type="attachment">Attachments:</label>
-    <input type="file" id="attachment", name="attachment">
-    <br>
-
-    <button type="button">Archive</button>
-    <button type="button">Promote</button>
-    <button type="button">Save</button>
-    <button type="button">Cancel</button>
+                <h2 class = "text-center">Subtask Detailed View</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                        <label>Title</label>
+                        <input type="text" class="form-control" placeholder="Task 1">
+                        </div>
+                        <div class="col-3">
+                        <label>System</label>
+                        <select name="system" class="form-control" id="system">
+                            <option value="system1">System 1</option>
+                            <option value="system2">System 2</option>
+                            <option value="system3">System 3</option>
+                            <option value="system4">System 4</option>
+                        </select>
+                        </div>
+                        <div class="col-2">
+                        <label>Priority</label>
+                        <select name="priority" class="form-control" id="priority">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <label>Description</label>
+                        <textarea class="form-control" id="Desc" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                        <label>Progress</label>
+                        <select name="progress" class="form-control" id="progress">
+                            <option value="notStarted">Not Started</option>
+                            <option value="assigned">Assigned</option>
+                            <option value="transferred">Transferred</option>
+                            <option value="inProgress">In Progress</option>
+                            <option value="complete">Complete</option>
+                            <option value="notApplicable">Not Applicable</option>
+                        </select>
+                        </div>
+                        <div class="col-2">
+                        <label>Analyst(s)</label>
+                        <select name="analyst" class="form-control" id="analyst" multiple>
+                            <option value="analyst1">am.123.1.123.2</option>
+                            <option value="analyst2">kl.123.1.127.5</option>
+                            <option value="analyst3">jh.123.1.122.5</option>
+                            <option value="analyst4">wb.123.1.124.2</option>
+                        </select>
+                        </div>
+                        <div class="col-2">
+                        <label>Collaborator(s)</label>
+                        <select name="collaborator" class="form-control" id="collaborator" multiple>
+                            <option value="analyst1">am.123.1.123.2</option>
+                            <option value="analyst2">kl.123.1.127.5</option>
+                            <option value="analyst3">jh.123.1.122.5</option>
+                            <option value="analyst4">wb.123.1.124.2</option>
+                        </select>
+                        </div>
+                        <div class="col-2">
+                        <label>Task(s)</label>
+                        <select name="task" class="form-control" id="task" multiple>
+                            <option value="task1">Task 1</option>
+                            <option value="task2">Task 2</option>
+                            <option value="task3">Task 3</option>
+                            <option value="task4">Task 4</option>
+                        </select>
+                        </div>
+                        <div class="col-2">
+                        <label>Subtask(s)</label>
+                        <select name="subtask" class="form-control" id="subtask" multiple>
+                            <option value="subtask1">Subtask 1</option>
+                            <option value="subtask2">Subtask 2</option>
+                            <option value="subtask3">Subtask 3</option>
+                            <option value="subtask4">Subtask 4</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                        <label>Date</label>
+                        <input type="date" class="form-control" id="date">
+                        </div>
+                        <div class="col-3">
+                        <label>Attachments</label>
+                        <input type="file" class="form-control" id="attachment">
+                        </div>
+                        
+                    </div>
+                </form>
             </div>
             <div class="col-2"  style = "background-color:#202020">
             <?php include '../templates/search.php';?>

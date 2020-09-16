@@ -4,318 +4,402 @@
     <?php include '../templates/header.php';?>
 </head>
 <body>
-    <div class="container-fluid">
+<div class="container-fluid">
         <div class="row fluid-col">
             <div class="col-2" style = "background-color:#202020">
             <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-8">
-            <h1>Finding Overview</h1>
-    <?php
-    class SampleFinding{
-        public $id;
-        public $title;
-        public $system;
-        public $task;
-        public $subtask;
-        public $analyst;
-        public $status;
-        public $classification;
-        public $type;
-        public $risk;
+            <h2 class = "text-center">Finding Overview</h2>
+            <table class="table table-light table-striped">
+                <thead>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <th scope="col">ID &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Title &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">System &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Task &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Subtask &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Analyst &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Status &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Classification &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Type &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">Risk &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <td>1</td>
+                    <td>Finding 1</td>
+                    <td>System 1</td>
+                    <td>Task 2</td>
+                    <td>Subtask 3</td>
+                    <td>am.123.1.123.2</td>
+                    <td>Open</td>
+                    <td>Credentials Complexity</td>
+                    <td>Vulnerability</td>
+                    <td>VL</td>
+                    </tr>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <td>2</td>
+                    <td>Finding 2</td>
+                    <td>System 4</td>
+                    <td>Task 3</td>
+                    <td>Subtask 3</td>
+                    <td>wb.123.1.123.2</td>
+                    <td>Closed</td>
+                    <td>Autentication Bypass</td>
+                    <td>Vulnerability</td>
+                    <td>VL</td>
+                    </tr>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <td>3</td>
+                    <td>Finding 3</td>
+                    <td>System 1</td>
+                    <td>Task 1</td>
+                    <td>Subtask 3</td>
+                    <td>am.123.1.123.2</td>
+                    <td>Open</td>
+                    <td>Credentials Complexity</td>
+                    <td>Vulnerability</td>
+                    <td>L</td>
+                    </tr>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <td>4</td>
+                    <td>Finding 4</td>
+                    <td>System 6</td>
+                    <td>Task 5</td>
+                    <td>Subtask 3</td>
+                    <td>jh.123.1.123.2</td>
+                    <td>Closed</td>
+                    <td>Plain Text Web Login</td>
+                    <td>Vulnerability</td>
+                    <td>VH</td>
+                    </tr>
+                    <tr>
+                    <th scope="col"><input type="checkbox"></th>
+                    <td>5</td>
+                    <td>Finding 5</td>
+                    <td>System 1</td>
+                    <td>Task 6</td>
+                    <td>Subtask 3</td>
+                    <td>do.123.1.123.2</td>
+                    <td>Closed</td>
+                    <td>Credentials Complexity</td>
+                    <td>Information</td>
+                    <td>VL</td>
+                    </tr>
+                </tbody>
+                </table>
 
-        function __construct($id, $title, $system, $task, $subtask, $analyst, $status, $classification, $type, $risk){
-            $this->id               = $id;
-            $this->title            = $title;
-            $this->system           = $system;
-            $this->task             = $task;
-            $this->subtask          = $subtask;
-            $this->analyst          = $analyst;
-            $this->status           = $status;
-            $this->classification   = $classification;
-            $this->type             = $type;
-            $this->risk             = $risk;
-        }
+                <button type="button">+</button>
+                <button type="button">Delete</button>
+                <button type="button">Save</button>
+                <button type="button">Cancel</button>
 
-    }
-    $sampleFindingList = array(new SampleFinding(1, 'Finding 1', 'System 1', 'Task 1', 'Subtask 1', 'kl.123.1.127.5', 'Open', 'Credentials Complexity', 'Vulnerability', 'VL'),
-    new SampleFinding(2, 'Finding 2', 'System 2', 'Task 2', 'none', 'wb.123.1.124.2', 'Open', 'Port Security', 'Information', 'H'),
-    new SampleFinding(3, 'Finding 3', 'System 3', 'Task 6', 'none', 'am.123.1.123.2', 'Closed', 'Creds', 'Information', 'VH'),
-    new SampleFinding(4, 'Finding 4', 'System 4', 'Task 3', 'none', 'do.123.1.121.1', 'Closed', 'Creds', 'Vulnerability', 'M'),
-    new SampleFinding(5, 'Finding 5', 'System 5', 'Task 9', 'Subtask 4', 'kl.123.1.127.5', 'Open', 'Least Privilege', 'Information', 'H'),
-    new SampleFinding(6, 'Finding 6', 'System 6', 'Task 2', 'Subtask 2', 'jh.123.1.122.5', 'Open', 'Lack Of Autentication', 'Vulnerability', 'H'),
-    new SampleFinding(7, 'Finding 7', 'System 7', 'Task 1', 'Subtask 4', 'wb.123.1.124.2', 'Open', 'Credentials Complexity', 'Vulnerability', 'VL'),
-    );
-    ?>
+                <h2 class = "text-center">Finding Detailed View</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                        <label>Title</label>
+                        <input type="text" class="form-control" placeholder="Finding 1">
+                        </div>
+                        <div class="col-3">
+                        <label>Host Name</label>
+                        <input type="text" class="form-control" id="hostName">
+                        </div>
+                        <div class="col-2">
+                        <label>IP Port</label>
+                        <input type="text" class="form-control" id="ipPort">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <label>Description</label>
+                        <textarea class="form-control" id="Desc" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <label>Long Description</label>
+                        <textarea class="form-control" id="Desc" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2">
+                        <label>Status</label>
+                        <select name="status" class="form-control" id="status">
+                            <option value="open">Open</option>
+                            <option value="closed">Closed</option>
+                        </select>
+                        </div>
+                        <div class="col-4">
+                        <label>Type</label>
+                        <select name="type" class="form-control" id="type">
+                            <option value="credentialsComplexity">Credentials Complexity</option>
+                            <option value="manufactureDefault">Manufacture Default</option>
+                            <option value="creds">Creds</option>
+                            <option value="lOA">Lack Of Autentication</option>
+                            <option value="plainTextProtocols">Plain Text Protocols</option>
+                            <option value="plainTextWebLogin">Plain Text Web Login</option>
+                            <option value="encryption">Encryption</option>
+                            <option value="authenticationBypass">Autentication Bypass</option>
+                            <option value="portSecurity">Port Security</option>
+                            <option value="accessContr">Access Control</option>
+                            <option value="leastPriv">Least Privilege</option>
+                            <option value="privEscalation">Privilege Escalation</option>
+                            <option value="missingPatches">Missing Patches</option>
+                            <option value="physicalSec">Physical Security</option>
+                            <option value="infoDisclosure">Information Disclosure</option>
+                        </select>
+                        </div>
+                        <div class="col-2">
+                        <label>Classification</label>
+                        <select name="classification" class="form-control" id="classification">
+                            <option value="vul">Vulnerability</option>
+                            <option value="info">Information</option>
+                        </select>
+                        </div>
+                        <div class="col-4">
+                        <label>Evidence:</label>
+                        <input type="file" class="form-control" id="evidence">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <label>System</label>
+                        <select name="system" class="form-control" id="system">
+                            <option value="system1">System 1</option>
+                            <option value="system2">System 2</option>
+                            <option value="system3">System 3</option>
+                            <option value="system4">System 4</option>
+                        </select>
+                        </div>
+                        <div>
+                        <label>OR</label>  
+                        </div>
+                        <div class="col">
+                        <label>Task</label>
+                        <select name="task" class="form-control" id="task">
+                            <option value="task1">Task 1</option>
+                            <option value="task2">Task 2</option>
+                            <option value="task3">Task 3</option>
+                            <option value="task4">Task 4</option>
+                        </select>
+                        </div>
+                        <div>
+                        <label>OR</label>  
+                        </div>
+                        <div class="col">
+                        <label for="subtask">Subtask:</label>
+                        <select name="subtask" class="form-control" id="subtask">
+                            <option value="subtask1">Subtask 1</option>
+                            <option value="subtask2">Subtask 2</option>
+                            <option value="subtask3">Subtask 3</option>
+                            <option value="subtask4">Subtask 4</option>
+                        </select>
+                        </div>
+                        <div class="col">
+                        <label>Related Finding(s):</label>
+                        <select name="relatedFinding" class="form-control" id="relatedFinding" multiple>
+                            <option value="finding4">Finding 4</option>
+                            <option value="finding1">Finding 1</option>
+                            <option value="finding2">Finding 2</option>
+                            <option value="finding7">Finding 7</option>
+                        </select>
+                        </div>
+                    </div>
+                </form>
 
-    <button type="button">Delete</button>
-    <button type="button">Save</button>
-    <button type="button">Cancel</button>
+                <h2 class = "text-center">Finding Impact</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                        <label>Confidentiality</label>
+                        <select name="confidentiality" class="form-control" id="confidentiality">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="information">Information</option>
+                        </select>
+                        </div>
+                        <div class="col">
+                        <label>Integrity</label>
+                        <select name="integrity" class="form-control" id="integrity">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="information">Information</option>
+                        </select>
+                        </div>
+                        <div class="col">
+                        <label>Availability</label>
+                        <select name="availability" class="form-control" id="availability">
+                            <option value="low">Low</option>
+                            <option value="medium">Medium</option>
+                            <option value="high">High</option>
+                            <option value="information">Information</option>
+                        </select>
+                        </div>
+                    </div>
+                </form>
 
-    <table border='1'>
-        <tr>
-            <th></th>
-            <?php
-            $arrowBtns = "<div class=\"arrow-group\"><button>&uarr;</button><button>&darr;</button></div>";
-            print "<th>ID</th>";
-            print "<th>Title $arrowBtns</th>";
-            print "<th>System $arrowBtns</th>";
-            print "<th>Task $arrowBtns</th>";
-            print "<th>Subtask $arrowBtns</th>";
-            print "<th>Analyst $arrowBtns</th>";
-            print "<th>Status $arrowBtns</th>";
-            print "<th>Classification $arrowBtns</th>";
-            print "<th>Type $arrowBtns</th>";
-            print "<th>Risk $arrowBtns</th>";
-            ?>
-        <tr>
+                <h2 class = "text-center">Analyst Information</h2>
+                <form>
+                    <div class="row">
+                        <div class="col-4">
+                        <label>Analyst</label>
+                        <select name="analyst" class="form-control" id="analyst" multiple>
+                            <option value="anal1">am.123.1.123.2</option>
+                            <option value="anal2">ja.123.1.127.3</option>
+                            <option value="anal3">do.123.1.121.1</option>
+                            <option value="anal4">wb.123.1.125.7</option>
+                        </select>
+                        </div>
+                        <div class="col-4">
+                        <label>Collaborator</label>
+                        <select name="collaborator" class="form-control" id="collaborator" multiple>
+                            <option value="anal1">am.123.1.123.2</option>
+                            <option value="anal2">ja.123.1.127.3</option>
+                            <option value="anal3">do.123.1.121.1</option>
+                            <option value="anal4">wb.123.1.125.7</option>
+                        </select>
+                        </div>
+                        <div class="col-4">
+                        <label>Posture</label>
+                        <select name="posture" class="form-control" id="posture">
+                            <option value="insider">Insider</option>
+                            <option value="insiderNearsider">Insider-Nearsider</option>
+                            <option value="outsider">Outsider</option>
+                            <option value="nearsider">Nearsider</option>
+                            <option value="nearsiderOutsider">Nearsider-outsider</option>
+                        </select>
+                        </div>
+                    </div>
+                </form>
 
-    <?php
-    foreach($sampleFindingList as $finding){
-        print "<tr><td><input type =\"checkbox\"></td>";
-        print "<td>$finding->id</td>";
-        print "<td>$finding->title</td>";
-        print "<td>$finding->system</td>";
-        print "<td>$finding->task</td>";
-        print "<td>$finding->subtask</td>";
-        print "<td>$finding->analyst</td>";
-        print "<td>$finding->status</td>";
-        print "<td>$finding->classification</td>";
-        print "<td>$finding->type</td>";
-        print "<td>$finding->risk</td><tr>";
-    }
-    ?>
+                <h2 class = "text-center">Mitigation</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                        <label>Brief Description</label>
+                        <textarea class="form-control" id="Desc" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <label>Long Description</label>
+                        <textarea class="form-control" id="Desc" rows="5"></textarea>
+                        </div>
+                    </div>
+                </form>
 
-    </table>
-    <button type="button">+</button>
-    <button type="button">ERB Report</button>
-    <button type="button">Risk Matrix</button>
-    <button type="button">Final Report</button>
+                <h2 class = "text-center">Threat Relevance</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                        <label>Relevance</label>
+                        <select name="relevance" class="form-control" id="relevance">
+                            <option value="confirmed">Confirmed</option>
+                            <option value="expected">Expected</option>
+                            <option value="anticipated">Anticipated</option>
+                            <option value="predicted">Predicted</option>
+                            <option value="possible">Possible</option>
+                        </select>
+                        </div>
+                    </div>
+                </form>
 
-    <button type="button">?</button>
-    <h1>Finding Detailed View</h1>
+                <h2 class = "text-center">Counter Measure</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                        <label>Impact Description</label>
+                        <textarea class="form-control" id="Desc" rows="3"></textarea>
+                        </div>
+                        <div class="col">
+                        <label>Impact Level</label>
+                        <select name="impactLevel" class="form-control" id="impactLevel">
+                            <option value="vh">VH</option>
+                            <option value="h">H</option>
+                            <option value="m">M</option>
+                            <option value="l">L</option>
+                            <option value="vl">VL</option>
+                            <option value="info">Information</option>
+                        </select>
+                        </div>
+                    </div>
+                </form>
 
-    <button type="button">?</button>
-    <h1>Finding Information</h1>    
-    <label for="id">ID:</label>
-    <input type="text" id="id" name="id">
-    
-    <label for="hostName">Host Name:</label>
-    <input type="text" id="hostName" name="hostName">
+                <h2 class = "text-center">Severity</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                        <label>Severity Category Score:</label>
+                        <input type="text" class="form-control" id="severityCategoryScore"> 
+                        </div>
+                        <div class="col">
+                        <label>Severity Category Score:</label>
+                        <input type="text" class="form-control" id="severityCategoryScore">
+                        </div>
+                        <div class="col">
+                        <label>Vulnerability Severity:</label>
+                        <input type="text" class="form-control" id="vulnerabilitySeverity">
+                        </div>
+                        <div class="col">
+                        <label>Quantative Vulnerability Severity:</label>
+                        <input type="text" class="form-control" id="quantativeVulnerabilitySeverity"> 
+                        </div>
+                    </div>
+                </form>
 
-    <label for="ipPort">IP Port:</label>
-    <input type="text" id="ipPort" name="ipPort">
+                <h2 class = "text-center">Risk</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                        <label>Risk</label>
+                        <input type="text" class="form-control" id="risk">  
+                        </div>
+                        <div class="col">
+                        <label>Likelihood</label>
+                        <input type="text" class="form-control" id="likelihood"> 
+                        </div>
+                    </div>
+                </form>
 
-    <label for="hostName">Host Name:</label>
-    <input type="text" id="hostName" name="hostName">
+                <h2 class = "text-center">Finding System Level Impact</h2>
+                <form>
+                    <div class="row">
+                        <div class="col">
+                        <label>Confidentiality Finding Impact On System</label>
+                        <input type="text" class="form-control" id="confidentialityFindingImpactOnSys">  
+                        </div>
+                        <div class="col">
+                        <label>Integrity Finding Impact On System</label>
+                        <input type="text" class="form-control" id="integrityFindingImpactOnSys"> 
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        <label>Availability Finding Impact On System</label>
+                        <input type="text" class="form-control" id="availabilityFindingImpactOnSys">  
+                        </div>
+                        <div class="col">
+                        <label>Impact Score</label>
+                        <input type="text" class="form-control" id="impact">
+                        </div>
+                    </div>
+                </form>
 
-    <label for="description">Description:</label>
-    <input type="text" id="description" name="description">
-
-    <label for="longDescription">Long Description:</label>
-    <input type="text" id="longDescription" name="longDescription">
-
-    <label for="status">Status:</label>
-    <select name="status" id="status">
-        <option value="open">Open</option>
-        <option value="closed">Closed</option>
-    </select>
-
-    <label for="type">Type:</label>
-    <select name="type" id="type">
-        <option value="credentialsComplexity">Credentials Complexity</option>
-        <option value="manufactureDefault">Manufacture Default</option>
-        <option value="creds">Creds</option>
-        <option value="lOA">Lack Of Autentication</option>
-        <option value="plainTextProtocols">Plain Text Protocols</option>
-        <option value="plainTextWebLogin">Plain Text Web Login</option>
-        <option value="encryption">Encryption</option>
-        <option value="authenticationBypass">Autentication Bypass</option>
-        <option value="portSecurity">Port Security</option>
-        <option value="accessContr">Access Control</option>
-        <option value="leastPriv">Least Privilege</option>
-        <option value="privEscalation">Privilege Escalation</option>
-        <option value="missingPatches">Missing Patches</option>
-        <option value="physicalSec">Physical Security</option>
-        <option value="infoDisclosure">Information Disclosure</option>
-    </select>
-
-    <label for="classification">Classification:</label>
-    <select name="classification" id="classification">
-        <option value="vul">Vulnerability</option>
-        <option value="info">Information</option>
-    </select>
-
-    <label for="evidence">Evidence:</label>
-    <input type="file" id="evidence", name="evidence">
-
-    <label for="system">System:</label>
-    <select name="system" id="system">
-        <option value="system1">System 1</option>
-        <option value="system2">System 2</option>
-        <option value="system3">System 3</option>
-        <option value="system4">System 4</option>
-    </select>
-
-    <label for="or">OR</label>  
-
-    <label for="task">Task:</label>
-    <select name="task" id="task">
-        <option value="task1">Task 1</option>
-        <option value="task2">Task 2</option>
-        <option value="task3">Task 3</option>
-        <option value="task4">Task 4</option>
-    </select>
-
-    <label for="or">OR</label>  
-
-    <label for="subtask">Subtask:</label>
-    <select name="subtask" id="subtask">
-        <option value="subtask1">Subtask 1</option>
-        <option value="subtask2">Subtask 2</option>
-        <option value="subtask3">Subtask 3</option>
-        <option value="subtask4">Subtask 4</option>
-    </select>
-
-    <label for="relatedFinding">Related Finding(s):</label>
-    <select name="relatedFinding" id="relatedFinding" multiple>
-        <option value="finding4">Finding 4</option>
-        <option value="finding1">Finding 1</option>
-        <option value="finding2">Finding 2</option>
-        <option value="finding7">Finding 7</option>
-    </select>
-
-    <button type="button">?</button>
-    <h1>Finding Impact</h1>   
-    <label for="confidentiality">Confidentiality:</label>
-    <select name="confidentiality" id="confidentiality">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-        <option value="information">Information</option>
-    </select>
-
-    <label for="integrity">Integrity:</label>
-    <select name="integrity" id="integrity">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-        <option value="information">Information</option>
-    </select>
-
-    <label for="availability">Availability:</label>
-    <select name="availability" id="availability">
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-        <option value="information">Information</option>
-    </select>
-
-    <button type="button">?</button>
-    <h1>Analyst Information</h1>   
-    <label for="analyst">Analyst</label>
-    <select name="analyst" id="analyst" multiple>
-        <option value="anal1">am.123.1.123.2</option>
-        <option value="anal2">ja.123.1.127.3</option>
-        <option value="anal3">do.123.1.121.1</option>
-        <option value="anal4">wb.123.1.125.7</option>
-    </select>
-
-    <label for="collaborator">Collaborator:</label>
-    <select name="collaborator" id="collaborator" multiple>
-         <option value="anal1">am.123.1.123.2</option>
-        <option value="anal2">ja.123.1.127.3</option>
-        <option value="anal3">do.123.1.121.1</option>
-        <option value="anal4">wb.123.1.125.7</option>
-    </select>
-
-    <label for="posture">Posture:</label>
-    <select name="posture" id="posture">
-        <option value="insider">Insider</option>
-        <option value="insiderNearsider">Insider-Nearsider</option>
-        <option value="outsider">Outsider</option>
-        <option value="nearsider">Nearsider</option>
-        <option value="nearsiderOutsider">Nearsider-outsider</option>
-    </select>
-
-    <button type="button">?</button>
-    <h1>Mitigation</h1>  
-    <label for="briefDescription">Brief Description:</label>
-    <input type="text" id="briefDescription" name="briefDescription">
-
-    <label for="longDescription">Long Description:</label>
-    <input type="text" id="longDescription" name="longDescription">
-
-    <button type="button">?</button>
-    <h1>Threat Relevance</h1> 
-    <label for="relevance">Relevance:</label>
-    <select name="relevance" id="relevance">
-        <option value="confirmed">Confirmed</option>
-        <option value="expected">Expected</option>
-        <option value="anticipated">Anticipated</option>
-        <option value="predicted">Predicted</option>
-        <option value="possible">Possible</option>
-    </select>
-
-    <button type="button">?</button>
-    <h1>Counter Measure</h1> 
-    <label for="effectivenessRating">Effectiveness Rating:</label>
-    <select name="effectivenessRating" id="effectivenessRating">
-        <option value="veryHigh">Very high(10)</option>
-        <option value="high">High(7-9)</option>
-        <option value="moderate">Moderate(4-6)</option>
-        <option value="low">Low(1-3)</option>
-        <option value="veryLow">Very low(0)</option>
-    </select>
-
-    <button type="button">?</button>
-    <h1>Impact</h1> 
-    <label for="impactDescription">Impact Description:</label>
-    <input type="text" id="impactDescription", name="impactDescription">   
-
-    <label for="impactLevel">Impact Level:</label>
-    <select name="impactLevel" id="impactLevel">
-        <option value="vh">VH</option>
-        <option value="h">H</option>
-        <option value="m">M</option>
-        <option value="l">L</option>
-        <option value="vl">VL</option>
-        <option value="info">Information</option>
-    </select>
-    
-    <button type="button">?</button>
-    <h1>Severity</h1> 
-    <label for="severityCategoryScore">Severity Category Score:</label>
-    <input type="text" id="severityCategoryScore", name="severityCategoryScore">   
-
-    <label for="vulnerabilitySeverity">Vulnerability Severity:</label>
-    <input type="text" id="vulnerabilitySeverity", name="vulnerabilitySeverity">  
-
-    <label for="quantativeVulnerabilitySeverity">Quantative Vulnerability Severity:</label>
-    <input type="text" id="quantativeVulnerabilitySeverity", name="quantativeVulnerabilitySeverity">  
-
-    <button type="button">?</button>
-    <h1>Risk</h1> 
-    <label for="risk">Risk:</label>
-    <input type="text" id="risk", name="risk">   
-
-    <label for="likelihood">Likelihood:</label>
-    <input type="text" id="likelihood", name="likelihood">  
-
-    <button type="button">?</button>
-    <h1>Finding System Level Impact</h1> 
-    <label for="confidentialityFindingImpactOnSys">Confidentiality Finding Impact On System:</label>
-    <input type="text" id="confidentialityFindingImpactOnSys", name="confidentialityFindingImpactOnSys">   
-
-    <label for="integrityFindingImpactOnSys">Integrity Finding Impact On System:</label>
-    <input type="text" id="integrityFindingImpactOnSys", name="integrityFindingImpactOnSys">  
-    
-    <label for="availabilityFindingImpactOnSys">Availability Finding Impact On System:</label>
-    <input type="text" id="availabilityFindingImpactOnSys", name="availabilityFindingImpactOnSys">   
-
-    <label for="impact">Impact Score:</label>
-    <input type="text" id="impact", name="impact"> 
-    <br>
+                <button type="button">?</button>
+                <button type="button">Archive</button>
+                <button type="button">Demote</button>
+                <button type="button">Save</button>
+                <button type="button">Cancel</button>
             </div>
             <div class="col-2"  style = "background-color:#202020">
             <?php include '../templates/search.php';?>
