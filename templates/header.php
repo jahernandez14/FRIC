@@ -48,7 +48,7 @@ echo <<< HEADER
                 <a class="nav-link" href="../views/setupContentView.php">Setup</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Help</a>
+                <a class="nav-link" href="../views/helpContentView.php">Help</a>
             </li>
             </ul>
         </div>
