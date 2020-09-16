@@ -9,9 +9,9 @@
         <div class="col-2" style = "background-color:#202020">
         <?php include '../templates/eventTree.php';?>
         </div>
-        <div class="col-8">
-        <!--Code Goes Here-->
-        </div>
+        <div class="col-8"> <!--Config content start-->
+        
+        </div> <!--Config content end-->
         <div class="col-2"  style = "background-color:#202020">
         <?php include '../templates/search.php';?>
         </div>
