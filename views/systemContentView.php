@@ -14,9 +14,65 @@
                     <h2 class = "text-center">System Overview Table</h2>
                     <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
                     <br></br>
-                    <div class="row">
-                      <?php include '../views/systemOverviewTable.php';?>
-                    </div>
+                    <table class="table table-light table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col"><input type="checkbox"></th>
+                                <th scope="col">
+                                    System &nbsp;
+                                    <div class="btn-group-vertical">
+                                        <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                                        <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    No. of Systems &nbsp;
+                                    <div class="btn-group-vertical">
+                                        <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                                        <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    No. of Findings &nbsp;
+                                    <div class="btn-group-vertical">
+                                        <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                                        <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
+                                    </div>
+                                </th>
+                                <th scope="col">
+                                    Progress &nbsp;
+                                    <div class="btn-group-vertical">
+                                        <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                                        <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="col"><input type="checkbox"></th>
+                                <td>System 1</td>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>In Progress</td>
+                            </tr>
+                            <tr>
+                                <th scope="col"><input type="checkbox"></th>
+                                <td>System 2</td>
+                                <td>3</td>
+                                <td>4</td>
+                                <td>Assigned</td>
+                            </tr>
+                            <tr>
+                                <th scope="col"><input type="checkbox"></th>
+                                <td>System 3</td>
+                                <td>5</td>
+                                <td>2</td>
+                                <td>In Progress</td>
+                            </tr>
+                            <tr>
+                        </tbody>
+                    </table>
                     <!--Missing 'help' button/icon-->
                     <h2 class = "text-center">System Detailed View</h2>
                     <h4>System Information</h4>
@@ -66,7 +122,8 @@
                         <br>
                     </form>
                     <!--System categorization; 3 dropdown menu-->
-                    <h3>System Categorization</h5></br>
+                    <h3>
+                    System Categorization</h5></br>
                     <div class="row">
                         <div class="col">
                             <label>Confidentiality</label>
@@ -99,7 +156,8 @@
                             <button type="button" class="btn btn-light">Archive</button>
                             <button type="button" class="btn btn-light">Cancel</button>
                         </div>
-                    </div><br>
+                    </div>
+                    <br>
                 </div>
                 <div class="col-2"  style = "background-color:#202020">
                     <?php include '../templates/search.php';?>
