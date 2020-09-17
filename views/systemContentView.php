@@ -12,7 +12,7 @@
                 <div class="col-8">
                     <!--Code goes here-->
                     <h2 class = "text-center">System Overview Table</h2>
-                    <button type="button" class="btn btn-light">+</button>
+                    <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
                     <div class="row">
                       <?php include '../views/systemOverviewTable.php';?>
                     </div>

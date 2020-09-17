@@ -3,16 +3,36 @@
 <body>
   <div class="col-12">
     <table class="table table-light table-striped">
-      <thead class="text-center">
+      <thead>
         <tr>
-          <th scope="col"><input type="checkbox"></th>
-          <th scope="col">System &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-          <th scope="col">No. of Tasks &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-          <th scope="col">No. of Findings &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-          <th scope="col">Progress &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+        <th scope="col"><input type="checkbox"></th>
+          <th scope="col">System &nbsp;
+              <div class="btn-group-vertical">
+                  <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                  <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
+              </div>
+          </th>
+          <th scope="col">No. of Systems &nbsp;
+              <div class="btn-group-vertical">
+                  <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                  <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
+              </div>
+          </th>
+          <th scope="col">No. of Findings &nbsp;
+              <div class="btn-group-vertical">
+                  <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                  <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
+              </div>
+          </th>
+          <th scope="col">Progress &nbsp;
+              <div class="btn-group-vertical">
+                  <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                  <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
+              </div>
+          </th>
         </tr>
       </thead>
-      <tbody class="text-center">
+      <tbody>
         <tr>
           <th scope="col"><input type="checkbox"></th>
             <td>System 1</td>

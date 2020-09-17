@@ -11,69 +11,69 @@
             </div>
             <div class="col-8">
             <h2 class = "text-center">Finding Overview</h2>
-            <button type="button" class="btn btn-light">+</button>
+            <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
             <table class="table table-light table-striped">
                 <thead>
                     <tr>
                     <th scope="col"><input type="checkbox"></th>
                     <th scope="col">ID &nbsp;
                         <div class="btn-group-vertical">
-                            <button class="btn btn-secondary btn-sm">&uarr;</button>
-                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                         </div>
                     </th>
                     <th scope="col">Title &nbsp;
                         <div class="btn-group-vertical">
-                            <button class="btn btn-secondary btn-sm">&uarr;</button>
-                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                         </div>
                     </th>
                     <th scope="col">System &nbsp;
                         <div class="btn-group-vertical">
-                            <button class="btn btn-secondary btn-sm">&uarr;</button>
-                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                         </div>
                     </th>
                     <th scope="col">Task &nbsp;
                         <div class="btn-group-vertical">
-                            <button class="btn btn-secondary btn-sm">&uarr;</button>
-                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                         </div>
                     </th>
                     <th scope="col">Subtask &nbsp;
                         <div class="btn-group-vertical">
-                            <button class="btn btn-secondary btn-sm">&uarr;</button>
-                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                         </div>
                     </th>
                     <th scope="col">Analyst &nbsp;
                         <div class="btn-group-vertical">
-                            <button class="btn btn-secondary btn-sm">&uarr;</button>
-                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                         </div>
                     </th>
                     <th scope="col">Status &nbsp;
                         <div class="btn-group-vertical">
-                            <button class="btn btn-secondary btn-sm">&uarr;</button>
-                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                         </div>
                     </th>
                     <th scope="col">Classification &nbsp;
                         <div class="btn-group-vertical">
-                            <button class="btn btn-secondary btn-sm">&uarr;</button>
-                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                         </div>
                     </th>
                     <th scope="col">Type &nbsp;
                         <div class="btn-group-vertical">
-                            <button class="btn btn-secondary btn-sm">&uarr;</button>
-                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                         </div>
                     </th>
                     <th scope="col">Risk &nbsp;
                         <div class="btn-group-vertical">
-                            <button class="btn btn-secondary btn-sm">&uarr;</button>
-                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                         </div>
                     </th>
                     </tr>

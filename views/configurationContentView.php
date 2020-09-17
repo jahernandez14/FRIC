@@ -15,8 +15,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Finding</th>
-                            <th scope="col">Type</th>
+                            <th scope="col">Finding&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Type&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,8 +45,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Finding</th>
-                            <th scope="col">Type</th>
+                            <th scope="col">Finding&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Posture&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,8 +75,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Finding</th>
-                            <th scope="col">Threat Relevance</th>
+                            <th scope="col">Finding&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Threat Relevance&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,10 +105,30 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Finding</th>
-                            <th scope="col">Confidentiality</th>
-                            <th scope="col">Integrity</th>
-                            <th scope="col">Availability</th>
+                            <th scope="col">Finding&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Confidentiality&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Integrity&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Availability&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -101,8 +151,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Finding</th>
-                            <th scope="col">Classification</th>
+                            <th scope="col">Finding&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Classification&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,9 +181,24 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Finding</th>
-                            <th scope="col">Countermeasure</th>
-                            <th scope="col">Effectiveness Rating</th>
+                            <th scope="col">Finding&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Countermeasure&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Effectiveness Rating&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -144,8 +219,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Event</th>
-                            <th scope="col">Classification</th>
+                            <th scope="col">Event&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Classification&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -160,8 +245,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Finding</th>
-                            <th scope="col">Level</th>
+                            <th scope="col">Finding&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Level&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -180,8 +275,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Event</th>
-                            <th scope="col">Type</th>
+                            <th scope="col">Event&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Type&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -196,8 +301,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Finding</th>
-                            <th scope="col">Impact Level</th>
+                            <th scope="col">Finding&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Impact Level&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -216,8 +331,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Finding</th>
-                            <th scope="col">Severity Category</th>
+                            <th scope="col">Finding&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Severity Category&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -236,8 +361,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Task</th>
-                            <th scope="col">Progress</th>
+                            <th scope="col">Task&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Progress&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -256,8 +391,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Rule</th>
-                            <th scope="col">Description</th>
+                            <th scope="col">Rule&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Description&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -276,8 +421,18 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Report Template</th>
-                            <th scope="col">Description</th>
+                            <th scope="col">Report Template&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Description&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -299,9 +454,24 @@
                 <table class="table table-dark">
                     <thead>
                         <tr>
-                            <th scope="col">Notification</th>
-                            <th scope="col">Duration</th>
-                            <th scope="col">Frequency</th>
+                            <th scope="col">Notification&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Duration&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
+                            <th scope="col">Frequency&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
+                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                </div>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
