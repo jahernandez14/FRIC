@@ -13,6 +13,7 @@
                     <!--Code goes here-->
                     <h2 class = "text-center">System Overview Table</h2>
                     <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
+                    <br></br>
                     <div class="row">
                       <?php include '../views/systemOverviewTable.php';?>
                     </div>

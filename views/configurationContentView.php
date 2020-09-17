@@ -12,19 +12,19 @@
         <div class="col-8"> <!--Config content start-->
 
             <h3>Finding Type</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Finding&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Type&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -42,19 +42,19 @@
                 </table>
 
             <h3>Posture</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Finding&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Posture&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -72,19 +72,19 @@
                 </table>
 
             <h3>Threat Level</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Finding&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Threat Relevance&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -102,31 +102,31 @@
                 </table>
 
             <h3>Impact Level</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Finding&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Confidentiality&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Integrity&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Availability&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -148,19 +148,19 @@
                 </table>
 
             <h3>Finding Classification</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Finding&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Classification&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -178,25 +178,25 @@
                 </table>
 
             <h3>Countermeasure</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Finding&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Countermeasure&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Effectiveness Rating&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -216,19 +216,19 @@
                 </table>
 
             <h3>Event Classification</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Event&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Classification&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -242,19 +242,19 @@
                 </table>
 
             <h3>Level</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Finding&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Level&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -272,19 +272,19 @@
                 </table>
 
             <h3>Event Type</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Event&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Type&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -298,19 +298,19 @@
                 </table>
 
             <h3>Finding Impact Level</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Finding&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Impact Level&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -328,19 +328,19 @@
                 </table>
 
             <h3>Severity Category Code</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Finding&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Severity Category&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -358,19 +358,19 @@
                 </table>
 
             <h3>Progress</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Task&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Progress&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -388,49 +388,49 @@
                 </table>
 
             <h3>Event Rules</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Rule&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Description&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">#1</th>
+                            <td>#1</td>
                             <td>Do not use MDK3.</td>
                         </tr>
                         <tr>
-                            <th scope="row">#2</th>
+                            <td>#2</th>
                             <td>Assume minimal insider knowledge.</td>
                         </tr>
                     </tbody>
                 </table>
 
             <h3>Report Template</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Report Template&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Description&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>
@@ -451,25 +451,25 @@
                 </table>
 
             <h3>Notification</h3>
-                <table class="table table-dark">
+                <table class="table table-light table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Notification&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Duration&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                             <th scope="col">Frequency&nbsp;
                                 <div class="btn-group-vertical">
-                                    <button class="btn btn-secondary btn-sm">&uarr;</button>
-                                    <button class="btn btn-secondary btn-sm">&darr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&uarr;</button>
+                            <button class="btn btn-sm btn-secondary py-0" style="font-size: .6em;">&darr;</button>
                                 </div>
                             </th>
                         </tr>

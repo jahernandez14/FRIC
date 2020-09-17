@@ -11,6 +11,8 @@
                 </div>
                 <div class="col-8">
                     <h2 class = "text-center">Event Overview Table</h2>
+                    <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
+                    <br></br>
                     <table class="table table-light table-striped">
                         <thead>
                             <tr>
@@ -133,7 +135,7 @@
                     </form>
                     <h4><br/>Event Team Information</h4>
                     <h5>Lead Analyst</h5>
-                    <button type="button" class="btn btn-light">+</button>
+                    <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
                     <br></br>
                     <div class="row">
                         <div class="col">

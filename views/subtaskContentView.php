@@ -12,6 +12,7 @@
             <div class="col-8">
             <h2 class = "text-center">Subtask Overview</h2>
             <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
+            <br></br>
             <table class="table table-light table-striped">
                 <thead>
                     <tr>
