@@ -127,25 +127,28 @@
                         <div class="col">
                             <label>Confidentiality</label>
                             <select name="Confidentiality" class="form-control" id="confidentiality">
-                                <option value="Value 1">Value 1</option>
-                                <option value="Value 2">Value 2</option>
-                                <option value="Value 3">Value 3</option>
+                                <option value="Conf Value 1">Low</option>
+                                <option value="Conf Value 2">Medium</option>
+                                <option value="Conf Value 3">High</option>
+                                <option value="Conf Value 4">Information</option>
                             </select>
                         </div>
                         <div class="col">
                             <label>Integrity</label>
                             <select name="Integrity" class="form-control" id="integrity">
-                                <option value="Value 1">Value 1</option>
-                                <option value="Value 2">Value 2</option>
-                                <option value="Value 3">Value 3</option>
+                                <option value="Integ Value 1">Low</option>
+                                <option value="Integ Value 2">Medium</option>
+                                <option value="Integ Value 3">High</option>
+                                <option value="Integ Value 4">Information</option>
                             </select>
                         </div>
                         <div class="col">
                             <label>Availability</label>
                             <select name="Availability" class="form-control" id="availability">
-                                <option value="Value 1">Value 1</option>
-                                <option value="Value 2">Value 2</option>
-                                <option value="Value 3">Value 3</option>
+                                <option value="Avail Value 1">Low</option>
+                                <option value="Avail Value 2">Medium</option>
+                                <option value="Avail Value 3">High</option>
+                                <option value="Avail Value 4">Information</option>
                             </select>
                         </div>
                     </div>
