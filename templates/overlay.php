@@ -55,7 +55,7 @@ function closeNotification() {
 </body>
 
 <?php
-	if(array_key_exists('closerOverlayButton', $_POST)) { 
+	if(array_key_exists('closeOverlayButton', $_POST)) { 
         closeOverlay(); 
     }
 	
