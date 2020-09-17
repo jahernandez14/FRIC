@@ -16,16 +16,66 @@
                 <thead>
                     <tr>
                     <th scope="col"><input type="checkbox"></th>
-                    <th scope="col">ID &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-                    <th scope="col">Title &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-                    <th scope="col">System &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-                    <th scope="col">Task &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-                    <th scope="col">Subtask &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-                    <th scope="col">Analyst &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-                    <th scope="col">Status &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-                    <th scope="col">Classification &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-                    <th scope="col">Type &nbsp;<button>&uarr;</button><button>&darr;</button></th>
-                    <th scope="col">Risk &nbsp;<button>&uarr;</button><button>&darr;</button></th>
+                    <th scope="col">ID &nbsp;
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-secondary btn-sm">&uarr;</button>
+                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                        </div>
+                    </th>
+                    <th scope="col">Title &nbsp;
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-secondary btn-sm">&uarr;</button>
+                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                        </div>
+                    </th>
+                    <th scope="col">System &nbsp;
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-secondary btn-sm">&uarr;</button>
+                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                        </div>
+                    </th>
+                    <th scope="col">Task &nbsp;
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-secondary btn-sm">&uarr;</button>
+                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                        </div>
+                    </th>
+                    <th scope="col">Subtask &nbsp;
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-secondary btn-sm">&uarr;</button>
+                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                        </div>
+                    </th>
+                    <th scope="col">Analyst &nbsp;
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-secondary btn-sm">&uarr;</button>
+                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                        </div>
+                    </th>
+                    <th scope="col">Status &nbsp;
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-secondary btn-sm">&uarr;</button>
+                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                        </div>
+                    </th>
+                    <th scope="col">Classification &nbsp;
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-secondary btn-sm">&uarr;</button>
+                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                        </div>
+                    </th>
+                    <th scope="col">Type &nbsp;
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-secondary btn-sm">&uarr;</button>
+                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                        </div>
+                    </th>
+                    <th scope="col">Risk &nbsp;
+                        <div class="btn-group-vertical">
+                            <button class="btn btn-secondary btn-sm">&uarr;</button>
+                            <button class="btn btn-secondary btn-sm">&darr;</button>
+                        </div>
+                    </th>
                     </tr>
                 </thead>
                 <tbody>
