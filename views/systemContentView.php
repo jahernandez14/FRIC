@@ -66,39 +66,36 @@
                     </form>
                     <!--System categorization; 3 dropdown menu-->
                     <h3>System Categorization</h5></br>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle m-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">Confidentiality</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Value 1</a>
-                            <a class="dropdown-item" href="#">Value 2</a>
-                            <a class="dropdown-item" href="#">Value 3</a>
-                        </div>
-                    </div><!-- /btn-group -->
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle m-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Integrity</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Value 1</a>
-                            <a class="dropdown-item" href="#">Value 2</a>
-                            <a class="dropdown-item" href="#">Value 3</a>
-                        </div>
-                    </div><!-- /btn-group -->
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-secondary dropdown-toggle m-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Availability</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">Value 1</a>
-                            <a class="dropdown-item" href="#">Value 2</a>
-                            <a class="dropdown-item" href="#">Value 3</a>
-                        </div>
-                    </div><!-- /btn-group -->
-
                     <div class="row">
-                        <div class="col-2"><br/>
+                        <div class="col">
+                            <label>Confidentiality</label>
+                            <select name="Confidentiality" class="form-control" id="confidentiality">
+                                <option value="Value 1">Value 1</option>
+                                <option value="Value 2">Value 2</option>
+                                <option value="Value 3">Value 3</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label>Integrity</label>
+                            <select name="Integrity" class="form-control" id="integrity">
+                                <option value="Value 1">Value 1</option>
+                                <option value="Value 2">Value 2</option>
+                                <option value="Value 3">Value 3</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label>Availability</label>
+                            <select name="Availability" class="form-control" id="availability">
+                                <option value="Value 1">Value 1</option>
+                                <option value="Value 2">Value 2</option>
+                                <option value="Value 3">Value 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><br/>
                             <button type="button" class="btn btn-light">Save</button>
-                        </div>
-                        <div class="col-2"><br/>
                             <button type="button" class="btn btn-light">Archive</button>
-                        </div>
-                        <div class="col-2"><br/>
                             <button type="button" class="btn btn-light">Cancel</button>
                         </div>
                     </div><br>
