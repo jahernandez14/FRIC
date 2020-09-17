@@ -40,11 +40,15 @@
             </div>
             <div class="row pt-2">
                 <div class="col-1">
-                    <button type="button" class="btn btn-light">Submit</button>
+                    <form method="post">
+                        <input type="submit" name="Submit"
+                        class="btn btn-light" value="Submit" />
+                    </form>
                 </div>
-                <div class="col-1">
-                    <button type="button" class="btn btn-light">Cancel</button>
-                </div>
+                <form method="post">
+                    <input type="submit" name="cancelButton"
+                    class="btn btn-light" value="Cancel" />
+	            </form>
             </div>
             </div>
 
