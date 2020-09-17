@@ -158,7 +158,7 @@
                         <label>Date</label>
                         <input type="date" class="form-control" id="date">
                         </div>
-                        <div class="col-3">
+                        <div class="col-2">
                         <label>Attachments</label>
                         <input type="button" class="form-control" id="evidence" value="Choose File">
                         </div>

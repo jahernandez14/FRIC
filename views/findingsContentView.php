@@ -160,7 +160,7 @@
                             <option value="info">Information</option>
                         </select>
                         </div>
-                        <div class="col-4">
+                        <div class="col-2">
                         <label>Evidence:</label>
                         <input type="button" class="form-control" id="evidence" value="Choose File">
                         </div>
