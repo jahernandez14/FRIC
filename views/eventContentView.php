@@ -112,6 +112,16 @@
                         </div>
                     </form>
                     <h4><br/>Event Team Information</h4>
+                    <h5>Lead Analyst</h5>
+                    <button type="button" class="btn btn-light">+</button>
+                    <br></br>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-light">Delete</button>
+                            <button type="button" class="btn btn-light">Save</button>
+                            <button type="button" class="btn btn-light">Cancel</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-2"  style = "background-color:#202020">
                     <?php include '../templates/search.php';?>
