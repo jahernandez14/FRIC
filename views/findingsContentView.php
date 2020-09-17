@@ -11,6 +11,7 @@
             </div>
             <div class="col-8">
             <h2 class = "text-center">Finding Overview</h2>
+            <button type="button" class="btn btn-light">+</button>
             <table class="table table-light table-striped">
                 <thead>
                     <tr>
@@ -96,11 +97,6 @@
                 </tbody>
                 </table>
 
-                <button type="button">+</button>
-                <button type="button">Delete</button>
-                <button type="button">Save</button>
-                <button type="button">Cancel</button>
-
                 <h2 class = "text-center">Finding Detailed View</h2>
                 <form>
                     <div class="row">
@@ -166,7 +162,7 @@
                         </div>
                         <div class="col-4">
                         <label>Evidence:</label>
-                        <input type="file" class="form-control" id="evidence">
+                        <input type="button" class="form-control" id="evidence" value="Choose File">
                         </div>
                     </div>
                     <div class="row">
@@ -394,12 +390,15 @@
                         </div>
                     </div>
                 </form>
-
-                <button type="button">?</button>
-                <button type="button">Archive</button>
-                <button type="button">Demote</button>
-                <button type="button">Save</button>
-                <button type="button">Cancel</button>
+                <br>
+                </br>
+                <button type="button" class="btn btn-light">Delete</button>
+                <button type="button" class="btn btn-light">Save</button>
+                <button type="button" class="btn btn-light">Cancel</button>
+                <br>
+                <br>
+                </br>
+                </br>
             </div>
             <div class="col-2"  style = "background-color:#202020">
             <?php include '../templates/search.php';?>
