@@ -3,7 +3,6 @@
 echo <<< HEADER
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/custom.css">
-    <link rel="stylesheet" href="../css/all.css">
     <link rel="icon" href="../images/fav.ico">
     <title>FRIC</title>
     <div class="container-fluid">
@@ -52,7 +51,65 @@ echo <<< HEADER
             </li>
             </ul>
         </div>
-    </nav>  
+        <form method="post">
+            <input type="submit" name="notification" class ="btn btn-warning font-weight-bold" value = "!">
+        </form>
+    </nav>
+    <script>
+        function openEdit() {
+            document.getElementById("addEditOverlay").style.width = "100%";
+        }
+
+        function closeEdit() {
+            document.getElementById("addEditOverlay").style.width = "0%";
+        }
+
+        function openNotification() {
+            document.getElementById("notification").style.width = "100%";
+        }
+
+        function closeNotification() {
+            document.getElementById("notification").style.width = "0%";
+        }
+
+        function openSync() {
+            document.getElementById("sync").style.width = "100%";
+        }
+
+        function closeSync() {
+            document.getElementById("sync").style.width = "0%";
+        }
+    </script>
 HEADER;
-    include 'overlay.php';
+    include 'NotificationOverlay.php';
+    include 'addEditOverlay.php';
+    include 'syncOverlay.php';
+
+    if(array_key_exists('notification', $_POST)) { 
+        notification(); 
+    }
+    function notification() {
+        echo "<script type='text/javascript'>openNotification();</script>";
+    }
+
+    if(array_key_exists('addEdit', $_POST)) { 
+        addEdit(); 
+    }
+    function addEdit() {
+        echo "<script type='text/javascript'>openEdit();</script>";
+    }
+
+    if(array_key_exists('sync', $_POST)) { 
+        sync(); 
+    }
+    function sync() {
+        echo "<script type='text/javascript'>openSync();</script>";
+    }
+
+    if(array_key_exists('closeOverlayButton', $_POST)) { 
+        closeOverlay(); 
+    }
+    function closeOverlay() {
+        echo "<script type='text/javascript'>closeNotification();</script>";
+    }
 ?>

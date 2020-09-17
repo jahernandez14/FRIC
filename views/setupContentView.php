@@ -38,30 +38,19 @@
                     <option>10.0.0.2</option>
                 </datalist>
             </div>
-
-            <?php
-	            if(array_key_exists('button1', $_POST)) { 
-                    button1(); 
-                }
-	            function button1() {
-		            echo "<script type='text/javascript'>openNotification();</script>";
-	            }
-            ?>
             <div class="row pt-2">
                 <div class="col-1">
-	            <form method="post">
-                    <input type="submit" name="button1"
-                    class="btn btn-light" value="Submit" />
-	            </form>
+                    <form method="post">
+                        <input type="submit" name="Submit"
+                        class="btn btn-light" value="Submit" />
+                    </form>
                 </div>
-                <div class="col-1">
                 <form method="post">
                     <input type="submit" name="cancelButton"
                     class="btn btn-light" value="Cancel" />
 	            </form>
-                </div>
             </div>
-            </div> <!--End setup content div-->
+            </div>
 
             <div class="col-2"  style = "background-color:#202020">
             <?php include '../templates/search.php';?>

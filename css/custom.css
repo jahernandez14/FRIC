@@ -105,7 +105,7 @@ a:visited{
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0, 0.9);
   overflow-x: hidden;
-  transition: 0.5s; /* 0.5 second transition */
+  transition: 0.5s;
 }
 
 .overlay-content {

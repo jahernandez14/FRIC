@@ -11,7 +11,7 @@
             </div>
             <div class="col-8">
             <h2 class = "text-center">Subtask Overview</h2>
-            <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
+            <a href="../views/helpContentView.php" class="btn-sm btn-light" style=color:black>+</a>
             <br></br>
             <table class="table table-light table-striped">
                 <thead>
@@ -61,7 +61,7 @@
                     <td>Subtask 1</td>
                     <td>Task 3</td>
                     <td>am.123.1.123.2</td>
-                    <td>InProgress</td>
+                    <td>In Progress</td>
                     <td>3</td>
                     <td>9/12/2020</td>
                     </tr>
@@ -70,7 +70,7 @@
                     <td>Subtask 1</td>
                     <td>Task 3</td>
                     <td>am.123.1.123.2</td>
-                    <td>InProgress</td>
+                    <td>In Progress</td>
                     <td>3</td>
                     <td>9/12/2020</td>
                     </tr>
@@ -79,7 +79,7 @@
                     <td>Subtask 1</td>
                     <td>Task 3</td>
                     <td>am.123.1.123.2</td>
-                    <td>InProgress</td>
+                    <td>In Progress</td>
                     <td>3</td>
                     <td>9/12/2020</td>
                     </tr>
@@ -88,7 +88,7 @@
                     <td>Subtask 1</td>
                     <td>Task 3</td>
                     <td>am.123.1.123.2</td>
-                    <td>InProgress</td>
+                    <td>In Progress</td>
                     <td>3</td>
                     <td>9/12/2020</td>
                     </tr>
@@ -97,7 +97,7 @@
                     <td>Subtask 1</td>
                     <td>Task 3</td>
                     <td>am.123.1.123.2</td>
-                    <td>InProgress</td>
+                    <td>In Progress</td>
                     <td>3</td>
                     <td>9/12/2020</td>
                     </tr>

@@ -11,7 +11,7 @@
             </div>
             <div class="col-8">
             <h2 class = "text-center">Finding Overview</h2>
-            <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
+            <a href="../views/helpContentView.php" class="btn-sm btn-light" style=color:black>+</a>
             <br></br>
             <table class="table table-light table-striped">
                 <thead>
@@ -262,7 +262,7 @@
                     </div>
                 </form>
 
-                <h2 class = "text-center">Finding Impact</h2>
+                <h3>Finding Impact</h3>
                 <form>
                     <div class="row">
                         <div class="col">
@@ -295,7 +295,7 @@
                     </div>
                 </form>
 
-                <h2 class = "text-center">Analyst Information</h2>
+                <h3>Analyst Information</h3>
                 <form>
                     <div class="row">
                         <div class="col-4">
@@ -329,7 +329,7 @@
                     </div>
                 </form>
 
-                <h2 class = "text-center">Mitigation</h2>
+                <h3>Mitigation</h3>
                 <form>
                     <div class="row">
                         <div class="col">
@@ -345,7 +345,7 @@
                     </div>
                 </form>
 
-                <h2 class = "text-center">Threat Relevance</h2>
+                <h3>Threat Relevance</h3>
                 <form>
                     <div class="row">
                         <div class="col">
@@ -361,7 +361,7 @@
                     </div>
                 </form>
 
-                <h2 class = "text-center">Counter Measure</h2>
+                <h3>Counter Measure</h3>
                 <form>
                     <div class="row">
                         <div class="col">
@@ -382,7 +382,7 @@
                     </div>
                 </form>
 
-                <h2 class = "text-center">Severity</h2>
+                <h3>Severity</h3>
                 <form>
                     <div class="row">
                         <div class="col">
@@ -404,7 +404,7 @@
                     </div>
                 </form>
 
-                <h2 class = "text-center">Risk</h2>
+                <h3>Risk</h3>
                 <form>
                     <div class="row">
                         <div class="col">
@@ -418,7 +418,7 @@
                     </div>
                 </form>
 
-                <h2 class = "text-center">Finding System Level Impact</h2>
+                <h3>Finding System Level Impact</h3>
                 <form>
                     <div class="row">
                         <div class="col">

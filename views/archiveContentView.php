@@ -127,7 +127,7 @@
                 </tbody>
                 </table>
                         </div>
-                        <button type="button" class="btn btn-light">Restore</button><br>
+                        <button type="button" class="btn btn-light">Restore</button>
                         <h2 class="text-center">Archived Subtasks</h2>
                         <div class="row">
                         <table class="table table-light table-striped">
@@ -221,7 +221,7 @@
                 </tbody>
                 </table>
                         </div>
-                        <button type="button" class="btn btn-light">Restore</button><br>
+                        <button type="button" class="btn btn-light">Restore</button>
                         <h2 class="text-center">Archived Findings</h2>
                         <div class="row">
                         <table class="table table-light table-striped">

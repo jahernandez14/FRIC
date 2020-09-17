@@ -11,7 +11,7 @@
                 </div>
                 <div class="col-8">
                     <h2 class = "text-center">Event Overview Table</h2>
-                    <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
+                    <a href="../views/helpContentView.php" class="btn-sm btn-light" style=color:black>+</a>
                     <br></br>
                     <table class="table table-light table-striped">
                         <thead>
@@ -81,8 +81,11 @@
                             </tr>
                         </tbody>
                     </table>
+                    <button type="button" class="btn btn-light">Delete</button>
+                    <button type="button" class="btn btn-light">Save</button>
+                    <button type="button" class="btn btn-light">Cancel</button>
                     <h2 class = "text-center">Event Detailed View</h2>
-                    <h4>Event Basic Information</h4>
+                    <h4>Event Basic Information <a href="../views/helpContentView.php" class="btn-sm btn-light" style=color:black>?</a></h4>
                     <form>
                         <div class="row">
                             <div class="col">
@@ -134,16 +137,68 @@
                         </div>
                     </form>
                     <h4><br/>Event Team Information</h4>
-                    <h5>Lead Analyst</h5>
-                    <button type="button" class="btn btn-sm btn-light py-0" style="font-size: .8em;">+</button>
-                    <br></br>
+
+                    <div class = col-10>
                     <div class="row">
-                        <div class="col">
-                            <button type="button" class="btn btn-light">Delete</button>
-                            <button type="button" class="btn btn-light">Save</button>
-                            <button type="button" class="btn btn-light">Cancel</button>
+                    <h5>Lead Analyst &nbsp;<br/><br/></h5>
+                    <form method="post">
+                        <input type="submit" name="addEdit" class ="btn btn-light btn-sm" value = "+">
+                    </form>
+                    </div>
+                    <div class = "row">
+                    <div class="col-1">
+                        <input type="checkbox" class="form-control">
+                    </div>
+                        <div class="col-3">
+                        <select name="Confidentiality" class="form-control" id="confidentiality">
+                                    <option value="Remove">Edit</option>
+                                    <option value="Edit">Remove</option>
+                                    <option value="Sync">Sync</option>
+                                </select>
+                        </div>
+
+                        <div class="col-3">
+                        <select name="Confidentiality" onchange="javascript:handleSelect()" class="form-control" id="confidentiality">
+                            <option value="am.123.1.123.2">am.123.1.123.2</option>
+                            <option value="mm.123.1.123.3">mm.123.1.123.3</option>
+                            <option value="sr.123.1.123.4">sr.123.1.123.4</option>
+                        </select>
                         </div>
                     </div>
+                    <br></br>
+                    <div class="row">
+                    <h5>Analyst &nbsp;<br/><br/></h5>
+                     <form method="post">
+                        <input type="submit" name="sync" class ="btn btn-light btn-sm" value = "+">
+                    </form>
+                    </div>
+                    <div class = "row">
+                    <div class="col-1">
+                        <input type="checkbox" class="form-control">
+</div>
+                    <div class="col-3">
+                    <select name="Confidentiality" class="form-control" id="confidentiality">
+                                <option value="Remove">Edit</option>
+                                <option value="Edit">Remove</option>
+                                <option value="Sync">Sync</option>
+                            </select>
+                    </div>
+
+                    <div class="col-3">
+                    <select name="Confidentiality" onchange="javascript:handleSelect()" class="form-control" id="confidentiality">
+                        <option value="am.123.1.123.2">am.123.1.123.2</option>
+                        <option value="mm.123.1.123.3">mm.123.1.123.3</option>
+                        <option value="sr.123.1.123.4">sr.123.1.123.4</option>
+                    </select>
+                    </div>
+
+                    <script type="text/javascript">
+                        function handleSelect(){
+                        window.location = "../views/analystProgressSummaryContentView.php";
+                        }
+                    </script>
+                    </div>
+                </div>
                 </div>
                 <div class="col-2"  style = "background-color:#202020">
                     <?php include '../templates/search.php';?>
