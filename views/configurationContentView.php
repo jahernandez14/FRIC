@@ -12,35 +12,312 @@
         <div class="col-8"> <!--Config content start-->
 
             <h3>Finding Type</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Finding</th>
+                            <th scope="col">Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Finding 1</td>
+                            <td>Lack of Authentication</td>
+                        </tr>
+                        <tr>
+                            <td>Finding 2</td>
+                            <td>Privilege Escalation</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Posture</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Finding</th>
+                            <th scope="col">Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Finding 1</td>
+                            <td>Insider</td>
+                        </tr>
+                        <tr>
+                            <td>Finding 2</td>
+                            <td>Nearsider</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Threat Level</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Finding</th>
+                            <th scope="col">Threat Relevance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Finding 1</td>
+                            <td>Expected</td>
+                        </tr>
+                        <tr>
+                            <td>Finding 2</td>
+                            <td>Predicted Possible</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Impact Level</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Finding</th>
+                            <th scope="col">Confidentiality</th>
+                            <th scope="col">Integrity</th>
+                            <th scope="col">Availability</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Finding 1</td>
+                            <td>LOW</td>
+                            <td>HIGH</td>
+                            <td>LOW</td>
+                        </tr>
+                        <tr>
+                            <td>Finding 2</td>
+                            <td>MODERATE</td>
+                            <td>MODERATE</td>
+                            <td>LOW</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Finding Classification</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Finding</th>
+                            <th scope="col">Classification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Finding 1</td>
+                            <td>Vulnerability</td>
+                        </tr>
+                        <tr>
+                            <td>Finding 2</td>
+                            <td>INFO</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Countermeasure</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Finding</th>
+                            <th scope="col">Countermeasure</th>
+                            <th scope="col">Effectiveness Rating</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Finding 1</td>
+                            <td>Add authenticator</td>
+                            <td>10 Very High</td>
+                        </tr>
+                        <tr>
+                            <td>Finding 2</td>
+                            <td>Check user privilege</td>
+                            <td>8 High</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Event Classification</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Event</th>
+                            <th scope="col">Classification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Current Event</td>
+                            <td>Confidential</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Level</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Finding</th>
+                            <th scope="col">Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Finding 1</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Finding 2</td>
+                            <td>Medium</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Event Type</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Event</th>
+                            <th scope="col">Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Current Event</td>
+                            <td>CVPA</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Finding Impact Level</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Finding</th>
+                            <th scope="col">Impact Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Finding 1</td>
+                            <td>High</td>
+                        </tr>
+                        <tr>
+                            <td>Finding 2</td>
+                            <td>Moderate</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Severity Category Code</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Finding</th>
+                            <th scope="col">Severity Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Finding 1</td>
+                            <td>II</td>
+                        </tr>
+                        <tr>
+                            <td>Finding 2</td>
+                            <td>I</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Progress</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Task</th>
+                            <th scope="col">Progress</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Task 1</td>
+                            <td>Assigned</td>
+                        </tr>
+                        <tr>
+                            <td>Task 2</td>
+                            <td>Complete</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Event Rules</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Rule</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">#1</th>
+                            <td>Do not use MDK3.</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">#2</th>
+                            <td>Assume minimal insider knowledge.</td>
+                        </tr>
+                    </tbody>
+                </table>
 
             <h3>Report Template</h3>
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Report Template</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Risk Matrix</td>
+                            <td>Matrix assessing likelihood and severity of risk.</td>
+                        </tr>
+                        <tr>
+                            <td>Emergent Result Brief</td>
+                            <td>A brief summarizing findings, systems, impacts, and risks.</td>
+                        </tr>
+                        <tr>
+                            <td>Final Technical Result</td>
+                            <td>A more detailed report with all findings, and a summary of the likelihood, impacts, and risks.</td>
+                    </tbody>
+                </table>
 
             <h3>Notification</h3>
-
+                <table class="table table-dark">
+                    <thead>
+                        <tr>
+                            <th scope="col">Notification</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Task 1</td>
+                            <td>2 days</td>
+                            <td>24 hours</td>
+                        </tr>
+                        <tr>
+                            <td>Task 2</td>
+                            <td>4 hours</td>
+                            <td>15 minutes</td>
+                        </tr>
+                    </tbody>
+                </table>
+        <h1>.</h1>
         </div> <!--Config content end-->
         <div class="col-2"  style = "background-color:#202020">
         <?php include '../templates/search.php';?>
