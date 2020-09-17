@@ -6,9 +6,9 @@
   <a href="javascript:void(0)" class="closebtn" onclick="closeNotification()">&times;</a>
 
   <div class="overlay-content">
-	<h2> Notification </h2>
+	<h2>Notification</h2>
 	<center>
-    <table>
+    <table class="table-dark">
       <thead>
         <tr>
           <th scope="col">Task Title</th>

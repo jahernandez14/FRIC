@@ -31,7 +31,7 @@
             </div>
             First time sync with lead analyst. Please enter the lead analyst's IP:
             <div class="input-group">
-                <input type="text" list="leadAnalystIP" placeholder="IP Address"/>
+                <input type="text" list="leadAnalystIP" placeholder="IP Address" class="form-control"/>
                 <datalist id="leadAnalystIP">
                     <option>192.168.1.1</option>
                     <option>10.0.0.1</option>
@@ -47,15 +47,19 @@
 		            echo "<script type='text/javascript'>openNotification();</script>";
 	            }
             ?>
-            <div class="input-group">
+            <div class="row pt-2">
+                <div class="col-1">
 	            <form method="post">
-                    <input type="submit" name="submitButton"
-                    class="button" value="Submit" />
+                    <input type="submit" name="button1"
+                    class="btn btn-light" value="Submit" />
 	            </form>
+                </div>
+                <div class="col-1">
                 <form method="post">
                     <input type="submit" name="cancelButton"
-                    class="button" value="Cancel" />
+                    class="btn btn-light" value="Cancel" />
 	            </form>
+                </div>
             </div>
             </div> <!--End setup content div-->
 
