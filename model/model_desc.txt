@@ -1,0 +1,2 @@
+All of the logic will reside here as well as the communication with the database.
+
