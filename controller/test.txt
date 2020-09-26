@@ -1,0 +1,1 @@
+This directory will be i charge of user interactions. I believe there will be a php file for each view and will be included to the view when in use.
