@@ -18,7 +18,7 @@ echo <<< HEADER
         </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="../views/eventContentView.php"><strong>FRIC</strong></a>
+        <button type="button" class="btn btn-warning" onclick="openEventTree()">Tree</button>
         <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item">
