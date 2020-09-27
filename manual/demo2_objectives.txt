@@ -2,6 +2,8 @@ Jebel & Will
 -Create FRIC database using Mongo (i think these are all the collections we neeed but not 100% sure)
     -Create event collection  
     -Create analyst collection
+    -Create system collection
+    -Create finding collection
 -Create php file that connects to database (using default account for now)
 -Create classes that access, modify, and send atomic data to controller (more on that late basically add, delete, edit, that kinda stuff, once i build the controller methods yopu will have more of an idea)
 -methods to populate the table (No. of systems, No. of Findings)
