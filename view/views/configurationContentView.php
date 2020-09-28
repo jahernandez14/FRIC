@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="en">
 
-
-
-
 <head>
-    <?php include '../templates/header.php';?>
+    <?php
+        include '../templates/header.php';
+        include '../templates/table.php';
+        //include '../templates/dummyData.php';
+    ?>
 </head>
 
 <body>
@@ -18,14 +19,11 @@
                 <!--Config content start-->
 
                 <?php
-                include '../templates/table.php';
-                $table = new table("Finding Type", 2, 2, array(0 => "Finding", 1 => "Type"), array(
+                $table = new table("Finding Type", 2, 2, array(0 => "Finding", 1 => "Type", "F" => 0, "C" => 0, "R" => 0), array(
                     0 => array(0 => "Finding 1", 1 => "Lack of Authentication"),
                     1 => array(0 => "Finding 2", 1 => "Privilege Escalation")
                 ));
                 $table->printTable();
-
-
                 ?>
                 <h3>Finding Type</h3>
                 <table class="table table-light table-striped">
@@ -60,6 +58,13 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <?php
+                $posturetable = table::tableByType("Posture", array(
+                    0 => array(0 => "Finding 1", 1 => "Insider"),
+                    1 => array(0 => "Finding 2", 1 => "Nearsider")));
+                $posturetable->printTable();
+                ?>
 
                 <h3>Posture</h3>
                 <table class="table table-light table-striped">
