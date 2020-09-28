@@ -107,6 +107,13 @@ class table
         </tbody>
         </table>
         TABLE;
+        if($this->columns["R"] == 1) {
+            $restoreSelection = $this->columns["restoreLink"];
+            echo <<< RESTOREBUTTONS
+            <a href="$restoreSelection" class="btn-sm btn-light" style=color:black>Restore</a>
+            <br></br>
+            RESTOREBUTTONS;
+        }
     }
 
     public function addRow($data) {
