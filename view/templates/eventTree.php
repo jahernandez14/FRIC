@@ -44,7 +44,7 @@
 
 <script>
 function openEventTree() {
-    document.getElementById("eventTree").style.width = "20.0%";
+    document.getElementById("eventTree").style.width = "15.0%";
 }
 
 /* Close when someone clicks on the "x" symbol inside the overlay */
