@@ -17,7 +17,8 @@
         </div>
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button type="button" class="btn btn-warning" onclick="openEventTree()">Tree</button>
+        <button type="button" class="btn btn-light btn-sm" onclick="openEventTree()">&#9776;</button>
+        <a class="navbar-brand" href="../views/eventContentView.php"><strong>&nbsp;&nbsp;FRIC</strong></a>
         <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item">

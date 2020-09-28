@@ -42,13 +42,10 @@ body {
     height: auto;
 }
 
-ul, #eTree {
+ul {
   list-style-type: none;
-}
+  padding-left: 1em;
 
-#eTree {
-  margin: 0;
-  padding: 0;
 }
 
 .caret {
@@ -178,4 +175,5 @@ tfoot {
   text-align: center; /* Centered text/links */
   margin-top: 30px;
 }
+
 
