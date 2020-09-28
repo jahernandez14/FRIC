@@ -14,6 +14,14 @@
             <div class="col-8">
                 <!--Config content start-->
 
+                <?php
+                include '../templates/table.php';
+                $table = new table("Finding Type", 2, 2, array(0 => "Finding", 1 => "Type"), array(
+                    0 => array(0 => "Finding 1", 1 => "Lack of Authentication"),
+                    1 => array(0 => "Finding 2", 1 => "Privilege Escalation")
+                ));
+                $table->printTable();
+                ?>
                 <h3>Finding Type</h3>
                 <table class="table table-light table-striped">
                     <thead>
