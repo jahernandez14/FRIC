@@ -81,18 +81,20 @@ a:visited{
   color:white;
 }
 
-.footer {
-  background-color: #343a40;
+.test {
   width: 100%;
   margin:0 auto;
   height:auto;
-  overflow:hidden;
-  position: fixed;
-  bottom: 0px;
+  position: sticky;
+  top: 0px;
 }
 
 .fluid-col {
   height: 1500px;
+}
+
+.fluid-col-extra {
+  height: 4000px;
 }
 
 .overlay {

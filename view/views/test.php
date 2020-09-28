@@ -2,16 +2,19 @@
 <html lang="en">
 
 <head>
-    <?php
+
+</head>
+
+<body>
+    <div class="test row">
+        <?php
         include '../templates/header.php';
         include '../templates/table.php';
         //include '../templates/dummyData.php';
     ?>
-</head>
-
-<body>
+    </div>
     <div class="container-fluid">
-        <div class="row fluid-col-extra">
+        <div class="row fluid-col">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
                 <?php include '../templates/eventTree.php';?>
             </div>
@@ -586,4 +589,17 @@
         <?php include '../templates/footer.php';?>
     </div>
 </body>
+
 </html>
+
+
+
+<?php
+    $mng = new MongoDB\Driver\Manager("mongodb://localhost:27017");
+    $qry = new MongoDB\Driver\Query([]);
+     
+    $rows = $mng->executeQuery("productdb.products", $qry);
+         foreach ($rows as $row) {
+        echo nl2br("$row->item : $row->qty\n");
+    }
+?>
