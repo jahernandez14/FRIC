@@ -246,10 +246,7 @@
                 <?php include '../templates/search.php';?>
             </div>
         </div>
+        <?php include '../templates/footer.php';?>
     </div>
 </body>
-<footer class="footer">
-    <?php include '../templates/footer.php';?>
-</footer>
-
 </html>

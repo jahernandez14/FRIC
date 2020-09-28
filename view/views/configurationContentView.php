@@ -24,7 +24,7 @@
                     1 => array(0 => "Finding 2", 1 => "Privilege Escalation")
                 ));
                 $table->printTable();
-                
+
 
                 ?>
                 <h3>Finding Type</h3>
@@ -579,10 +579,7 @@
                 <?php include '../templates/search.php';?>
             </div>
         </div>
+        <?php include '../templates/footer.php';?>
     </div>
 </body>
-<footer class="footer">
-    <?php include '../templates/footer.php';?>
-</footer>
-
 </html>
