@@ -55,5 +55,18 @@ class table
         </table>
         TABLE;
     }
+
+    public function addRow($data) {
+        $this->contents[$this->dims["rows"]] = $data;
+        $this->dims["rows"]++;
+    }
+
+    public function delRow($rowNumber) {
+        for($row = $rowNumber - 1; $row<$this->dims["rows"]-1; $row++) {
+            $this->contents[$row] = $this->contents[$row+1];
+        }
+        unset($this->contents["rows"]);
+        $this->dims["rows"]--;
+    }
 }
 ?>
