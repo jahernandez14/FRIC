@@ -24,6 +24,8 @@
                     1 => array(0 => "Finding 2", 1 => "Privilege Escalation")
                 ));
                 $table->printTable();
+                
+
                 ?>
                 <h3>Finding Type</h3>
                 <table class="table table-light table-striped">

@@ -8,10 +8,10 @@
 <body>
     <div class="container-fluid">
         <div class="row fluid-col">
-            <div class="col-2" style="background-color:#202020">
+            <div id="eventTree" class="dm-popout" style="background-color:#202020">
                 <?php include '../templates/eventTree.php';?>
             </div>
-            <div class="col-8">
+            <div class="col-10">
                 <!--Code Goes Here-->
                 <form class="col-12">
                     <h2 class="text-center">Archived Tasks</h2>

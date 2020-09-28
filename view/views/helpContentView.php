@@ -9,10 +9,10 @@
 
     <div class="container-fluid">
         <div class="row fluid-col">
-            <div class="col-2" style="background-color:#202020">
+            <div id="eventTree" class="dm-popout" style="background-color:#202020">
                 <?php include '../templates/eventTree.php';?>
             </div>
-            <div class="col-8">
+            <div class="col-10">
                 <h3 class="text-center"><strong>Help</strong></h3>
                 <div style="background-color:#FFFFFF; color:black;" class="col-8 container fluid-col">
                     <p class="text-center">The following page describes each section within Findings and Reporting
