@@ -18,23 +18,23 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <button type="button" class="btn btn-light btn-sm" onclick="openEventTree()">&#9776;</button>
-        <a class="navbar-brand" href="../views/eventContentView.php"><strong>&nbsp;&nbsp;FRIC</strong></a>
+        <a class="navbar-brand" href="../views/eventOverview.php"><strong>&nbsp;&nbsp;FRIC</strong></a>
         <div class="navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="../views/eventContentView.php">Event</a>
+                <a class="nav-link" href="../views/eventOverview.php">Event</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../views/systemContentView.php">Systems</a>
+                <a class="nav-link" href="../views/systemOverview.php">Systems</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../views/taskContentView.php">Tasks</a>
+                <a class="nav-link" href="../views/taskOverview.php">Tasks</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../views/subtaskContentView.php">Subtasks</a>
+                <a class="nav-link" href="../views/subtaskOverview.php">Subtasks</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../views/findingsContentView.php">Findings</a>
+                <a class="nav-link" href="../views/findingsOverview.php">Findings</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="../views/archiveContentView.php">Archive</a>
