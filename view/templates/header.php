@@ -1,5 +1,4 @@
-  <?php
-echo <<< HEADER
+
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="icon" href="../images/fav.ico">
@@ -79,7 +78,8 @@ echo <<< HEADER
             document.getElementById("sync").style.width = "0%";
         }
     </script>
-HEADER;
+
+<?php
     include 'NotificationOverlay.php';
     include 'addEditOverlay.php';
     include 'syncOverlay.php';

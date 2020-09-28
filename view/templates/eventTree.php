@@ -1,6 +1,5 @@
-<?php
-    echo <<< TREE
-    <div id="eventTree" class="dm-popout">
+
+    
         <div class="row">
             <div class="col">
                 <h3 class="text-center">Event Tree Menu</h3>
@@ -39,7 +38,7 @@
             </ul>
         </li>
     </ul>
-    </div>
+    
     <script>
     function openEventTree() {
         document.getElementById("eventTree").style.width = "16.67%";
@@ -58,5 +57,3 @@
     });
     }
     </script>
-    TREE
-?>
