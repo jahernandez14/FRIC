@@ -28,7 +28,7 @@ class Event {
         $this->eventTeam             = $eventTeam;
 
         $dbEntry = [
-            '_id' =>$eventName,
+            '_id' =>$db->checkDatabaseForSameID($eventName,'FRIC_Database.Events'),
             'eventDescription'      => $eventDescription,
             'eventType'             => $eventType,
             'eventVersion'          => $assessmentDate,

@@ -18,6 +18,16 @@ class Database{
         }
     } 
 
+    public function checkDatabaseForSameID($id, $collection){
+        $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+        $cursor = $this->manager->executeQuery($collection, $query);
+        if(count($cursor->toArray()) == 0){
+            return $id;
+        }
+        $id = $id . " - Copy";
+        return $this->checkDatabaseForSameID($id, $collection);
+    }
+
     public function insertDocument($dbEntry, $collection){
         try{
             $this->bulk->insert($dbEntry);
@@ -27,8 +37,8 @@ class Database{
         }
     }
 
-    public function getDocument($objectName, $collection){
-        $query  = new MongoDB\Driver\Query(['_id' => $objectName], []);
+    public function getDocument($id, $collection){
+        $query  = new MongoDB\Driver\Query(['_id' => $id], []);
         $cursor = $this->manager->executeQuery($collection, $query);
         $object = array(); 
         foreach($cursor as $document){
@@ -44,11 +54,11 @@ class Database{
         $cursor = $this->manager->executeQuery($collection, $query);  
         $table  = array();
         foreach($cursor as $document){
-            $object = array();
+            $row = array();
             foreach($document as $element){
-                array_push($object, $element);
+                array_push($row, $element);
             }
-            array_push($table, $object);
+            array_push($table, $row);
         } 
         return $table;
     }
@@ -68,6 +78,7 @@ $cn = "Kyle";
 $as = "N"; 
 $ete= "jm";
 $a = new Event($db, $en, $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as, $ete);
-$db->getDocument("Event No", 'FRIC_Database.Events');
-$db->getAllDocuments('FRIC_Database.Events');
+//$db->getDocument("Event No", 'FRIC_Database.Events');
+//$a->getEventFromDB($db);
+//$db->getAllDocuments('FRIC_Database.Events');
 ?>
