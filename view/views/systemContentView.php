@@ -15,12 +15,17 @@
                 <h2 class="text-center">System Detailed View</h2>
                 <h4>System Information</h4>
                 <form>
+                    <?php
+                    $outString = urldecode($_SERVER['QUERY_STRING']);
+                    echo <<< HEREDOC
                     <div class="row">
                         <div class="col">
                             <label>System Name</label>
-                            <input type="text" class="form-control" placeholder="Name">
+                            <input type="text" class="form-control" placeholder="$outString">
                         </div>
                     </div>
+                    HEREDOC;
+                    ?>
                     <br>
                     <div class="row">
                         <div class="col">
