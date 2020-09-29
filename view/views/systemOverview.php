@@ -84,6 +84,15 @@
                 </table>
                 <h4>Event Basic Information <a href="../views/helpContentView.php" class="btn-sm btn-light"
                         style=color:black>?</a></h4>
+                
+                <?php include '../templates/table.php';
+                $systemTable = table::tableByType("System Overview Table", array(
+                    0 => array(0 => "System 1", 1 => 2, 2 => 5, 3 => "In Progress"),
+                    1 => array(0 => "System 2", 1 => 3, 2 => 4, 3 => "Assigned"),
+                    2 => array(0 => "System 3", 1 => 5, 2 => 2, 3 => "In Progress")
+                ));
+                $systemTable->printTable();
+                ?>
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>

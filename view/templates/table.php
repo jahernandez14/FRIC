@@ -98,8 +98,24 @@ class table
             if($this->columns["C"] == 1) {
                 echo "<th scope=\"col\"><input type=\"checkbox\"></th>";
             }
+            if($this->columns["F"] + $this->columns["R"] > 0) {
+
+            }
             for($col = $this->columns["C"]; $col<$this->dims["columns"]; $col++) {
-                echo "<td>",$this->contents[$row][$col-$this->columns["C"]],"</td>";
+                $stringPreface = "";
+                $stringEnd = "";
+                if(($this->columns["F"] + $this->columns["R"] > 0) && ($col == 1)) {
+                    if($this->columns["F"] == 1) {
+                        $newItemString = $this->columns["newLink"];
+                    }
+                    if($this->columns["R"] == 1) {
+                        $newItemString = $this->columns["restoreLink"];
+                    }
+                    $itemName = $this->contents[$row][$col-$this->columns["C"]];
+                    $stringPreface = "<a href=\"$newItemString?$itemName\" style=color:black>";
+                    $stringEnd = "</a>";
+                }
+                echo "<td>",$stringPreface,$this->contents[$row][$col-$this->columns["C"]],$stringEnd,"</td>";
             }
             echo "</tr>";
         }
