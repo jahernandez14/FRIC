@@ -2,14 +2,12 @@
 include ("event.php");
 class Database{
     private $manager;
-    private $bulk;
 
     public function __construct($url){
         if(extension_loaded("mongodb")){
             echo "MongoDB extension successfully loaded";
             try{
                 $this->manager  = new MongoDB\Driver\Manager($url);
-                $this->bulk     = new MongoDB\Driver\BulkWrite;
             } catch (MongoConnectionException $failedLoser){
                 echo "Error: $failedLoser";
             }
@@ -30,42 +28,65 @@ class Database{
 
     public function insertDocument($dbEntry, $collection){
         try{
-            $this->bulk->insert($dbEntry);
-            $this->manager->executeBulkWrite($collection, $this->bulk);
+            $bulk = new MongoDB\Driver\BulkWrite;
+            $bulk->insert($dbEntry);
+            $this->manager->executeBulkWrite($collection, $bulk);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+        }
+    }
+
+    public function editDocument($id, $dbEntry, $collection){
+        try{
+            $bulk = new MongoDB\Driver\BulkWrite;
+            $bulk->delete(['_id' => $id]);
+            $this->manager->executeBulkWrite($collection, $bulk);
+            $this->insertDocument($dbEntry, $collection);
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
         }
     }
 
     public function getDocument($id, $collection){
-        $query  = new MongoDB\Driver\Query(['_id' => $id], []);
-        $cursor = $this->manager->executeQuery($collection, $query);
-        $object = array(); 
-        foreach($cursor as $document){
-            foreach($document as $element){
-                array_push($object, $element);
+        try{
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery($collection, $query);
+            $object = array(); 
+            foreach($cursor as $document){
+                foreach($document as $element){
+                    array_push($object, $element);
+                }
             }
+            return $object;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array();
         }
-        return $object;
     }
 
+    /*  Returns a 2d array of all the document attributes in the collection */
     public function getAllDocuments($collection){
-        $query  = new MongoDB\Driver\Query([]);
-        $cursor = $this->manager->executeQuery($collection, $query);  
-        $table  = array();
-        foreach($cursor as $document){
-            $row = array();
-            foreach($document as $element){
-                array_push($row, $element);
-            }
-            array_push($table, $row);
-        } 
-        return $table;
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery($collection, $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                $row = array();
+                foreach($document as $element){
+                    array_push($row, $element);
+                }
+                array_push($table, $row);
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
     }
 
 }
 $db = new Database("mongodb://localhost:27017");
-$en = "Event Nom";
+$en = "New Name";
 $ed = "This event sucks";
 $et = "CVPA";  
 $ev = "123"; 
@@ -77,8 +98,8 @@ $dd = "1/18/2020";
 $cn = "Kyle";  
 $as = "N"; 
 $ete= "jm";
-$a = new Event($db, $en, $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as, $ete);
-//$db->getDocument("Event No", 'FRIC_Database.Events');
+//$a = new Event($db, $en, $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as, $ete);
+//$a->editEventAttributes($db, "LetsGo", $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as, $ete);
 //$a->getEventFromDB($db);
 //$db->getAllDocuments('FRIC_Database.Events');
 ?>
