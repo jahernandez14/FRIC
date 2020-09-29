@@ -13,7 +13,7 @@ class Event {
     private $archiveStatus;
     private $eventTeam;
 
-    public function __construct($eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam){
+    public function __construct($db, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam){
         $this->eventName             = $eventName;
         $this->eventDescription      = $eventDescription;
         $this->eventType             = $eventType;
@@ -26,6 +26,23 @@ class Event {
         $this->customerName          = $customerName;
         $this->archiveStatus         = $archiveStatus;
         $this->eventTeam             = $eventTeam;
+
+        $dbEntry = [
+            '_id' =>$eventName,
+            'eventDescription'      => $eventDescription,
+            'eventType'             => $eventType,
+            'eventVersion'          => $assessmentDate,
+            'assessmentDate'        => $organizationName,
+            'organizationName'      => $organizationName,
+            'securityClassifcation' => $securityClassifcation,
+            'eventClassification'   => $eventClassification,
+            'declassificationDate'  => $declassificationDate,
+            'customerName'          => $customerName,
+            'archiveStatus'         => $archiveStatus,
+            'eventTeam'             => $eventTeam
+        ];
+
+        $db->insertDocument($dbEntry, 'FRIC_Database.Events');
     }
 
     public function setAllAttributes($eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, 
@@ -59,30 +76,9 @@ class Event {
         $this->eventTeam             = $eventTeam;
     }
 
-    /*  Getters */ 
-    public function getEventName(){ return $this->eventName;}
-
-    public function getEventDescription(){ return $this->eventDescription;}
-    
-    public function getEventType(){ return $this->eventType;}
-    
-    public function getEventVersion(){ return $this->eventVersion;}
-    
-    public function getAssessmentDate(){ return $this->asssessmentDate;}
-    
-    public function getOrganizationName(){ return $this->organizationName;}
-    
-    public function getSecurityClassification(){ return $this->securityClassification;}
-    
-    public function getEventClassification(){ return $this->eventClassification;}
-    
-    public function getDeclassificationDate(){ return $this->declassificationDate;}
-    
-    public function getCustomerName(){ return $this->customerName;}
-    
-    public function getArchiveStatus(){ return $this->archiveStatus;}
-    
-    public function getEventTeam(){ return $this->eventTeam;}
+    public function getEventFromDB($db){
+        $db->getDocument($this->eventName, 'FRIC_Database.Events');
+    }
 
     /*  Used for testing    */ 
     public function printAllAttributes(){
@@ -100,18 +96,4 @@ class Event {
         echo $this->eventTeam;
     }
 }
-$en = "Event Lemon";
-$ed = "This event sucks";
-$et = "CVPA";  
-$ev = "123"; 
-$ad = "1/12/2020";
-$on = "Top Secret";  
-$sc = "Secruity"; 
-$ec = "Confidential";
-$dd = "1/18/2020";
-$cn = "Kyle";  
-$as = "N"; 
-$ete= "jm";
-$a = new Event($en, $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as, $ete);
-$a->printAllAttributes();
 ?>
