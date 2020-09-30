@@ -5,10 +5,10 @@ include ("system.php");
 class Database{
     private $manager;
 
-    public function __construct($url){
+    public function __construct(){
         if(extension_loaded("mongodb")){
             try{
-                $this->manager  = new MongoDB\Driver\Manager($url);
+                $this->manager  = new MongoDB\Driver\Manager("mongodb://localhost:27017");
             } catch (MongoConnectionException $failedLoser){
                 echo "Error: $failedLoser";
             }
@@ -103,7 +103,7 @@ class Database{
     }
 
 }
-$db     = new Database("mongodb://localhost:27017");
+$db     = new Database();
 //$testSystem = new system($db, "test name","Desc","Location","Router","Switch","Room","Test Plan","Low","Low","Low");
 $en = "New Name";
 $ed = "This event sucks";
