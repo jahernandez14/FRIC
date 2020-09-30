@@ -1,6 +1,6 @@
 <?php
 /* I figured out the issue, with the system class, might be making a call to the system() function, changed name */
-class Systeme {
+class System {
     public $systemName;
     private $systemDescription;
     private $systemLocation;
