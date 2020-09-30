@@ -8,6 +8,7 @@ class Analyst {
     private $role;
 
     public function __construct($db, $firstName, $lastName, $initial, $ipAddress, $title, $role){
+        $id              = $db->checkDatabaseForSameID($initial . $ipAddress,'FRIC_Database.Analyst');
         $this->firstName = $firstName;
         $this->lastName  = $lastName;
         $this->initial   = $initial;
@@ -16,7 +17,7 @@ class Analyst {
         $this->role      = $role;
 
         $dbEntry = [
-            '_id'       => $initial . $ipAddress,   
+            '_id'       => $id,   
             'firstName' => $firstName,
             'lastName'  => $lastName,
             'title'     => $title,
