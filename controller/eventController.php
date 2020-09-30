@@ -2,29 +2,30 @@
     require_once('/xampp/htdocs/FRIC/model/database.php');
 
     function eventOverviewTable(){
-        $db = new Database("mongodb://localhost:27017");
-        $eventArray = $db->getAllDocuments('FRIC_Database.Events');
+        $db = new Database();
+        $eventArray = $db->getAllEvents('FRIC_Database.Event');
         return $eventArray;
     }
 
     function readEvent($eventName){
-        $db = new Database("mongodb://localhost:27017");
-        $eventArray = $db->getDocument('$eventName','FRIC_Database.Events');
+        $db = new Database();
+        $eventArray = $db->getDocument('$eventName','FRIC_Database.Event');
         return $eventArray;
     }
 
-    function createEvent($eventName){
-        $db = new Database("mongodb://localhost:27017");
-        $db->insertDocument('$eventName','FRIC_Database.Events');
+    function createEvent($eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $numberOfFindings, $numberOfSystems, $progress){
+        $db = new Database();
+        new Event($db, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $numberOfFindings, $numberOfSystems, $progress);
     }
 
-    function editEvent($evenName){
-        $db = new Database("mongodb://localhost:27017");
-        $db->getDocument('$eventName','FRIC_Database.Events');
+    function editEvent($eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $numberOfFindings, $numberOfSystems, $progress){
+        $db = new Database();
+        $db->editDocument('$eventName','FRIC_Database.Event');
+        new Event($db, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $numberOfFindings, $numberOfSystems, $progress);
     }
 
     function archiveEvent($eventName){
-        $db = new Database("mongodb://localhost:27017");
-        $eventArray = $db->getDocument('$eventName','FRIC_Database.Events');
+        $db = new Database();
+        $eventArray = $db->getDocument('$eventName','FRIC_Database.Event');
     }
 ?>
