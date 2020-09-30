@@ -1,6 +1,7 @@
 <?php
 include ("event.php");
 include ("systeme.php");
+include ("analyst.php");
 
 class Database{
     private $manager;
@@ -69,7 +70,7 @@ class Database{
     public function getAllEvents(){
         try{
             $query  = new MongoDB\Driver\Query([]);
-            $cursor = $this->manager->executeQuery('FRIC_Database.Events', $query);  
+            $cursor = $this->manager->executeQuery('FRIC_Database.Event', $query);  
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
@@ -87,7 +88,7 @@ class Database{
     public function getAllSystems(){
         try{
             $query  = new MongoDB\Driver\Query([]);
-            $cursor = $this->manager->executeQuery('FRIC_Database.systems', $query);  
+            $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
@@ -105,9 +106,11 @@ class Database{
 /*  Used for testing purposes   */
 $db = new Database();
 
-$a = new Event($db, "Lemon", "This event sucks", "CVPA", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/18/2020", "Kyle Gumby", "N", "JM", 2, 3,'inProgress');
-print_r($db->getAllEvents());
+//$a = new Event($db, "Lemon", "This event sucks", "CVPA", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/18/2020", "Kyle Gumby", "N", "JM", 2, 3,'inProgress');
+//print_r($db->getAllEvents());
 
-$b = new Systeme($db, "System Name", "This system sucks", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
-print_r($db->getAllSystems());
+//$b = new Systeme($db, "System Name", "This system sucks", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
+//print_r($db->getAllSystems());
+
+//$c = new Analyst($db, "Gimboree", "Gonzalez", "gg", "192.177.1.2", "Tech Guy", "Lead Analyst");
 ?>

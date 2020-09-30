@@ -3,34 +3,27 @@ class Analyst {
     private $firstName;
     private $lastName;
     private $initial;
+    private $ipAddress;
     private $title;
     private $role;
 
-    public function __construct($firstName, $lastName, $initial, $title, $role){
+    public function __construct($db, $firstName, $lastName, $initial, $ipAddress, $title, $role){
         $this->firstName = $firstName;
         $this->lastName  = $lastName;
         $this->initial   = $initial;
+        $this->ipAddress = $ipAddress;
         $this->title     = $title;
         $this->role      = $role;
+
+        $dbEntry = [
+            '_id'       => $initial . $ipAddress,   
+            'firstName' => $firstName,
+            'lastName'  => $lastName,
+            'title'     => $title,
+            'role'      => $role
+        ];
+        $db->insertDocument($dbEntry, 'FRIC_Database.Analyst');
     }
 
-    public function setAllAttributes($firstName, $lastName, $initial, $title, $role){
-        $this->firstName = $firstName;
-        $this->lastName  = $lastName;
-        $this->initial   = $initial;
-        $this->title     = $title;
-        $this->role      = $role;
-    }
-
-    /*  Getters  */ 
-    public function getFirstName(){ return $this->firstName;}
-
-    public function getLastName(){ return $this->lastName;}
-
-    public function getInitial(){ return $this->initial;}
-
-    public function getTitle(){ return $this->title;}
-
-    public function getRole(){ return $this->role;}
 }
 ?>
