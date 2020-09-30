@@ -1,5 +1,7 @@
 <?php
 include ("event.php");
+include ("system.php");
+
 class Database{
     private $manager;
 
@@ -84,7 +86,9 @@ class Database{
     }
 
 }
-//$db = new Database("mongodb://localhost:27017");
+
+$db = new Database("mongodb://localhost:27017");
+$testSystem =new system($db, "test name","Desc","Location","Router","Switch","Room","Test Plan","Low","Low","Low");
 // $en = "New Name";
 // $ed = "This event sucks";
 // $et = "CVPA";  
@@ -100,5 +104,5 @@ class Database{
 //$a = new Event($db, $en, $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as, $ete);
 //$a->editEventAttributes($db, "LetsGo", $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as, $ete);
 //$a->getEventFromDB($db);
-//$db->getAllDocuments('FRIC_Database.Events');
+print_r($db->getAllDocuments('FRIC_Database.Systems'));//cant add to system not sure why thought ur constructur immidiately did it but it still shows as null
 ?>
