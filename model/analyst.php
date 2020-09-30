@@ -24,6 +24,5 @@ class Analyst {
         ];
         $db->insertDocument($dbEntry, 'FRIC_Database.Analyst');
     }
-
 }
 ?>
