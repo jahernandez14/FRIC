@@ -1,6 +1,7 @@
 <?php
-class System {
-    private $systemName;
+/* I figured out the issue, with the system class, might be making a call to the system() function, changed name */
+class Systeme {
+    public $systemName;
     private $systemDescription;
     private $systemLocation;
     private $systemRouter;
@@ -10,8 +11,11 @@ class System {
     private $confidentiality;
     private $integrity;
     private $availability;
+    private $numberOfTasks;
+    private $numberOfFindings;
+    private $progress;
 
-    public function __construct($db, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability){
+    public function __construct($db, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $numberOfTasks, $numberOfFindings, $progress){
         $newSystemName           = $db->checkDatabaseForSameID($systemName,'FRIC_Database.systems');
         $this->systemName        = $newSystemName;
         $this->systemDescription = $systemDescription;
@@ -23,6 +27,9 @@ class System {
         $this->confidentiality   = $confidentiality;
         $this->integrity         = $integrity;
         $this->availability      = $availability;
+        $this->numberOfTasks     = $numberOfTasks;
+        $this->numberOfFindings  = $numberOfFindings;
+        $this->progress          = $progress;
 
         $dbEntry = [
             '_id'               => $newSystemName,
@@ -34,7 +41,10 @@ class System {
             'testPlan'          => $testPlan,
             'confidentiality'   => $confidentiality,
             'integrity'         => $integrity,
-            'availability'      => $availability
+            'availability'      => $availability,
+            'numberOfTasks'     => $numberOfTasks,
+            'numberOfFindings'  => $numberOfFindings,
+            'progress'          => $progress
         ];
         $db->insertDocument($dbEntry, 'FRIC_Database.systems');
     }

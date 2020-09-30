@@ -1,6 +1,6 @@
 <?php
 include ("event.php");
-include ("system.php");
+include ("systeme.php");
 
 class Database{
     private $manager;
@@ -32,7 +32,6 @@ class Database{
             $bulk = new MongoDB\Driver\BulkWrite;
             $bulk->insert($dbEntry);
             $this->manager->executeBulkWrite($collection, $bulk);
-            echo "Here";
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
         }
@@ -66,7 +65,7 @@ class Database{
         }
     }
 
-    /*  Returns a 2d array of all attributes required for an Event table */
+    /*  Returns a 2d array of all attributes required for a Event table */
     public function getAllEvents(){
         try{
             $query  = new MongoDB\Driver\Query([]);
@@ -84,7 +83,7 @@ class Database{
         }
     }
 
-    /*  Returns a 2d array of all attributes required for an Event table */
+    /*  Returns a 2d array of all attributes required for a System table */
     public function getAllSystems(){
         try{
             $query  = new MongoDB\Driver\Query([]);
@@ -92,7 +91,7 @@ class Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                array_push($row, $document->_id, $document->numberOfSystems, $document->numberOfFindings, $document->progress);
+                array_push($row, $document->_id, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
                 array_push($table, $row);
             } 
             return $table;
@@ -101,26 +100,15 @@ class Database{
             return array(array());
         }
     }
-
 }
-$db     = new Database();
-//$testSystem = new system($db, "test name","Desc","Location","Router","Switch","Room","Test Plan","Low","Low","Low");
-$en = "New Name";
-$ed = "This event sucks";
-$et = "CVPA";  
-$ev = "123"; 
-$ad = "1/12/2020";
-$on = "Top Secret";  
-$sc = "Security"; 
-$ec = "Confidential";
-$dd = "1/18/2020";
-$cn = "Kyle";  
-$as = "N"; 
-$ete= "jm";
-//$a = new Event($db, $en, 2, 3,'inProgress', $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as);
-$a = new System($db, $en, $ed, $et, $ev, $ad, $on, $sc, $dd, $cn, $as);
+
+/*  Used for testing purposes   */
+$db = new Database();
+
+//$a = new Event($db, "New Name", "This event sucks", "CVPA", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/18/2020", "Kyle Gumby", "N", "JM", 2, 3,'inProgress');
+//$a = new Event($db, "Lemon", "This event sucks", "CVPA", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/18/2020", "Kyle Gumby", "N", "JM", 2, 3,'inProgress');
 //print_r($db->getAllEvents());
-//$a->editEventAttributes($db, "LetsGo", $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as, $ete);
-//$a->getEventFromDB($db);
-//print_r($db->getAllDocuments('FRIC_Database.systems'));//cant add to system not sure why thought ur constructur immidiately did it but it still shows as null
+
+$b = new Systeme($db, "System Name", "This system sucks", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
+print_r($db->getAllSystems());
 ?>

@@ -16,12 +16,9 @@ class Event {
     private $numberOfSystems;
     private $progress;
 
-    public function __construct($db, $eventName, $numberOfFindings, $numberOfSystems, $progress, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam){
+    public function __construct($db, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $numberOfFindings, $numberOfSystems, $progress){
         $newEventName                = $db->checkDatabaseForSameID($eventName,'FRIC_Database.Events');
         $this->eventName             = $newEventName;
-        $this->numberOfFindings      = $numberOfFindings;
-        $this->numberOfSystems       = $numberOfSystems;
-        $this->progress              = $progress;
         $this->eventDescription      = $eventDescription;
         $this->eventType             = $eventType;
         $this->eventVersion          = $eventVersion;
@@ -33,23 +30,26 @@ class Event {
         $this->customerName          = $customerName;
         $this->archiveStatus         = $archiveStatus;
         $this->eventTeam             = $eventTeam;
+        $this->numberOfFindings      = $numberOfFindings;
+        $this->numberOfSystems       = $numberOfSystems;
+        $this->progress              = $progress;
 
         $dbEntry = [
-            '_id'                   => $newEventName,
-            'numberOfFindings'      => $numberOfFindings,    
-            'numberOfSystems'       => $numberOfSystems,    
-            'progress'              => $progress,    
+            '_id'                   => $newEventName,   
             'eventDescription'      => $eventDescription,
             'eventType'             => $eventType,
-            'eventVersion'          => $assessmentDate,
-            'assessmentDate'        => $organizationName,
+            'eventVersion'          => $eventVersion,
+            'assessmentDate'        => $assessmentDate,
             'organizationName'      => $organizationName,
             'securityClassifcation' => $securityClassifcation,
             'eventClassification'   => $eventClassification,
             'declassificationDate'  => $declassificationDate,
             'customerName'          => $customerName,
             'archiveStatus'         => $archiveStatus,
-            'eventTeam'             => $eventTeam
+            'eventTeam'             => $eventTeam,
+            'numberOfFindings'      => $numberOfFindings,    
+            'numberOfSystems'       => $numberOfSystems,    
+            'progress'              => $progress
         ];
         $db->insertDocument($dbEntry, 'FRIC_Database.Events');
     }
