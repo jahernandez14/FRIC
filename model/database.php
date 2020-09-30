@@ -5,7 +5,6 @@ class Database{
 
     public function __construct($url){
         if(extension_loaded("mongodb")){
-            echo "MongoDB extension successfully loaded";
             try{
                 $this->manager  = new MongoDB\Driver\Manager($url);
             } catch (MongoConnectionException $failedLoser){
@@ -85,19 +84,19 @@ class Database{
     }
 
 }
-$db = new Database("mongodb://localhost:27017");
-$en = "New Name";
-$ed = "This event sucks";
-$et = "CVPA";  
-$ev = "123"; 
-$ad = "1/12/2020";
-$on = "Top Secret";  
-$sc = "Security"; 
-$ec = "Confidential";
-$dd = "1/18/2020";
-$cn = "Kyle";  
-$as = "N"; 
-$ete= "jm";
+//$db = new Database("mongodb://localhost:27017");
+// $en = "New Name";
+// $ed = "This event sucks";
+// $et = "CVPA";  
+// $ev = "123"; 
+// $ad = "1/12/2020";
+// $on = "Top Secret";  
+// $sc = "Security"; 
+// $ec = "Confidential";
+// $dd = "1/18/2020";
+// $cn = "Kyle";  
+// $as = "N"; 
+// $ete= "jm";
 //$a = new Event($db, $en, $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as, $ete);
 //$a->editEventAttributes($db, "LetsGo", $ed, $et, $ev, $ad, $on, $sc, $ec, $dd, $cn, $as, $ete);
 //$a->getEventFromDB($db);

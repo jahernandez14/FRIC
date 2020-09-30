@@ -1,3 +1,0 @@
-This directory will be i charge of user interactions. I believe there will be a php file for each view and will be included to the view when in use.
-
-it will call method from the model and sent and receive atomic values.
