@@ -8,7 +8,8 @@ class Analyst {
     private $role;
 
     public function __construct($db, $firstName, $lastName, $initial, $ipAddress, $title, $role){
-        $id              = $db->checkDatabaseForSameID($initial . $ipAddress,'FRIC_Database.Analyst');
+        $addObject       = $db->checkDatabaseForSameID($initial . $ipAddress,'FRIC_Database.Analyst');
+        $id              = $initial . $ipAddress;
         $this->firstName = $firstName;
         $this->lastName  = $lastName;
         $this->initial   = $initial;
@@ -23,7 +24,10 @@ class Analyst {
             'title'     => $title,
             'role'      => $role
         ];
-        $db->insertDocument($dbEntry, 'FRIC_Database.Analyst');
+
+        if($addObject){
+            $db->insertDocument($dbEntry, 'FRIC_Database.Analyst');
+        }
     }
 }
 ?>

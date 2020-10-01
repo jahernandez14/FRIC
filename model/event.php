@@ -18,8 +18,8 @@ class Event {
     private $progress;
 
     public function __construct($db, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $derivedFrom, $numberOfFindings, $numberOfSystems, $progress){
-        $newEventName                = $db->checkDatabaseForSameID($eventName,'FRIC_Database.Event');
-        $this->eventName             = $newEventName;
+        $addObject                   = $db->checkDatabaseForSameID($eventName,'FRIC_Database.Event');
+        $this->eventName             = $eventName;
         $this->eventDescription      = $eventDescription;
         $this->eventType             = $eventType;
         $this->eventVersion          = $eventVersion;
@@ -37,7 +37,7 @@ class Event {
         $this->progress              = $progress;
 
         $dbEntry = [
-            '_id'                   => $newEventName,   
+            '_id'                   => $eventName,   
             'eventDescription'      => $eventDescription,
             'eventType'             => $eventType,
             'eventVersion'          => $eventVersion,
@@ -54,7 +54,10 @@ class Event {
             'numberOfSystems'       => $numberOfSystems,    
             'progress'              => $progress
         ];
-        $db->insertDocument($dbEntry, 'FRIC_Database.Event');
+
+        if($addObject){
+            $db->insertDocument($dbEntry, 'FRIC_Database.Event');
+        }
     }
 }
 ?>

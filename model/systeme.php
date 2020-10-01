@@ -15,8 +15,8 @@ class Systeme {
     private $progress;
 
     public function __construct($db, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $numberOfTasks, $numberOfFindings, $progress){
-        $newSystemName           = $db->checkDatabaseForSameID($systemName,'FRIC_Database.System');
-        $this->systemName        = $newSystemName;
+        $addObject               = $db->checkDatabaseForSameID($systemName,'FRIC_Database.System');
+        $this->systemName        = $systemName;
         $this->systemDescription = $systemDescription;
         $this->systemLocation    = $systemLocation;
         $this->systemRouter      = $systemRouter;
@@ -31,7 +31,7 @@ class Systeme {
         $this->progress          = $progress;
 
         $dbEntry = [
-            '_id'               => $newSystemName,
+            '_id'               => $systemName,
             'systemDescription' => $systemDescription,    
             'systemLocation'    => $systemLocation,    
             'systemRouter'      => $systemRouter,    
@@ -45,7 +45,10 @@ class Systeme {
             'numberOfFindings'  => $numberOfFindings,
             'progress'          => $progress
         ];
-        $db->insertDocument($dbEntry, 'FRIC_Database.System');
+        
+        if($addObject){
+            $db->insertDocument($dbEntry, 'FRIC_Database.System');
+        }
     }
 }
 ?>
