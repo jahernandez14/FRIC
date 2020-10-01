@@ -17,7 +17,12 @@ class Database{
             echo "Error: Failed to load mongoDB extension.";
         }
     }
-
+    
+    /*  checkDatabaseForSameID: params<id, collection>
+        Summary: Query the database, and gets the count of 
+        the number of times an id appears. If greater than
+        0 return false, otherwise return true. 
+    */
     public function checkDatabaseForSameID($id, $collection){
         $query  = new MongoDB\Driver\Query(['_id' => $id], []);
         $cursor = $this->manager->executeQuery($collection, $query);
@@ -30,6 +35,10 @@ class Database{
         //return $this->checkDatabaseForSameID($id, $collection);
     }
 
+    /*  insertDocument: params<dbEntry, collection>
+        Summary: Generates a bulk write, and inserts the
+        new db entry into the bulk write.  
+    */
     public function insertDocument($dbEntry, $collection){
         try{
             $bulk = new MongoDB\Driver\BulkWrite;
@@ -136,5 +145,5 @@ $db = new Database();
 //$b = new Systeme($db, "System Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
 //print_r($db->getAllSystems());
 
-// $c = new Analyst($db, "Gimboree", "Gonzalez", "gg", "192.177.1.2", "Tech Guy", "Lead Analyst");
+//$c = new Analyst($db, "Gimboree", "Gonzalez", "gg", "192.177.1.2", "Tech Guy", "Lead Analyst", false);
 ?>
