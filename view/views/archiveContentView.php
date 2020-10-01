@@ -487,11 +487,10 @@
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>
             </div>
-            <div class = "container-fluid">
+            <div class="container-fluid">
                 <?php include '../templates/footer.php';?>
             </div>
         </div>
-        
     </div>
 </body>
 </html>

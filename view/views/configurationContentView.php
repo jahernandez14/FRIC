@@ -583,7 +583,6 @@
                 <?php include '../templates/search.php';?>
             </div>
         </div>
-        
     </div>
     <?php include '../templates/footer.php';?>
 </body>

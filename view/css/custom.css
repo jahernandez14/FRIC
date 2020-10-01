@@ -90,6 +90,10 @@ a:visited{
   height: 1500px;
 }
 
+.fluid-col-sm {
+  height: 1000px;
+}
+
 .fluid-col-extra {
   height: 4000px;
 }
