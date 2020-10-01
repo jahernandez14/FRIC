@@ -1,4 +1,5 @@
 <div class="container-fluid">
+<br></br><br></br>
     <a href="javascript:void(0)" class="close" aria-label="Close" onclick="closeEventTree()">
         <span aria-hidden="true">&times;</span>
     </a>
