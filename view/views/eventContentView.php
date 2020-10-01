@@ -160,8 +160,8 @@
                     <div class="row">
                     <div class="col"><br />
                         <button class="btn btn-sm btn-light" type="submit">Save</button>
-                        <a class="btn btn-sm btn-light" href="$createNew?new" role="button" style=color:black>Archive</a>
-                        <a class="btn btn-sm btn-light" href="$createNew?new" role="button" style=color:black>Cancel</a>
+                        <a class="btn btn-sm btn-light" href="archiveContentView.php" role="button" style=color:black>Archive</a>
+                        <a class="btn btn-sm btn-light" href="eventOverview.php" role="button" style=color:black>Cancel</a>
                     </div>
                 </div>
                 </div>
