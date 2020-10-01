@@ -21,8 +21,10 @@
                 $eventName = urldecode($_SERVER['QUERY_STRING']);
                 if($eventName == "new") {
                     $dataArray = array("", "", "", "", date("Ymd H:i:s"), "", "", "", "", "", "", "", "", "", "");
+                    $postTag = "postnew";
                 } else {
                     $dataArray = readEvent($eventName);
+                    $postTag = "postedit";
                 }
                 $eventName = $dataArray[0];
                 $eventDescription = $dataArray[1];
@@ -40,56 +42,55 @@
                 $numberOfSystems = $dataArray[13];
                 $progress = $dataArray[14];
                 echo <<< HEREDOC
-                <form>
+                <form method="post" action="eventOverview.php?$postTag">
                     <div class="row">
                         <div class="col">
                             <label>Event Name</label>
-                            <input type="text" class="form-control" placeholder="Event Name" value="$eventName">
+                            <input type="text" class="form-control" placeholder="Event Name" value="$eventName" name="eventName">
                         </div>
                         <div class="col-3">
                             <label>Event Type</label>
-                            <input type="text" class="form-control" placeholder="Event Type" value="$eventType">
+                            <input type="text" class="form-control" placeholder="Event Type" value="$eventType" name="eventType">
                         </div>
                         <div class="col-2">
                             <label>Event Version</label>
-                            <input type="text" class="form-control" placeholder="Event Version" value="$eventVersion">
+                            <input type="text" class="form-control" placeholder="Event Version" value="$eventVersion" name="eventVersion">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label>Event Description</label>
-                            <textarea class="form-control" id="Desc" value="$eventDescription" rows="5"></textarea>
+                            <textarea class="form-control" id="Desc" value="$eventDescription" rows="5"  name="eventDescription"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label>Organization Name</label>
-                            <input type="text" class="form-control" placeholder="Org Name" value="$organizationName">
+                            <input type="text" class="form-control" placeholder="Org Name" value="$organizationName" name="organizationName">
                         </div>
                         <div class="col-2">
                             <label>Assessment Date</label>
-                            <input type="text" class="form-control" placeholder="Date" value="$assessmentDate">
+                            <input type="text" class="form-control" placeholder="Date" value="$assessmentDate" name="assessmentDate">
                         </div>
                         <div class="col-4">
                             <label>Security Classification Title Guide</label>
-                            <input type="text" class="form-control" placeholder="" value="$securityClassifcation">
+                            <input type="text" class="form-control" placeholder="" value="$securityClassifcation" name="securityClassification">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label>Client Name</label>
-                            <input type="text" class="form-control" placeholder="Client Name" value="$customerName">
+                            <input type="text" class="form-control" placeholder="Client Name" value="$customerName" name="customerName">
                         </div>
                         <div class="col-3">
                             <label>Event Classification</label>
-                            <input type="text" class="form-control" placeholder="" value="$eventClassification">
+                            <input type="text" class="form-control" placeholder="" value="$eventClassification" name="eventClassification">
                         </div>
                         <div class="col-3">
                             <label>Declassification Date</label>
-                            <input type="text" class="form-control" placeholder="" value="$declassificationDate">
+                            <input type="text" class="form-control" placeholder="" value="$declassificationDate" name="declassificationDate">
                         </div>
                     </div>
-                </form>
                 HEREDOC;
                 ?>
                 <h4><br />Event Team Information</h4>
@@ -156,15 +157,22 @@
                         }
                         </script>
                     </div>
-                </div>
-                <div class="row">
+                    <div class="row">
                     <div class="col"><br />
-                        <a class="btn btn-light" href="$createNew?new" role="button" style=color:black>Save</a>
-                        <a class="btn btn-light" href="$createNew?new" role="button" style=color:black>Archive</a>
-                        <a class="btn btn-light" href="$createNew?new" role="button" style=color:black>Cancel</a>
+                        <button class="btn btn-sm btn-light" type="submit">Save</button>
+                        <a class="btn btn-sm btn-light" href="$createNew?new" role="button" style=color:black>Archive</a>
+                        <a class="btn btn-sm btn-light" href="$createNew?new" role="button" style=color:black>Cancel</a>
                     </div>
                 </div>
+                </div>
+
+                
+
+                </form>
             </div>
+
+            
+
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>
             </div>
