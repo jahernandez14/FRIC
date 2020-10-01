@@ -63,7 +63,8 @@ class table
             $createNew = $this->columns["newLink"];
             $archiveSelection = $this->columns["delLink"];
             echo <<< FILEBUTTONS
-            <a href="$createNew?new" class="btn-sm btn-light" style=color:black>+</a><a href="$archiveSelection" class="btn-sm btn-light" style=color:black>Archive</a>
+            <a class="btn btn-light" href="$createNew?new" role="button" style=color:black>+</a>
+            <a class="btn btn-light" href="$archiveSelection" role="button" style=color:black>Archive</a>
             <br></br>
             FILEBUTTONS;
         }

@@ -159,9 +159,9 @@
                 </div>
                 <div class="row">
                     <div class="col"><br />
-                        <button type="button" class="btn btn-light">Save</button>
-                        <button type="button" class="btn btn-light">Archive</button>
-                        <button type="button" class="btn btn-light">Cancel</button>
+                        <a class="btn btn-light" href="$createNew?new" role="button" style=color:black>Save</a>
+                        <a class="btn btn-light" href="$createNew?new" role="button" style=color:black>Archive</a>
+                        <a class="btn btn-light" href="$createNew?new" role="button" style=color:black>Cancel</a>
                     </div>
                 </div>
             </div>
