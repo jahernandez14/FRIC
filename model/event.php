@@ -12,11 +12,12 @@ class Event {
     private $customerName;
     private $archiveStatus;
     private $eventTeam;
+    private $derivedFrom;
     private $numberOfFindings;
     private $numberOfSystems;
     private $progress;
 
-    public function __construct($db, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $numberOfFindings, $numberOfSystems, $progress){
+    public function __construct($db, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $derivedFrom, $numberOfFindings, $numberOfSystems, $progress){
         $newEventName                = $db->checkDatabaseForSameID($eventName,'FRIC_Database.Event');
         $this->eventName             = $newEventName;
         $this->eventDescription      = $eventDescription;
@@ -30,6 +31,7 @@ class Event {
         $this->customerName          = $customerName;
         $this->archiveStatus         = $archiveStatus;
         $this->eventTeam             = $eventTeam;
+        $this->derivedFrom           = $derivedFrom;
         $this->numberOfFindings      = $numberOfFindings;
         $this->numberOfSystems       = $numberOfSystems;
         $this->progress              = $progress;
@@ -47,6 +49,7 @@ class Event {
             'customerName'          => $customerName,
             'archiveStatus'         => $archiveStatus,
             'eventTeam'             => $eventTeam,
+            'derivedFrom'           => $derivedFrom,
             'numberOfFindings'      => $numberOfFindings,    
             'numberOfSystems'       => $numberOfSystems,    
             'progress'              => $progress
