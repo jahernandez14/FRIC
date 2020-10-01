@@ -125,12 +125,12 @@ class Database{
 /*  Used for testing purposes   */
 $db = new Database();
 
-//$a = new Event($db, "Event 2", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "9/30/2020", "Army", "Top Secret", "Unclassified", "1/18/2020", "Tim Honks", "N", "JM", "wb192.2.3", 1, 2,'inProgress');
-//$b = new Event($db, "Event 3", "This a test event description", "Verification of Fixes", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Axel Rose", "N", "JM", "jh192.2.2", 5, 10,'in progress');
-//$c = new Event($db, "Event 6", "This a test event description", "Verification of Fixes", "3.2", "1/12/2020", "Army", "Top Secret", "Secret", "9/30/2020", "Kyle Gumby", "N", "JM", "db192.2.1", 6, 7,'in progress');
-//$d = new Event($db, "Event 1", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Carl", "N", "JM", "we192.2.3", 3, 3,'in progress');
-//$e = new Event($db, "Event 7", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/20/2020", "Lemon Guy", "N", "JM", "am192.2.3", 3, 7,'in progress');
-//$a = new Event($db, "Event 7", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/20/2020", "Lemon Guy", "N", "JM", "am192.2.3", 3, 7,'in progress');
+// $a = new Event($db, "Event 2", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "9/30/2020", "Army", "Top Secret", "Unclassified", "1/18/2020", "Tim Honks", "N", "JM", "wb192.2.3", 1, 2,'inProgress');
+// $b = new Event($db, "Event 3", "This a test event description", "Verification of Fixes", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Axel Rose", "N", "JM", "jh192.2.2", 5, 10,'in progress');
+// $c = new Event($db, "Event 6", "This a test event description", "Verification of Fixes", "3.2", "1/12/2020", "Army", "Top Secret", "Secret", "9/30/2020", "Kyle Gumby", "N", "JM", "db192.2.1", 6, 7,'in progress');
+// $d = new Event($db, "Event 1", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Carl", "N", "JM", "we192.2.3", 3, 3,'in progress');
+// $e = new Event($db, "Event 7", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/20/2020", "Lemon Guy", "N", "JM", "am192.2.3", 3, 7,'in progress');
+// $a = new Event($db, "Event 7", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/20/2020", "Lemon Guy", "N", "JM", "am192.2.3", 3, 7,'in progress');
 //print_r($db->getAllEventNames());
 
 //$b = new Systeme($db, "System Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
