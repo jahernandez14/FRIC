@@ -39,8 +39,10 @@
                 </div>
                 Please enter your initials:
                 <div class="input-group">
-                    <input id="userInitials" type="text" class="form-control" name="userInitials"
-                        placeholder="Initials">
+                    <form method="post" class="input-group">
+                    <input id="userInitials" type="text" class="form-control" name= 'userInitials'
+                        placeholder="Initials" required>
+
                 </div>
                 <div class="form-group">
                     <label for="setupAction">Please select an option:</label>
@@ -57,18 +59,21 @@
                         <option>10.0.0.2</option>
                     </datalist>
                 </div>
-                <div class="row pt-2">
-                    <div class="col-1">
-                        <form method="post">
-                            <input type="submit" name="Submit" class="btn btn-light" value="Submit" />
-                        </form>
-                    </div>
-                    <form method="post">
-                        <input type="submit" name="cancelButton" class="btn btn-light" value="Cancel" />
+                    
                     </form>
-                </div>
-            </div>
 
+                <?php
+                    if (isset($_POST['Submit'])) {
+                        $_SESSION["initials"] = $_POST['userInitials'];
+                        $_SESSION["loggedIn"] = true;
+                    }
+                ?>
+                    <p></p>
+                    <a href="../views/eventOverview.php" class="btn btn-sm btn-light" style="color:black">Submit</a>
+                    &nbsp;
+                    <a href="../views/eventOverview.php" class="btn btn-sm btn-light" style="color:black">Cancel</a>
+
+            </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>
             </div>

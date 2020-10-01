@@ -1,7 +1,7 @@
+<link rel="icon" href="../images/fav.ico">
 <div class="fixed-top" style="background-color: black;">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/custom.css">
-    <link rel="icon" href="../images/fav.ico">
     <title>FRIC</title>
     <div class="container-fluid">
         <div class="row">
@@ -50,6 +50,13 @@
             </li>
             </ul>
         </div>
+        <?php
+            include_once("../views/config.php");
+            if ($_SESSION["loggedIn"] != false) {
+                echo $_SESSION["initials"];
+            }
+        ?>
+        &nbsp;
         <form method="post">
             <input type="submit" name="notification" class ="btn btn-warning font-weight-bold" value = "!">
         </form>

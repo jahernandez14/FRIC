@@ -97,11 +97,12 @@
 
                 <div class=col-10>
                     <div class="row">
-                        <h5>Lead Analyst &nbsp;<br /><br /></h5>
+                        <h5>Lead Analyst &nbsp;</h5>
                         <form method="post">
                             <input type="submit" name="addEdit" class="btn btn-light btn-sm" value="+">
                         </form>
                     </div>
+                    <p></p>
                     <div class="row">
                         <div class="col-1">
                             <input type="checkbox" class="form-control">
@@ -160,9 +161,9 @@
                     <div class="row">
                         <div class="col"><br />
                             <button class="btn btn-sm btn-light" type="submit">Save</button>
-                            <a class="btn btn-sm btn-light" href="archiveContentView.php" role="button"
+                            <a class="btn btn-sm btn-light" role="button"
                                 style=color:black>Archive</a>
-                            <a class="btn btn-sm btn-light" href="eventOverview.php" role="button"
+                            <a href="../views/eventOverview.php" class="btn btn-sm btn-light" role="button"
                                 style=color:black>Cancel</a>
                         </div>
                     </div>
