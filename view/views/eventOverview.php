@@ -20,6 +20,10 @@
                         createEvent($_POST["eventName"], $_POST["eventDescription"], $_POST["eventType"], $_POST["eventVersion"], $_POST["assessmentDate"], $_POST["organizationName"], $_POST["securityClassification"], $_POST["eventClassification"], $_POST["declassificationDate"], $_POST["customerName"], "n", array(""), 0, 0, "In Progress");
                     }
 
+                    if($_SERVER['QUERY_STRING'] == "postedit") {
+                        editEvent($_POST["eventName"], $_POST["eventDescription"], $_POST["eventType"], $_POST["eventVersion"], $_POST["assessmentDate"], $_POST["organizationName"], $_POST["securityClassification"], $_POST["eventClassification"], $_POST["declassificationDate"], $_POST["customerName"], "n", array(""), 0, 0, "In Progress");
+                    }
+
                     $eventTable = table::tableByType("Event Overview Table", eventOverviewTable());
                     $eventTable->printTable();
                 ?>
