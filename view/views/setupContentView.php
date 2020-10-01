@@ -7,7 +7,7 @@
 
 <body>
 
-    <div class="container-fluid">
+    <div class="container-fluid content">
         <div class="row fluid-col-sm">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
                 <?php include '../templates/eventTree.php';?>
@@ -16,11 +16,25 @@
                 <!-- Start setup content-->
                 <h2>Finding and Reporting Information Console (FRIC)</h2>
                 <div class="input-group">
-                    <input type="text" list="eventNames" placeholder="There is no existing event in your local system"
-                        class="form-control" />
-                    <datalist id="eventNames">
-                        <option>Event 1</option>
-                        <option>Event 2</option>
+                        <?php 
+                            require_once('/xampp/htdocs/FRIC/controller/eventController.php');
+                            $placeholder = "There is no existing event in your local system";
+                            $eventList = eventNames();
+                            if(count($eventList) > 0){
+                                $placeholder = "Events have been created, check list or visit the event section.";
+                            }
+                            echo <<< LIST
+                                <input type="text" list="eventNames" placeholder= "$placeholder"
+                                class="form-control" />
+                                <datalist id="eventNames">
+                            LIST;
+
+                            $i=0;
+                            while($i < count($eventList)){
+                                echo "<option>" . $eventList[$i][0] ."</option>";
+                                $i++;
+                            }
+                        ?>
                     </datalist>
                 </div>
                 Please enter your initials:

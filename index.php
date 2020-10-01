@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <meta http-equiv="refresh" content="0; URL=./view/views/eventContentView.php" />
+    <meta http-equiv="refresh" content="0; URL=./view/views/eventOverview.php" />
 </head>
 
 <!--Used to redirect to another page do to directory structure-->

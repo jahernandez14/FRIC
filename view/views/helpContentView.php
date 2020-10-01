@@ -7,7 +7,7 @@
 
 <body>
 
-    <div class="container-fluid">
+    <div class="container-fluid content">
         <div class="row">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
                 <?php include '../templates/eventTree.php';?>

@@ -7,6 +7,12 @@
         return $eventArray;
     }
 
+    function eventNames(){
+        $db = new Database();
+        $eventArray = $db->getAllEventNames('FRIC_Database.Event');
+        return $eventArray;
+    }
+
     function readEvent($eventName){
         $db = new Database();
         $eventArray = $db->getDocument($eventName,'FRIC_Database.Event');

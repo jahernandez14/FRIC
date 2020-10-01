@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid content">
         <div class="row fluid-col">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
                 <?php include '../templates/eventTree.php';?>
@@ -93,7 +93,7 @@
                     </div>
                 HEREDOC;
                 ?>
-                <h4><br />Event Team Information</h4>
+                <h4><br></br>Event Team Information</h4>
 
                 <div class=col-10>
                     <div class="row">
@@ -158,21 +158,17 @@
                         </script>
                     </div>
                     <div class="row">
-                    <div class="col"><br />
-                        <button class="btn btn-sm btn-light" type="submit">Save</button>
-                        <a class="btn btn-sm btn-light" href="archiveContentView.php" role="button" style=color:black>Archive</a>
-                        <a class="btn btn-sm btn-light" href="eventOverview.php" role="button" style=color:black>Cancel</a>
+                        <div class="col"><br />
+                            <button class="btn btn-sm btn-light" type="submit">Save</button>
+                            <a class="btn btn-sm btn-light" href="archiveContentView.php" role="button"
+                                style=color:black>Archive</a>
+                            <a class="btn btn-sm btn-light" href="eventOverview.php" role="button"
+                                style=color:black>Cancel</a>
+                        </div>
                     </div>
                 </div>
-                </div>
-
-                
-
                 </form>
             </div>
-
-            
-
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>
             </div>
@@ -180,4 +176,5 @@
         <?php include '../templates/footer.php';?>
     </div>
 </body>
+
 </html>

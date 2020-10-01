@@ -1,4 +1,4 @@
-
+<div class="fixed-top" style="background-color: black;">
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/custom.css">
     <link rel="icon" href="../images/fav.ico">
@@ -113,3 +113,4 @@
         echo "<script type='text/javascript'>closeNotification();</script>";
     }
 ?>
+</div>
