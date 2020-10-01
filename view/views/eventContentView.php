@@ -60,7 +60,7 @@
                     <div class="row">
                         <div class="col">
                             <label>Event Description</label>
-                            <textarea class="form-control" id="Desc" value="$eventDescription" rows="5"  name="eventDescription"></textarea>
+                            <textarea class="form-control" id="Desc" rows="5" name="eventDescription">$eventDescription</textarea>
                         </div>
                     </div>
                     <div class="row">
