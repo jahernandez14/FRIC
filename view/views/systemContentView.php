@@ -17,6 +17,9 @@
                 <form>
                     <?php
                     $outString = urldecode($_SERVER['QUERY_STRING']);
+                    if($outString == "new") {
+                        $outString == "Name";
+                    }
                     echo <<< HEREDOC
                     <div class="row">
                         <div class="col">

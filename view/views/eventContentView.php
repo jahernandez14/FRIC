@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    <?php include '../templates/header.php';?>
+    <?php include '../templates/header.php';
+    require_once('../../controller/eventController.php');
+    ?>
 </head>
 
 <body>
@@ -15,56 +17,81 @@
                 <h2 class="text-center">Event Detailed View</h2>
                 <h4>Event Basic Information <a href="../views/helpContentView.php" class="btn-sm btn-light"
                         style=color:black>?</a></h4>
+                <?php
+                $eventName = urldecode($_SERVER['QUERY_STRING']);
+                if($eventName == "new") {
+                    $dataArray = array("", "", "", "", date("Ymd H:i:s"), "", "", "", "", "", "", "", "", "", "");
+                } else {
+                    $dataArray = readEvent($eventName);
+                }
+                $eventName = $dataArray[0];
+                $eventDescription = $dataArray[1];
+                $eventType = $dataArray[2];
+                $eventVersion = $dataArray[3];
+                $assessmentDate = $dataArray[4];
+                $organizationName = $dataArray[5];
+                $securityClassifcation = $dataArray[6];
+                $eventClassification = $dataArray[7];
+                $declassificationDate = $dataArray[8];
+                $customerName = $dataArray[9];
+                $archiveStatus = $dataArray[10];
+                $eventTeam = $dataArray[11];
+                $numberOfFindings = $dataArray[12];
+                $numberOfSystems = $dataArray[13];
+                $progress = $dataArray[14];
+                echo <<< HEREDOC
                 <form>
                     <div class="row">
                         <div class="col">
                             <label>Event Name</label>
-                            <input type="text" class="form-control" placeholder="Event 1">
+                            <input type="text" class="form-control" placeholder="Event Name" value="$eventName">
                         </div>
                         <div class="col-3">
                             <label>Event Type</label>
-                            <input type="text" class="form-control" placeholder="Event Type">
+                            <input type="text" class="form-control" placeholder="Event Type" value="$eventType">
                         </div>
                         <div class="col-2">
                             <label>Event Version</label>
-                            <input type="text" class="form-control" placeholder="Event Version">
+                            <input type="text" class="form-control" placeholder="Event Version" value="$eventVersion">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label>Event Description</label>
-                            <textarea class="form-control" id="Desc" rows="5"></textarea>
+                            <textarea class="form-control" id="Desc" value="$eventDescription" rows="5"></textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label>Organization Name</label>
-                            <input type="text" class="form-control" placeholder="Org Name">
+                            <input type="text" class="form-control" placeholder="Org Name" value="$organizationName">
                         </div>
                         <div class="col-2">
-                            <label>Assessment Data</label>
-                            <input type="text" class="form-control" placeholder="3/3/2020">
+                            <label>Assessment Date</label>
+                            <input type="text" class="form-control" placeholder="Date" value="$assessmentDate">
                         </div>
                         <div class="col-4">
                             <label>Security Classification Title Guide</label>
-                            <input type="text" class="form-control" placeholder="">
+                            <input type="text" class="form-control" placeholder="" value="$securityClassifcation">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label>Client Name</label>
-                            <input type="text" class="form-control" placeholder="Client Name">
+                            <input type="text" class="form-control" placeholder="Client Name" value="$customerName">
                         </div>
                         <div class="col-3">
                             <label>Event Classification</label>
-                            <input type="text" class="form-control" placeholder="">
+                            <input type="text" class="form-control" placeholder="" value="$eventClassification">
                         </div>
                         <div class="col-3">
                             <label>Declassification Date</label>
-                            <input type="text" class="form-control" placeholder="">
+                            <input type="text" class="form-control" placeholder="" value="$declassificationDate">
                         </div>
                     </div>
                 </form>
+                HEREDOC;
+                ?>
                 <h4><br />Event Team Information</h4>
 
                 <div class=col-10>
