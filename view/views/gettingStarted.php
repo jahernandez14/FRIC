@@ -16,7 +16,13 @@
             <div class="col-10">
                 <h3 class="text-center"><strong>Setting Up Device</strong></h3>
                 <div style="background-color:#FFFFFF; color:black;" class="col-8 container fluid-col">
-                    Hey
+                    <ul>
+                        <li>&bull;MongoDB</li>
+                        <li>&bull;Server Info</li>
+                        <li>&bull;Linux Installation</li>
+                        <li>&bull;Windows installation?</li>
+                        <li>&bull;FAQ</li>
+                        <li>&bull;Common Problems</li>
                 </div>
             </div>
             <div class="col-2" style="background-color:#202020">
