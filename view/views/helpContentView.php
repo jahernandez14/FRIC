@@ -21,6 +21,7 @@
                     </p>
                     <h2>Sections</h2>
                         <ul>
+                            <a href="gettingStarted.php" style="color:black; font-size:20px">&bull;Setting Everything Up</a><br>
                             <a href="#eventTreeInfo" style="color:black; font-size:20px">&bull;Event Tree</a><br>
                             <a href="#searchInfo" style="color:black; font-size:20px">&bull;Search</a><br>
                             <a href="#systemsInfo" style="color:black; font-size:20px">&bull;Systems</a><br>
