@@ -1,7 +1,7 @@
 Jebel
 - use same logic to create collection and model for log, analyst(add ip field). (not sure if system is complete)
 - all returned values must be exact no extra data. i need one that returns
-analyst initials and ips, i believe Daniel needs Analyst names for derived from, and one that returns system details, also all the values of log (DateTime, Action Performed, Analyst).
+analyst initials and ips, i believe Daniel needs Analyst names for derived from, and one that returns system details, also an array of all of the log entries (DateTime, Action Performed, Analyst).
 
 
 Daniel
