@@ -34,6 +34,8 @@
                             <lo><a href="#windows_problems" style="color:black; font-size:20px">Windows Common Problems</a></lo><br>
                             <lo><a href="#linux_problems" style="color:black; font-size:20px">Linux Common Problems</a></lo><br>
                         </ol>
+                        <p style="font-size:20px">&bull;List of common MongoDB commands
+                                <a href="mongoDB_commands.php" style="color:blue; font-size:15px; text-align:center">click here</a></p>
                     </ul>
 
                     <!--Start of info sections-->
@@ -63,18 +65,13 @@
                         <br>&bull;If you chose <b>Linux</b>, then follow these steps:
                             <ol id = "linux_info">
                                 <!--wget -q0 - https://mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-                                Enter your password, and if everything is done correctly, you should get an "OK" in the terminal.
-                                <li>Decompress the download file</li>
-                                <li>Run the .exe file. Usually it's named <em>mongodb.exe</em></li>
-                                <li>Follow the installing instruction displayed on the screen, and complete the installation</li>
+                                Enter your password, and if everything is done correctly, you should get an "OK" in the terminal.-->
+                                <li>Double-click the file name, more likely named <em> mongodb-org-shell_4.4.1_arm64 </em></li>
+                                <lo>Using the Terminal, go into the folder where the <em> .deb </em> file is, and run the command</lo>
+                                <li><em> mongodb-org-shell_4.4.1_arm64 </em></li>
                                 <lo style="font-size:12px">NOTE: You can customize this installation however you'd like</lo>
-                                <li>Go to the folder location where MongoDB is installed (from step 3) and enter the <em>bin</em> folder</li>
-                                <li>Copy the location of the <em>bin</em> folder and add it to the System Environmental Variables</li>
-                                <li>Restart the device if needed</li>
-                                <li>Open a console and type the command <em> mongo -version</em> and if you get the Shell version, then MongoDB is now installed in your system</li>
                             </ol>-->
-                            <p style="font-size:12px;text-align:center">For a list of common MongoDB commands
-                                <a href="mongoDB_commands.php" style="color:blue; font-size:12px; text-align:center">click here</a></p>
+                            
                     </ul>
                     <h4 id="server_info">Server Information
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
