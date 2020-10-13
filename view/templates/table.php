@@ -8,6 +8,20 @@ class table
     public $dims;
 
 
+    /*  Array Template Structure:
+    *   use the array() function, put any necessary links before flags, put flags before columns, use "=>" operator
+    *   FLAGS:
+    *    - F : "File" controls, i.e. +, Archive buttons
+    *           - newLink     : where to post the new object of the type of this table
+                - delLink     : where to post the selected object(s) in this table being archived
+    *    - C : "Check boxes" in the first column
+    *    - R : "Restore" button for archived objects
+                - restoreLink : where to post the data to restore the selected object
+    *    
+    *   COLUMNS:
+    *   Starting with the leftmost column, use 0 => "first column name", 1 => "second column name", ... , n-1 => "nth column name"
+    *
+    */
     private static $tableTypes = array(
         "Event Overview Table" => array("newLink" => "../views/eventContentView.php", "delLink" => "../views/archiveContentView.php", "F" => 1, "C" => 1, "R" => 0, 0 => "Event Name", 1 => "No. of Systems", 2 => "No. of Findings", 3 => "Progress"),
         "System Overview Table" => array("newLink" => "../views/systemContentView.php", "delLink" => "../views/archiveContentView.php", "F" => 1, "C" => 1, "R" => 0, 0 => "System", 1 => "No. of Systems", 2 => "No. of Findings", 3 => "Progress"),
