@@ -9,8 +9,8 @@ class Analyst {
     private $loggedIn;
 
     public function __construct($db, $firstName, $lastName, $initial, $ipAddress, $title, $role, $loggedIn){
-        $addObject       = $db->checkDatabaseForSameID($initial . $ipAddress,'FRIC_Database.Analyst');
-        $id              = $initial . $ipAddress;
+        $addObject       = $db->checkDatabaseForSameID($initial . "," . $ipAddress,'FRIC_Database.Analyst');
+        $id              = $initial . "," . $ipAddress;
         $this->firstName = $firstName;
         $this->lastName  = $lastName;
         $this->initial   = $initial;

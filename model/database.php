@@ -77,6 +77,24 @@ class Database{
         }
     }
 
+    public function getAllAnalystNames(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                $row = array();
+                array_push($row, explode(",", $document->_id)[0]);
+                array_push($row, explode(",", $document->_id)[1]);
+                array_push($table, $row);
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     public function getAllEventNames(){
         try{
             $query  = new MongoDB\Driver\Query([]);
@@ -129,6 +147,43 @@ class Database{
             return array(array());
         }
     }
+
+    /* Returns an array of all the required attributes of a system for detailed view.*/ 
+    public function getSystemAttributes($id){
+        try{
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
+            $object = array(); 
+            foreach($cursor as $document){
+                array_push($object, $document->_id, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, 
+                           $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability);
+            }
+            return $object;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array();
+        }
+    }
+
+    /* Returns a 2d array of all the changes in the transaction log */ 
+    public function getAllTransactionLogs(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.TransactionLog', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                $row = array();
+                array_push($row, $document->_id);
+                array_push($row, $document->actionPerformed);
+                array_push($row, $document->analyst);
+                array_push($table, $row);
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
 }
 
 /*  Used for testing purposes   */
@@ -142,8 +197,10 @@ $db = new Database();
 // $a = new Event($db, "Event 7", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/20/2020", "Lemon Guy", "N", "JM", "am192.2.3", 3, 7,'in progress');
 //print_r($db->getAllEventNames());
 
-//$b = new Systeme($db, "System Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
+$b = new Systeme($db, "ystem Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
 //print_r($db->getAllSystems());
+print_r($db->getSystemDetails("System Name"));
 
 //$c = new Analyst($db, "Gimboree", "Gonzalez", "gg", "192.177.1.2", "Tech Guy", "Lead Analyst", false);
+//print_r($db->getAllAnalystNames());
 ?>
