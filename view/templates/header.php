@@ -48,6 +48,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="../views/helpContentView.php">Help</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../views/logContentView.php">Log</a>
+            </li>
             </ul>
         </div>
         <?php
