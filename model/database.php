@@ -97,6 +97,23 @@ class Database{
         }
     }
 
+    public function getAnalystName($id){
+        try{
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);
+            $firstLastName = "";
+            foreach($cursor as $document){
+                $firstLastName .= $document->firstName;
+                $firstLastName .= " ";
+                $firstLastName .= $document->lastName;
+            }
+            return $firstLastName;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return "";
+        }
+    }
+
     public function getAllEventNames(){
         try{
             $query  = new MongoDB\Driver\Query([]);
@@ -132,6 +149,54 @@ class Database{
         }
     }
 
+    /* Returns an array of all the required attributes of a system for detailed view.*/ 
+    public function getEventAttributes($id){
+        try{
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Event', $query);
+            $object = array(); 
+            foreach($cursor as $document){
+                array_push($object, $document->_id, $document->eventName, $document->eventDescription, $document->eventType, $document->eventVersion, $document->assessmentDate, 
+                           $document->organizationName, $document->securityClassifcation, $document->eventClassification, $document->declassificationDate, $document->customerName,
+                           $document->archiveStatus, $document->eventTeam, $document->derivedFrom);
+            }
+            return $object;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array();
+        }
+    }
+
+    /* Edit system document attributes in db */
+    public function editEventDocument($id, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $derivedFrom, $numberOfFindings, $numberOfSystems, $progress){
+        $dbEntry = ['$set'=>
+            ['eventName'            => $eventName,
+            'eventDescription'      => $eventDescription,
+            'eventType'             => $eventType,
+            'eventVersion'          => $eventVersion,
+            'assessmentDate'        => $assessmentDate,
+            'organizationName'      => $organizationName,
+            'securityClassifcation' => $securityClassifcation,
+            'eventClassification'   => $eventClassification,
+            'declassificationDate'  => $declassificationDate,
+            'customerName'          => $customerName,
+            'archiveStatus'         => $archiveStatus,
+            'eventTeam'             => $eventTeam,
+            'derivedFrom'           => $derivedFrom,
+            'numberOfFindings'      => $numberOfFindings,    
+            'numberOfSystems'       => $numberOfSystems,    
+            'progress'              => $progress]
+        ];
+
+        try{
+            $bulk = new MongoDB\Driver\BulkWrite;
+            $bulk->update(['_id' => $id], $dbEntry);
+            $this->manager->executeBulkWrite('FRIC_Database.Event', $bulk);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+        }
+    }
+
     /*  Returns a 2d array of all attributes required for a System table */
     public function getAllSystems(){
         try{
@@ -157,13 +222,40 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
             $object = array(); 
             foreach($cursor as $document){
-                array_push($object, $document->_id, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, 
+                array_push($object, $document->_id, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, 
                            $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability);
             }
             return $object;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
             return array();
+        }
+    }
+
+    /* Edit system document attributes in db */
+    public function editSystemDocument($id, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $numberOfTasks, $numberOfFindings, $progress){
+        $dbEntry = ['$set'=>
+            ['systemName'       => $systemName,
+            'systemDescription' => $systemDescription,    
+            'systemLocation'    => $systemLocation,    
+            'systemRouter'      => $systemRouter,    
+            'systemSwitch'      => $systemSwitch,
+            'systemRoom'        => $systemRoom,
+            'testPlan'          => $testPlan,
+            'confidentiality'   => $confidentiality,
+            'integrity'         => $integrity,
+            'availability'      => $availability,
+            'numberOfTasks'     => $numberOfTasks,
+            'numberOfFindings'  => $numberOfFindings,
+            'progress'          => $progress]
+        ];
+
+        try{
+            $bulk = new MongoDB\Driver\BulkWrite;
+            $bulk->update(['_id' => $id], $dbEntry);
+            $this->manager->executeBulkWrite('FRIC_Database.System', $bulk);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
         }
     }
 
@@ -200,9 +292,11 @@ class Database{
 //print_r($db->getAllEventNames());
 
 //$b = new Systeme($db, "system Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
+//$db->editSystemDocument("system Name", "system Gym", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
 //print_r($db->getAllSystems());
-//print_r($db->getSystemAttributes("System Name"));
+//print_r($db->getSystemAttributes("system Name"));
 
 //$c = new Analyst($db, "Daniel", "O'Brien", "DO", "192.177.1.66", "Hipster Guy", "Lead Proggy");
+//echo $db->getAnalystName("DO");
 //print_r($db->getAllAnalystNames());
 ?>

@@ -32,6 +32,7 @@ class Systeme {
 
         $dbEntry = [
             '_id'               => $systemName,
+            'systemName'        => $systemName,
             'systemDescription' => $systemDescription,    
             'systemLocation'    => $systemLocation,    
             'systemRouter'      => $systemRouter,    
