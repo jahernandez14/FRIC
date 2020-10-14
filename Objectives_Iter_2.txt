@@ -10,12 +10,11 @@ Daniel
 -add a log entry for your table class the 3 columns are DateTime, Action Performed, Analyst.
 
 Julio
--session varible to manage who is using FRIC.
--log controller (i will save to the databse everytime the database is edited I will read the session variable for 
-analyst name and the controller method call will indicate action taken)
--log view
--analyst controller
--modify set up to make more sense and more usable.
+-session varible to manage who is using FRIC. (Complete, pending page redirect)
+-log controller (works, needs to be added to all controllers)
+-log view (awaiting table class)
+-analyst controller (complete)
+-modify set up to make more sense and more usable. (complete)
 
 
 Will
