@@ -203,6 +203,6 @@ class Database{
 //print_r($db->getAllSystems());
 //print_r($db->getSystemAttributes("System Name"));
 
-//$c = new Analyst($db, "Jebel", "Macias", "JM", "192.177.1.88", "Cool Guy", "Lead Architect?");
+//$c = new Analyst($db, "Daniel", "O'Brien", "DO", "192.177.1.66", "Hipster Guy", "Lead Proggy");
 //print_r($db->getAllAnalystNames());
 ?>

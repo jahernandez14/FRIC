@@ -12,10 +12,9 @@ Daniel
 Julio
 -session varible to manage who is using FRIC. (Complete, pending page redirect)
 -log controller (works, needs to be added to all controllers)
--log view (awaiting table class)
--analyst controller (complete)
--modify set up to make more sense and more usable. (complete)
-
+-log view (Complete)
+-analyst controller (Complete)
+-modify set up to make more sense and more usable. (Complete)
 
 Will
 - Finish help completely for both Windows and Linux also add a faq and tips. Everythng that must be know abour our app must be there.
