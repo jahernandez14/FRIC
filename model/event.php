@@ -37,7 +37,8 @@ class Event {
         $this->progress              = $progress;
 
         $dbEntry = [
-            '_id'                   => $eventName,   
+            '_id'                   => $eventName,  
+            'eventName'             => $eventName,
             'eventDescription'      => $eventDescription,
             'eventType'             => $eventType,
             'eventVersion'          => $eventVersion,
