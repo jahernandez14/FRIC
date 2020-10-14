@@ -10,7 +10,7 @@
 
     function readsystem($systemName){
         $db = new Database();
-        $systemArray = $db->getDocument('$systemName','FRIC_Database.System');
+        $systemArray = $db->getDocument($systemName,'FRIC_Database.System');
         return $systemArray;
     }
 
@@ -22,14 +22,14 @@
 
     function editsystem($systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $numberOfTasks, $numberOfFindings, $progress){
         $db = new Database();
-        $db->editDocument('$systemName','FRIC_Database.System');
+        $db->editDocument($systemName,'FRIC_Database.System');
         new Systeme($db, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $numberOfTasks, $numberOfFindings, $progress);
         logEntry($systemName . " system edited");
     }
 
     function archivesystem($systemName){
         $db = new Database();
-        $systemArray = $db->getDocument('$systemName','FRIC_Database.System');
+        $systemArray = $db->getDocument($systemName,'FRIC_Database.System');
         logEntry($systemName . " system archived");
     }
 ?>
