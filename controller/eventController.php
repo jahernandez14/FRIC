@@ -30,10 +30,12 @@
         $db = new Database();
         $db->editDocument($eventName,'FRIC_Database.Event');
         new Event($db, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, '', $numberOfFindings, $numberOfSystems, $progress);
+        logEntry($eventName . " event edited");
     }
 
     function archiveEvent($eventName){
         $db = new Database();
         $eventArray = $db->getDocument('$eventName','FRIC_Database.Event');
+        logEntry($eventName . " event archived");
     }
 ?>
