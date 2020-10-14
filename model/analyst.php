@@ -6,26 +6,25 @@ class Analyst {
     private $ipAddress;
     private $title;
     private $role;
-    private $loggedIn;
 
-    public function __construct($db, $firstName, $lastName, $initial, $ipAddress, $title, $role, $loggedIn){
-        $addObject       = $db->checkDatabaseForSameID($initial . "," . $ipAddress,'FRIC_Database.Analyst');
-        $id              = $initial . "," . $ipAddress;
+    public function __construct($db, $firstName, $lastName, $initial, $ipAddress, $title, $role){
+        $addObject       = $db->checkDatabaseForSameID($initial,'FRIC_Database.Analyst');
+        $id              = $initial;
         $this->firstName = $firstName;
         $this->lastName  = $lastName;
         $this->initial   = $initial;
         $this->ipAddress = $ipAddress;
         $this->title     = $title;
         $this->role      = $role;
-        $this->loggedIn  = $loggedIn;
+
 
         $dbEntry = [
             '_id'       => $id,   
             'firstName' => $firstName,
             'lastName'  => $lastName,
+            'ip'        => $ipAddress,
             'title'     => $title,
             'role'      => $role,
-            'loggedIn'  => $loggedIn
         ];
 
         if($addObject){

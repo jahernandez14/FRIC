@@ -13,41 +13,44 @@
                 <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-10">
-                <!-- Start setup content-->
                 <h2>Finding and Reporting Information Console (FRIC)</h2>
                 <div class="input-group">
+                    <form method="post" class="input-group">
+                </div>
+                Select Analyst Initials:
+                <div class="input-group" method = "post">
                         <?php 
-                            require_once('/xampp/htdocs/FRIC/controller/eventController.php');
-                            $placeholder = "There is no existing event in your local system";
-                            $eventList = eventNames();
-                            if(count($eventList) > 0){
-                                $placeholder = "Events have been created, check list or visit the event section.";
+                            require_once('/xampp/htdocs/FRIC/controller/analystController.php');
+                            $placeholder = "No Analyst have been added to FRIC";
+                            $analystList = analystNames();
+                            if(count($analystList) > 0){
+                                $placeholder = "Analysts have been created, Select current user";
                             }
                             echo <<< LIST
-                                <input type="text" list="eventNames" placeholder= "$placeholder"
-                                class="form-control" />
-                                <datalist id="eventNames">
+                                <input id = 'initials' type="text" list="analystNames" placeholder= "$placeholder"
+                                class="form-control" name= 'initials'>
+                                <datalist id="analystNames">
                             LIST;
 
                             $i=0;
-                            while($i < count($eventList)){
-                                echo "<option>" . $eventList[$i][0] ."</option>";
+                            while($i < count($analystList)){
+                                echo '<option value = "'. $analystList[$i][0] .'">' . $analystList[$i][1] . " " . $analystList[$i][2],  "</option>";
                                 $i++;
                             }
+                            echo '</datalist>';
                         ?>
-                    </datalist>
+                    
                 </div>
-                Please enter your initials:
+                Please enter your IP:
                 <div class="input-group">
                     <form method="post" class="input-group">
-                    <input id="userInitials" type="text" class="form-control" name= 'userInitials'
-                        placeholder="Initials" required>
-
+                    <input id="userIP" type="text" class="form-control" name= 'userIP' placeholder="IP">
                 </div>
                 <div class="form-group">
                     <label for="setupAction">Please select an option:</label>
                     <select class="form-control" id="setupAction">
                         <option>Create a new event (any existing event will be archived)</option>
+                        <option>Edit IP address</option>
                     </select>
                 </div>
                 First time sync with lead analyst. Please enter the lead analyst's IP:
@@ -59,20 +62,17 @@
                         <option>10.0.0.2</option>
                     </datalist>
                 </div>
-                    
+                <br>
+                <input class="btn btn-sm btn-light" name='Submit' type="submit" value="Submit">
+                <a href="../views/eventOverview.php" class="btn btn-sm btn-light" style="color:black">Cancel</a>
+                <!-- <input name="submit" type="button" onclick="location.href= 'google.com'"/>Test -->
                     </form>
 
                 <?php
-                    if (isset($_POST['Submit'])) {
-                        $_SESSION["initials"] = $_POST['userInitials'];
-                        $_SESSION["loggedIn"] = true;
+                    if (isset($_POST['Submit'])){
+                        update(1, $_POST['initials'], $_POST['userIP']);
                     }
                 ?>
-                    <p></p>
-                    <a href="../views/eventOverview.php" class="btn btn-sm btn-light" style="color:black">Submit</a>
-                    &nbsp;
-                    <a href="../views/eventOverview.php" class="btn btn-sm btn-light" style="color:black">Cancel</a>
-
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>

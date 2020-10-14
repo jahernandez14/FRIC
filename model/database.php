@@ -84,8 +84,10 @@ class Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                array_push($row, explode(",", $document->_id)[0]);
-                array_push($row, explode(",", $document->_id)[1]);
+                array_push($row, $document->_id);
+                array_push($row, $document->firstName);
+                array_push($row, $document->lastName);
+                array_push($row, $document->ip);
                 array_push($table, $row);
             } 
             return $table;
@@ -187,7 +189,7 @@ class Database{
 }
 
 /*  Used for testing purposes   */
-//$db = new Database();
+$db = new Database();
 
 // $a = new Event($db, "Event 2", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "9/30/2020", "Army", "Top Secret", "Unclassified", "1/18/2020", "Tim Honks", "N", "JM", "wb192.2.3", 1, 2,'inProgress');
 // $b = new Event($db, "Event 3", "This a test event description", "Verification of Fixes", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Axel Rose", "N", "JM", "jh192.2.2", 5, 10,'in progress');
@@ -201,6 +203,6 @@ class Database{
 //print_r($db->getAllSystems());
 //print_r($db->getSystemAttributes("System Name"));
 
-//$c = new Analyst($db, "Gimboree", "Gonzalez", "gg", "192.177.1.2", "Tech Guy", "Lead Analyst", false);
+//$c = new Analyst($db, "Jebel", "Macias", "JM", "192.177.1.88", "Cool Guy", "Lead Architect?");
 //print_r($db->getAllAnalystNames());
 ?>

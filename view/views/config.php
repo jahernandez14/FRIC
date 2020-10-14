@@ -1,13 +1,22 @@
 <?php
     $currentTimeout= ini_get('session.gc_maxlifetime');
     ini_set('session.gc_maxlifetime', 2678400);
-    $status = false;
-    $initials = "J.H.192.168.1.46";
-    session_start();
 
+    session_start();
     
-    
+
+    if(!isset($_SESSION["loggedIn"])){
+    $status = 0;
+    $initials = "";
+    $ip = "";
     $_SESSION["loggedIn"] = $status;
     $_SESSION["initials"] = $initials;
+    $_SESSION["ip"] = $ip;
+    }
 
+    function update($status, $initials, $ip){
+        $_SESSION["loggedIn"] = $status;
+        $_SESSION["initials"] = $initials;
+        $_SESSION["ip"] = $ip;
+    }
 ?>

@@ -6,7 +6,7 @@
 
 <?php
     include_once("./view/views/config.php");
-    if($_SESSION["loggedIn"] == false){
+    if($_SESSION["loggedIn"] == 0){
         echo '<meta http-equiv="refresh" content="0; URL=./view/views/setupContentView.php"/>'; 
     }
     else{

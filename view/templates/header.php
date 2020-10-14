@@ -52,9 +52,7 @@
         </div>
         <?php
             include_once("../views/config.php");
-            if ($_SESSION["loggedIn"] != false) {
-                echo $_SESSION["initials"];
-            }
+                echo $_SESSION["initials"] . " " . $_SESSION["ip"];
         ?>
         &nbsp;
         <form method="post">
