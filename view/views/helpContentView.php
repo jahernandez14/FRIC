@@ -242,36 +242,27 @@
                             <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
 
                         <ul>
-                            <br><h4 id="checkWorkingDB">Check Current Database
-                                <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
+                            <br><h4 id="checkWorkingDB">Check Current Database</h4>
 
-                            <br><h4 id="showAllDBs">Show List of all Databases
-                                <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
+                            <br><h4 id="showAllDBs">Show List of all Databases</h4>
 
-                            <br><h4 id="create-enterDB">Create a DB / Access a DB
-                                <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
+                            <br><h4 id="create-enterDB">Create a DB / Access a DB</h4>
 
-                            <br><h4 id="deleteDB">Delete a DB
-                                <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
+                            <br><h4 id="deleteDB">Delete a DB</h4>
                         </ul>
 
                         <br><h4 id="usingCollections">Using Collections
                             <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
                         <ul>
-                            <br><h4 id="checkWorkingCollection">Check Current Collection
-                                <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
+                            <br><h4 id="checkWorkingCollection">Check Current Collection</h4>
 
-                            <br><h4 id="showAllCollections">Show List of all Collections
-                                <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
+                            <br><h4 id="showAllCollections">Show List of all Collections</h4>
 
-                            <br><h4 id="create-enterCollection">Create a Collection / Access a Collection
-                                <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
+                            <br><h4 id="create-enterCollection">Create a Collection / Access a Collection</h4>
                                     
-                            <br><h4 id="addNewRecord">Add a Record to a Collection
-                                <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
+                            <br><h4 id="addNewRecord">Add a Record to a Collection</h4>
 
-                            <br><h4 id="deleteCollection">Delete a Collection
-                                <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
+                            <br><h4 id="deleteCollection">Delete a Collection</h4>
                         </ul>
 
                         <br><h4 id="installCompass">Install MongoDB GUI (Compass)
