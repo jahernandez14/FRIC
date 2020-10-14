@@ -29,7 +29,8 @@
                             <li><a href="#findingsInfo" style="color:black; font-size:20px">Findings</a><br></li>
                             <li><a href="#archiveInfo" style="color:black; font-size:20px">Archive</a><br></li>
                             <li><a href="#configInfo" style="color:black; font-size:20px">Configuration</a><br></li>
-                            <li><a href="#setupInfo" style="color:black; font-size:20px">Setup</a></li><br>
+                            <li><a href="#setupInfo" style="color:black; font-size:20px">Setup</a></li>
+                            <li><a href="#logInfo" style="color:black; font-size:20px">Log</a></li><br>
                         </ol>
                         <lo>
                             <a href="#mongoInfo" style="color:black; font-size:20px">&bull;<b>MongoDB</b></a>
@@ -160,6 +161,13 @@
                         <li>-Provides a table in which users will be able to sync with other users or the Lead Analyst.</li>
                         <li>-Users are asked to input the IP address of the Lead Analyst (only if syncing has not been done before, after the first time this information will be stored).</li>
                     </ul>
+                    <h4 id = "logInfo">Log
+                        <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
+                    </h4>
+                    <ul>
+                        <li>-Provides a table in which users will be able to see modifications made to specific systems within an Event as well as what Analyst performed said action.</li>
+                        <li>-This info table will be updated constantly right after an action has beed made, such as the archive of a Task, System, or Event; as well as the creation of or uploading of artifacts.</li>
+                    </ul>
 
                     <!--Start of info sections-->
                     <!--Section Break Line-->
@@ -230,13 +238,26 @@
                             <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
                         <ul>
                             <lo>In <b>Windows</b> and <b>Linux</b>; enter the command</lo><br>
-                            <samp style="text-align:center">
-                                mongo
+                            <samp>
+                                <p style="text-align:center">mongo</p>
                             </samp>
                         </ul>
                             
                         <br><h4 id="whereisData">Check Where is all Data Stored
                             <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
+                        <ul>
+                            <lo>In <b>Windows</b>, all the information is stored in the <em>MongoDB</em> folder inside <em>Program Files</em>. More specifically, this location:</em></lo><br>
+                            <br><samp>
+                                <p style="text-align:center">LocalDisk:\Program Files\MongoDB\Server\MongoDBVersion\data</p>
+                            </samp>
+                        </ul>
+                        <ul>
+                            <lo>In <b>Kali Linux</b>, all the information is stored in the [] folder inside []. More specifically, this location:</em></lo>
+                            <br><samp>
+                                <p style="text-align:center">[LINUX LOCATION COMMAND]</p>
+                            </samp>
+                            <lo>Files will have the extension <em>.wt</em> and they cannot be accessed from outside the Mongo Shell or Compass.</lo>
+                        </ul>
                             
                         <br><h4 id="usingDBs">Using Databases
                             <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
