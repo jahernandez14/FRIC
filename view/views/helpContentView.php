@@ -248,13 +248,13 @@
                         <ul>
                             <lo>In <b>Windows</b>, all the information is stored in the <em>MongoDB</em> folder inside <em>Program Files</em>. More specifically, this location:</em></lo><br>
                             <br><samp>
-                                <p style="text-align:center">LocalDisk:\Program Files\MongoDB\Server\MongoDBVersion\data</p>
+                                <p style="text-align:center">"LocalDisk":\Program Files\MongoDB\Server\"MongoDBVersion"\data</p>
                             </samp>
                         </ul>
                         <ul>
-                            <lo>In <b>Kali Linux</b>, all the information is stored in the [] folder inside []. More specifically, this location:</em></lo>
+                            <lo>In <b>Kali Linux</b>, all the information is stored in the folder inside []. More specifically, this location:</em></lo>
                             <br><samp>
-                                <p style="text-align:center">[LINUX LOCATION COMMAND]</p>
+                                <p style="text-align:center">/var/lib/mongodb</p>
                             </samp>
                             <lo>Files will have the extension <em>.wt</em> and they cannot be accessed from outside the Mongo Shell or Compass.</lo>
                         </ul>
@@ -320,7 +320,11 @@
                         <a id = "windowsProblems"></a>
                         <b>Windows</b> Common Problems<br>
                         <a id = "linuxProblems"></a>
-                        <b>Linux</b> Common Problems
+                        <b>Linux</b> Common Problems<br>
+                        Set the root folder to FRIC's<br>
+                        Make sure that FRIC folder is inside /var/www<br>
+                        change apache2.conf file inside /etc/apache2<br>
+                        change .conf files inside /etc/apache2/sites-available/<br>
                     </ul>
                 </div>
             </div>
