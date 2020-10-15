@@ -72,6 +72,10 @@
                             <li><a href="#linuxServerInfo" style="color:black; font-size:20px">Linux Server</a></li><br>
                         </ol>
                         <li><a href="#extraInfo" style="color:black; font-size:20px">&bull;<b>FAQ</b></a></li><br>
+
+                        <!-- Section link moved up for better display-->
+                        <a id="FRICInfo"></a>
+                        <a id="eventTreeInfo"></a>
                         <li><a href="#commonProblems" style="color:black; font-size:20px">&bull;<b>Common Problems</b></a></li>
                         <ol>
                             <li><a href="#windowsProblems" style="color:black; font-size:20px">Windows Common Problems</a></li>
@@ -82,8 +86,12 @@
                     <!--Section Break Line-->
                     <hr style="height:5px;border-width:10;color:gray;background-color:gray">
 
-                    <h3 id="FRICInfo" style="color:black;">FRIC Main Structure</h3>
-                    <h4 id="eventTreeInfo">Event Tree
+                    <h3 style="color:black;">FRIC Main Structure</h3>
+
+                    <!-- Section link moved up for better display-->
+                    <a id="searchInfo"></a>
+
+                    <h4>Event Tree
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
                     </h4>
                     <ul>
@@ -92,7 +100,10 @@
                         <li>-Tree is collapsable for viewability.</li>
                     </ul>
 
-                    <h4 id = "searchInfo">Search
+                    <!-- Section link moved up for better display-->
+                    <a id = "systemsInfo"></a>
+
+                    <h4>Search
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
                     </h4>
                     <ul>
@@ -100,68 +111,89 @@
                         <li>-Pressing the <em>Search</em> button will display a list of all results associated with the search request.</li>
                     </ul>
 
-                    <h4 id = "systemsInfo">Systems
+                    <h4>Systems
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
                     </h4>
                     <ul>
                         <li>-Provides a table of all Tasks and Findings alongside their respective progress within a System.</li>
+                        <!-- Section link moved up for better display-->
+                        <a id = "tasksInfo"></a>
+
                         <li>-Each System will be a composition of documents that can be made up of Tasks (further divided into Sub-tasks), Findings, and other artifacts (notes, pictures, files).</li>
                         <li>-The Lead Analysts will have the option to create new Systems, and all users will be able to archive Systems, which will remove said System from the user's workstation, but will not delete them.</li>
                     </ul>
 
-                    <h4 id = "tasksInfo">Tasks
+                    <h4>Tasks
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
                     </h4>
                     <ul>
+                        <!-- Section link moved up for better display-->
+                        <a id = "subtasksInfo"></a>
+                        
                         <li>-Provides a table of all Tasks within an Event and their associated Systems, progress, priority, the analyst working in a specific task, as well as a due date (set by the Lead Analyst).</li>
                         <li>-Tasks may be also pre-created by the Lead Analyst and assigned to analysts; or analysts themselves may choose from all the tasks and decide which one they want to work on.</li>
                         <li>-Every user is able to create tasks and associate them to a System as they see fit.</li>
                     </ul>
 
-                    <h4 id = "subtasksInfo">Subtasks
+                    <h4>Subtasks
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
                     </h4>
                     <ul>
                         <li>-Provides a table of all Sub-tasks within an Event and their associated Tasks, progress, priority, the analyst working in a specific task, as well as a due date (set by the Lead Analyst).</li>
+                            <!-- Section link moved up for better display-->
+                            <a id = "findingsInfo"></a>
+                    
                         <li>-Sub-tasks are a sub-division of Tasks, they may help organize a user's work by setting smaller deadlines that may fall before or at the associated Task's due date.</li>
                         <li>-Every user is able to create Sub-tasks but may not associate them to any Task, as they are related to Tasks ONLY.</li>
                     </ul>
 
-                    <h4 id = "findingsInfo">Findings
+                    <h4>Findings
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
                     </h4>
                     <ul>
                         <li>-Provides a table of Findigs within an Event; including a unique ID, their associated System, Task, Sub-task, working Analyst, with some other information.</li>
+                        <!-- Section link moved up for better display-->
+                        <a id = "archiveInfo"></a>
+
                         <li>-Findings may be associated to a Sub-task, Task, System, or no association at all (in this case, the Finding will be associated to the Event as a whole).</li>
                         <li>-The working Analyst is responsible for entering all the necessary information regarding a Finding, such as evidence for a problem, notes, classification, etc.</li>
                     </ul>
 
-                    <h4 id = "archiveInfo">Archive
+                    <h4>Archive
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
                     </h4>
                     <ul>
+                        <!-- Section link moved up for better display-->
+                        <a id = "configInfo"></a>
+
                         <li>-Provides tables for all Systems, Events, Findigs, Tasks, and Subtasks within an Event.</li>
                         <li>-Users will be able to Restore any of the list above, which will retrieve its information from a database, and make it visible for all.</li>
                         <li>-Events that have been "Deleted" or Archived will not appear in the "Active" workspace, but they will appear in this section.</li>
                     </ul>
 
-                    <h4 id = "configInfo">Configuration
+                    <h4>Configuration
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
                     </h4>
+                    <!-- Section link moved up for better display-->
+                    <a id = "setupInfo"></a>
+
                     <ul>
                         <li>-Provides tables for different Event's specs, such as Rules, Event's Overall progress, Event's classification, Posture, Threat level, etc.</li>
                         <li>-Only Lead Analyst will be able to set and edit these specs, but all users will be able to filter them through depending on specific values.</li>
                         <li>-The Event configuration will appear in all Reports generated by FRIC.</li>
                     </ul>
 
-                    <h4 id = "setupInfo">Setup
+                    <!-- Section link moved up for better display-->
+                    <a id = "logInfo"></a>
+                    
+                    <h4>Setup
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
                     </h4>
                     <ul>
                         <li>-Provides a table in which users will be able to sync with other users or the Lead Analyst.</li>
                         <li>-Users are asked to input the IP address of the Lead Analyst (only if syncing has not been done before, after the first time this information will be stored).</li>
                     </ul>
-                    <h4 id = "logInfo">Log
+                    <h4>Log
                         <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
                     </h4>
                     <ul>
@@ -177,7 +209,7 @@
                     </h3>
                     <ul>
                         The first step is to download the Mongo Database software using the following website:
-                        <li>https://www.mongodb.com/try/download/community</li>
+                        <li style="text-align:center">https://www.mongodb.com/try/download/community</li>
                         <br>The download process is very simple: just select the platform in which you are using FRIC, as well as the type of download file and version (4.4.1 is the most current as of 10/2020)
                         <br><br>&bull;If you chose <b>Windows</b>, then follow these steps:
                             <ol id = "windowsInfo">
@@ -196,7 +228,30 @@
                         <ol id = "linuxInfo">
                             <!--wget -q0 - https://mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
                             Enter your password, and if everything is done correctly, you should get an "OK" in the terminal.-->
-                            <lo style="font-size:12px">NOTE: You can customize this installation however you'd like</lo>
+                            <li><em>[Download MongoDB File]</em> Open a Terminal and type the command:</li><br>
+                            <code style="color:black">
+                                <p style="font-size:14px;text-align:left">wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -</p>
+                            </code>
+                            <lo>You should receive a message back saying "OK"</lo>
+                            <li><em>[Create the list file]</em> Enter this command with your Debian version (buster / stretch):</li>
+                            <code style="color:black">
+                                <p style="font-size:14px;text-align:center">echo "deb http://repo.mongodb.org/apt/debian [VERSION NAME]/mongodb-org/4.4 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list</p>
+                            </code>
+                            <li><em>[Reload local package's database]</em> Enter the command:</li>
+                            <code style="color:black">
+                                <p style="font-size:14px;text-align:center">sudo apt-get update</p>
+                            </code>
+                            <li><em>[Install MongoDB Packages]</em> Enter the command:</li>
+                            <code style="color:black">
+                                <p style="font-size:14px;text-align:center">sudo apt-get install -y mongodb-org</p>
+                            </code>
+                        </ol>
+                        <ol>
+                            <lo>By default, MongoDB instance stores:</lo>
+                            <ol type="I">
+                                <li>its data files in /var/lib/mongodb</li>
+                                <li>its log files in /var/log/mongodb</li>
+                            </ol>
                         </ol>
                     </ul>
                             
