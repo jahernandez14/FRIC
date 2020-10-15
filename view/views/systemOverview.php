@@ -16,6 +16,14 @@
                 include '../templates/table.php';
                 include '/xampp/htdocs/FRIC/controller/systemController.php';
 
+                if($_SERVER['QUERY_STRING'] == "postnew") {
+                    createSystem($_POST["systemName"], $_POST["systemDescription"], $_POST["systemLocation"], $_POST["systemRouter"], $_POST["systemSwitch"], $_POST["systemRoom"], $_POST["testPlan"], $_POST["confidentiality"], $_POST["integrity"], $_POST["availability"], 0, 0, "In Progress");
+                }
+
+                if($_SERVER['QUERY_STRING'] == "postedit") {
+                    editSystem($_POST["systemID"], $_POST["systemName"], $_POST["systemDescription"], $_POST["systemLocation"], $_POST["systemRouter"], $_POST["systemSwitch"], $_POST["systemRoom"], $_POST["testPlan"], $_POST["confidentiality"], $_POST["integrity"], $_POST["availability"], $_POST["numberOfTasks"], $_POST["numberOfFindings"], $_POST["progress"]);
+                }
+
                 $systemTable = table::tableByType("System Overview Table", systemOverviewTable());
                 $systemTable->printTable();
                 ?>

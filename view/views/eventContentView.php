@@ -19,30 +19,39 @@
                         style=color:black>?</a></h4>
                 <?php
                 $eventName = urldecode($_SERVER['QUERY_STRING']);
-                if($eventName == "new") {
-                    $dataArray = array("", "", "", "", date("Ymd H:i:s"), "", "", "", "", "", "", "", "", "", "");
+                if($eventName == "createNew") {
+                    $dataArray = array("", "", "", "", "", date("Ymd H:i:s"), "", "", "", "", "", "", array(""), "", "", "", "");
                     $postTag = "postnew";
+                    $editTag = "";
                 } else {
                     $dataArray = readEvent($eventName);
                     $postTag = "postedit";
+                    $eventID = $dataArray[0];
+                    $numberOfFindings = $dataArray[14];
+                    $numberOfSystems = $dataArray[15];
+                    $progress = $dataArray[16];
+                    $editTag = <<< HEREDOC
+                    <input name="eventID" type="hidden" value="$eventID"/>
+                    <input name="numberOfFindings" type="hidden" value="$numberOfFindings"/>
+                    <input name="numberOfSystems" type="hidden" value="$numberOfSystems"/>
+                    <input name="progress" type="hidden" value="$progress"/>
+                    HEREDOC;
                 }
-                $eventName = $dataArray[0];
-                $eventDescription = $dataArray[1];
-                $eventType = $dataArray[2];
-                $eventVersion = $dataArray[3];
-                $assessmentDate = $dataArray[4];
-                $organizationName = $dataArray[5];
-                $securityClassifcation = $dataArray[6];
-                $eventClassification = $dataArray[7];
-                $declassificationDate = $dataArray[8];
-                $customerName = $dataArray[9];
-                $archiveStatus = $dataArray[10];
-                $eventTeam = $dataArray[11];
-                $numberOfFindings = $dataArray[12];
-                $numberOfSystems = $dataArray[13];
-                $progress = $dataArray[14];
+                $eventName = $dataArray[1];
+                $eventDescription = $dataArray[2];
+                $eventType = $dataArray[3];
+                $eventVersion = $dataArray[4];
+                $assessmentDate = $dataArray[5];
+                $organizationName = $dataArray[6];
+                $securityClassifcation = $dataArray[7];
+                $eventClassification = $dataArray[8];
+                $declassificationDate = $dataArray[9];
+                $customerName = $dataArray[10];
+                $archiveStatus = $dataArray[11];
+                $derivedFrom = $dataArray[13];
                 echo <<< HEREDOC
                 <form method="post" action="eventOverview.php?$postTag">
+                $editTag
                     <div class="row">
                         <div class="col">
                             <label>Event Name</label>
@@ -91,7 +100,32 @@
                             <input type="text" class="form-control" placeholder="" value="$declassificationDate" name="declassificationDate">
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label>Derived From</label>
                 HEREDOC;
+
+                
+                            require_once('/xampp/htdocs/FRIC/controller/analystController.php');
+                            $placeholder = "Analyst (none detected)";
+                            $analystList = analystNames();
+                            if(count($analystList) > 0){
+                                $placeholder = "Analyst";
+                            }
+                            echo <<< LIST
+                                <input id = "derivedFrom" type="text" list="analystNames" placeholder= "$placeholder" value="$derivedFrom"
+                                class="form-control" name= "derivedFrom">
+                                <datalist id="analystNames">
+                            LIST;
+
+                            $i=0;
+                            while($i < count($analystList)){
+                                echo '<option value = "'. $analystList[$i][0] .'">' . $analystList[$i][1] . " " . $analystList[$i][2],  "</option>";
+                                $i++;
+                            }
+                            echo "</datalist></div></div>";
+                        
+
                 ?>
                 <h4><br></br>Event Team Information</h4>
 
