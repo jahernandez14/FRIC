@@ -3,7 +3,7 @@
     ini_set('session.gc_maxlifetime', 2678400);
 
     session_start();
-    
+    date_default_timezone_set('America/Denver');
 
     if(!isset($_SESSION["loggedIn"])){
     $status = 0;
