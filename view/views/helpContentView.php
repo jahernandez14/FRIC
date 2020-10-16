@@ -21,6 +21,7 @@
                     <ul>
                         <a href="#FRICInfo" style="color:black; font-size:20px">&bull;<b>FRIC Main Structure</b></a><br>
                         <ol>
+                            <li><a href="#eventInfo" style="color:black; font-size:20px">Event</a><br></li>
                             <li><a href="#eventTreeInfo" style="color:black; font-size:20px">Event Tree</a><br></li>
                             <li><a href="#searchInfo" style="color:black; font-size:20px">Search</a><br></li>
                             <li><a href="#systemsInfo" style="color:black; font-size:20px">Systems</a><br></li>
@@ -54,8 +55,9 @@
                                 <ol type="I">
                                     <li><a href="#checkWorkingCollection" style="color:black; font-size:20px">Check Current Collection</a></li>
                                     <li><a href="#showAllCollections" style="color:black; font-size:20px">Show List of all Collections</a></li>
-                                    <li><a href="#create-enterCollection" style="color:black; font-size:20px">Create a Collection/Access a Collection</a></li>
+                                    <li><a href="#create-Collection" style="color:black; font-size:20px">Create a Collection/Access a Collection</a></li>
                                     <li><a href="#addNewRecord" style="color:black; font-size:20px">Add a Record to a Collection</a></li>
+                                    <li><a href="#showRecords" style="color:black; font-size:20px">Display all Records inside a Collection</a></li>
                                     <li><a href="#deleteCollection" style="color:black; font-size:20px">Delete a Collection</a></li>
                                 </ol>
                             </ol>
@@ -75,8 +77,12 @@
 
                         <!-- Section link moved up for better display-->
                         <a id="FRICInfo"></a>
-                        <a id="eventTreeInfo"></a>
+                        
+                        <!-- Section link moved up for better display-->
+                        <a id="eventInfo"></a>
+                        
                         <li><a href="#commonProblems" style="color:black; font-size:20px">&bull;<b>Common Problems</b></a></li>
+                        
                         <ol>
                             <li><a href="#windowsProblems" style="color:black; font-size:20px">Windows Common Problems</a></li>
                             <li><a href="#linuxProblems" style="color:black; font-size:20px">Linux Common Problems</a></li>
@@ -88,6 +94,18 @@
 
                     <h3 style="color:black;">FRIC Main Structure</h3>
 
+                    <h4>Event
+                        <a href="#startPage" style="color:black;font-size:10px">[Top]</a>
+                    </h4>
+                    
+                    <!-- Section link moved up for better display-->
+                    <a id="eventTreeInfo"></a>
+                    <ul>
+                        <li>-Provides a table view of all Events within FRIC.</li>
+                        <li>-Each element is an Event that Analysts are currently working on.</li>
+                        <li>-This table includes the number of Systems inside an Event, number of Findings as well as an overall progress.</li>
+                    </ul>
+
                     <!-- Section link moved up for better display-->
                     <a id="searchInfo"></a>
 
@@ -96,7 +114,7 @@
                     </h4>
                     <ul>
                         <li>-Provides a tree list view of all Systems, Events, Findigs, Tasks, and Subtasks.</li>
-                        <li>-Each element is clickabable and will direct to a more specific view.</li>
+                        <li>-Each element is clickable and will direct to a more specific view.</li>
                         <li>-Tree is collapsable for viewability.</li>
                     </ul>
 
@@ -247,11 +265,7 @@
                             </code>
                         </ol>
                         <ol>
-                            <lo>By default, MongoDB instance stores:</lo>
-                            <ol type="I">
-                                <li>its data files in /var/lib/mongodb</li>
-                                <li>its log files in /var/log/mongodb</li>
-                            </ol>
+                            <lo>By default, MongoDB stores its log files in <em><code style="color:black">/var/log/mongodb</code></em>.</lo>
                         </ol>
                     </ul>
                             
@@ -308,7 +322,7 @@
                         </ul>
                         <ul>
                             <lo>In <b>Kali Linux</b>, all the information is stored in the folder inside []. More specifically, this location:</em></lo>
-                            <br><samp>
+                            <br><samp><br>
                                 <p style="text-align:center">/var/lib/mongodb</p>
                             </samp>
                             <lo>Files will have the extension <em>.wt</em> and they cannot be accessed from outside the Mongo Shell or Compass.</lo>
@@ -316,29 +330,190 @@
                             
                         <br><h4 id="usingDBs">Using Databases
                             <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
-
+                        <ul>
+                            <li>In MongoDB, you can create as many Databases as your OS allows you. By default, you start with 3 Databases:</li>
+                            <ol>
+                                <li>Admin:</li>
+                                <ul>
+                                    <li>Stores system collections and user authentication and authorization data (administrator and user's usernames, passwords, and roles).</li>
+                                </ul>
+                                <li>Local</li>
+                                <ul>
+                                    <li>Stores data used in the replication process, and other instance-specific data.</li>
+                                </ul>
+                                <li>Config</li>
+                                <ul>
+                                    <li>Contains internal collections to support consistent sessions, and sharded clusters and their operations.</li>
+                                </ul>
+                            </ol>
+                        </ul>
                         <ul>
                             <br><h4 id="checkWorkingDB">Check Current Database</h4>
+                            <ul>
+                                <li>For both <b>Windows</b> and <b>Linux</b>, to check the current working Database, use the command:</li>
+                                <p style="text-align:center; font-size:20px"><code style="color:black">
+                                    db
+                                </code></p>
+                            </ul>
 
-                            <br><h4 id="showAllDBs">Show List of all Databases</h4>
+                            <h4 id="showAllDBs">Show List of all Databases</h4>
+                            <ul>
+                                <li>For both <b>Windows</b> and <b>Linux</b>, to display all Databases in MongoDB, use the command:</li>
+                                <p style="text-align:center; font-size:20px"><code style="color:black">
+                                    show dbs
+                                </code></p>
+                            </ul>
 
-                            <br><h4 id="create-enterDB">Create a DB / Access a DB</h4>
+                            <h4 id="create-enterDB">Create a DB / Access a DB</h4>
+                            <ul>
+                                <li>For both <b>Windows</b> and <b>Linux</b>, to create a new Database, or to access an existing Database in MongoDB, use the command:</li>
+                                <p style="text-align:center; font-size:20px"><code style="color:black">
+                                    use "<em>[DB NAME]</em>"<br>
+                                    Ex. use FRIC_Info
+                                </code></p>
+                                <li>This command will return a message saying</li>
+                                <p style="text-align:center"><samp>
+                                    <em>Switched to db "[DB NAME]"</em>
+                                </samp></p>
+                            </ul>
 
-                            <br><h4 id="deleteDB">Delete a DB</h4>
+                            <h4 id="deleteDB">Delete a DB</h4>
+                            <li>For both <b>Windows</b> and <b>Linux</b>, to delete (drop) a Database in MongoDB, do the following:</li>
+                                <ol>
+                                    <li>Make sure that you are "inside" the Database that you want to drop</li>
+                                    <p style="text-align:center; font-size:20px"><code style="color:black">
+                                        Enter: <em>db</em><br>
+                                        Response: <em>FRIC_INFO</em>
+                                    </code></p>
+                                    <li>After you make sure that you are currently using the Database you want to drop, enter the command:</li>
+                                    <p style="text-align:center; font-size:20px"><code style="color:black">
+                                        db.dropDatabase() "<em>[DB NAME]</em>"<br>
+                                        Ex. use FRIC_Info
+                                    </code></p>
+                                </ol>
+                            <li>You should get the following response on the terminal/console:</li>
+                            <p style="text-align:center">
+                                <samp>
+                                    { "dropped" : <em>"FRIC_Info"</em>, "ok" : <em># of collections</em> }
+                                </samp>
+                            </p>
                         </ul>
 
-                        <br><h4 id="usingCollections">Using Collections
+                        <h4 id="usingCollections">Using Collections
                             <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
                         <ul>
-                            <br><h4 id="checkWorkingCollection">Check Current Collection</h4>
+                            <li>In MongoDB, a Collections is just a group of documents. Collections resemble a RDBMS (Relational Database Management System) table.</li><br>
+                            <style>
+                                table, th, td {
+                                    border: 2px solid black;
+                                }
+                                th, td {
+                                    padding: 5px;
+                                    text-align: left;    
+                                }
+                            </style>
+                            <p><table style="width:27%;margin-left:auto;margin-right:auto;">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                </tr>
+                                <tr>
+                                    <td>Julius Hernz</td>
+                                    <td>32</td>
+                                </tr>
+                                <tr>
+                                    <td>Dans O'Bryan</td>
+                                    <td>21</td>
+                                </tr>
+                                <tr>
+                                    <td>Jabriel MaSeans</td>
+                                    <td>22</td>
+                                </tr>
+                                <tr>
+                                    <td>Williard Saltad</td>
+                                    <td>22</td>
+                                </tr>
+                            </table></p>
+                        </ul>
+                        <ul>
+                            <h4 id="showAllCollections">Show List of all Collections</h4>
+                            <ul>
+                                <li>For both <b>Windows</b> and <b>Linux</b>, to display all existing Collections in a specific Database, use the command:</li>
+                                <p style="text-align:center; font-size:20px"><code style="color:black">
+                                    show collections<br>
+                                </code></p>
+                                <li>This command will return a list of all collections inside a Database</li>
+                                <p style="text-align:center"><samp>
+                                    <em>Collection_1</em><br>
+                                    <em>Collection_2</em><br>
+                                    <em>Collection_3</em><br>
+                                </samp></p>
+                            </ul>
 
-                            <br><h4 id="showAllCollections">Show List of all Collections</h4>
+                            <h4 id="create-Collection">Create a Collection / Access a Collection</h4>
+                            <ul>
+                                <li>For both <b>Windows</b> and <b>Linux</b>, to create a new Collection inside a specific Database in MongoDB, use the command:</li>
+                                <p style="text-align:center; font-size:20px"><code style="color:black">
+                                    db.createCollection "<em>[COLLECTION NAME]</em>"<br>
+                                    Ex. db.createCollection("Collection_4")
+                                </code></p>
+                                <li>This command will return a message saying</li>
+                                <p style="text-align:center"><samp>
+                                    <em>{ "ok" : 1 }</em>
+                                </samp></p>
+                            </ul>
 
-                            <br><h4 id="create-enterCollection">Create a Collection / Access a Collection</h4>
+                            <h4 id="showRecords">Display all Records inside a Collection</h4>
+                            <li>For both <b>Windows</b> and <b>Linux</b>, to show all records in a Collection in MongoDB, use the command:</li>
+                                <ol>
+                                    <p style="text-align:center; font-size:17px"><code style="color:black">
+                                        db.[<em>"COLLECTION NAME"</em>].find.pretty()<br>
+                                        Ex. db.Collection_1.find().pretty()<br>
+                                    </code></p>
+                                </ol>
+                            <li>You should get the following response on the terminal/console:</li>
+                            <p style="text-align:center">
+                                <samp>
+                                <li><em>{</li>
+                                    <ul>
+                                        <li>"_id" : ObjectId("5f89109bbea9224849c97a5f"),</li>
+                                        <li>"name" : "John",</li>
+                                        <li>"Last" : "Smith",</li>
+                                        <li>"Role" : "V&V"</li>
+                                    </ul>
+                                }</em>
+                                </samp>
+                            </p>
                                     
-                            <br><h4 id="addNewRecord">Add a Record to a Collection</h4>
+                            <h4 id="addNewRecord">Add a Record to a Collection</h4>
+                            <li>For both <b>Windows</b> and <b>Linux</b>, to insert a new record into a Collection in MongoDB, use the command:</li>
+                                <ol>
+                                    <p style="text-align:center; font-size:17px"><code style="color:black">
+                                        db.[<em>"COLLECTION NAME"</em>].insert({...})<br>
+                                        Ex. db.Collection_1.insert({name:"John", last:"Smith", role:"Analyst"})<br>
+                                    </code></p>
+                                </ol>
+                            <li>You should get the following response on the terminal/console:</li>
+                            <p style="text-align:center">
+                                <samp>
+                                    <em>WriteResult({ "nInserted" : 1 })</em>
+                                </samp>
+                            </p>
 
-                            <br><h4 id="deleteCollection">Delete a Collection</h4>
+                            <h4 id="deleteCollection">Delete a Collection</h4>
+                            <li>For both <b>Windows</b> and <b>Linux</b>, to delete (drop) a Collection in MongoDB, use the command:</li>
+                                <ol>
+                                    <p style="text-align:center; font-size:20px"><code style="color:black">
+                                        db.[<em>"COLLECTION NAME"</em>].drop()<br>
+                                        Ex. db.Collection_1.drop()
+                                    </code></p>
+                                </ol>
+                            <li>You should get the following response on the terminal/console:</li>
+                            <p style="text-align:center">
+                                <samp>
+                                    <em>True</em>
+                                </samp>
+                            </p>
                         </ul>
 
                         <br><h4 id="installCompass">Install MongoDB GUI (Compass)
@@ -374,12 +549,21 @@
                     <ul>
                         <a id = "windowsProblems"></a>
                         <b>Windows</b> Common Problems<br>
+                        mongo cannot connect to 127.0.0.1<br>
+
                         <a id = "linuxProblems"></a>
                         <b>Linux</b> Common Problems<br>
                         Set the root folder to FRIC's<br>
                         Make sure that FRIC folder is inside /var/www<br>
                         change apache2.conf file inside /etc/apache2<br>
                         change .conf files inside /etc/apache2/sites-available/<br>
+                        sudo service mongodb stop 
+
+                        mongo cannot connect to 127.0.0.1
+                        sudo rm /var/lib/mongodb/mongod.lock 
+                        sudo mongod --repair --dbpath /var/lib/mongodb 
+                        sudo mongod --fork --logpath /var/lib/mongodb/mongodb.log --dbpath /var/lib/mongodb 
+                        sudo service mongodb start
                     </ul>
                 </div>
             </div>
