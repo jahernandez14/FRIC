@@ -519,8 +519,28 @@
                         <br><h4 id="installCompass">Install MongoDB GUI (Compass)
                             <a href="#startPage" style="color:black;font-size:10px">[Top]</a></h4>
                         <ul>
-                            <h4 id="windowsCompassInstall">Windows Compass Installation</a></lo><br>
-                            <h4 id="linuxCompassInstall">Linux Compass Installation</a></lo>
+                            <h4 id="windowsCompassInstall">Windows Compass Installation<br></h4>
+                            <ol type ="I">
+                                <li>During Installation, you will be given the choice to click a checkbox indicating that you want to install MongoDB Compass.</li>
+                                <li>You will simply select this option and Compass will be installed.</li>
+                            </ol>
+                            <br><h4 id="linuxCompassInstall">Linux Compass Installation</a></h4>
+                            <ol type>
+                                <li>Go into the following address and download the <em>.deb</em> file</li>
+                                <ul>
+                                    <li>https://www.mongodb.com/try/download/compass</li>
+                                </ul>
+                                <li>Go into the location where the <em>.deb</em> file is located, open a Terminal and enter the following command:</li>
+                                <ul style="text-align:center">
+                                    <li>
+                                        <code style="color:black;text-align:center">
+                                            sudo dpkg -i <em>[FILE_NAME]</em><br>
+                                            Ex. sudo dpkg -i mongodb-compass_1.22.1.deb
+                                        </code>
+                                    </li>
+                                </ul>
+                                <li>Enter your root password, and after the process is done, you will be able to use MongoDB Compass</li>
+                            </ol>
                         </ul>
                     </ul>
                     <!--Section Break Line-->
@@ -531,8 +551,56 @@
                     <ul>
                         <a id = "windowsServerInfo"></a>
                         &bull;If you chose <b>Windows</b>, then follow these steps:<br>
+                        <ul>
+                            <li>We are developing and testing FRIC using Apache Server. We are using the software <em><b>Xampp</b></em>.</li>
+                            <li>Here are some simple instructions to start using FRIC with a Server;</li>
+                            <ol>
+                                <li>Go to the website</li>
+                                <ul>
+                                    <li style="text-align:center">https://www.apachefriends.org/download.html</li>
+                                </ul>
+                                <li>Download the <em>.exe</em> file according to the version you want to use.</li>
+                                <li>Follow the installation steps and once you are done, do the following:</li>
+                                <ol>
+                                    <li>Move the .dll extension to LocalDisk:\xampp\php\ext</li>
+                                    <li>Download? the mongo.so extension</li>
+                                    <ul>
+                                        <li>https://pecl.php.net/package/mongodb</li>
+                                        <li>DLL next to the Windows icon</li>
+                                        <li>Select the latest, Thread-safe option that matches your computer's architecture</li>
+                                        <li>Unzip the <em>.zip</em> file, and then copy the <em>.dll</em> file into <em>LocalDisk:\xampp\php\ext</em></li>
+                                    </ul>
+                                </ol>
+                                <li>Launch <b>Xampp</b>
+                                <li>Click on the <em>Config</em> button next to the word <em>"Apache"</em></li>
+                                <ol type="a">
+                                    <li>Select the <em> PHP.ini</em> option.</li>
+                                    <li>On this document, look for the section called <em>Dynamic Extensions</em>
+                                    <li>Un-comment the following extensions (Used by the development Team):</li>
+                                    <ol>
+                                        <li>extension=bz2</li>
+                                        <li>extension=curl</li>
+                                        <li>extension=fileinfo</li>
+                                        <li>extension=gd2</li>
+                                        <li>extension=gettext</li>
+                                        <li>extension=mbstring</li>
+                                        <li>extension=exif</li>
+                                        <li>extension=mysqli</li>
+                                        <li>extension=pdo_mysql</li>
+                                        <li>extension=pdo_sqlite</li>
+                                    </ol>
+                                    <li>At the end of this section, add the following extensions:</li>
+                                    <ol>
+                                        <li>extension=mongo.so</li>
+                                        <li>extension=php_mongo.dll</li>
+                                    </ol>
+                                </ol>
+                                <li>Back at the <b>Xampp</b> software, click again on the <em>Config</em> next to <em>Apache</em> and now select the <em> Apache (httpd.conf)</em> option</li>
+                                <li>Look for the part that says <em>DocumentRoot</em> and change the right-hand side to -> <em>"LocalDisk:/xampp/htdocs/FRIC"</em></li>
+                            </ol>
+                        </ul>
                         <a id = "linuxServerInfo"></a>
-                        &bull;If you chose <b>Linux</b>, then follow these steps:
+                        <br>&bull;If you chose <b>Linux</b>, then follow these steps:
                     </ul>
 
                     <!--Section Break Line-->
