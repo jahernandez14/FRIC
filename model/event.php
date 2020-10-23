@@ -18,7 +18,6 @@ class Event {
     private $progress;
 
     public function __construct($db, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $derivedFrom, $numberOfFindings, $numberOfSystems, $progress){
-        $addObject                   = $db->checkDatabaseForSameID($eventName,'FRIC_Database.Event');
         $this->eventName             = $eventName;
         $this->eventDescription      = $eventDescription;
         $this->eventType             = $eventType;
@@ -37,7 +36,7 @@ class Event {
         $this->progress              = $progress;
 
         $dbEntry = [
-            '_id'                   => $eventName,  
+            '_id'                   => new MongoDB\BSON\ObjectId(),
             'eventName'             => $eventName,
             'eventDescription'      => $eventDescription,
             'eventType'             => $eventType,
@@ -56,9 +55,7 @@ class Event {
             'progress'              => $progress
         ];
 
-        if($addObject){
-            $db->insertDocument($dbEntry, 'FRIC_Database.Event');
-        }
+        $db->insertDocument($dbEntry, 'FRIC_Database.Event');
     }
 }
 ?>

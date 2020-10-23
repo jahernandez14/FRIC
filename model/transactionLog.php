@@ -5,7 +5,6 @@ class TransactionLog {
     private $analyst;
 
     public function __construct($db, $dateTime, $actionPerformed, $analyst){
-        $addObject             = $db->checkDatabaseForSameID($dateTime,'FRIC_Database.TransactionLog');
         $id                    = $dateTime;
         $this->actionPerformed = $actionPerformed;
         $this->analyst         = $analyst;
@@ -16,9 +15,7 @@ class TransactionLog {
             'analyst'         => $analyst
         ];
 
-        if($addObject){
-            $db->insertDocument($dbEntry, 'FRIC_Database.TransactionLog');
-        }
+        $db->insertDocument($dbEntry, 'FRIC_Database.TransactionLog');
     }
 }
 ?>

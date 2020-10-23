@@ -15,7 +15,7 @@ class Systeme {
     private $progress;
 
     public function __construct($db, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $numberOfTasks, $numberOfFindings, $progress){
-        $addObject               = $db->checkDatabaseForSameID($systemName,'FRIC_Database.System');
+        //$addObject               = $db->checkDatabaseForSameID($systemName,'FRIC_Database.System');
         $this->systemName        = $systemName;
         $this->systemDescription = $systemDescription;
         $this->systemLocation    = $systemLocation;
@@ -31,25 +31,23 @@ class Systeme {
         $this->progress          = $progress;
 
         $dbEntry = [
-            '_id'               => $systemName,
-            'systemName'        => $systemName,
-            'systemDescription' => $systemDescription,    
+            '_id'               => new MongoDB\BSON\ObjectId(),
+            'systemName'        => $taskTitle,
+            'systemDescription' => $taskDescription,    
             'systemLocation'    => $systemLocation,    
-            'systemRouter'      => $systemRouter,    
+            'systemRouter'      => $taskProgress,    
             'systemSwitch'      => $systemSwitch,
             'systemRoom'        => $systemRoom,
-            'testPlan'          => $testPlan,
-            'confidentiality'   => $confidentiality,
-            'integrity'         => $integrity,
+            'testPlan'          => $analystAssignment,
+            'confidentiality'   => $collaboratorAssignment,
+            'integrity'         => $archiveStatus,
             'availability'      => $availability,
-            'numberOfTasks'     => $numberOfTasks,
+            'numberOfTasks'     => $numberOfSubtasks,
             'numberOfFindings'  => $numberOfFindings,
             'progress'          => $progress
         ];
-        
-        if($addObject){
-            $db->insertDocument($dbEntry, 'FRIC_Database.System');
-        }
+
+        $db->insertDocument($dbEntry, 'FRIC_Database.System');
     }
 }
 ?>

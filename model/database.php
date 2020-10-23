@@ -1,6 +1,8 @@
 <?php
 include ("event.php");
 include ("systeme.php");
+include ("task.php");
+include ("subtask.php");
 include ("analyst.php");
 
 class Database{
@@ -46,34 +48,6 @@ class Database{
             $this->manager->executeBulkWrite($collection, $bulk);
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
-        }
-    }
-
-    public function editDocument($id, $collection){
-        try{
-            $bulk = new MongoDB\Driver\BulkWrite;
-            $bulk->delete(['_id' => $id]);
-            $this->manager->executeBulkWrite($collection, $bulk);
-            #$this->insertDocument($dbEntry, $collection);
-        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
-            echo "Error: $failedLoser";
-        }
-    }
-
-    public function getDocument($id, $collection){
-        try{
-            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
-            $cursor = $this->manager->executeQuery($collection, $query);
-            $object = array(); 
-            foreach($cursor as $document){
-                foreach($document as $element){
-                    array_push($object, $element);
-                }
-            }
-            return $object;
-        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
-            echo "Error: $failedLoser";
-            return array();
         }
     }
 
@@ -139,7 +113,7 @@ class Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                array_push($row, $document->_id, $document->numberOfSystems, $document->numberOfFindings, $document->progress);
+                array_push($row, $document->_id, $document->eventName, $document->numberOfSystems, $document->numberOfFindings, $document->progress);
                 array_push($table, $row);
             } 
             return $table;
@@ -205,7 +179,7 @@ class Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                array_push($row, $document->_id, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
+                array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
                 array_push($table, $row);
             } 
             return $table;
@@ -259,6 +233,127 @@ class Database{
         }
     }
 
+    /*  Returns a 2d array of all attributes required for a Task table */
+    public function getAllTasks(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                $row = array();
+                array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment, $document->taskPriority, 
+                           $document->taskProgress, $document->numberOfSubtasks, $document->numberOfFindings, $document->taskDueDate);
+                array_push($table, $row);
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
+    /* Returns an array of all the required attributes of a system for detailed view.*/ 
+    public function getTaskAttributes($id){
+        try{
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);
+            $object = array(); 
+            foreach($cursor as $document){
+                array_push($object, $document->_id, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, 
+                           $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus);
+            }
+            return $object;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array();
+        }
+    }
+
+    /* Edit system document attributes in db */
+    public function editTaskDocument($id, $taskTitle, $associatedSystem, $taskDescription, $taskPriority, $taskProgress, $taskDueDate, $attachment, $associationToTask, $analystAssignment, $collaboratorAssignment, $archiveStatus){
+        $dbEntry = ['$set'=>
+            ['taskTitle'             => $taskTitle,
+            'associatedSystem'       => $associatedSystem,
+            'taskDescription'        => $taskDescription,    
+            'taskPriority'           => $taskPriority,    
+            'taskProgress'           => $taskProgress,    
+            'taskDueDate'            => $taskDueDate,
+            'attachment'             => $attachment,
+            'associationToTask'      => $associationToTask,
+            'analystAssignment'      => $analystAssignment,
+            'collaboratorAssignment' => $collaboratorAssignment,
+            'archiveStatus'          => $archiveStatus]
+        ];
+
+        try{
+            $bulk = new MongoDB\Driver\BulkWrite;
+            $bulk->update(['_id' => $id], $dbEntry);
+            $this->manager->executeBulkWrite('FRIC_Database.Task', $bulk);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+        }
+    }
+
+    /*  Returns a 2d array of all attributes required for a Task table */
+    public function getAllSubTasks(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                $row = array();
+                array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
+                           $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
+                array_push($table, $row);
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
+    /* Returns an array of all the required attributes of a system for detailed view.*/ 
+    public function getSubtaskAttributes($id){
+        try{
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
+            $object = array(); 
+            foreach($cursor as $document){
+                array_push($object, $document->_id, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, 
+                           $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus);
+            }
+            return $object;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array();
+        }
+    }
+
+    /* Edit system document attributes in db */
+    public function editSubtaskDocument($id, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus){
+        $dbEntry = ['$set'=>
+            ['taskTitle'             => $taskTitle,
+            'associatedTask'         => $associatedTask,
+            'taskDescription'        => $taskDescription,    
+            'taskProgress'           => $taskProgress,    
+            'taskDueDate'            => $taskDueDate,
+            'attachment'             => $attachment,
+            'associationToSubtask'   => $associationToSubtask,
+            'analystAssignment'      => $analystAssignment,
+            'collaboratorAssignment' => $collaboratorAssignment,
+            'archiveStatus'          => $archiveStatus]
+        ];
+
+        try{
+            $bulk = new MongoDB\Driver\BulkWrite;
+            $bulk->update(['_id' => $id], $dbEntry);
+            $this->manager->executeBulkWrite('FRIC_Database.Subtask', $bulk);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+        }
+    }
+
     /* Returns a 2d array of all the changes in the transaction log */ 
     public function getAllTransactionLogs(){
         try{
@@ -267,9 +362,7 @@ class Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                array_push($row, $document->_id);
-                array_push($row, $document->actionPerformed);
-                array_push($row, $document->analyst);
+                array_push($row, $document->_id, $document->actionPerformed, $document->analyst);
                 array_push($table, $row);
             } 
             return $table;
