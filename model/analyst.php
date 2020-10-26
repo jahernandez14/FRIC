@@ -27,7 +27,7 @@ class Analyst {
             'ip'        => $ipAddress,
             'title'     => $title,
             'role'      => $role,
-            'progress'  => $progress
+            'progress'  => $this->progress
         ];
 
         if($addObject){

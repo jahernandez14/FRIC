@@ -4,7 +4,7 @@
 
     function findingOverviewTable(){
         $db = new Database("mongodb://localhost:27017");
-        $findingArray = $db->getAllDocuments('FRIC_Database.Findingss');
+        $findingArray = $db->getAllFindings('FRIC_Database.Findingss');
         return $findingArray;
     }
 ?>

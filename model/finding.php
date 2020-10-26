@@ -15,7 +15,7 @@ class Finding {
     private $associatedTo;
 
     public function __construct($db, $findingTitle, $hostName, $ipPort, $findingDescription, $findingLongDescription, $findingStatus, $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus){
-        //$addObject                  = $db->checkDatabaseForSameID($taskTitle,'FRIC_Database.Task');
+        $addObject                  = $db->checkDatabaseForSameID($findingTitle,'FRIC_Database.Finding');
         $this->findingTitle           = $findingTitle;
         $this->hostName               = $hostName; 
         $this->ipPort                 = $ipPort;
@@ -27,7 +27,7 @@ class Finding {
         $this->associationToFinding   = $associationToFinding;
         $this->evidence               = $evidence;
         $this->archiveStatus          = $archiveStatus;
-        $this->associatedTo           = $associatedTo;
+        $this->associatedTo           = "";//double check
 
         $dbEntry = [
             '_id'                    => new MongoDB\BSON\ObjectId(),
@@ -40,11 +40,11 @@ class Finding {
             'findingType'            => $findingType,
             'findingClassification'  => $findingClassification,
             'evidence'               => $evidence,
-            'collaboratorAssignment' => $collaboratorAssignment,
+            'collaboratorAssignment' => "", //double check
             'archiveStatus'          => $archiveStatus
         ];
 
-        $db->insertDocument($dbEntry, 'FRIC_Database.System');
+        $db->insertDocument($dbEntry, 'FRIC_Database.Finding');
     }
 }
 ?>

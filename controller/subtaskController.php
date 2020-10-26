@@ -4,7 +4,7 @@
 
     function subtaskOverviewTable(){
         $db = new Database("mongodb://localhost:27017");
-        $subtaskArray = $db->getAllDocuments('FRIC_Database.Subtasks');
+        $subtaskArray = $db->getAllSubTasks();
         return $subtaskArray;
     }
 ?>

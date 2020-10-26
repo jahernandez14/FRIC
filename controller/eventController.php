@@ -10,13 +10,13 @@
 
     function eventNames(){
         $db = new Database();
-        $eventArray = $db->getAllEventNames('FRIC_Database.Event');
+        $eventArray = $db->getAllEventNames();
         return $eventArray;
     }
 
     function readEvent($eventName){
         $db = new Database();
-        $eventArray = $db->getDocument($eventName,'FRIC_Database.Event');
+        $eventArray = $db->getEventAttributes($eventName);
         return $eventArray;
     }
 
@@ -32,9 +32,10 @@
         logEntry($eventName . " event edited");
     }
 
-    function archiveEvent($eventName){
-        $db = new Database();
-        $eventArray = $db->getDocument('$eventName','FRIC_Database.Event');
-        logEntry($eventName . " event archived");
-    }
+    //this can probalby be removed and just be part of edit.
+    //function archiveEvent($eventName){
+    //    $db = new Database();
+    //    $eventArray = $db->getDocument('$eventName','FRIC_Database.Event');
+    //    logEntry($eventName . " event archived");
+    //}
 ?>

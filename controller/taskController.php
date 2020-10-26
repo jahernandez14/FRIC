@@ -4,7 +4,7 @@
 
     function taskOverviewTable(){
         $db = new Database("mongodb://localhost:27017");
-        $taskArray = $db->getAllDocuments('FRIC_Database.Tasks');
+        $taskArray = $db->getAllTasks();
         return $taskArray;
     }
 ?>

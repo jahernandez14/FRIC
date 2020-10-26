@@ -10,7 +10,7 @@
 
     function readSystem($systemName){
         $db = new Database();
-        $systemArray = $db->getDocument($systemName,'FRIC_Database.System');
+        $systemArray = $db->getSystemAttributes($systemName);
         return $systemArray;
     }
 
@@ -26,9 +26,9 @@
         logEntry($systemName . " system edited");
     }
 
-    function archiveSystem($systemName){
-        $db = new Database();
-        $systemArray = $db->getDocument($systemName,'FRIC_Database.System');
-        logEntry($systemName . " system archived");
-    }
+    // function archiveSystem($systemName){
+    //     $db = new Database();
+    //     $systemArray = $db->getDocument($systemName,'FRIC_Database.System');
+    //     logEntry($systemName . " system archived");
+    // }
 ?>

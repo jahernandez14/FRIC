@@ -32,17 +32,17 @@ class Systeme {
 
         $dbEntry = [
             '_id'               => new MongoDB\BSON\ObjectId(),
-            'systemName'        => $taskTitle,
-            'systemDescription' => $taskDescription,    
+            'systemName'        => $systemName,
+            'systemDescription' => $systemDescription,      
             'systemLocation'    => $systemLocation,    
-            'systemRouter'      => $taskProgress,    
+            'systemRouter'      => $systemRouter,     
             'systemSwitch'      => $systemSwitch,
             'systemRoom'        => $systemRoom,
-            'testPlan'          => $analystAssignment,
-            'confidentiality'   => $collaboratorAssignment,
-            'integrity'         => $archiveStatus,
+            'testPlan'          => $testPlan,
+            'confidentiality'   => $confidentiality,
+            'integrity'         => $integrity,
             'availability'      => $availability,
-            'numberOfTasks'     => $numberOfSubtasks,
+            'numberOfTasks'     => $numberOfTasks,
             'numberOfFindings'  => $numberOfFindings,
             'progress'          => $progress
         ];
