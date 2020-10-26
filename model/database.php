@@ -72,6 +72,22 @@ class Database{
         }
     }
 
+    public function getAnalystNamesForTask(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                array_push($row, $document->initial);
+                array_push($row, $document->initial);
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     public function getAnalystName($id){
         try{
             $query  = new MongoDB\Driver\Query(['_id' => $id], []);
@@ -133,7 +149,7 @@ class Database{
             foreach($cursor as $document){
                 array_push($object, $document->_id, $document->eventName, $document->eventDescription, $document->eventType, $document->eventVersion, $document->assessmentDate, 
                            $document->organizationName, $document->securityClassifcation, $document->eventClassification, $document->declassificationDate, $document->customerName,
-                           $document->archiveStatus, $document->eventTeam, $document->derivedFrom);
+                           $document->archiveStatus, $document->eventTeam, $document->derivedFrom, $document->numberOfSystems, $document->numberOfFindings, $document->progress);
             }
             return $object;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
@@ -406,9 +422,9 @@ $db = new Database();
 
 $f = new Finding($db,"Test Finding","test", "192.168.1.1", "finding Desc", "Finding Long Desc", "status", "type", "class", "Association to Someone", "evidence", False);
 
-//$b = new Systeme($db, "system Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
-//$db->editSystemDocument("system Name", "system Gym", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
-//print_r($db->getAllSystems());
+$b = new Systeme($db, "system Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
+$db->editSystemDocument("system Name", "system Gym", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
+print_r($db->getAllSystems());
 //print_r($db->getSystemAttributes("system Name"));
 
 //$c = new Analyst($db, "Daniel", "O'Brien", "DO", "192.177.1.66", "Hipster Guy", "Lead Proggy");
