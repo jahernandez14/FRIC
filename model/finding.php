@@ -4,6 +4,9 @@ class Finding {
     private $findingTitle;
     private $hostName;
     private $ipPort;
+    private $associatedTask;
+    private $associatedSystem;
+    private $associatedSubtask;
     private $findingDescription;
     private $findingLongDescription;
     private $findingStatus;
@@ -12,7 +15,6 @@ class Finding {
     private $associationToFinding;
     private $evidence;
     private $archiveStatus;
-    private $associatedTo;
     private $collaboratorAssignment;
     private $confidentiality;
     private $integrity;
@@ -35,13 +37,16 @@ class Finding {
     private $availabilityImpactOnSystem;
     private $impactScore;
 
-    public function __construct($db, $findingTitle, $hostName, $ipPort, $findingDescription, $findingLongDescription, $findingStatus, $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, $associatedTo, $collaboratorAssignment,
+    public function __construct($db, $findingTitle, $hostName, $ipPort, $associatedTask, $associatedSystem, $associatedSubtask, $findingDescription, $findingLongDescription, $findingStatus, $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, $collaboratorAssignment,
     $confidentiality, $integrity, $availability, $analystAssignment, $posture, $briefDescription, $longDescription, $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatScore, $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,
     $risk, $likelihood, $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, $impactScore){
         //$addObject                              = $db->checkDatabaseForSameID($findingTitle,'FRIC_Database.Finding');
         $this->findingTitle                      = $findingTitle;
         $this->hostName                          = $hostName; 
         $this->ipPort                            = $ipPort;
+        $this->associatedTask                    = $associatedTask;
+        $this->associatedSystem                  = $associatedSystem;
+        $this->associatedSubtask                 = $associatedSubtask;
         $this->findingDescription                = $findingDescription;
         $this->findingLongDescription            = $findingLongDescription;
         $this->findingStatus                     = $findingStatus;
@@ -50,7 +55,6 @@ class Finding {
         $this->associationToFinding              = $associationToFinding;
         $this->evidence                          = $evidence;
         $this->archiveStatus                     = $archiveStatus;
-        $this->associatedTo                      = $associatedTo;
         $this->collaboratorAssignment            = $collaboratorAssignment;
         $this->confidentiality                   = $confidentiality;
         $this->integrity                         = $integrity;
@@ -78,6 +82,9 @@ class Finding {
             'findingTitle'                      => $findingTitle,
             'hostName'                          => $hostName,
             'ipPort'                            => $ipPort,    
+            'associatedTask'                    => $associatedTask,
+            'associatedSystem'                  => $associatedSystem,
+            'associatedSubtask'                 => $associatedSubtask,
             'findingDescription'                => $findingDescription,    
             'findingLongDescription'            => $findingLongDescription,    
             'findingStatus'                     => $findingStatus,
@@ -85,7 +92,6 @@ class Finding {
             'findingClassification'             => $findingClassification,
             'evidence'                          => $evidence,
             'archiveStatus'                     => $archiveStatus,
-            'associateTo'                       => $associatedTo,
             'collaboratorAssignment'            => $collaboratorAssignment,
             'confidentiality'                   => $confidentiality,
             'integrity'                         => $integrity,
