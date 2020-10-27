@@ -449,13 +449,16 @@ class Database{
     }
 
     /* Edit system document attributes in db */
-    public function editFindingDocument($id, $findingTitle, $hostName, $ipPort, $findingDescription, $findingLongDescription, $findingStatus, $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, $collaboratorAssignment,
+    public function editFindingDocument($id, $findingTitle, $hostName, $ipPort, $associatedTask, $associatedSystem, $associatedSubtask, $findingDescription, $findingLongDescription, $findingStatus, $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, $collaboratorAssignment,
                                         $confidentiality, $integrity, $availability, $analystAssignment, $posture, $briefDescription, $longDescription, $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatScore, $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,
                                         $risk, $likelihood, $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, $impactScore){
         $dbEntry = ['$set'=>
             ['findingTitle'                      => $findingTitle,
             'hostName'                          => $hostName,
             'ipPort'                            => $ipPort,    
+            'associatedTask'                    => $associatedTask,
+            'associatedSystem'                  => $associatedSystem,
+            'associatedSubtask'                 => $associatedSubtask,
             'findingDescription'                => $findingDescription,    
             'findingLongDescription'            => $findingLongDescription,    
             'findingStatus'                     => $findingStatus,
