@@ -94,6 +94,14 @@ a:visited{
   height: 1000px;
 }
 
+.fluid-col-md {
+  height: 2000px;
+}
+
+.fluid-col-lg {
+  height: 2000px;
+}
+
 .fluid-col-extra {
   height: 4000px;
 }
