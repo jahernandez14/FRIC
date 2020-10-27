@@ -437,7 +437,7 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
             $object = array(); 
             foreach($cursor as $document){
-                array_push($object, $document->_id, $document->findingTitle, $document->hostName, $document->ipPort, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, $document->findingClassification, $document->associationToFinding, $document->evidence, $document->archiveStatus, $document->collaboratorAssignment,
+                array_push($object, $document->_id, $document->findingTitle, $document->hostName, $document->ipPort, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $document->findingClassification, $document->associationToFinding, $document->evidence, $document->archiveStatus, $document->collaboratorAssignment,
                 $document->confidentiality, $document->integrity, $document->availability, $document->analystAssignment, $document->posture, $document->briefDescription, $document->longDescription, $document->relevance, $document->effectivenessRating, $document->impactDescription, $document->impactLevel, $document->severityCatScore, $document->vulnerabilitySeverity, $document->quantitativeVulnerabilitySeverity,
                 $document->risk, $document->likelihood, $document->confidentialityImpactOnSystem, $document->integrityImpactOnSystem, $document->availabilityImpactOnSystem, $document->impactScore);
             }
