@@ -66,7 +66,7 @@ class table
     }
 
     public static function tableByType ($type, $data) {
-        $colCount = sizeof(table::$tableTypes[$type]) - (2*table::$tableTypes[$type]["F"]) - table::$tableTypes[$type]["R"] - 3;
+        $colCount = sizeof(table::$tableTypes[$type]) - (2*table::$tableTypes[$type]["F"]) - table::$tableTypes[$type]["R"] - 3 + table::$tableTypes[$type]["C"];
         $rowCount = sizeof($data);
         return new table($type, $colCount, $rowCount, table::$tableTypes[$type], $data);
     }
@@ -90,7 +90,7 @@ class table
         if($this->columns["C"] == 1) {
             echo "<th scope=\"col\"></th>";
         }
-        for($col = $this->columns["C"]; $col<$this->dims["columns"]; $col++) {
+        for($col = $this->columns["C"]; $col<($this->dims["columns"] - $this->columns["C"]); $col++) {
             $item = $this->columns[$col-$this->columns["C"]];
             echo <<< TABLE
                             <th scope="col">$item&nbsp;
@@ -116,7 +116,7 @@ class table
             if($this->columns["F"] + $this->columns["R"] > 0) {
 
             }
-            for($col = $this->columns["C"]; $col<$this->dims["columns"]; $col++) {
+            for($col = $this->columns["C"]; $col<($this->dims["columns"] - $this->columns["C"]); $col++) {
                 $stringPreface = "";
                 $stringEnd = "";
                 if(($this->columns["F"] + $this->columns["R"] > 0) && ($col == 1)) {
