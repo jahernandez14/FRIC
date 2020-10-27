@@ -130,7 +130,7 @@ class table
                     $stringPreface = "<a href=\"$newItemString?$itemName\" style=color:black>";
                     $stringEnd = "</a>";
                 }
-                echo "<td>",$stringPreface,$this->contents[$row][$col-$this->columns["C"]],$stringEnd,"</td>";
+                echo "<td>",$stringPreface,$this->contents[$row][$col],$stringEnd,"</td>";
             }
             echo "</tr>";
         }

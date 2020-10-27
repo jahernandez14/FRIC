@@ -55,15 +55,6 @@
                                 <option value="notApplicable">Not Applicable</option>
                             </select>
                         </div>
-                        <div class="col-3">
-                            <label>System</label>
-                            <select name="system" class="form-control" id="system" multiple>
-                                <option value="system1">System 1</option>
-                                <option value="system2">System 2</option>
-                                <option value="system3">System 3</option>
-                                <option value="system4">System 4</option>
-                            </select>
-                        </div>
                         <div class="col-2">
                             <label>Analyst(s)</label>
                             <select name="analyst" class="form-control" id="analyst" multiple>

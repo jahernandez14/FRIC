@@ -74,7 +74,7 @@
                             </select>
                         </div>
                         <div class="col-2">
-                            <label>Task(s)</label>
+                            <label>Related Task(s)</label>
                             <select name="task" class="form-control" id="task" multiple>
                                 <option value="task1">Task 1</option>
                                 <option value="task2">Task 2</option>
@@ -83,7 +83,7 @@
                             </select>
                         </div>
                         <div class="col-2">
-                            <label>Subtask(s)</label>
+                            <label>Related Subtask(s)</label>
                             <select name="subtask" class="form-control" id="subtask" multiple>
                                 <option value="subtask1">Subtask 1</option>
                                 <option value="subtask2">Subtask 2</option>
