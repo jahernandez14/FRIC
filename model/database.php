@@ -410,7 +410,7 @@ class Database{
 }
 
 /*  Used for testing purposes   */
-$db = new Database();
+//$db = new Database();
 
 // $a = new Event($db, "Event 2", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "9/30/2020", "Army", "Top Secret", "Unclassified", "1/18/2020", "Tim Honks", "N", "JM", "wb192.2.3", 1, 2,'inProgress');
 // $b = new Event($db, "Event 3", "This a test event description", "Verification of Fixes", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Axel Rose", "N", "JM", "jh192.2.2", 5, 10,'in progress');
@@ -420,11 +420,11 @@ $db = new Database();
 // $a = new Event($db, "Event 7", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/20/2020", "Lemon Guy", "N", "JM", "am192.2.3", 3, 7,'in progress');
 //print_r($db->getAllEventNames());
 
-$f = new Finding($db,"Test Finding","test", "192.168.1.1", "finding Desc", "Finding Long Desc", "status", "type", "class", "Association to Someone", "evidence", False);
+//$f = new Finding($db,"Test Finding","test", "192.168.1.1", "finding Desc", "Finding Long Desc", "status", "type", "class", "Association to Someone", "evidence", False);
 
-$b = new Systeme($db, "system Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
-$db->editSystemDocument("system Name", "system Gym", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
-print_r($db->getAllSystems());
+//$b = new Systeme($db, "system Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
+//$db->editSystemDocument("system Name", "system Gym", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
+//print_r($db->getAllSystems());
 //print_r($db->getSystemAttributes("system Name"));
 
 //$c = new Analyst($db, "Daniel", "O'Brien", "DO", "192.177.1.66", "Hipster Guy", "Lead Proggy");
