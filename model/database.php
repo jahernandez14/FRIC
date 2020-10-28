@@ -189,6 +189,25 @@ class Database{
         }
     }
 
+    public function getAllArchivedSystems(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if($document->archiveStatus == "Y"){
+                    $row = array();
+                    array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
+                    array_push($table, $row);
+                }
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     /*  Returns a 2d array of all attributes required for a System table */
     public function getAllSystems(){
         try{
@@ -196,11 +215,11 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
             $table  = array();
             foreach($cursor as $document){
-                //if($document->archiveStatus != "Y"){
-                $row = array();
-                array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
-                array_push($table, $row);
-                //}
+                if($document->archiveStatus != "Y"){
+                    $row = array();
+                    array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
+                    array_push($table, $row);
+                }
             } 
             return $table;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
@@ -217,7 +236,7 @@ class Database{
             $object = array(); 
             foreach($cursor as $document){
                 array_push($object, $document->_id, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, 
-                           $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability);
+                           $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $archiveStatus);
             }
             return $object;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
@@ -227,7 +246,7 @@ class Database{
     }
 
     /* Edit system document attributes in db */
-    public function editSystemDocument($id, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $numberOfTasks, $numberOfFindings, $progress){
+    public function editSystemDocument($id, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $archiveStatus, $numberOfTasks, $numberOfFindings, $progress){
         $dbEntry = ['$set'=>
             ['systemName'       => $systemName,
             'systemDescription' => $systemDescription,    
@@ -239,6 +258,7 @@ class Database{
             'confidentiality'   => $confidentiality,
             'integrity'         => $integrity,
             'availability'      => $availability,
+            'archiveStatus'     => $archiveStatus,
             'numberOfTasks'     => $numberOfTasks,
             'numberOfFindings'  => $numberOfFindings,
             'progress'          => $progress]
@@ -250,6 +270,27 @@ class Database{
             $this->manager->executeBulkWrite('FRIC_Database.System', $bulk);
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
+        }
+    }
+
+    /*  Returns a 2d array of all attributes required for a Task table */
+    public function getAllArchivedTasks(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                $row = array();
+                if($document->archiveStatus == "Y"){
+                    array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment, $document->taskPriority, 
+                               $document->taskProgress, $document->numberOfSubtasks, $document->numberOfFindings, $document->taskDueDate);
+                    array_push($table, $row);
+                }
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
         }
     }
 
@@ -334,13 +375,34 @@ class Database{
     }
 
     /*  Returns a 2d array of all attributes required for a Task table */
+    public function getAllArchivedSubTasks(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if($document->archiveStatus == "Y"){
+                    $row = array();
+                    array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
+                               $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
+                    array_push($table, $row);
+                }
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
+    /*  Returns a 2d array of all attributes required for a Task table */
     public function getAllSubTasks(){
         try{
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);  
             $table  = array();
             foreach($cursor as $document){
-                if($document->archiveStatus != true){
+                if($document->archiveStatus != "Y"){
                     $row = array();
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
                                $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
@@ -413,15 +475,36 @@ class Database{
         }
     }
 
+    public function getAllArchivedFindings(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if($document->archiveStatus == "Y"){
+                    $row = array();
+                    array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $document->analystAssignment, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
+                    array_push($table, $row);
+                }
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     public function getAllFindings(){
         try{
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);  
             $table  = array();
             foreach($cursor as $document){
-                $row = array();
-                array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $document->analystAssignment, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
-                array_push($table, $row);
+                if($document->archiveStatus != "Y"){
+                    $row = array();
+                    array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $document->analystAssignment, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
+                    array_push($table, $row);
+                }
             } 
             return $table;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
