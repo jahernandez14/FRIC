@@ -104,6 +104,31 @@ class Database{
         }
     }
 
+    public function editAnalyst($id, $firstName, $lastName, $initial, $ipAddress, $title, $role){
+        try{
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);
+            $object = array(); 
+            foreach($cursor as $document){
+                array_push($object, $document->_id, $document->firstName, $document->lastName, $document->initial, $document->ipAddress, $document->title, $document->role);
+            }
+            return $object;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array();
+        }
+    }
+
+    public function deleteAnalyst($id){
+        try{
+            $bulk = new MongoDB\Driver\BulkWrite(['_id' => $id]);
+            $bulk->delete([]);
+            $this->manager->executeBulkWrite('FRIC_Database.Analyst', $bulk);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+        }
+    }
+
     public function getAllEventNames(){
         try{
             $query  = new MongoDB\Driver\Query([]);
@@ -236,7 +261,7 @@ class Database{
             $object = array(); 
             foreach($cursor as $document){
                 array_push($object, $document->_id, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, 
-                           $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $archiveStatus);
+                           $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus);
             }
             return $object;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
@@ -281,7 +306,7 @@ class Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                if($document->archiveStatus == "Y"){
+                if($document->archiveStatus == "true"){
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment, $document->taskPriority, 
                                $document->taskProgress, $document->numberOfSubtasks, $document->numberOfFindings, $document->taskDueDate);
                     array_push($table, $row);
@@ -302,7 +327,7 @@ class Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                if($document->archiveStatus != "Y"){
+                if($document->archiveStatus != "true"){
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment, $document->taskPriority, 
                                $document->taskProgress, $document->numberOfSubtasks, $document->numberOfFindings, $document->taskDueDate);
                     array_push($table, $row);
@@ -536,7 +561,7 @@ class Database{
                                         $confidentiality, $integrity, $availability, $analystAssignment, $posture, $briefDescription, $longDescription, $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatScore, $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,
                                         $risk, $likelihood, $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, $impactScore){
         $dbEntry = ['$set'=>
-            ['findingTitle'                      => $findingTitle,
+            ['findingTitle'                     => $findingTitle,
             'hostName'                          => $hostName,
             'ipPort'                            => $ipPort,    
             'associatedTask'                    => $associatedTask,
@@ -583,24 +608,24 @@ class Database{
 }
 
 /*  Used for testing purposes   */
-//$db = new Database();
+$db = new Database();
 
-//$a = new Event($db, "Event 2", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "9/30/2020", "Army", "Top Secret", "Unclassified", "1/18/2020", "Tim Honks", "Y", "JM", "wb192.2.3", 1, 2,'inProgress');
+$a = new Event($db, "Event 2", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "9/30/2020", "Army", "Top Secret", "Unclassified", "1/18/2020", "Tim Honks", false, "JM", "wb192.2.3", 1, 2,'inProgress');
 //$b = new Event($db, "Event 3", "This a test event description", "Verification of Fixes", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Axel Rose", "N", "JM", "jh192.2.2", 5, 10,'in progress');
 //$c = new Event($db, "Event 6", "This a test event description", "Verification of Fixes", "3.2", "1/12/2020", "Army", "Top Secret", "Secret", "9/30/2020", "Kyle Gumby", "N", "JM", "db192.2.1", 6, 7,'in progress');
 //$d = new Event($db, "Event 1", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Carl", "Y", "JM", "we192.2.3", 3, 3,'in progress');
 //$e = new Event($db, "Event 7", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/20/2020", "Lemon Guy", "Y", "JM", "am192.2.3", 3, 7,'in progress');
 //$a = new Event($db, "Event 7", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/20/2020", "Lemon Guy", "N", "JM", "am192.2.3", 3, 7,'in progress');
-//print_r($db->getAllEvents());
+print_r($db->getAllEvents());
 
-//$f = new Finding($db,"Test Finding","test", "192.168.1.1", "finding Desc", "Finding Long Desc", "status", "type", "class", "Association to Someone", "evidence", False);
-
+//$db->deleteFinding();
 //$b = new Systeme($db, "system Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
 //$db->editSystemDocument("system Name", "system Gym", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
 //print_r($db->getAllSystems());
 //print_r($db->getSystemAttributes("system Name"));
 
 //$c = new Analyst($db, "Daniel", "O'Brien", "DO", "192.177.1.66", "Hipster Guy", "Lead Proggy");
+$db->deleteAnalyst("DO");
 //echo $db->getAnalystName("DO");
 //print_r($db->getAllAnalystNames());
 ?>

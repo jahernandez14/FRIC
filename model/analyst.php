@@ -6,33 +6,26 @@ class Analyst {
     private $ipAddress;
     private $title;
     private $role;
-    private $progress;
 
     public function __construct($db, $firstName, $lastName, $initial, $ipAddress, $title, $role){
-        $addObject       = $db->checkDatabaseForSameID($initial,'FRIC_Database.Analyst');
-        $id              = $initial;
         $this->firstName = $firstName;
         $this->lastName  = $lastName;
         $this->initial   = $initial;
         $this->ipAddress = $ipAddress;
         $this->title     = $title;
         $this->role      = $role;
-        $this->progress  = 0;
-
 
         $dbEntry = [
-            '_id'       => $id,   
+            '_id'       => new MongoDB\BSON\ObjectId(),   
             'firstName' => $firstName,
             'lastName'  => $lastName,
+            'initial'   => $initial,
             'ip'        => $ipAddress,
             'title'     => $title,
-            'role'      => $role,
-            'progress'  => $this->progress
+            'role'      => $role
         ];
 
-        if($addObject){
-            $db->insertDocument($dbEntry, 'FRIC_Database.Analyst');
-        }
+        $db->insertDocument($dbEntry, 'FRIC_Database.Analyst');
     }
 }
 ?>
