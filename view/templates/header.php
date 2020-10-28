@@ -37,6 +37,9 @@
                 <a class="nav-link" href="../views/findingsOverview.php">Findings</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="../views/analystProgressSummaryContentView.php">Progress</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="../views/archiveContentView.php">Archive</a>
             </li>
             <li class="nav-item">
