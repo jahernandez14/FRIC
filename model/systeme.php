@@ -13,8 +13,9 @@ class Systeme {
     private $numberOfTasks;
     private $numberOfFindings;
     private $progress;
+    private $archiveStatus;
 
-    public function __construct($db, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $numberOfTasks, $numberOfFindings, $progress){
+    public function __construct($db, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $archiveStatus, $numberOfTasks, $numberOfFindings, $progress){
         //$addObject               = $db->checkDatabaseForSameID($systemName,'FRIC_Database.System');
         $this->systemName        = $systemName;
         $this->systemDescription = $systemDescription;
@@ -26,6 +27,7 @@ class Systeme {
         $this->confidentiality   = $confidentiality;
         $this->integrity         = $integrity;
         $this->availability      = $availability;
+        $this->archiveStatus     = $archiveStatus;
         $this->numberOfTasks     = $numberOfTasks;
         $this->numberOfFindings  = $numberOfFindings;
         $this->progress          = $progress;
@@ -42,6 +44,7 @@ class Systeme {
             'confidentiality'   => $confidentiality,
             'integrity'         => $integrity,
             'availability'      => $availability,
+            'archiveStatus'     => $archiveStatus,
             'numberOfTasks'     => $numberOfTasks,
             'numberOfFindings'  => $numberOfFindings,
             'progress'          => $progress
