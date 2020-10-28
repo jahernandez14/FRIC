@@ -121,8 +121,8 @@ class Database{
 
     public function deleteAnalyst($id){
         try{
-            $bulk = new MongoDB\Driver\BulkWrite(['_id' => $id]);
-            $bulk->delete([]);
+            $bulk = new MongoDB\Driver\BulkWrite;
+            $bulk->delete(['_id' => $id]);
             $this->manager->executeBulkWrite('FRIC_Database.Analyst', $bulk);
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
@@ -406,7 +406,7 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);  
             $table  = array();
             foreach($cursor as $document){
-                if($document->archiveStatus == "Y"){
+                if($document->archiveStatus == true){
                     $row = array();
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
                                $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
@@ -427,7 +427,7 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);  
             $table  = array();
             foreach($cursor as $document){
-                if($document->archiveStatus != "Y"){
+                if($document->archiveStatus != true){
                     $row = array();
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
                                $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
@@ -506,7 +506,7 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);  
             $table  = array();
             foreach($cursor as $document){
-                if($document->archiveStatus == "Y"){
+                if($document->archiveStatus == true){
                     $row = array();
                     array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $document->analystAssignment, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
                     array_push($table, $row);
@@ -525,7 +525,7 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);  
             $table  = array();
             foreach($cursor as $document){
-                if($document->archiveStatus != "Y"){
+                if($document->archiveStatus != true){
                     $row = array();
                     array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $document->analystAssignment, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
                     array_push($table, $row);
@@ -608,24 +608,24 @@ class Database{
 }
 
 /*  Used for testing purposes   */
-$db = new Database();
+//$db = new Database();
 
-$a = new Event($db, "Event 2", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "9/30/2020", "Army", "Top Secret", "Unclassified", "1/18/2020", "Tim Honks", false, "JM", "wb192.2.3", 1, 2,'inProgress');
+//$a = new Event($db, "Event 2", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "9/30/2020", "Army", "Top Secret", "Unclassified", "1/18/2020", "Tim Honks", false, "JM", "wb192.2.3", 1, 2,'inProgress');
 //$b = new Event($db, "Event 3", "This a test event description", "Verification of Fixes", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Axel Rose", "N", "JM", "jh192.2.2", 5, 10,'in progress');
 //$c = new Event($db, "Event 6", "This a test event description", "Verification of Fixes", "3.2", "1/12/2020", "Army", "Top Secret", "Secret", "9/30/2020", "Kyle Gumby", "N", "JM", "db192.2.1", 6, 7,'in progress');
 //$d = new Event($db, "Event 1", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Carl", "Y", "JM", "we192.2.3", 3, 3,'in progress');
 //$e = new Event($db, "Event 7", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/20/2020", "Lemon Guy", "Y", "JM", "am192.2.3", 3, 7,'in progress');
 //$a = new Event($db, "Event 7", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/20/2020", "Lemon Guy", "N", "JM", "am192.2.3", 3, 7,'in progress');
-print_r($db->getAllEvents());
+//print_r($db->getAllEvents());
 
 //$db->deleteFinding();
-//$b = new Systeme($db, "system Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
+//$b = new Systeme($db, "system Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3, 'inProgress', false);
 //$db->editSystemDocument("system Name", "system Gym", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
 //print_r($db->getAllSystems());
 //print_r($db->getSystemAttributes("system Name"));
 
 //$c = new Analyst($db, "Daniel", "O'Brien", "DO", "192.177.1.66", "Hipster Guy", "Lead Proggy");
-$db->deleteAnalyst("DO");
+//$db->deleteAnalyst("5f9a0574ae54774635841063");
 //echo $db->getAnalystName("DO");
 //print_r($db->getAllAnalystNames());
 ?>
