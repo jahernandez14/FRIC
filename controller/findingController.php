@@ -3,8 +3,57 @@
     require_once('/xampp/htdocs/FRIC/controller/logController.php');
 
     function findingOverviewTable(){
-        $db = new Database("mongodb://localhost:27017");
-        $findingArray = $db->getAllFindings('FRIC_Database.Findingss');
-        return $findingArray;
+        $db = new Database();
+        $findingsArray = $db->getAllFindings();
+        return $findingsArray;
     }
+
+    function readFinding($findingName){
+        $db = new Database();
+        $finding = $db->getfindingAttributes($findingName);
+        return $finding;
+    }
+
+    function createfinding($findingTitle, $hostName, $ipPort, $associatedTask, $associatedSystem, 
+                           $associatedSubtask, $findingDescription, $findingLongDescription, $findingStatus, 
+                           $findingType, $findingClassification, $associationToFinding, $evidence, 
+                           $archiveStatus, $collaboratorAssignment, $confidentiality, $integrity, 
+                           $availability, $analystAssignment, $posture, $briefDescription, $longDescription, 
+                           $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatScore, 
+                           $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,$risk, $likelihood, 
+                           $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, 
+                           $impactScore){
+        $db = new Database();
+        new Finding($db, $findingTitle, $hostName, $ipPort, $associatedTask, $associatedSystem, 
+                    $associatedSubtask, $findingDescription, $findingLongDescription, $findingStatus, 
+                    $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, 
+                    $collaboratorAssignment, $confidentiality, $integrity, $availability, $analystAssignment, 
+                    $posture, $briefDescription, $longDescription, $relevance, $effectivenessRating, 
+                    $impactDescription, $impactLevel, $severityCatScore, $vulnerabilitySeverity, 
+                    $quantitativeVulnerabilitySeverity, $risk, $likelihood, $confidentialityImpactOnSystem, 
+                    $integrityImpactOnSystem, $availabilityImpactOnSystem, $impactScore);
+        logEntry($findingTitle . " Finding Created");
+    }
+
+    function editfinding($id, $findingTitle, $hostName, $ipPort, $associatedTask, $associatedSystem, 
+                           $associatedSubtask, $findingDescription, $findingLongDescription, $findingStatus, 
+                           $findingType, $findingClassification, $associationToFinding, $evidence, 
+                           $archiveStatus, $collaboratorAssignment, $confidentiality, $integrity, 
+                           $availability, $analystAssignment, $posture, $briefDescription, $longDescription, 
+                           $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatScore, 
+                           $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,$risk, $likelihood, 
+                           $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, 
+                           $impactScore){
+        $db = new Database();
+        $db->editFindingDocument($id, $findingTitle, $hostName, $ipPort, $associatedTask, $associatedSystem, 
+                    $associatedSubtask, $findingDescription, $findingLongDescription, $findingStatus, 
+                    $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, 
+                    $collaboratorAssignment, $confidentiality, $integrity, $availability, $analystAssignment, 
+                    $posture, $briefDescription, $longDescription, $relevance, $effectivenessRating, 
+                    $impactDescription, $impactLevel, $severityCatScore, $vulnerabilitySeverity, 
+                    $quantitativeVulnerabilitySeverity, $risk, $likelihood, $confidentialityImpactOnSystem, 
+                    $integrityImpactOnSystem, $availabilityImpactOnSystem, $impactScore);
+        logEntry($findingTitle . " Finding Edited");
+    }
+
 ?>
