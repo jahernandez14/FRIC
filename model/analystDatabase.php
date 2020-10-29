@@ -116,7 +116,7 @@ class AnalystDatabase extends Database{
                 foreach($cursor as $document){
                     $row = array();
                     array_push($row, $document->taskTitle, $document->associatedTask, $firstName." ".$lastName, 
-                    $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
+                    $document->taskProgress, $document->numberOfFindings); //$document->taskDueDate);
                     array_push($table, $row);
                 }
             }
