@@ -34,7 +34,7 @@
 
                             $i=0;
                             while($i < count($analystList)){
-                                echo '<option value = "'. $analystList[$i][0] .'">' . $analystList[$i][1] . " " . $analystList[$i][2],  "</option>";
+                                echo '<option value = "'. $analystList[$i][1] .'">' . $analystList[$i][2] . " " . $analystList[$i][3],  "</option>";
                                 $i++;
                             }
                             echo '</datalist>';
