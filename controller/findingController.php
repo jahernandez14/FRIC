@@ -1,5 +1,5 @@
 <?php
-    require_once('/xampp/htdocs/FRIC/model/findingFindingDatabase.php');
+    require_once('/xampp/htdocs/FRIC/model/findingDatabase.php');
     require_once('/xampp/htdocs/FRIC/controller/logController.php');
 
     function findingOverviewTable(){
