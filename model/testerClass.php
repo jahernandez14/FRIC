@@ -1,15 +1,9 @@
 <?php
-include ("event.php");
 include ("eventDatabase.php");
-include ("systeme.php");
 include ("systemDatabase.php");
-include ("task.php");
 include ("taskDatabase.php");
-include ("subtask.php");
 include ("subtaskDatabase.php");
-include ("finding.php");
 include ("findingDatabase.php");
-include ("analyst.php");
 include ("analystDatabase.php");
 
 class testerClass{
@@ -18,7 +12,7 @@ class testerClass{
             echo $index;
         }
     }
-    
+
     public function testEvents(){
         $eventDB   = new EventDatabase();
         $e1        = new Event($eventDB, "Event 2", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .80);
@@ -49,18 +43,18 @@ class testerClass{
         $a1        = new Analyst($analystDB,"Tim", "Honks", "TH", "123.12.111.1", "Forrest Gumpy", "Lead Role");
     }
 
-    public function testStoringFile(){
-        $eventDB = new EventDatabase();
-        $eventDB->storeFileTest('test.txt');
-    }
+    /*public function testStoringFile(){
+        //$eventDB = new EventDatabase();
+        //$eventDB->storeFileTest('test.txt');
+    }*/
 }
 
 $tester = new TesterClass();
-$tester->testEvents();
+//$tester->testEvents();
 $tester->testSystems();
-$tester->testTasks();
-$tester->testSubtasks();
-$tester->testFindings();
-$tester->testAnalysts();
+//$tester->testTasks();
+//$tester->testSubtasks();
+//$tester->testFindings();
+//$tester->testAnalysts();
 //$tester->testStoringFile();
 ?>

@@ -1,7 +1,7 @@
 <?php
 class Database{
     protected $manager;
-    
+
 
     public function __construct(){
         if(extension_loaded("mongodb")){
@@ -37,10 +37,10 @@ class Database{
     }
 
     protected function storeFile($file){
-        $gridFS = $this->manager->selectDB('test')->getGridFS();
+        /*$gridFS = $this->manager->selectDB('test')->getGridFS();
 
         $id = $gridFS->storeFile($file);
-        $gridFSFile = $grid->get($id);
+        $gridFSFile = $grid->get($id);*/
     }
 }
 ?>
