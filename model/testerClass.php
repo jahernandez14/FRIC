@@ -24,8 +24,10 @@ class testerClass{
     }
 
     public function testTasks(){
-        $taskDB    = new TaskDatabase();
-        $t1        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], [], [], false, 10, 10);
+        //$taskDB    = new TaskDatabase();
+        //$t1        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Will Lemon"], [], false, 10, 10);
+        $analystDB = new AnalystDatabase();
+        print_r($analystDB->getAllProgressForTask("Will", "Lemon"));
     }
 
     public function testSubtasks(){
@@ -44,16 +46,17 @@ class testerClass{
         $analystDB->getAllAnalystForAssociation();
     }
 
-    /*public function testStoringFile(){
-        //$eventDB = new EventDatabase();
-        //$eventDB->storeFileTest('test.txt');
-    }*/
+    public function testStoringFile(){
+        echo "none";
+    }
 }
+?>
 
-//$tester = new TesterClass();
-//$tester->testEvents();
+<?php
+$tester = new TesterClass();
+
 //$tester->testSystems();
-//$tester->testTasks();
+$tester->testTasks();
 //$tester->testSubtasks();
 //$tester->testFindings();
 //$tester->testAnalysts();

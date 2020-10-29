@@ -26,7 +26,7 @@ class AnalystDatabase extends Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);  
             $table  = array();
             foreach($cursor as $document){
-                array_push($table, $document->initial.$document->ip);
+                array_push($table, $document->firstName." ".$document->lastName);
             } 
             return $table;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
@@ -79,6 +79,92 @@ class AnalystDatabase extends Database{
             $this->manager->executeBulkWrite('FRIC_Database.Analyst', $bulk);
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
+        }
+    }
+
+    public function getAllProgressForTask($firstName, $lastName){
+        try{
+            $taskIDArray = $this->searchForAssignedInCollection('FRIC_Database.Task', $firstName, $lastName);
+            $table = array();
+
+            foreach($taskIDArray as $id){
+                $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+                $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);
+                foreach($cursor as $document){
+                    $row = array();
+                    array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment, $document->taskPriority, 
+                    $document->taskProgress, $document->numberOfSubtasks, $document->numberOfFindings, $document->taskDueDate);
+                    array_push($table, $row);
+                }
+            }
+
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return "";
+        }
+    }
+
+    public function getAllProgressForSubTask($firstName, $lastName){
+        try{
+            $taskIDArray = $this->searchForAssignedInCollection('FRIC_Database.Subtask', $firstName, $lastName);
+            $table = array();
+
+            foreach($taskIDArray as $id){
+                $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+                $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
+                foreach($cursor as $document){
+                    $row = array();
+                    array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
+                    $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
+                }
+            }
+
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return "";
+        }
+    }
+
+    public function getAllProgressForFinding($firstName, $lastName){
+        try{
+            $taskIDArray = $this->searchForAssignedInCollection('FRIC_Database.Finding', $firstName, $lastName);
+            $table = array();
+
+            foreach($taskIDArray as $id){
+                $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+                $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
+                foreach($cursor as $document){
+                    $row = array();
+                    array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $document->analystAssignment, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
+                }
+            }
+
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return "";
+        }
+    }
+
+    private function searchForAssignedInCollection($collection, $analystFirstName, $analystLastName){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery($collection, $query);
+            $assignedTo = array();
+            echo $analystFirstName." ".$analystLastName;
+            foreach($cursor as $document){
+                foreach($document->analystAssignment as $assignedAnalyst){
+                    if($assignedAnalyst == $analystFirstName." ".$analystLastName){
+                        array_push($assignedTo, $document->_id);
+                    } 
+                }
+            }
+            return $assignedTo;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return "";
         }
     }
 }
