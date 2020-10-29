@@ -1,15 +1,15 @@
 <?php
-    require_once('/xampp/htdocs/FRIC/model/database.php');
+    require_once('/xampp/htdocs/FRIC/model/findingFindingDatabase.php');
     require_once('/xampp/htdocs/FRIC/controller/logController.php');
 
     function findingOverviewTable(){
-        $db = new Database();
+        $db = new FindingDatabase();
         $findingsArray = $db->getAllFindings();
         return $findingsArray;
     }
 
     function readFinding($findingName){
-        $db = new Database();
+        $db = new FindingDatabase();
         $finding = $db->getfindingAttributes($findingName);
         return $finding;
     }
@@ -23,7 +23,7 @@
                            $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,$risk, $likelihood, 
                            $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, 
                            $impactScore){
-        $db = new Database();
+        $db = new FindingDatabase();
         new Finding($db, $findingTitle, $hostName, $ipPort, $associatedTask, $associatedSystem, 
                     $associatedSubtask, $findingDescription, $findingLongDescription, $findingStatus, 
                     $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, 
@@ -44,7 +44,7 @@
                            $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,$risk, $likelihood, 
                            $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, 
                            $impactScore){
-        $db = new Database();
+        $db = new FindingDatabase();
         $db->editFindingDocument($id, $findingTitle, $hostName, $ipPort, $associatedTask, $associatedSystem, 
                     $associatedSubtask, $findingDescription, $findingLongDescription, $findingStatus, 
                     $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, 
