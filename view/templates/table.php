@@ -71,7 +71,93 @@ class table
         return new table($type, $colCount, $rowCount, table::$tableTypes[$type], $data);
     }
 
+    
+
+    public function printTaskOverviewTable() {
+        echo "<h2 class=\"text-center\">",$this->tableTitle,"</h2>";
+        if($this->columns["F"] == 1) {
+            $createNew = $this->columns["newLink"];
+            $archiveSelection = $this->columns["delLink"];
+            echo <<< FILEBUTTONS
+            <a class="btn btn-sm btn-light" href="$createNew?createNew" role="button" style=color:black>+</a>
+            <a class="btn btn-sm btn-light" href="$archiveSelection" role="button" style=color:black>Archive</a>
+            <br></br>
+            FILEBUTTONS;
+        }
+        echo <<< TABLE
+        <table class="table table-light table-striped">
+        <thead>
+        <tr>
+        TABLE;
+        if($this->columns["C"] == 1) {
+            echo "<th scope=\"col\"></th>";
+        }
+        for($col = $this->columns["C"]; $col<($this->dims["columns"] - $this->columns["C"]); $col++) {
+            $item = $this->columns[$col-$this->columns["C"]];
+            echo <<< TABLE
+                            <th scope="col">$item&nbsp;
+                                <div class="btn-group-vertical">
+                                    <button class="btn btn-sm btn-secondary py-0"
+                                        style="font-size: .6em;">&uarr;</button>
+                                    <button class="btn btn-sm btn-secondary py-0"
+                                        style="font-size: .6em;">&darr;</button>
+                                </div>
+                            </th>
+                TABLE;
+        }
+        echo <<< TABLE
+        </tr>
+        </thead>
+        <tbody>
+        TABLE;
+        for($row = 0; $row<$this->dims["rows"]; $row++) {
+            echo "<tr>";
+            if($this->columns["C"] == 1) {
+                echo "<th scope=\"col\"><input type=\"checkbox\"></th>";
+            }
+            if($this->columns["F"] + $this->columns["R"] > 0) {
+
+            }
+            for($col = $this->columns["C"]; $col<($this->dims["columns"] - $this->columns["C"]); $col++) {
+                if($col == 3) {
+                    $this->contents[$row][$col] = implode(", ", $this->contents[$row][$col]);
+                }
+                    $stringPreface = "";
+                    $stringEnd = "";
+                    if(($this->columns["F"] + $this->columns["R"] > 0) && ($col == 1)) {
+                        if($this->columns["F"] == 1) {
+                            $newItemString = $this->columns["newLink"];
+                        }
+                        if($this->columns["R"] == 1) {
+                            $newItemString = $this->columns["restoreLink"];
+                        }
+                        $itemName = $this->contents[$row][$col-$this->columns["C"]];
+                        $stringPreface = "<a href=\"$newItemString?$itemName\" style=color:black>";
+                        $stringEnd = "</a>";
+                    }
+                    echo "<td>",$stringPreface,$this->contents[$row][$col],$stringEnd,"</td>";
+                
+            }
+            echo "</tr>";
+        }
+        echo <<< TABLE
+        </tbody>
+        </table>
+        TABLE;
+        if($this->columns["R"] == 1) {
+           $restoreSelection = $this->columns["restoreLink"];
+            echo <<< RESTOREBUTTONS
+            <a href="$restoreSelection" class="btn-sm btn-light" style=color:black>Restore</a>
+            <br></br>
+            RESTOREBUTTONS;
+        }
+    }
+
     public function printTable() {
+        if($this->tableTitle == "Task Overview") {
+            table::printTaskOverviewTable();
+            return;
+        }
         echo "<h2 class=\"text-center\">",$this->tableTitle,"</h2>";
         if($this->columns["F"] == 1) {
             $createNew = $this->columns["newLink"];

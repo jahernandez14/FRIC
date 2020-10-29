@@ -24,7 +24,7 @@
                     $editTag = "";
                     /* tagging for systems */
                 } else {
-                    $dataArray = readTask($taskName);
+                    $dataArray = readTask($taskTitle);
                     $postTag = "postedit";
                     // things without forms:
                     $taskID = $dataArray[0];
@@ -36,13 +36,13 @@
                     $associatedSystem = $dataArray[2];
                     $taskPriority = $dataArray[4];
                     $taskProgress = $dataArray[5];
-                    $associationToTask = $dataArray[8];
-                    $analystAssignment = $dataArray[9];
-                    $collaboratorAssignment = $dataArray[10];
+                    $associationToTask = implode(",",$dataArray[8]);
+                    $analystAssignment = implode(",",$dataArray[9]);
+                    $collaboratorAssignment = implode(",",$dataArray[10]);
                     /* editTag contents to add hidden fields, to POST things that aren't edited here */
                     $editTag = <<< HEREDOC
                     <input name="taskID" type="hidden" value="$taskID"/>
-                    <input name="attachment" type="hidden" value="$attachment"/>
+                    <input name="attachment" type="hidden" value=" "/>
                     <input name="archiveStatus" type="hidden" value="$archiveStatus"/>
                     <input name="numberOfSubtasks" type="hidden" value="$numberOfSubtasks"/>
                     <input name="numberOfFindings" type="hidden" value="$numberOfFindings"/>
@@ -74,7 +74,7 @@
                     $completeSelected = "";
                     $notApplicableSelected = "";
                     switch ($taskProgress) {
-                        case "notStarted":
+                        case "not started":
                             $notStartedSelected = " selected";
                             break;
                         case "assigned":
@@ -83,13 +83,13 @@
                         case "transferred":
                             $transferredSelected = " selected";
                             break;
-                        case "inProgress":
+                        case "in progress":
                             $inProgressSelected = " selected";
                             break;
                         case "complete":
                             $completeSelected = " selected";
                             break;
-                        case "notApplicable":
+                        case "not applicable":
                             $notApplicableSelected = " selected";
                             break;
                         default:
@@ -106,6 +106,10 @@
                     for($i=0; $i<sizeof($analystTable); $i++){
                         $analystList[$i] = $analystTable[$i][1].".".$analystTable[$i][4];
                     }
+                    $taskTable = taskOverviewTable();
+                    for($i=0; $i<sizeof($taskTable); $i++){
+                        $taskList[$i] = $taskTable[$i][1];
+                    }
 
                 }
                 $taskTitle = $dataArray[1];
@@ -113,73 +117,107 @@
                 $taskDueDate = $dataArray[6];
 
                 echo <<< HEREDOC
-                <form>
-                    <div class="row">
-                        <div class="col">
-                            <label>Title</label>
-                            <input type="text" class="form-control" placeholder="Task Name" name="taskName" value="$taskName">
-                        </div>
-                        <div class="col-3">
-                            <label>System</label>
-                            <select name="system" class="form-control" id="system">
-                                <option value="system1">System 1</option>
-                                <option value="system2">System 2</option>
-                                <option value="system3">System 3</option>
-                                <option value="system4">System 4</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <label>Priority</label>
-                            <select name="taskPriority" class="form-control" id="taskPriority">
-                                <option value="low"$priorityLowSelected>Low</option>
-                                <option value="medium"$priorityMediumSelected>Medium</option>
-                                <option value="high"$priorityHighSelected>High</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label>Description</label>
-                            <textarea class="form-control" id="Desc" rows="5" name="taskDescription">$taskDescription</textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-3">
-                            <label>Progress</label>
-                            <select name="taskProgress" class="form-control" id="taskProgress">
-                                <option value="notStarted"$notStartedSelected>Not Started</option>
-                                <option value="assigned"$assignedSelected>Assigned</option>
-                                <option value="transferred"$transferredSelected>Transferred</option>
-                                <option value="inProgress"$inProgressSelected>In Progress</option>
-                                <option value="complete"$completeSelected>Complete</option>
-                                <option value="notApplicable"$notApplicableSelected>Not Applicable</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <label>Analyst(s)</label>
-                            <select name="analyst" class="form-control" id="analyst" multiple>
-                                <option value="analyst1">am.123.1.123.2</option>
-                                <option value="analyst2">kl.123.1.127.5</option>
-                                <option value="analyst3">jh.123.1.122.5</option>
-                                <option value="analyst4">wb.123.1.124.2</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <label>Collaborator(s)</label>
-                            <select name="collaborator" class="form-control" id="collaborator" multiple>
-                                <option value="analyst1">am.123.1.123.2</option>
-                                <option value="analyst2">kl.123.1.127.5</option>
-                                <option value="analyst3">jh.123.1.122.5</option>
-                                <option value="analyst4">wb.123.1.124.2</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <label>Related Task(s)</label>
-                            <select name="relatedTask" class="form-control" id="relatedTask" multiple>
-                                <option value="relatedTask1">Task 1</option>
-                                <option value="relatedTask2">Task 2</option>
-                                <option value="relatedTask3">Task 3</option>
-                                <option value="relatedTask4">Task 4</option>
+                            <form method="post" action="taskOverview.php?$postTag">
+                                $editTag
+                                <div class="row">
+                                    <div class="col">
+                                        <label>Title</label>
+                                        <input type="text" class="form-control" placeholder="Task Name" name="taskTitle" value="$taskTitle">
+                                    </div>
+                                    <div class="col-3">
+                                        <label>System</label>
+                                        <select name="associatedSystem" class="form-control" id="system">
+                                        <option></option>
+                            HEREDOC;
+                                foreach($systemList as $system) {
+                                    $selected = "";
+                                    if ($system == $associatedSystem) $selected = " selected";
+                                    echo <<< OPTIONOVER
+                                    <option value="$system"$selected>$system</option>
+                                    OPTIONOVER;
+                                }
+                            echo <<< HEREDOC
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <label>Priority</label>
+                                        <select name="taskPriority" class="form-control" id="taskPriority">
+                                            <option value="low"$priorityLowSelected>Low</option>
+                                            <option value="medium"$priorityMediumSelected>Medium</option>
+                                            <option value="high"$priorityHighSelected>High</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label>Description</label>
+                                        <textarea class="form-control" id="Desc" rows="5" name="taskDescription">$taskDescription</textarea>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label>Progress</label>
+                                        <select name="taskProgress" class="form-control" id="taskProgress">
+                                            <option value="not started"$notStartedSelected>Not Started</option>
+                                            <option value="assigned"$assignedSelected>Assigned</option>
+                                            <option value="transferred"$transferredSelected>Transferred</option>
+                                            <option value="in progress"$inProgressSelected>In Progress</option>
+                                            <option value="complete"$completeSelected>Complete</option>
+                                            <option value="not applicable"$notApplicableSelected>Not Applicable</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <label>Analyst(s)</label>
+                                        <select name='analystAssignment[]' class="form-control" multiple>
+
+                            HEREDOC;
+                                foreach($analystList as $analyst) {
+                                    $selected="";
+                                    if(in_array($analyst, explode(",",$analystAssignment))) {
+                                        $selected=" selected";
+                                    }
+                                    echo <<< OPTIONOVER
+                                        <option value="$analyst"$selected>$analyst</option>
+                                        
+                                    OPTIONOVER;
+                                }
+                            echo <<< HEREDOC
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <label>Collaborator(s)</label>
+                                        <select name='collaboratorAssignment[]' class="form-control" multiple>
+
+                            HEREDOC;
+                                foreach($analystList as $analyst) {
+                                    $selected="";
+                                    if(in_array($analyst, explode(",",$collaboratorAssignment))) {
+                                        $selected=" selected";
+                                    }
+                                    echo <<< OPTIONOVER
+                                        <option value="$analyst"$selected>$analyst</option>
+
+                                    OPTIONOVER;
+                                }
+                            echo <<< HEREDOC
+                                        </select>
+                                    </div>
+                                    <div class="col-2">
+                                        <label>Related Task(s)</label>
+                                        <select name='associationToTask[]' class="form-control" multiple>
+
+                            HEREDOC;
+                                foreach($taskList as $task) {
+                                    $selected="";
+                                    if(in_array($task, explode(",",$associationToTask))) {
+                                        $selected=" selected";
+                                    }
+                                    echo <<< OPTIONOVER
+                                        <option value="$task"$selected>$task</option>
+
+                                    OPTIONOVER;
+                                }
+                            echo <<< HEREDOC
                             </select>
                         </div>
                     </div>
@@ -195,10 +233,12 @@
                     </div>
                     <br>
                     </br>
-                    <button type="button" class="btn btn-light">Archive</button>
-                    <button type="button" class="btn btn-light">Demote</button>
-                    <button type="button" class="btn btn-light">Save</button>
-                    <button type="button" class="btn btn-light">Cancel</button>
+                    <button type="button" class="btn btn-sm btn-light">Demote</button>
+                    <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
+                    <a class="btn btn-sm btn-light" role="button"
+                        style=color:black>Archive</a>
+                    <a href="../views/taskOverview.php" class="btn btn-sm btn-light" role="button"
+                        style=color:black>Cancel</a>
                 </form>
                 HEREDOC;
                 ?>
