@@ -12,111 +12,21 @@
                 <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-10">
-                <h2 class="text-center">Subtask Overview</h2>
-                <a href="../views/helpContentView.php" class="btn-sm btn-light" style=color:black>+</a>
-                <br></br>
-                <table class="table table-light table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col"><input type="checkbox"></th>
-                            <th scope="col">Title&nbsp;
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&uarr;</button>
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&darr;</button>
-                                </div>
-                            </th>
-                            <th scope="col">Task&nbsp;
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&uarr;</button>
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&darr;</button>
-                                </div>
-                            </th>
-                            <th scope="col">Analyst&nbsp;
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&uarr;</button>
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&darr;</button>
-                                </div>
-                            </th>
-                            <th scope="col">Progress&nbsp;
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&uarr;</button>
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&darr;</button>
-                                </div>
-                            </th>
-                            <th scope="col">No. of Findings&nbsp;
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&uarr;</button>
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&darr;</button>
-                                </div>
-                            </th>
-                            <th scope="col">Due Date&nbsp;
-                                <div class="btn-group-vertical">
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&uarr;</button>
-                                    <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&darr;</button>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="col"><input type="checkbox"></th>
-                            <td>Subtask 1</td>
-                            <td>Task 3</td>
-                            <td>am.123.1.123.2</td>
-                            <td>In Progress</td>
-                            <td>3</td>
-                            <td>9/12/2020</td>
-                        </tr>
-                        <tr>
-                            <th scope="col"><input type="checkbox"></th>
-                            <td>Subtask 1</td>
-                            <td>Task 3</td>
-                            <td>am.123.1.123.2</td>
-                            <td>In Progress</td>
-                            <td>3</td>
-                            <td>9/12/2020</td>
-                        </tr>
-                        <tr>
-                            <th scope="col"><input type="checkbox"></th>
-                            <td>Subtask 1</td>
-                            <td>Task 3</td>
-                            <td>am.123.1.123.2</td>
-                            <td>In Progress</td>
-                            <td>3</td>
-                            <td>9/12/2020</td>
-                        </tr>
-                        <tr>
-                            <th scope="col"><input type="checkbox"></th>
-                            <td>Subtask 1</td>
-                            <td>Task 3</td>
-                            <td>am.123.1.123.2</td>
-                            <td>In Progress</td>
-                            <td>3</td>
-                            <td>9/12/2020</td>
-                        </tr>
-                        <tr>
-                            <th scope="col"><input type="checkbox"></th>
-                            <td>Subtask 1</td>
-                            <td>Task 3</td>
-                            <td>am.123.1.123.2</td>
-                            <td>In Progress</td>
-                            <td>3</td>
-                            <td>9/12/2020</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <?php 
+                include '../templates/table.php';
+                include '/xampp/htdocs/FRIC/controller/subTaskController.php';
+
+                if($_SERVER['QUERY_STRING'] == "postnew") {
+                    createSubTask($_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST["associationToTask"], $_POST["analystAssignment"], $_POST["collaboratorAssignment"], $_POST["archiveStatus"], $_POST["numberOfSubtasks"], $_POST["numberOfFindings"]);
+                }
+
+                if($_SERVER['QUERY_STRING'] == "postedit") {
+                    editSubTask($_POST["taskID"], $_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST["associationToTask"], $_POST["analystAssignment"], $_POST["collaboratorAssignment"], $_POST["archiveStatus"], $_POST["numberOfSubtasks"], $_POST["numberOfFindings"]);
+                }
+
+                $subTaskTable = table::tableByType("Subtask Overview", subTaskOverviewTable());
+                $subTaskTable->printTable();
+                ?>
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>

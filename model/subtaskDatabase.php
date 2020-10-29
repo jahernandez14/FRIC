@@ -31,7 +31,7 @@ class SubtaskDatabase extends Database{
             foreach($cursor as $document){
                 if($document->archiveStatus != true){
                     $row = array();
-                    array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
+                    array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment[0], 
                                $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
                     array_push($table, $row);
                 }
