@@ -1,5 +1,6 @@
 <?php
-require_once('database.php');
+include ("systeme.php");
+require_once ('database.php');
 
 class SystemDatabase extends Database{
     public function getAllArchivedSystems(){

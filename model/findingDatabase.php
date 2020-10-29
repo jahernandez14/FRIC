@@ -1,5 +1,6 @@
 <?php
-require_once('database.php');
+include ("finding.php");
+require_once ('database.php');
 
 class FindingDatabase extends Database{
     public function getAllArchivedFindings(){

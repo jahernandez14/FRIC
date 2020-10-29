@@ -1,5 +1,6 @@
 <?php
-require_once('database.php');
+include ("subtask.php");
+require_once ('database.php');
 
 class SubtaskDatabase extends Database{    
     public function getAllArchivedSubTasks(){

@@ -1,5 +1,6 @@
 <?php
-require_once('database.php');
+include ("analyst.php");
+require_once ('database.php');
 
 class AnalystDatabase extends Database{
     public function getAllAnalystNames(){

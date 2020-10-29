@@ -1,5 +1,6 @@
 <?php
-require_once('database.php');
+include ("transactionlog.php");
+require_once ('database.php');
 
 class TransactionLogDatabase extends Database{
     public function getAllTransactionLogs(){

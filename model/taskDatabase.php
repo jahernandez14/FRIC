@@ -1,5 +1,6 @@
 <?php
-require_once('database.php');
+include ("task.php");
+require_once ('database.php');
 
 class TaskDatabase extends Database{
     public function getAllArchivedTasks(){

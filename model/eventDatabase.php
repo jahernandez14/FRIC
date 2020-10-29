@@ -1,4 +1,5 @@
 <?php
+include ("event.php");
 require_once ("database.php");
 
 class EventDatabase extends Database{

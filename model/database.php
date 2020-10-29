@@ -1,6 +1,7 @@
 <?php
 class Database{
     protected $manager;
+    
 
     public function __construct(){
         if(extension_loaded("mongodb")){
