@@ -153,7 +153,7 @@ class AnalystDatabase extends Database{
     public function getAllProgressForSystem($firstName, $lastName){
         try{
             $associatedSystems = $this->searchForTaskAssociations('FRIC_Database.Task', $firstName, $lastName);
-            print_r($associatedSystems);
+            // print_r($associatedSystems);
             $table = array();
 
             foreach($associatedSystems as $sysName){

@@ -24,8 +24,11 @@ class testerClass{
     }
 
     public function testTasks(){
-        //$taskDB    = new TaskDatabase();
-        //$t1        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Will Lemon"], [], false, 10, 10);
+        $taskDB    = new TaskDatabase();
+        $t1        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Will Lemon" , "Julio Hernandez"], [], false, 10, 10);
+        $t2        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Will Lemon"], [], false, 10, 10);
+        $t3        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Will Lemon", "Julio Hernandez"], [], false, 10, 10);
+        
         //$analystDB = new AnalystDatabase();
         //print_r($analystDB->getAllProgressForTask("Will", "Lemon"));
     }
@@ -44,13 +47,13 @@ class testerClass{
         $f3        = new Finding($findingDB,"Finding 1", "Jerble", "80", "Task 1", "", "", "This is a test description", "This is a test long description", "Open", "Creds", "Information", [], "Im testing this attribute", false, [], "low", "low", "high", ["Will Lemon", "Julio Hernandez"], "Nearsider", "This is a test brief description", "This is a test long description", "Confirmed", "Very High", "This is a test impact description", "VH", "I", "We need to calculate SC", "We need to calculate VS", "We need to calculate QVS", "We need to calculate risk", "We need to calculate likelihood", "We need to calculate c impact on system", "We need to calculate i impact on system", "We need to calculate a impact on system", "We need to calculate impact score");
         
         $analystDB = new AnalystDatabase();
-        print_r($analystDB->getAllProgressForFinding("Will", "Lemon"));
+        // print_r($analystDB->getAllProgressForFinding("Will", "Lemon"));
     }
 
     public function testAnalysts(){
         $analystDB = new AnalystDatabase();
         $a1        = new Analyst($analystDB,"Tim", "Honks", "TH", "123.12.111.1", "Forrest Gumpy", "Lead Role");
-        print_r($analystDB->getAllAnalystForAssociation());
+        // print_r($analystDB->getAllAnalystForAssociation());
     }
 
     public function testStoringFile(){
@@ -63,8 +66,8 @@ class testerClass{
 $tester = new TesterClass();
 
 //$tester->testSystems();
-//$tester->testTasks();
-$tester->testSubtasks();
+// $tester->testTasks();
+// $tester->testSubtasks();
 //$tester->testFindings();
 //$tester->testAnalysts();
 //$tester->testStoringFile();
