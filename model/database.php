@@ -33,5 +33,30 @@ class Database{
             echo "Error: $failedLoser";
         }
     }
+
+    /*public function storeFile($file){
+        $record = [
+            '_id' => (string) new MongoDB\BSON\ObjectId(),
+            'test'=> array()
+        ];
+
+        if($record['test'] == null){
+            $arr = array();
+            $record['test'] = array_push($arr, ['fileName' => "cp.PNG", 'fileData' => new MongoDB\BSON\Binary(file_get_contents("cp.PNG"), 0)]);
+        } else{
+            $record['test'] = array_push($record['test'], ['fileName' => "cp.PNG", 'fileData' => new MongoDB\BSON\Binary(file_get_contents("cp.PNG"), 0)]);
+        }
+
+        print_r($record);
+        /*if(file_exists("temp/" . $file) != true){
+            $file = fopen("temp/" . $record['test'][0]['fileName'], 'w');
+            fwrite($file, "temp/" . $record['test'][0]['fileData']->getData());
+        }
+        
+        //$this->insertDocument($record, 'FRIC_Database.Test');
+    }*/
 }
+
+$db = new Database();
+$db->storeFile("test.txt");
 ?>
