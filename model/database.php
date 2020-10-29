@@ -59,10 +59,7 @@ class Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                array_push($row, $document->_id);
-                array_push($row, $document->firstName);
-                array_push($row, $document->lastName);
-                array_push($row, $document->ip);
+                array_push($row, $document->_id, $document->initial, $document->firstName, $document->lastName, $document->ip);
                 array_push($table, $row);
             } 
             return $table;
@@ -96,6 +93,7 @@ class Database{
                 $firstLastName .= $document->firstName;
                 $firstLastName .= " ";
                 $firstLastName .= $document->lastName;
+
             }
             return $firstLastName;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
@@ -224,6 +222,25 @@ class Database{
                     $row = array();
                     array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
                     array_push($table, $row);
+                }
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
+    /*  Returns a 2d array of all attributes required for a System table */
+    public function getAllSystemNames(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if($document->archiveStatus != "Y"){
+                    $row = array();
+                    array_push($row, $document->systemName);
                 }
             } 
             return $table;
