@@ -186,11 +186,7 @@
                             </select>
                         </div>
 
-                        <script type="text/javascript">
-                        function handleSelect() {
-                            window.location = "../views/analystProgressSummaryContentView.php";
-                        }
-                        </script>
+
                     </div>
                     <div class="row">
                         <div class="col"><br />

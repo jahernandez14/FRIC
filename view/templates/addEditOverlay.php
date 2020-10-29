@@ -3,11 +3,11 @@
     <div class="overlay-content container col-5">
         <h2 class="text-center">Add/Delete</h2>
 
-        <form>
+        <form method = "post">
             <div class="row">
                 <div class="col">
                     <label>First Name</label>
-                    <input type="text" class="form-control">
+                    <input type="text" name = "name" class="form-control">
                 </div>
                 <div class="col">
                     <label>Last Name</label>
