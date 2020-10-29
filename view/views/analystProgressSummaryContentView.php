@@ -12,7 +12,19 @@
                 <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-10">
-                <h2 class="text-center"><strong>Analyst Progress Summary</strong></h2>
+                <div class = "row">
+                    <div class = "col-8">
+                    <h2><strong>Analyst Progress Summary</strong></h2>
+                <?php
+                if (array_key_exists ("analystName", $_POST)){
+                    $analystFirstName = explode(" ", $_POST["analystName"])[0];
+                    $analystLastName = explode(" ", $_POST["analystName"])[1];
+                    echo "<h3>" . $analystFirstName . " " . $analystLastName ."</h3><br>";
+                }
+                
+                ?>
+                    </div>
+                <div class="container fluid text-right col-2">
                 Select Analyst Initials:
                 <form method="post" action="analystProgressSummaryContentView.php">
                         <?php 
@@ -31,15 +43,19 @@
                             }
                             echo "</select>"
                         ?>
-                        <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
+                        <br>
+                        <button class="btn btn-sm btn-light" name="submit" type="submit">Update</button>
                     
                 </form>
+
+                </div>
+                </div>
                 <?php
                     include '../templates/table.php';
                     require_once('../../controller/analystController.php');
 
-                    $analystFirstName = "Julio";
-                    $analystLastName = "Hernandez";
+                    $analystFirstName = "";
+                    $analystLastName = "";
 
                     if (array_key_exists ("analystName", $_POST)){
                         $analystFirstName = explode(" ", $_POST["analystName"])[0];
