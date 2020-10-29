@@ -23,8 +23,8 @@
         return $db->getAllProgressForFinding($fName, $lName);
     } 
 
-    // function analystSystemSummary($fName, $lName){
-    //     $db = new AnalystDatabase();
-    //     return $db->getAllProgressForSystem($fName, $lName);
-    // } 
+    function analystSystemSummary($fName, $lName){
+        $db = new AnalystDatabase();
+        return $db->getAllProgressForSystem($fName, $lName);
+    } 
 ?>

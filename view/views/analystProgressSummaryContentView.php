@@ -20,13 +20,13 @@
                     $findingTable = table::tableByType("Findings Overview", analystFindingSummary("Julio", "Hernandez"));
                     $findingTable->printTable();
 
-                    $findingTable = table::tableByType("Task Overview", analystFindingSummary("Julio", "Hernandez"));
-                    $findingTable->printTable();
+                    $taskTable = table::tableByType("Task Overview", analystTaskSummary("Julio", "Hernandez"));
+                    $taskTable->printTable();
 
-                    $findingTable = table::tableByType("Subtask Overview", analystFindingSummary("Julio", "Hernandez"));
-                    $findingTable->printTable();
+                    $subTaskTable = table::tableByType("Subtask Overview", analystSubTaskSummary("Julio", "Hernandez"));
+                    $subTaskTable->printTable();
 
-                    $systemTable = table::tableByType("System Overview Table", analystFindingSummary("Julio", "Hernandez"));
+                    $systemTable = table::tableByType("System Overview Table", analystSystemSummary("Julio", "Hernandez"));
                     $systemTable->printTable();
                 ?>
             </div>

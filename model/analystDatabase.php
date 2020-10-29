@@ -115,7 +115,7 @@ class AnalystDatabase extends Database{
                 $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
                 foreach($cursor as $document){
                     $row = array();
-                    array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $firstName." ".$lastName, 
+                    array_push($row, $document->taskTitle, $document->associatedTask, $firstName." ".$lastName, 
                     $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
                     array_push($table, $row);
                 }
@@ -138,7 +138,7 @@ class AnalystDatabase extends Database{
                 $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
                 foreach($cursor as $document){
                     $row = array();
-                    array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $firstName." ".$lastName, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
+                    array_push($row, $document->_id, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $firstName." ".$lastName, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
                     array_push($table, $row);
                 }
             }
