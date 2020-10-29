@@ -10,21 +10,21 @@
 
     function analystTaskSummary($fName, $lName){
         $db = new AnalystDatabase();
-        return getAllProgressForTask($fName, $lName);
+        return $db->getAllProgressForTask($fName, $lName);
     }
 
     function analystSubTaskSummary($fName, $lName){
         $db = new AnalystDatabase();
-        return getAllProgressForSubTask($fName, $lName);
+        return $db->getAllProgressForSubTask($fName, $lName);
     }
     
     function analystFindingSummary($fName, $lName){
         $db = new AnalystDatabase();
-        return getAllProgressForFinding($fName, $lName);
+        return $db->getAllProgressForFinding($fName, $lName);
     } 
 
-    function analystSystemSummary($fName, $lName){
-        $db = new AnalystDatabase();
-        return getAllProgressForSystem($fName, $lName);
-    } 
+    // function analystSystemSummary($fName, $lName){
+    //     $db = new AnalystDatabase();
+    //     return $db->getAllProgressForSystem($fName, $lName);
+    // } 
 ?>
