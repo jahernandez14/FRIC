@@ -56,7 +56,4 @@ class Database{
         //$this->insertDocument($record, 'FRIC_Database.Test');
     }*/
 }
-
-$db = new Database();
-$db->storeFile("test.txt");
 ?>
