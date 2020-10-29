@@ -27,7 +27,7 @@
                                 $placeholder = "Analysts have been created, Select current user";
                             }
                             echo <<< LIST
-                                <input id = 'initials' type="text" list="analystNames" placeholder= "$placeholder"
+                                <input id = 'initials' type="text" list="analystNames" placeholder= "$placeholder required"
                                 class="form-control" name= 'initials'>
                                 <datalist id="analystNames">
                             LIST;
@@ -44,7 +44,7 @@
                 Please enter your IP:
                 <div class="input-group">
                     <form method="post" class="input-group">
-                    <input id="userIP" type="text" class="form-control" name= 'userIP' placeholder="IP">
+                    <input id="userIP" type="text" class="form-control" name= 'userIP' placeholder="IP" required>
                 </div>
                 <div class="form-group">
                     <label for="setupAction">Please select an option:</label>

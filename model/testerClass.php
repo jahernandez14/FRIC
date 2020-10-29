@@ -24,9 +24,9 @@ class testerClass{
 
     public function testSystems(){
         $systemDB  = new SystemDatabase();
-        $s1        = new Systeme($systemDB, "System 2", "This is a test Description", [], [], [], [], "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
-        $s1        = new Systeme($systemDB, "System 3", "This is a test Description", [], [], [], [], "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
-        $s1        = new Systeme($systemDB, "System 4", "This is a test Description", [], [], [], [], "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
+        $s1        = new Systeme($systemDB, "System 2", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
+        $s1        = new Systeme($systemDB, "System 3", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
+        $s1        = new Systeme($systemDB, "System 4", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
     }
 
     public function testTasks(){
@@ -80,10 +80,11 @@ class testerClass{
 <?php
 $tester = new TesterClass();
 
-$tester->testSystems();
-$tester->testTasks();
-$tester->testSubtasks();
-$tester->testFindings();
-$tester->testAnalysts();
+// $tester->testSystems();
+// $tester->testTasks();
+// $tester->testSubtasks();
+// $tester->testFindings();
+// $tester->testAnalysts();
+// $tester->testEvents();
 //$tester->testStoringFile();
 ?>
