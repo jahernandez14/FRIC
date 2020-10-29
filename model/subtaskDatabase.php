@@ -60,7 +60,7 @@ class SubtaskDatabase extends Database{
         }
     }
 
-    public function editSubtaskDocument($id, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus){
+    public function editSubtaskDocument($id, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfFindings){
         $dbEntry = ['$set'=>
             ['taskTitle'              => $taskTitle,
             'associatedTask'         => $associatedTask,
