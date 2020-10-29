@@ -34,7 +34,7 @@ class Database{
         }
     }
 
-    /*public function storeFile($file){
+    /****public function storeFile($file){
         $record = [
             '_id' => (string) new MongoDB\BSON\ObjectId(),
             'test'=> array()
@@ -54,6 +54,6 @@ class Database{
         }
         
         //$this->insertDocument($record, 'FRIC_Database.Test');
-    }*/
+    }**/
 }
 ?>

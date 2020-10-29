@@ -78,7 +78,8 @@ class TaskDatabase extends Database{
     }
 
     public function editTaskDocument($id, $taskTitle, $associatedSystem, $taskDescription, $taskPriority, $taskProgress, $taskDueDate, $attachment, $associationToTask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfSubtasks, $numberOfFindings){
-        $attachment = ['fileName' => $attachment, 'fileData' => new MongoDB\BSON\Binary(file_get_contents($attachment), 0)];
+        //$getFileName = explode("/", $test);
+        $attachment  = ['fileName' => $attachment, 'fileData' => new MongoDB\BSON\Binary(file_get_contents($attachment), 0)];
         
         $dbEntry = ['$set'=>
             ['taskTitle'              => $taskTitle,

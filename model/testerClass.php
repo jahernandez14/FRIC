@@ -80,9 +80,6 @@ class testerClass{
 <?php
 $tester = new TesterClass();
 
-//$test = "/desktop/name.txt";
-//$subt
-//echo end(explode("/", $test));
 // $tester->testSystems();
 // $tester->testTasks();
 // $tester->testSubtasks();
