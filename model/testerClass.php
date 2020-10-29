@@ -37,7 +37,7 @@ class testerClass{
 
     public function testFindings(){
         $findingDB = new FindingDatabase();
-        $f1        = new Finding($findingDB,"Finding 1", "Jerble", "80", "Task 1", "", "", "This is a test description", "This is a test long description", "Open", "Creds", "Information", ["Will Lemon"], "Im testing this attribute", false, ["Will Lemon"], "low", "low", "high", ["Will Lemon"], "Nearsider", "This is a test brief description", "This is a test long description", "Confirmed", "Very High", "This is a test impact description", "VH", "I", "We need to calculate SC", "We need to calculate VS", "We need to calculate QVS", "We need to calculate risk", "We need to calculate likelihood", "We need to calculate c impact on system", "We need to calculate i impact on system", "We need to calculate a impact on system", "We need to calculate impact score");
+        $f1        = new Finding($findingDB,"Finding 1", "Jerble", "80", "Task 1", "", "", "This is a test description", "This is a test long description", "Open", "Creds", "Information", [], "Im testing this attribute", false, [], "low", "low", "high", ["Will Lemon"], "Nearsider", "This is a test brief description", "This is a test long description", "Confirmed", "Very High", "This is a test impact description", "VH", "I", "We need to calculate SC", "We need to calculate VS", "We need to calculate QVS", "We need to calculate risk", "We need to calculate likelihood", "We need to calculate c impact on system", "We need to calculate i impact on system", "We need to calculate a impact on system", "We need to calculate impact score");
         $analystDB = new AnalystDatabase();
         print_r($analystDB->getAllProgressForFinding("Will", "Lemon"));
     }
