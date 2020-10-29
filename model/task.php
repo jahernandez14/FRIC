@@ -33,7 +33,7 @@ class Task {
         $this->numberOfFindings       = $numberOfFindings;
 
         $dbEntry = [
-            '_id'                    => new MongoDB\BSON\ObjectId(),
+            '_id'                    => (string) new MongoDB\BSON\ObjectId(),
             'taskTitle'              => $taskTitle,
             'associatedSystem'       => $associatedSystem,
             'taskDescription'        => $taskDescription,    

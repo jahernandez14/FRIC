@@ -16,7 +16,7 @@ class Analyst {
         $this->role      = $role;
 
         $dbEntry = [
-            '_id'       => new MongoDB\BSON\ObjectId(),   
+            '_id'       => (string) new MongoDB\BSON\ObjectId(),   
             'firstName' => $firstName,
             'lastName'  => $lastName,
             'initial'   => $initial,

@@ -33,7 +33,7 @@ class Systeme {
         $this->progress          = $progress;
 
         $dbEntry = [
-            '_id'               => new MongoDB\BSON\ObjectId(),
+            '_id'               => (string) new MongoDB\BSON\ObjectId(),
             'systemName'        => $systemName,
             'systemDescription' => $systemDescription,      
             'systemLocation'    => $systemLocation,    

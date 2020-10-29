@@ -17,7 +17,7 @@ class Subtask extends Task {
         $this->numberOfFindings       = $numberOfFindings;
 
         $dbEntry = [
-            '_id'                    => new MongoDB\BSON\ObjectId(),
+            '_id'                    => (string) new MongoDB\BSON\ObjectId(),
             'taskTitle'              => $taskTitle,
             'associatedTask'         => $associatedTask,
             'taskDescription'        => $taskDescription,    

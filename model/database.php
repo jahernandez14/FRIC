@@ -151,7 +151,7 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Event', $query);  
             $table  = array();
             foreach($cursor as $document){
-                if($document->archiveStatus != "Y"){
+                if($document->archiveStatus != true){
                     $row = array();
                     array_push($row, $document->_id, $document->eventName, $document->numberOfSystems, $document->numberOfFindings, $document->progress);
                     array_push($table, $row);
@@ -218,7 +218,7 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
             $table  = array();
             foreach($cursor as $document){
-                if($document->archiveStatus == "Y"){
+                if($document->archiveStatus == true){
                     $row = array();
                     array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
                     array_push($table, $row);
@@ -232,15 +232,14 @@ class Database{
     }
 
     /*  Returns a 2d array of all attributes required for a System table */
-    public function getAllSystemNames(){
+    public function getAllSystemForAssociations(){
         try{
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
             $table  = array();
             foreach($cursor as $document){
-                if($document->archiveStatus != "Y"){
-                    $row = array();
-                    array_push($row, $document->systemName);
+                if($document->archiveStatus != true){
+                    array_push($table, $document->systemName);
                 }
             } 
             return $table;
@@ -257,7 +256,7 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
             $table  = array();
             foreach($cursor as $document){
-                if($document->archiveStatus != "Y"){
+                if($document->archiveStatus != true){
                     $row = array();
                     array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
                     array_push($table, $row);
@@ -323,7 +322,7 @@ class Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                if($document->archiveStatus == "true"){
+                if($document->archiveStatus == true){
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment, $document->taskPriority, 
                                $document->taskProgress, $document->numberOfSubtasks, $document->numberOfFindings, $document->taskDueDate);
                     array_push($table, $row);
@@ -344,7 +343,7 @@ class Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                if($document->archiveStatus != "true"){
+                if($document->archiveStatus != true){
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment, $document->taskPriority, 
                                $document->taskProgress, $document->numberOfSubtasks, $document->numberOfFindings, $document->taskDueDate);
                     array_push($table, $row);
@@ -363,7 +362,7 @@ class Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);  
             $table  = array();
             foreach($cursor as $document){
-                if($document->archiveStatus != "Y"){
+                if($document->archiveStatus != true){
                     array_push($table, $document->taskTitle);
                 }
             } 
@@ -627,7 +626,7 @@ class Database{
 /*  Used for testing purposes   */
 //$db = new Database();
 
-//$a = new Event($db, "Event 2", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "9/30/2020", "Army", "Top Secret", "Unclassified", "1/18/2020", "Tim Honks", false, "JM", "wb192.2.3", 1, 2,'inProgress');
+//a = new Event($db, "Event 2", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "1.2", "9/30/2020", "Army", "Top Secret", "Unclassified", "1/18/2020", "Tim Honks", false, "JM", "wb192.2.3", 1, 2,'inProgress');
 //$b = new Event($db, "Event 3", "This a test event description", "Verification of Fixes", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Axel Rose", "N", "JM", "jh192.2.2", 5, 10,'in progress');
 //$c = new Event($db, "Event 6", "This a test event description", "Verification of Fixes", "3.2", "1/12/2020", "Army", "Top Secret", "Secret", "9/30/2020", "Kyle Gumby", "N", "JM", "db192.2.1", 6, 7,'in progress');
 //$d = new Event($db, "Event 1", "This a test event description", "Cooperative Vulnerability Penetration Assessment", "2.2", "1/12/2020", "Army", "Top Secret", "Confidential", "1/01/2020", "Carl", "Y", "JM", "we192.2.3", 3, 3,'in progress');

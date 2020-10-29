@@ -34,9 +34,9 @@ class Event {
         $this->numberOfFindings      = $numberOfFindings;
         $this->numberOfSystems       = $numberOfSystems;
         $this->progress              = $progress;
-
+        
         $dbEntry = [
-            '_id'                   => new MongoDB\BSON\ObjectId(),
+            '_id'                   => (string) new MongoDB\BSON\ObjectId(),
             'eventName'             => $eventName,
             'eventDescription'      => $eventDescription,
             'eventType'             => $eventType,
