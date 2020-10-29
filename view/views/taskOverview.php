@@ -12,6 +12,32 @@
                 <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-10">
+                <?php 
+                include '../templates/table.php';
+                include '/xampp/htdocs/FRIC/controller/taskController.php';
+
+                if($_SERVER['QUERY_STRING'] == "postnew") {
+                    createSystem($_POST["systemName"], $_POST["systemDescription"], $_POST["systemLocation"], $_POST["systemRouter"], $_POST["systemSwitch"], $_POST["systemRoom"], $_POST["testPlan"], $_POST["confidentiality"], $_POST["integrity"], $_POST["availability"], 0, 0, "In Progress");
+                    createTask($_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST["associationToTask"], $_POST["analystAssignment"], $_POST["collaboratorAssignment"], $_POST["archiveStatus"], $_POST["numberOfSubtasks"], $_POST["numberOfFindings"]);
+                }
+
+                if($_SERVER['QUERY_STRING'] == "postedit") {
+                    editSystem($_POST["systemID"], $_POST["systemName"], $_POST["systemDescription"], $_POST["systemLocation"], $_POST["systemRouter"], $_POST["systemSwitch"], $_POST["systemRoom"], $_POST["testPlan"], $_POST["confidentiality"], $_POST["integrity"], $_POST["availability"], FALSE, $_POST["numberOfTasks"], $_POST["numberOfFindings"], $_POST["progress"]);
+                }
+
+                $taskTable = table::tableByType("Task Overview", taskOverviewTable());
+                $taskTable->printTable();
+                ?>
+
+
+
+
+
+
+
+
+
+
                 <h2 class="text-center">Task Overview</h2>
                 <a href="../views/helpContentView.php" class="btn-sm btn-light" style=color:black>+</a>
                 <br></br>
