@@ -19,7 +19,7 @@
                 if (array_key_exists ("analystName", $_POST)){
                     $analystFirstName = explode(" ", $_POST["analystName"])[0];
                     $analystLastName = explode(" ", $_POST["analystName"])[1];
-                    echo "<h3><strong>" . $analystFirstName . " " . $analystLastName ."</strong></h3><br>";
+                    echo "<h3>" . $analystFirstName . " " . $analystLastName ."</h3><br>";
                 }
                 
                 ?>
