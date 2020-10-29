@@ -15,7 +15,11 @@ class testerClass{
 
     public function testEvents(){
         $eventDB   = new EventDatabase();
-        $e1        = new Event($eventDB, "Event 2", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .80);
+        $e1        = new Event($eventDB, "Event 1", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .80);
+        $e2        = new Event($eventDB, "Event 2", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .70);
+        $e3        = new Event($eventDB, "Event 3", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .60);
+        $e4        = new Event($eventDB, "Event 4", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .50);
+        $e5        = new Event($eventDB, "Event 5", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .40);
     }
 
     public function testSystems(){
@@ -27,11 +31,11 @@ class testerClass{
 
     public function testTasks(){
         $taskDB    = new TaskDatabase();
-        $t1        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Will Lemon" , "Julio Hernandez"], [], false, 10, 10);
+        $t1        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Wim Bonks" , "Julio Hernandez"], [], false, 10, 10);
         $t2        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
-        $t3        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Will Lemon", "Julio Hernandez"], [], false, 10, 10);
-        $t2        = new Task($taskDB, "Task 2", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Will Lemon"], [], false, 10, 10);
-        $t3        = new Task($taskDB, "Task 3", "System 3", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Will Lemon", "Julio Hernandez"], [], false, 10, 10);
+        $t3        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Tim Honks", "Julio Hernandez"], [], false, 10, 10);
+        $t2        = new Task($taskDB, "Task 2", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
+        $t3        = new Task($taskDB, "Task 3", "System 3", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Jebel Macias", "Julio Hernandez"], [], false, 10, 10);
         
         //$analystDB = new AnalystDatabase();
         //print_r($analystDB->getAllProgressForTask("Will", "Lemon"));
@@ -40,10 +44,10 @@ class testerClass{
     public function testSubtasks(){
         $subtaskDB = new SubtaskDatabase();
         $st1       = new Subtask($subtaskDB,"Subtask 1", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [] ,["Julio Hernandez"], [], false, 10);
-        $st2       = new Subtask($subtaskDB,"Subtask 1", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [] , ["jeb"], [], false, 10);
+        $st2       = new Subtask($subtaskDB,"Subtask 1", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [] , ["Wim Bonks"], [], false, 10);
         $st3       = new Subtask($subtaskDB,"Subtask 1", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [], ["Julio Hernandez","Wim Bonks"], [], false, 10);
-        $st2       = new Subtask($subtaskDB,"Subtask 2", "Task 3", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [] , ["Jeb Mac"], [], false, 10);
-        $st3       = new Subtask($subtaskDB,"Subtask 3", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [], ["Julio Hernandez","Jeb Mac"], [], false, 10);
+        $st2       = new Subtask($subtaskDB,"Subtask 2", "Task 3", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [] , ["Jebel Macias"], [], false, 10);
+        $st3       = new Subtask($subtaskDB,"Subtask 3", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [], ["Julio Hernandez","Jebel Macias"], [], false, 10);
     }
 
     public function testFindings(){
@@ -60,7 +64,7 @@ class testerClass{
         $a1        = new Analyst($analystDB,"Tim", "Honks", "TH", "123.12.111.1", "Forrest Gumpy", "Lead Role");
         $a2        = new Analyst($analystDB,"Wim", "Bonks", "WB", "123.12.111.1", "Forrest Gumpy", "Lead Role");
         $a3        = new Analyst($analystDB,"Julio", "Hernandez", "JH", "123.12.111.1", "Forrest Gumpy", "Lead Role");
-        // print_r($analystDB->getAllAnalystForAssociation());
+        $a3        = new Analyst($analystDB,"Jebel", "Macias", "JM", "123.12.111.2", "Forrest Gumpy", "Analyst");
     }
 
     public function testStoringFile(){
@@ -76,10 +80,10 @@ class testerClass{
 <?php
 $tester = new TesterClass();
 
-//$tester->testSystems();
-// $tester->testTasks();
-// $tester->testSubtasks();
-//$tester->testFindings();
-// $tester->testAnalysts();
+$tester->testSystems();
+$tester->testTasks();
+$tester->testSubtasks();
+$tester->testFindings();
+$tester->testAnalysts();
 //$tester->testStoringFile();
 ?>
