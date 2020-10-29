@@ -23,7 +23,7 @@
                             <select name="analystName" class="form-control" id="analystName">
                             HEREDOC;
                             for($i=0; i<sizeof($analystList); $i++) {
-                                $analystName=$analystList[$i][2].$analystList[$i][3];
+                                $analystName=$analystList[$i][2]." ".$analystList[$i][3];
                                 $analystInitial=$analystList[$i][1];
                                 echo <<< HEREDOC
                                 <option value="$analystName">$analystInitial</option>
