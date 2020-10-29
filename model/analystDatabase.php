@@ -199,11 +199,11 @@ class AnalystDatabase extends Database{
             foreach($cursor as $document){
                 foreach($document->analystAssignment as $assignedAnalyst){
                     if($assignedAnalyst == $analystFirstName." ".$analystLastName){
-                        array_push($assignedTo, [$document->associatedSystem => $totalTask[$document->associatedSystem] + 1]);
+                        //array_push($assignedTo, [$document->associatedSystem => $totalTask[$document->associatedSystem] + 1]);
                     } 
                 }
             }
-            return $assignedTo;
+            return $totalTask;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
             return "";
