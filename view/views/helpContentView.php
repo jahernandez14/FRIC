@@ -621,6 +621,49 @@
                         </ul>
                         <a id = "linuxServerInfo"></a>
                         <br>&bull;If you chose <b>Linux</b>, then follow these steps:
+                        <ul>
+                            <li>For <b>Linux</b> we are still using Apache2</li>
+                            <ol>
+                                <li>Enter the command:</li>
+                                <p style="text-align: center">
+                                    <samp>
+                                        sudo apt update
+                                    </samp>
+                                </p>
+                                <li>Then, enter</li>
+                                <p style="text-align: center">
+                                    <samp>
+                                        sudo apt install apache2
+                                    </samp>
+                                </p>
+                                <li>Followed by</li>
+                                <p style="text-align: center">
+                                    <samp>
+                                        sudo service apache2 start
+                                    </samp>
+                                </p>
+                                <li>You can now go into a browser and type
+                                <p style="text-align: center">
+                                    <samp>
+                                        localhost
+                                    </samp>
+                                </p>
+                                and see apache's info page.</li>
+                                <li>open a terminal and type:</li>
+                                <p style="text-align: center">
+                                    <samp>
+                                        cd /etc/apache2/sites-available/
+                                    </samp>
+                                </p>
+                                <li>We now have to change the index file on which apache loads to, and we do this by changing the line
+                                <p style="text-align: center">
+                                    <samp>
+                                        DocumentRoot
+                                    </samp>
+                                </p>
+                                In the file <em>default.ssl.conf</em> (use sudo nano or sudo gedit to be able to open the file with write permission)
+                            </ol>
+                        </ul>
                     </ul>
 
                     <!--Section Break Line-->

@@ -14,15 +14,14 @@ class Database{
         }
     }
 
-    /*public function checkDatabaseForSameID($id, $collection){
-        $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+    /*public function checkDatabaseForSameName($name){
+        $query  = new MongoDB\Driver\Query(['eventName' => $name], []);
         $cursor = $this->manager->executeQuery($collection, $query);
         if(count($cursor->toArray()) == 0){
-            $id = $id . " - Copy";
-            return $this->checkDatabaseForSameID($id, $collection);
+            return $name;
         }
-        echo "Event ID already exist in database ";
-        return ;
+        $name = $name . " - Copy";
+        return $this->checkDatabaseForSameID($name, $collection);
     }*/
 
     public function insertDocument($dbEntry, $collection){

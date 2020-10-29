@@ -24,7 +24,7 @@ class table
     */
     private static $tableTypes = array(
         "Event Overview Table" => array("newLink" => "../views/eventContentView.php", "delLink" => "../views/archiveContentView.php", "F" => 1, "C" => 1, "R" => 0, 0 => "Event Name", 1 => "No. of Systems", 2 => "No. of Findings", 3 => "Progress"),
-        "System Overview Table" => array("newLink" => "../views/systemContentView.php", "delLink" => "../views/archiveContentView.php", "F" => 1, "C" => 1, "R" => 0, 0 => "System", 1 => "No. of Systems", 2 => "No. of Findings", 3 => "Progress"),
+        "System Overview Table" => array("newLink" => "../views/systemContentView.php", "delLink" => "../views/archiveContentView.php", "F" => 1, "C" => 1, "R" => 0, 0 => "System", 1 => "No. of Tasks", 2 => "No. of Findings", 3 => "Progress"),
         "Task Overview" => array("newLink" => "../views/taskContentView.php", "delLink" => "../views/archiveContentView.php", "F" => 1, "C" => 1, "R" => 0, 0 => "Title", 1 => "System", 2 => "Analyst", 3 => "Priority", 4 => "Progress", 5 => "No. of Subtasks", 6 => "No. of Findings", 7 => "Due Date"),
         "Subtask Overview" => array("newLink" => "../views/subtaskContentView.php", "delLink" => "../views/archiveContentView.php", "F" => 1, "C" => 1, "R" => 0, 0 => "Title", 1 => "Task", 2 => "Analyst", 3 => "Progress", 4 => "No. of Findings", 5 => "Due Date"),
         "Findings Overview" => array("newLink" => "../views/findingsContentView.php", "delLink" => "../views/archiveContentView.php", "F" => 1, "C" => 1, "R" => 0, 0 => "ID", 1 => "Title", 2 => "System", 3 => "Task", 4 => "Subtask", 5 => "Analyst", 6 => "Status", 7 => "Classification", 8 => "Type", 9 => "Risk"),

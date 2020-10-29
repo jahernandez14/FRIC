@@ -17,7 +17,7 @@
                     include '/xampp/htdocs/FRIC/controller/eventController.php';
 
                     if($_SERVER['QUERY_STRING'] == "postnew") {
-                        createEvent($_POST["eventName"], $_POST["eventDescription"], $_POST["eventType"], $_POST["eventVersion"], $_POST["assessmentDate"], $_POST["organizationName"], $_POST["securityClassification"], $_POST["eventClassification"], $_POST["declassificationDate"], $_POST["customerName"], "n", array(""), $_POST["derivedFrom"], 0, 0, "In Progress");
+                        createEvent($_POST["eventName"], $_POST["eventDescription"], $_POST["eventType"], $_POST["eventVersion"], $_POST["assessmentDate"], $_POST["organizationName"], $_POST["securityClassification"], $_POST["eventClassification"], $_POST["declassificationDate"], $_POST["customerName"], FALSE, array(""), $_POST["derivedFrom"], 0, 0, "In Progress");
                     }
 
                     if($_SERVER['QUERY_STRING'] == "postedit") {
