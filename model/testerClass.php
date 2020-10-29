@@ -24,16 +24,16 @@ class testerClass{
 
     public function testSystems(){
         $systemDB  = new SystemDatabase();
+        $s1        = new Systeme($systemDB, "System 1", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
         $s1        = new Systeme($systemDB, "System 2", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
         $s1        = new Systeme($systemDB, "System 3", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
-        $s1        = new Systeme($systemDB, "System 4", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
     }
 
     public function testTasks(){
         $taskDB    = new TaskDatabase();
-        $t1        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Wim Bonks" , "Julio Hernandez"], [], false, 10, 10);
+        $t1        = new Task($taskDB, "Task 1", "System 3", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Wim Bonks" , "Julio Hernandez"], [], false, 10, 10);
         $t2        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
-        $t3        = new Task($taskDB, "Task 1", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Tim Honks", "Julio Hernandez"], [], false, 10, 10);
+        $t3        = new Task($taskDB, "Task 1", "System 2", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Tim Honks", "Julio Hernandez"], [], false, 10, 10);
         $t2        = new Task($taskDB, "Task 2", "System 1", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
         $t3        = new Task($taskDB, "Task 3", "System 3", "This is test description", "High", "in progress", "11/01/2020", "Need to test this attribute", [], ["Jebel Macias", "Julio Hernandez"], [], false, 10, 10);
         

@@ -31,7 +31,7 @@ class TaskDatabase extends Database{
             foreach($cursor as $document){
                 $row = array();
                 if($document->archiveStatus != true){
-                    array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment, $document->taskPriority, 
+                    array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment[0], $document->taskPriority, 
                                $document->taskProgress, $document->numberOfSubtasks, $document->numberOfFindings, $document->taskDueDate);
                     array_push($table, $row);
                 }
