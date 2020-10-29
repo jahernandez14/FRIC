@@ -115,7 +115,7 @@ class AnalystDatabase extends Database{
                 $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
                 foreach($cursor as $document){
                     $row = array();
-                    array_push($row, $document->taskTitle, $document->associatedTask, $firstName." ".$lastName, 
+                    array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $firstName." ".$lastName, 
                     $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
                     array_push($table, $row);
                 }
