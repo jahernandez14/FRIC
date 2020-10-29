@@ -1,21 +1,8 @@
 <?php
+require_once('task.php');
+
 class Subtask extends Task {
-    private $associatedTask;
-    private $associationToSubtask;
-
     public function __construct($db, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfFindings){
-        $this->taskTitle              = $taskTitle;
-        $this->associatedTask         = $associatedTask;
-        $this->taskDescription        = $taskDescription;
-        $this->taskProgress           = $taskProgress;
-        $this->taskDueDate            = $taskDueDate;
-        $this->attachment             = $attachment;
-        $this->associationToSubtask   = $associationToSubtask;
-        $this->analystAssignment      = $analystAssignment;
-        $this->collaboratorAssignment = $collaboratorAssignment;
-        $this->archiveStatus          = $archiveStatus;
-        $this->numberOfFindings       = $numberOfFindings;
-
         $dbEntry = [
             '_id'                    => (string) new MongoDB\BSON\ObjectId(),
             'taskTitle'              => $taskTitle,
@@ -27,7 +14,7 @@ class Subtask extends Task {
             'associationToSubtask'   => $associationToSubtask,
             'analystAssignment'      => $analystAssignment,
             'collaboratorAssignment' => $collaboratorAssignment,
-            'archiveStatus'          => $archiveStatus,
+            'archiveStatus'          => false,
             'numberOfFindings'       => $numberOfFindings
         ];
 

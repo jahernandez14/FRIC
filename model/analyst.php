@@ -1,20 +1,6 @@
 <?php
 class Analyst {
-    private $firstName;
-    private $lastName;
-    private $initial;
-    private $ipAddress;
-    private $title;
-    private $role;
-
     public function __construct($db, $firstName, $lastName, $initial, $ipAddress, $title, $role){
-        $this->firstName = $firstName;
-        $this->lastName  = $lastName;
-        $this->initial   = $initial;
-        $this->ipAddress = $ipAddress;
-        $this->title     = $title;
-        $this->role      = $role;
-
         $dbEntry = [
             '_id'       => (string) new MongoDB\BSON\ObjectId(),   
             'firstName' => $firstName,
