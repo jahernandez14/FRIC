@@ -50,7 +50,8 @@ class SubtaskDatabase extends Database{
             $object = array(); 
             foreach($cursor as $document){
                 array_push($object, $document->_id, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, 
-                           $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus);
+                           $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->numberOfFindings,
+                           $document->archiveStatus);
             }
             return $object;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
@@ -61,7 +62,7 @@ class SubtaskDatabase extends Database{
 
     public function editSubtaskDocument($id, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus){
         $dbEntry = ['$set'=>
-            ['taskTitle'             => $taskTitle,
+            ['taskTitle'              => $taskTitle,
             'associatedTask'         => $associatedTask,
             'taskDescription'        => $taskDescription,    
             'taskProgress'           => $taskProgress,    
@@ -70,7 +71,8 @@ class SubtaskDatabase extends Database{
             'associationToSubtask'   => $associationToSubtask,
             'analystAssignment'      => $analystAssignment,
             'collaboratorAssignment' => $collaboratorAssignment,
-            'archiveStatus'          => $archiveStatus]
+            'archiveStatus'          => $archiveStatus,
+            'numberOfFindings'       => $numberOfFindings]
         ];
 
         try{

@@ -67,7 +67,8 @@ class TaskDatabase extends Database{
             $object = array(); 
             foreach($cursor as $document){
                 array_push($object, $document->_id, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, 
-                           $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus);
+                           $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->numberOfSubtasks, 
+                           $document->numberOfFindings, $document->taskDueDate, $document->archiveStatus);
             }
             return $object;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
@@ -76,9 +77,11 @@ class TaskDatabase extends Database{
         }
     }
 
-    public function editTaskDocument($id, $taskTitle, $associatedSystem, $taskDescription, $taskPriority, $taskProgress, $taskDueDate, $attachment, $associationToTask, $analystAssignment, $collaboratorAssignment, $archiveStatus){
+    public function editTaskDocument($id, $taskTitle, $associatedSystem, $taskDescription, $taskPriority, $taskProgress, $taskDueDate, $attachment, $associationToTask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfSubtasks, $numberOfFindings){
+        $attachment = ['fileName' => $attachment, 'fileData' => new MongoDB\BSON\Binary(file_get_contents($attachment), 0)];
+        
         $dbEntry = ['$set'=>
-            ['taskTitle'             => $taskTitle,
+            ['taskTitle'              => $taskTitle,
             'associatedSystem'       => $associatedSystem,
             'taskDescription'        => $taskDescription,    
             'taskPriority'           => $taskPriority,    
@@ -88,7 +91,9 @@ class TaskDatabase extends Database{
             'associationToTask'      => $associationToTask,
             'analystAssignment'      => $analystAssignment,
             'collaboratorAssignment' => $collaboratorAssignment,
-            'archiveStatus'          => $archiveStatus]
+            'archiveStatus'          => $archiveStatus,
+            'numberOfSubtasks'       => $numberOfSubtasks,
+            'numberOfFindings'       => $numberOfFindings]
         ];
 
         try{
