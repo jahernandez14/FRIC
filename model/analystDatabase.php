@@ -1,6 +1,6 @@
 <?php
 include ("analyst.php");
-require_once('database.php');
+require_once ('database.php');
 
 class AnalystDatabase extends Database{
     public function getAllAnalystNames(){
@@ -117,6 +117,7 @@ class AnalystDatabase extends Database{
                     $row = array();
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
                     $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
+                    array_push($table, $row);
                 }
             }
 
@@ -138,6 +139,29 @@ class AnalystDatabase extends Database{
                 foreach($cursor as $document){
                     $row = array();
                     array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $document->analystAssignment, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
+                    array_push($table, $row);
+                }
+            }
+
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return "";
+        }
+    }
+
+    public function getAllProgressForSystem($firstName, $lastName){
+        try{
+            $associatedSystems = $this->searchForTaskAssociations('FRIC_Database.Task', $firstName, $lastName);
+            $table = array();
+
+            foreach($associatedSystems as $sysName){
+                $query  = new MongoDB\Driver\Query(['systemName' => $sysName], []);
+                $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
+                foreach($cursor as $document){
+                    $row = array();
+                    array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $document->analystAssignment, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
+                    array_push($table, $row);
                 }
             }
 
@@ -153,11 +177,29 @@ class AnalystDatabase extends Database{
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery($collection, $query);
             $assignedTo = array();
-            echo $analystFirstName." ".$analystLastName;
             foreach($cursor as $document){
                 foreach($document->analystAssignment as $assignedAnalyst){
                     if($assignedAnalyst == $analystFirstName." ".$analystLastName){
                         array_push($assignedTo, $document->_id);
+                    } 
+                }
+            }
+            return $assignedTo;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return "";
+        }
+    }
+
+    private function searchForTaskAssociations($analystFirstName, $analystLastName){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);
+            $totalTask = array();
+            foreach($cursor as $document){
+                foreach($document->analystAssignment as $assignedAnalyst){
+                    if($assignedAnalyst == $analystFirstName." ".$analystLastName){
+                        array_push($assignedTo, [$document->associatedSystem => 0]);
                     } 
                 }
             }
