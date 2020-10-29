@@ -13,20 +13,49 @@
             </div>
             <div class="col-10">
                 <h2 class="text-center"><strong>Analyst Progress Summary</strong></h2>
+                Select Analyst Initials:
+                <form method="post" action="analystProgressSummaryContentView.php">
+                        <?php 
+                            require_once('/xampp/htdocs/FRIC/controller/analystController.php');
+                            $placeholder = "No Analyst have been added to FRIC";
+                            $analystList = analystNames();
+                            echo <<< HEREDOC
+                            <select name="analystName" class="form-control" id="analystName">
+                            HEREDOC;
+                            for($i=0; i<sizeof($analystList); $i++) {
+                                $analystName=$analystList[$i][2].$analystList[$i][3];
+                                $analystInitial=$analystList[$i][1];
+                                echo <<< HEREDOC
+                                <option value="$analystName">$analystInitial</option>
+                                HEREDOC;
+                            }
+                            echo "</select>"
+                        ?>
+                        <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
+                    
+                </form>
                 <?php
                     include '../templates/table.php';
                     require_once('../../controller/analystController.php');
 
-                    $findingTable = table::tableByType("Findings Overview", analystFindingSummary("Julio", "Hernandez"));
+                    $analystFirstName = "Julio";
+                    $analystLastName = "Hernandez";
+
+                    if (array_key_exists ("analystName", $_POST)){
+                        $analystFirstName = explode(" ", $_POST["analystName"])[0];
+                        $analystLastName = explode(" ", $_POST["analystName"])[1];
+                    }
+
+                    $findingTable = table::tableByType("Findings Overview", analystFindingSummary($analystFirstName, $analystLastName));
                     $findingTable->printTable();
 
-                    $taskTable = table::tableByType("Task Overview", analystTaskSummary("Julio", "Hernandez"));
+                    $taskTable = table::tableByType("Task Overview", analystTaskSummary($analystFirstName, $analystLastName));
                     $taskTable->printTable();
 
-                    $subTaskTable = table::tableByType("Subtask Overview", analystSubTaskSummary("Julio", "Hernandez"));
+                    $subTaskTable = table::tableByType("Subtask Overview", analystSubTaskSummary($analystFirstName, $analystLastName));
                     $subTaskTable->printTable();
 
-                    $systemTable = table::tableByType("System Overview Table", analystSystemSummary("Julio", "Hernandez"));
+                    $systemTable = table::tableByType("System Overview Table", analystSystemSummary($analystFirstName, $analystLastName));
                     $systemTable->printTable();
                 ?>
             </div>
