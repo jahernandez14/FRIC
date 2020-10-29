@@ -1,12 +1,13 @@
 <?php
 class Database{
     protected $manager;
-
+    protected $bucket;
 
     public function __construct(){
         if(extension_loaded("mongodb")){
             try{
                 $this->manager  = new MongoDB\Driver\Manager("mongodb://localhost:27017");
+                //$this->bucket = (new MongoDB\Client)->test->selectGridFSBucket();
             } catch (MongoConnectionException $failedLoser){
                 echo "Error: $failedLoser";
             }
@@ -36,7 +37,8 @@ class Database{
         }
     }
 
-    protected function storeFile($file){
+    protected function storeFile($array, $file){
+        //array_push($array);
         /*$gridFS = $this->manager->selectDB('test')->getGridFS();
 
         $id = $gridFS->storeFile($file);

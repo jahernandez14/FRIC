@@ -1,6 +1,6 @@
 <?php
 include ("analyst.php");
-require_once ('database.php');
+require_once('database.php');
 
 class AnalystDatabase extends Database{
     public function getAllAnalystNames(){
@@ -26,7 +26,7 @@ class AnalystDatabase extends Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);  
             $table  = array();
             foreach($cursor as $document){
-                array_push($table, $document->initial.$document->ipAddress);
+                array_push($table, $document->initial.$document->ip);
             } 
             return $table;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
@@ -54,17 +54,21 @@ class AnalystDatabase extends Database{
     }
 
     public function editAnalyst($id, $firstName, $lastName, $initial, $ipAddress, $title, $role){
+        $dbEntry = ['$set'=>
+            ['firstName' => $firstName,
+            'lastName'   => $lastName,
+            'initial'    => $initial,
+            'ip'         => $ipAddress, 
+            'title'      => $title,
+            'role'       => $role]
+        ];
+
         try{
-            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
-            $cursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);
-            $object = array(); 
-            foreach($cursor as $document){
-                array_push($object, $document->_id, $document->firstName, $document->lastName, $document->initial, $document->ipAddress, $document->title, $document->role);
-            }
-            return $object;
+            $bulk = new MongoDB\Driver\BulkWrite;
+            $bulk->update(['_id' => $id], $dbEntry);
+            $this->manager->executeBulkWrite('FRIC_Database.Analyst', $bulk);
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
-            return array();
         }
     }
 

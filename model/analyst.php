@@ -6,7 +6,7 @@ class Analyst {
             'firstName' => $firstName,
             'lastName'  => $lastName,
             'initial'   => $initial,
-            'ip'        => $ipAddress,
+            'ip'        => $ipAddress, 
             'title'     => $title,
             'role'      => $role
         ];

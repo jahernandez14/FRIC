@@ -41,6 +41,7 @@ class testerClass{
     public function testAnalysts(){
         $analystDB = new AnalystDatabase();
         $a1        = new Analyst($analystDB,"Tim", "Honks", "TH", "123.12.111.1", "Forrest Gumpy", "Lead Role");
+        $analystDB->getAllAnalystForAssociation();
     }
 
     /*public function testStoringFile(){
@@ -49,9 +50,9 @@ class testerClass{
     }*/
 }
 
-$tester = new TesterClass();
+//$tester = new TesterClass();
 //$tester->testEvents();
-$tester->testSystems();
+//$tester->testSystems();
 //$tester->testTasks();
 //$tester->testSubtasks();
 //$tester->testFindings();
