@@ -16,7 +16,7 @@
                 <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-10">
-                <h2 class="text-center">Task Detailed View</h2>
+                <h2 class="text-center">Subtask Detailed View</h2>
                 <?php
                 $taskTitle = urldecode($_SERVER['QUERY_STRING']);
                 if($taskTitle == "createNew") {
