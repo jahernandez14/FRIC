@@ -21,7 +21,7 @@
                     }
 
                     if($_SERVER['QUERY_STRING'] == "postedit") {
-                        editEvent($_POST["eventID"], $_POST["eventName"], $_POST["eventDescription"], $_POST["eventType"], $_POST["eventVersion"], $_POST["assessmentDate"], $_POST["organizationName"], $_POST["securityClassification"], $_POST["eventClassification"], $_POST["declassificationDate"], $_POST["customerName"], "n", array(""), $_POST["derivedFrom"], $_POST["numberOfFindings"], $_POST["numberOfSystems"], $_POST["progress"]);
+                        editEvent($_POST["eventID"], $_POST["eventName"], $_POST["eventDescription"], $_POST["eventType"], $_POST["eventVersion"], $_POST["assessmentDate"], $_POST["organizationName"], $_POST["securityClassification"], $_POST["eventClassification"], $_POST["declassificationDate"], $_POST["customerName"], FALSE, array(""), $_POST["derivedFrom"], $_POST["numberOfFindings"], $_POST["numberOfSystems"], $_POST["progress"]);
                     }
 
                     $eventTable = table::tableByType("Event Overview Table", eventOverviewTable());
