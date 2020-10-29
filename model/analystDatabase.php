@@ -92,7 +92,7 @@ class AnalystDatabase extends Database{
                 $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);
                 foreach($cursor as $document){
                     $row = array();
-                    array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment, $document->taskPriority, 
+                    array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $firstName." ".$lastName, $document->taskPriority, 
                     $document->taskProgress, $document->numberOfSubtasks, $document->numberOfFindings, $document->taskDueDate);
                     array_push($table, $row);
                 }
@@ -115,7 +115,7 @@ class AnalystDatabase extends Database{
                 $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
                 foreach($cursor as $document){
                     $row = array();
-                    array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
+                    array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $firstName." ".$lastName, 
                     $document->taskProgress, $document->numberOfFindings, $document->taskDueDate);
                     array_push($table, $row);
                 }
@@ -138,7 +138,7 @@ class AnalystDatabase extends Database{
                 $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
                 foreach($cursor as $document){
                     $row = array();
-                    array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $document->analystAssignment, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
+                    array_push($row, $document->_id, $document->findingTitle, $document->associatedSystem, $document->associatedTask, $document->associatedSubtask, $firstName." ".$lastName, $document->findingStatus, $document->findingClassification, $document->findingType, $document->risk);
                     array_push($table, $row);
                 }
             }
@@ -153,6 +153,7 @@ class AnalystDatabase extends Database{
     public function getAllProgressForSystem($firstName, $lastName){
         try{
             $associatedSystems = $this->searchForTaskAssociations('FRIC_Database.Task', $firstName, $lastName);
+            print_r($associatedSystems);
             $table = array();
 
             foreach($associatedSystems as $sysName){
@@ -164,7 +165,6 @@ class AnalystDatabase extends Database{
                     array_push($table, $row);
                 }
             }
-
             return $table;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
@@ -199,7 +199,7 @@ class AnalystDatabase extends Database{
             foreach($cursor as $document){
                 foreach($document->analystAssignment as $assignedAnalyst){
                     if($assignedAnalyst == $analystFirstName." ".$analystLastName){
-                        array_push($assignedTo, [$document->associatedSystem => 0]);
+                        array_push($assignedTo, [$document->associatedSystem => $totalTask[$document->associatedSystem] + 1]);
                     } 
                 }
             }
