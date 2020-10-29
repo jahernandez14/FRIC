@@ -635,7 +635,7 @@ class Database{
 //print_r($db->getAllEvents());
 
 //$db->deleteFinding();
-//$b = new Systeme($db, "system Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3, 'inProgress', false);
+//$b = new Systeme($db, "system Name", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, false, 2, 3, 'inProgress');
 //$db->editSystemDocument("system Name", "system Gym", "This a test event description", "El Paso", "1.20.20", "On", "Room 1", "Destroy the world", 1, 2, 3, 2, 3,'inProgress');
 //print_r($db->getAllSystems());
 //print_r($db->getSystemAttributes("system Name"));

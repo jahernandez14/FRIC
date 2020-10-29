@@ -203,7 +203,7 @@
                             <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
                             <a class="btn btn-sm btn-light" role="button"
                                 style=color:black>Archive</a>
-                            <a href="../views/eventOverview.php" class="btn btn-sm btn-light" role="button"
+                            <a href="../views/systemOverview.php" class="btn btn-sm btn-light" role="button"
                                 style=color:black>Cancel</a>
                         </div>
                     </div>
