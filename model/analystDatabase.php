@@ -181,7 +181,7 @@ class AnalystDatabase extends Database{
                     array_push($table, $row);
                 }
             }
-            print_r($table);
+            // print_r($table);
             return $table;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
