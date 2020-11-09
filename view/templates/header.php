@@ -92,7 +92,7 @@
     </script>
 
 <?php
-    include 'NotificationOverlay.php';
+    include ("NotificationOverlay.php");
     include 'addEditOverlay.php';
     include 'syncOverlay.php';
 
