@@ -1,0 +1,23 @@
+Jebel
+- create misc methods to populate reports & notification
+- Create Final Report
+- sync
+
+Daniel
+- fix event contentview attribute "Derived from" the selected item should display First and Last name not ID.
+- add functionality to event team information. Have the drop downs list actual analysts. Add/remove analyst from team.
+- Complete functionality of Task, subtask, finding overview and content table.
+- fix progress tables (some of the changes you maded affected them and now have invalid arguements)
+- please let Jebel and I know when you need stuff to make any of these functions work. 
+
+William
+- Create ERB Report
+
+Julio
+- create notification timer and display information on notification
+- make notification appear and disapear
+- Create risk matrix
+- set up alternate computer within domain to test sync
+
+Team
+- well good luck guys we are gonna need it. Please communicate constantly. Hopefully we can improve upon our previous demo.
