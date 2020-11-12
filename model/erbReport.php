@@ -109,5 +109,5 @@
     */
     mkdir("ERBreport");
     $oWriterPPTX = IOFactory::createWriter($objPHPPowerPoint, 'PowerPoint2007');
-    $oWriterPPTX->save("./erbReport/ERBreport.pptx");
+    $oWriterPPTX->save("./ERBreport/ERBreport.pptx");
 ?>
