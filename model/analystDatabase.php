@@ -1,5 +1,10 @@
 <?php
 include ("analyst.php");
+include ("findingDatabase.php");
+include ("subtaskDatabase.php");
+include ("systemDatabase.php");
+include ("taskDatabase.php");
+include ("eventDatabase.php");
 require_once ('database.php');
 
 class AnalystDatabase extends Database{
@@ -114,7 +119,50 @@ class AnalystDatabase extends Database{
     }
 
     public function syncWithAnalyst($ipAddress){
-        
+        try{
+            $otherAnalystManagedr  = new MongoDB\Driver\Manager("mongodb://" . $ipAddress . ":27017");
+
+            $myDb   = new FindingDatabase(); 
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $otherAnalystManager->executeQuery('FRIC_Database.Finding', $query);
+            foreach($cursor as $document){
+                new Finding($myDb, $document->findingTitle, $document->hostName, $document->ipPort, $document->associatedTask, $document->associatedSystem, $document->associatedSubtask, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, 
+                $document->findingClassification, $document->associationToFinding, $document->evidence, $document->archiveStatus, $document->collaboratorAssignment, $document->confidentiality, $document->integrity, $document->availability, $document->analystAssignment, $document->posture, $document->briefDescription, 
+                $document->longDescription, $document->relevance, $document->effectivenessRating, $document->impactDescription, $document->impactLevel, $document->severityCatCode, $document->severityCatScore, $document->vulnerabilitySeverity, $document->quantitativeVulnerabilitySeverity, $document->risk, $document->likelihood, 
+                $document->confidentialityImpactOnSystem, $document->integrityImpactOnSystem, $document->availabilityImpactOnSystem, $document->impactScore);
+            }
+            
+            $myDb   = new TaskDatabase(); 
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $otherAnalystManager->executeQuery('FRIC_Database.Task', $query);
+            foreach($cursor as $document){   
+                new Task($myDb, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
+            }
+            
+            $myDb   = new SubtaskDatabase(); 
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $otherAnalystManager->executeQuery('FRIC_Database.Subtask', $query);
+            foreach($cursor as $document){
+                new Subtask($myDb, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfFindings);
+            }
+            
+            $myDb   = new SystemDatabase(); 
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $otherAnalystManager->executeQuery('FRIC_Database.System', $query);
+            foreach($cursor as $document){
+                new Systeme($myDb, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
+            }
+            
+            $myDb   = new EventDatabase(); 
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $otherAnalystManager->executeQuery('FRIC_Database.Event', $query);
+            foreach($cursor as $document){
+                new Event($myDb, $document->eventName, $document->eventDescription, $document->eventType, $document->eventVersion, $document->assessmentDate, $document->organizationName, $document->securityClassifcation, $document->eventClassification, $document->declassificationDate, $document->customerName, $document->archiveStatus, $document->eventTeam, $document->derivedFrom, $document->numberOfFindings, $document->numberOfSystems, $document->progress);
+            }
+
+        } catch (MongoConnectionException $failedLoser){
+            echo "Error: $failedLoser";
+        }
     }
 
     public function getAllProgressForTask($firstName, $lastName){
