@@ -59,13 +59,12 @@
                                     $i =0;
                                     while($i < count($analystList)){
                                         if(array_search($_POST['initials'], $analystList[$i])){
-                                            $key = array_search($_POST['initials'], $analystList[$i]);
+                                            $key = $i;
                                         }
                                         $i++;
                                     }
                                     update(1, $_POST['initials'], $_POST['userIP'],$analystList[$key][2],$analystList[$key][3]);
-                                    //echo '<meta http-equiv="refresh" content="0; URL= eventOverview.php"/>';
-                                    echo $_SESSION['fName'] . " " . $_SESSION['lName'];
+                                    echo '<meta http-equiv="refresh" content="0; URL= eventOverview.php"/>';
                                 }
                             ?>
             </div>
