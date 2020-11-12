@@ -20,7 +20,7 @@
         logEntry($taskTitle . " Subtask Created");
     }
 
-    function editSubTask($id, $db, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfFindings){
+    function editSubTask($id, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfFindings){
         $db = new SubTaskDatabase();
         $db->editSubTaskDocument($id, $db, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfFindings);
         logEntry($taskTitle . "Subtask Edited");
