@@ -35,16 +35,47 @@ class AnalystDatabase extends Database{
         }
     }
 
+    public function getAllNonLeadAnalyst(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if(strtolower($document->role) != "lead"){
+                    array_push($table, $document->firstName." ".$document->lastName);
+                }
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
+    public function getAllLeadAnalyst(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if(strtolower($document->role) == "lead"){
+                    array_push($table, $document->firstName." ".$document->lastName);
+                }
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     public function getAnalystName($id){
         try{
             $query  = new MongoDB\Driver\Query(['_id' => $id], []);
             $cursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);
             $firstLastName = "";
             foreach($cursor as $document){
-                $firstLastName .= $document->firstName;
-                $firstLastName .= " ";
-                $firstLastName .= $document->lastName;
-
+                $firstLastName .= $document->firstName." ".$document->lastName;
             }
             return $firstLastName;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {

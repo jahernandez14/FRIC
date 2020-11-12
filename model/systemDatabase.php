@@ -75,6 +75,23 @@ class SystemDatabase extends Database{
         }
     }
 
+    public function getAllSystemTitles(){
+        try{
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
+            $object = array(); 
+            foreach($cursor as $document){
+                array_push($object, $document->_id, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, 
+                           $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks,
+                           $document->numberOfFindings, $document->progress);
+            }
+            return $object;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array();
+        }
+    }
+
     public function editSystemDocument($id, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $archiveStatus, $numberOfTasks, $numberOfFindings, $progress){
         $dbEntry = ['$set'=>
             ['systemName'       => $systemName,

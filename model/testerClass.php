@@ -52,9 +52,9 @@ class testerClass{
 
     public function testFindings(){
         $findingDB = new FindingDatabase();
-        $f1        = new Finding($findingDB,"Finding 1", "Billy Nye", "80", "Task 1", "", "", "This is a test description", "This is a test long description", "Open", "Creds", "Information", [], "Im testing this attribute", false, [], "low", "low", "high", ["Will Lemon", "JJ"], "Nearsider", "This is a test brief description", "This is a test long description", "Confirmed", "Very High", "This is a test impact description", "VH", "I", "We need to calculate SC", "We need to calculate VS", "We need to calculate QVS", "We need to calculate risk", "We need to calculate likelihood", "We need to calculate c impact on system", "We need to calculate i impact on system", "We need to calculate a impact on system", "We need to calculate impact score");
-        $f2        = new Finding($findingDB,"Finding 2", "Xerxes", "80", "Task 1", "", "", "This is a test description", "This is a test long description", "Open", "Creds", "Information", [], "Im testing this attribute", false, [], "low", "low", "high", ["Will Lemon","Julio Hernandez"], "Nearsider", "This is a test brief description", "This is a test long description", "Confirmed", "Very High", "This is a test impact description", "VH", "I", "We need to calculate SC", "We need to calculate VS", "We need to calculate QVS", "We need to calculate risk", "We need to calculate likelihood", "We need to calculate c impact on system", "We need to calculate i impact on system", "We need to calculate a impact on system", "We need to calculate impact score");
-        $f3        = new Finding($findingDB,"Finding 3", "Dan Bilzerian", "80", "Task 1", "", "", "This is a test description", "This is a test long description", "Open", "Creds", "Information", [], "Im testing this attribute", false, [], "low", "low", "high", ["Will Lemon", "Julio Hernandez"], "Nearsider", "This is a test brief description", "This is a test long description", "Confirmed", "Very High", "This is a test impact description", "VH", "I", "We need to calculate SC", "We need to calculate VS", "We need to calculate QVS", "We need to calculate risk", "We need to calculate likelihood", "We need to calculate c impact on system", "We need to calculate i impact on system", "We need to calculate a impact on system", "We need to calculate impact score");
+        $f1        = new Finding($findingDB,"Finding 1", "Host1", "127.19.12.2:80", "Task 1", "", "", "This is a test description", "This is a test long description", "Open", "Creds", "Information", [], "Im testing this attribute", false, [], "low", "low", "high", ["Will Lemon", "JJ"], "Nearsider", "This is a test brief description", "This is a test long description", "Confirmed", "VH", "This is a test impact description", "VH", "I", 4, "40.0", "M", "M", "VH", "Y", "Y", "Y", "4");
+        $f2        = new Finding($findingDB,"Finding 2", "Host2", "127.19.12.2:80", "Task 1", "", "", "This is a test description", "This is a test long description", "Closed", "Creds", "Information", [], "Im testing this attribute", false, [], "low", "low", "high", ["Will Lemon", "JJ"], "Outsider", "This is a test brief description", "This is a test long description", "Confirmed", "L", "This is a test impact description", "VH", "II", 7, "40.0", "M", "M", "VH", "Y", "Y", "Y", "4");
+        $f3        = new Finding($findingDB,"Finding 3", "Host3", "127.19.12.2:80", "Task 1", "", "", "This is a test description", "This is a test long description", "Open", "Creds", "Information", [], "Im testing this attribute", false, [], "low", "low", "high", ["Will Lemon", "JJ"], "Nearsider", "This is a test brief description", "This is a test long description", "Confirmed", "VL", "This is a test impact description", "M", "I", 4, "40.0", "M", "L", "VH", "Y", "Y", "Y", "4");
         
         $analystDB = new AnalystDatabase();
     }
@@ -80,11 +80,11 @@ class testerClass{
 <?php
 $tester = new TesterClass();
 
-// $tester->testSystems();
-// $tester->testTasks();
-// $tester->testSubtasks();
-// $tester->testFindings();
-// $tester->testAnalysts();
-// $tester->testEvents();
+//$tester->testSystems();
+//$tester->testTasks();
+//$tester->testSubtasks();
+//$tester->testFindings();
+//$tester->testAnalysts();
+//$tester->testEvents();
 //$tester->testStoringFile();
 ?>

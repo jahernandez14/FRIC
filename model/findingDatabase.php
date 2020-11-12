@@ -60,6 +60,35 @@ class FindingDatabase extends Database{
         }
     }
 
+    public function getFindingsForRiskMatrix($ids){
+        //NotDone
+    }
+
+    public function getFindingsForERBReport($ids){
+        //Not Done
+    }
+
+    public function getFindingsForFinalReport($ids){
+        try{
+            $allFindings = array();
+            foreach($ids as $id){
+                $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+                $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
+                $object = array(); 
+                foreach($cursor as $document){
+                    array_push($object, $document->_id, $document->findingDescription, $document->likelihood, $document->impactLevel, $document->risk, $document->findingTitle, $document->hostName, $document->ipPort, $document->impactScore, 
+                    $document->severityCatScore, $document->vulnerabilitySeverity, $document->quantitativeVulnerabilitySeverity, $document->findingStatus, $document->posture, $document->confidentialityImpactOnSystem,$document->integrityImpactOnSystem,
+                    $document->availabilityImpactOnSystem, $document->impactDescription, $document->findingType, $document->findingClassification, $document->longDescription, $document->effectivenessRating, $document->associatedSystem, $document->severityCatCode);
+                } 
+                array_push($allFindings, $object);
+            }
+            return $allFindings;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array();
+        }
+    }
+
     public function getFindingAttributes($id){
         try{
             $query  = new MongoDB\Driver\Query(['_id' => $id], []);

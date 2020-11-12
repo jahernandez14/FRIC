@@ -40,6 +40,24 @@ class EventDatabase extends Database{
         }
     }
 
+    /*  Returns a 2d array of all attributes required for a Event table */
+    public function getEventForFinalReport(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Event', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if($document->archiveStatus != true){
+                    array_push($table, $document->eventType, $document->declassificationDate, $document->securityClassifcation);
+                    return $table;
+                }
+            } 
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     /* Returns an array of all the required attributes of a system for detailed view.*/ 
     public function getEventAttributes($id){
         try{

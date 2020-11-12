@@ -1,7 +1,7 @@
 <?php
 class Finding {
     public function __construct($db, $findingTitle, $hostName, $ipPort, $associatedTask, $associatedSystem, $associatedSubtask, $findingDescription, $findingLongDescription, $findingStatus, $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, $collaboratorAssignment,
-    $confidentiality, $integrity, $availability, $analystAssignment, $posture, $briefDescription, $longDescription, $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatScore, $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,
+    $confidentiality, $integrity, $availability, $analystAssignment, $posture, $briefDescription, $longDescription, $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatCode, $severityCatScore, $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,
     $risk, $likelihood, $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, $impactScore){
         $dbEntry = [
             '_id'                               => (string) new MongoDB\BSON\ObjectId(),
@@ -30,6 +30,7 @@ class Finding {
             'effectivenessRating'               => $effectivenessRating,
             'impactDescription'                 => $impactDescription,
             'impactLevel'                       => $impactLevel,
+            'severityCatCode'                   => $severityCatCode,
             'severityCatScore'                  => $severityCatScore,
             'vulnerabilitySeverity'             => $vulnerabilitySeverity,
             'quantitativeVulnerabilitySeverity' => $quantitativeVulnerabilitySeverity,
