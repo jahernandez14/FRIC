@@ -10,10 +10,7 @@
     use PhpOffice\PhpPresentation\Style\Alignment;
 
     function createERB($findingArray){
-        
-
-    }
-    //Colors used
+            //Colors used
     $colorBlack = new Color('FF000000');
     $colorDGray = new Color('FF090909');
     
@@ -82,8 +79,11 @@
                         ->setSize(12)
                         ->setColor( $colorBlack );
     */
+
     $oWriterPPTX = IOFactory::createWriter($objPHPPowerPoint, 'PowerPoint2007');
     $oWriterPPTX->save("../../model/ERBreport/ERBreport.pptx");
+
+    }
 
     function addText($slide, $w, $h, $xOffset, $yOffset, $alignment, $text, $bold, $fontName, $fontSize, $fontColor){
         $textBox = $slide->createRichTextShape()
