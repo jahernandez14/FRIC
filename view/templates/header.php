@@ -71,26 +71,28 @@
                 $flag = FALSE;
                 include_once('../../controller/taskController.php');
                 include_once('../../controller/subtaskController.php');
-                $subTaskList = readUpcomingSubTasks($_SESSION['fName'], $_SESSION['lName']);
-                $taskList = readUpcomingTasks($_SESSION['fName'], $_SESSION['lName']);
-                $i = 0;
-                while($i < count($taskList)){
-                    if(new DateTime($taskList[$i][2]) > new DateTime()){
-                        $flag = TRUE;
-                        break;
+                if(isset($_SESSION['fName'])){
+                    $subTaskList = readUpcomingSubTasks($_SESSION['fName'], $_SESSION['lName']);
+                    $taskList = readUpcomingTasks($_SESSION['fName'], $_SESSION['lName']);
+                    $i = 0;
+                    while($i < count($taskList)){
+                        if(new DateTime($taskList[$i][2]) > new DateTime()){
+                            $flag = TRUE;
+                            break;
+                        }
+                        $i++;
                     }
-                    $i++;
-                }
-                $i = 0;
-                while($i < count($subTaskList)){
-                    if(new DateTime($subTaskList[$i][2]) > new DateTime()){
-                        $flag = TRUE;
-                        break;
+                    $i = 0;
+                    while($i < count($subTaskList)){
+                        if(new DateTime($subTaskList[$i][2]) > new DateTime()){
+                            $flag = TRUE;
+                            break;
+                        }
+                        $i++;
                     }
-                    $i++;
-                }
-                if($flag){
-                    echo '<input type="submit" name="notification" class ="btn btn-warning font-weight-bold" value = "!">';
+                    if($flag){
+                        echo '<input type="submit" name="notification" class ="btn btn-warning font-weight-bold" value = "!">';
+                    }
                 }
             ?>
         </form>
