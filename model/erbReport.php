@@ -1,7 +1,7 @@
 <?php
     /*The number of slides will depend on the number of findings(n) + findings overall slide(m) + histogram slide + scope slide + title slide = 3 + n + m*/
     // with Composer
-     require_once '../vendor/autoload.php';
+     require_once '../../vendor/autoload.php';
 
     use PhpOffice\PhpPresentation\PhpPresentation;
     use PhpOffice\PhpPresentation\IOFactory;
@@ -81,9 +81,9 @@
     addText($currentSlide, 780, 30, 33, 682, $alignLeft, date("d m Y"), false, $mainFont, 8, $colorBlack);
 
     //Adding all images in first slide
-    addImage($currentSlide, '../view/images/army2.png', 'ARMY logo', 0, 170, 50, 50);
-    addImage($currentSlide, '../view/images/cead2.png', 'CEAD logo', 0, 120, 210, 60);
-    addImage($currentSlide, '../view/images/devcom.png', 'DEVCOM logo', 0, 105, 585, 60);
+    addImage($currentSlide, '../../view/images/army2.png', 'ARMY logo', 0, 170, 50, 50);
+    addImage($currentSlide, '../../view/images/cead2.png', 'CEAD logo', 0, 120, 210, 60);
+    addImage($currentSlide, '../../view/images/devcom.png', 'DEVCOM logo', 0, 105, 585, 60);
 
    
     //Add a new slide to the presentation
@@ -94,9 +94,9 @@
     addDisclaimer($slide2, $alignCenter, $mainFont, $colorDGray);
 
     //Add small images
-    addImage($slide2, '../view/images/army2.png', 'ARMY logo', 0, 85, 30, 30);
-    addImage($slide2, '../view/images/cead2.png', 'CEAD logo', 0, 60, 120, 34);
-    addImage($slide2, '../view/images/devcom.png', 'DEVCOM logo', 0, 53, 768, 30);
+    addImage($slide2, '../../view/images/army2.png', 'ARMY logo', 0, 85, 30, 30);
+    addImage($slide2, '../../view/images/cead2.png', 'CEAD logo', 0, 60, 120, 34);
+    addImage($slide2, '../../view/images/devcom.png', 'DEVCOM logo', 0, 53, 768, 30);
     
 
     /*$shape1 = $currentSlide1->createRichTextShape()
