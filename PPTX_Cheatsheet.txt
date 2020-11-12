@@ -1,0 +1,12 @@
+Change font style
+    $textRun->getFont()->setName('Times New Roman');
+
+Change font color
+    $textRun->getFont()->setColor('[hex num]');
+
+Offset for text
+    Where in the slide it starts (in pixels)
+    Upper left corner is (0,0)
+    upper right corner is (960,0)
+    lower left corner is ()
+    Lower right corner is (960, 720)
