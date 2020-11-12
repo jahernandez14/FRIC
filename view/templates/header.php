@@ -61,7 +61,9 @@
         </div>
         <?php
             include_once("../views/config.php");
-                echo $_SESSION["initials"] . " " . $_SESSION["ip"];
+                if(isset($_SESSION["initials"])){
+                    echo $_SESSION["initials"] . " " . $_SESSION["ip"];
+                }
         ?>
         &nbsp;
         <form method="post">
