@@ -62,7 +62,7 @@
                         $analystLastName = explode(" ", $_POST["analystName"])[1];
                     }
 
-                    $findingTable = table::tableByType("Findings Overview", analystFindingSummary($analystFirstName, $analystLastName));
+                    $findingTable = @table::tableByType("Findings Overview", analystFindingSummary($analystFirstName, $analystLastName));
                     $findingTable->printTable();
 
                     $taskTable = table::tableByType("Task Overview", analystTaskSummary($analystFirstName, $analystLastName));
