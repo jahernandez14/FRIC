@@ -64,6 +64,14 @@ class FindingDatabase extends Database{
         //NotDone
     }
 
+    /*I need
+    1. ID
+    2. Associated System
+    3. Finding title
+    4. Impact
+    5. Risk
+    6. Name of all systems in the scope
+    */
     public function getFindingsForERBReport($ids){
         //Not Done
     }
