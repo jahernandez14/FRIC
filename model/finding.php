@@ -16,6 +16,7 @@ class Finding {
             'findingStatus'                     => $findingStatus,
             'findingType'                       => $findingType,
             'findingClassification'             => $findingClassification,
+            'associationToFinding'              => $associationToFinding,
             'evidence'                          => $evidence,
             'archiveStatus'                     => false,
             'collaboratorAssignment'            => $collaboratorAssignment,
