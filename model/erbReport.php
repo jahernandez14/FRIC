@@ -69,16 +69,6 @@
         addImage($slide2, '../../view/images/army2.png', 'ARMY logo', 0, 85, 30, 30);
         addImage($slide2, '../../view/images/cead2.png', 'CEAD logo', 0, 60, 120, 34);
         addImage($slide2, '../../view/images/devcom.png', 'DEVCOM logo', 0, 53, 768, 30);
-        
-
-        /*$shape1 = $currentSlide1->createRichTextShape()
-                                ->setWidth(50);
-        $shape1->getActiveParagraph()->getAlignment()->setHorizontal( Alignment::HORIZONTAL_LEFT );
-        $textRun1 = $shape1->createTextRun('Thank you for using PHPPresentation!');
-        $textRun1->getFont()->setBold(true)
-                            ->setSize(12)
-                            ->setColor( $colorBlack );
-        */
 
         $oWriterPPTX = IOFactory::createWriter($objPHPPowerPoint, 'PowerPoint2007');
         $oWriterPPTX->save("../../model/ERBreport/ERBreport.pptx");
