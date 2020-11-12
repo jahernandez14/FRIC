@@ -1,7 +1,7 @@
 Jebel
-- create misc methods to populate reports & notification
-- Create Final Report
-- sync
+- create misc methods to populate reports(needs popualte for risk and erb) & notification(complete)
+- Create Final Report(Complete)
+- sync(Complete)
 
 Daniel
 - fix event contentview attribute "Derived from" the selected item should display First and Last name not ID. ###COMPLETE
