@@ -1,5 +1,5 @@
 <?php
-include ("task.php");
+require_once ("task.php");
 require_once ('database.php');
 
 class TaskDatabase extends Database{

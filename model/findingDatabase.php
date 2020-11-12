@@ -1,5 +1,5 @@
 <?php
-include ("finding.php");
+require_once ("finding.php");
 require_once ('database.php');
 
 class FindingDatabase extends Database{

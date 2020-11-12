@@ -1,5 +1,5 @@
 <?php
-include ("systeme.php");
+require_once ("systeme.php");
 require_once ('database.php');
 
 class SystemDatabase extends Database{

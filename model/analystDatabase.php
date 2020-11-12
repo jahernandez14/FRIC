@@ -1,10 +1,10 @@
 <?php
-include ("analyst.php");
-include ("findingDatabase.php");
-include ("subtaskDatabase.php");
-include ("systemDatabase.php");
-include ("taskDatabase.php");
-include ("eventDatabase.php");
+require_once ("analyst.php");
+require_once ("findingDatabase.php");
+require_once ("subtaskDatabase.php");
+require_once ("systemDatabase.php");
+require_once ("taskDatabase.php");
+require_once ("eventDatabase.php");
 require_once ('database.php');
 
 class AnalystDatabase extends Database{

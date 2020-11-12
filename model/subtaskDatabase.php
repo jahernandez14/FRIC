@@ -1,5 +1,5 @@
 <?php
-include ("subtask.php");
+require_once ("subtask.php");
 require_once ('database.php');
 
 class SubtaskDatabase extends Database{    

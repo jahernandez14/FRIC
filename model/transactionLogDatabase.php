@@ -1,5 +1,5 @@
 <?php
-include ("transactionlog.php");
+require_once ("transactionlog.php");
 require_once ('database.php');
 
 class TransactionLogDatabase extends Database{
