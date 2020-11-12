@@ -160,8 +160,18 @@ class AnalystDatabase extends Database{
                 new Event($myDb, $document->eventName, $document->eventDescription, $document->eventType, $document->eventVersion, $document->assessmentDate, $document->organizationName, $document->securityClassifcation, $document->eventClassification, $document->declassificationDate, $document->customerName, $document->archiveStatus, $document->eventTeam, $document->derivedFrom, $document->numberOfFindings, $document->numberOfSystems, $document->progress);
             }
 
-        } catch (MongoConnectionException $failedLoser){
-            echo "Error: $failedLoser";
+            echo <<< SCRIPT
+                <script>
+                    alert("Sync Complete");
+                </script>
+            SCRIPT;                            
+
+        } catch (Exception $failedLoser){
+            echo <<< SCRIPT
+                <script>
+                    alert("Sync Failed");
+                </script>
+            SCRIPT;
         }
     }
 
