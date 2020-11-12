@@ -132,7 +132,6 @@ class AnalystDatabase extends Database{
                 foreach($myCursor as $myDocument){
                     if($myDocument->findingTitle == $document->findingTitle){
                         $checkIfSameName = true;
-                        break;
                     }
                 }
                 if($checkIfSameName == false){
@@ -152,7 +151,6 @@ class AnalystDatabase extends Database{
                 foreach($myCursor as $myDocument){
                     if($myDocument->taskTitle == $document->taskTitle){
                         $checkIfSameName = true;
-                        break;
                     }
                 }
                 if($checkIfSameName == false){
@@ -169,7 +167,6 @@ class AnalystDatabase extends Database{
                 foreach($myCursor as $myDocument){
                     if($myDocument->taskTitle == $document->taskTitle){
                         $checkIfSameName = true;
-                        break;
                     }
                 }
                 if($checkIfSameName == false){
@@ -186,7 +183,6 @@ class AnalystDatabase extends Database{
                 foreach($myCursor as $myDocument){
                     if($myDocument->systemName == $document->systemName){
                         $checkIfSameName = true;
-                        break;
                     }
                 }
                 if($checkIfSameName == false){
@@ -203,7 +199,6 @@ class AnalystDatabase extends Database{
                 foreach($myCursor as $myDocument){
                     if($myDocument->eventName == $document->eventName){
                         $checkIfSameName = true;
-                        break;
                     }
                 }
                 if($checkIfSameName == false){
@@ -219,6 +214,7 @@ class AnalystDatabase extends Database{
                 new TransactionLog($myDb, $document->dateTime, $document->actionPerformed, $document->analyst);
             }
 
+            $myDb     = new AnalystDatabase(); 
             $query    = new MongoDB\Driver\Query([]);
             $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Analyst', $query);
             $myCursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);
@@ -227,11 +223,10 @@ class AnalystDatabase extends Database{
                 foreach($myCursor as $myDocument){
                     if($myDocument->firstName == $document->firstName and $myDocument->lastName == $document->lastName){
                         $checkIfSameName = true;
-                        break;
                     }
                 }
                 if($checkIfSameName == false){
-                    new Analyst($this, $document->firstName, $document->lastName, $document->initial, $document->ipAddress, $document->title, $document->role);
+                    new Analyst($myDb, $document->firstName, $document->lastName, $document->initial, $document->ipAddress, $document->title, $document->role);
                 }
             }
 

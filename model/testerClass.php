@@ -95,8 +95,8 @@ $tester = new TesterClass();
 //$tester->testSystems();
 //$tester->testTasks();
 //$tester->testSubtasks();
-$tester->testFindings();
-//$tester->testAnalysts();
+// $tester->testFindings();
+// $tester->testAnalysts();
 //$tester->testEvents();
 //$tester->testStoringFile();
 ?>
