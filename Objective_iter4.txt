@@ -1,23 +1,24 @@
 Jebel
-- create misc methods to populate reports(needs popualte for risk and erb) & notification(complete)
+- create misc methods to populate reports(needs popualte for risk and erb) & notification(Complete)
 - Create Final Report(Complete)
-- sync(Complete)
+- Sync(Complete)
+- make it where names cannot repeat.
+- please create valid test objects. 10 for each at least and echo a message saying if it has been created (ex: collabs with analyst that actuall exist etc.)
 
 Daniel
 - fix event contentview attribute "Derived from" the selected item should display First and Last name not ID. ###COMPLETE
 - add functionality to event team information. Have the drop downs list actual analysts. Add/remove analyst from team. ###NOT COMPLETE
 - Complete functionality of Task, subtask, finding overview and content table. ###MOSTLY THERE
 - fix progress tables (some of the changes you maded affected them and now have invalid arguements) ###COMPLETE
-- please let Jebel and I know when you need stuff to make any of these functions work. ###NOT AN ASSIGNMENT
 
 William
 - Create ERB Report
 
 Julio
-- create notification timer and display information on notification
-- make notification appear and disapear
+- create notification timer and display information on notification (Complete)
+- make notification appear and disapear (Complete)
 - Create risk matrix
-- set up alternate computer within domain to test sync
+- set up alternate computer within domain to test sync (Complete)
 
 Team
 - well good luck guys we are gonna need it. Please communicate constantly. Hopefully we can improve upon our previous demo.
