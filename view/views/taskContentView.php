@@ -36,9 +36,9 @@
                     $associatedSystem = $dataArray[2];
                     $taskPriority = $dataArray[4];
                     $taskProgress = $dataArray[5];
-                    $associationToTask = implode(",",$dataArray[8]);
-                    $analystAssignment = implode(",",$dataArray[9]);
-                    $collaboratorAssignment = implode(",",$dataArray[10]);
+                    $associationToTask = @implode(",",$dataArray[8]);
+                    $analystAssignment = @implode(",",$dataArray[9]);
+                    $collaboratorAssignment = @implode(",",$dataArray[10]);
                     /* editTag contents to add hidden fields, to POST things that aren't edited here */
                     $editTag = <<< HEREDOC
                     <input name="taskID" type="hidden" value="$taskID"/>
@@ -104,7 +104,7 @@
                     }
                     $analystTable = analystNames();
                     for($i=0; $i<sizeof($analystTable); $i++){
-                        $analystList[$i] = $analystTable[$i][1].".".$analystTable[$i][4];
+                        $analystList[$i] = $analystTable[$i][2]." ".$analystTable[$i][3];
                     }
                     $taskTable = taskOverviewTable();
                     for($i=0; $i<sizeof($taskTable); $i++){

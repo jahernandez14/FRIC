@@ -17,11 +17,11 @@
                 include '/xampp/htdocs/FRIC/controller/taskController.php';
 
                 if($_SERVER['QUERY_STRING'] == "postnew") {
-                    createTask($_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST["associationToTask"], $_POST["analystAssignment"], $_POST["collaboratorAssignment"], $_POST["archiveStatus"], $_POST["numberOfSubtasks"], $_POST["numberOfFindings"]);
+                    @createTask($_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST["associationToTask"], $_POST["analystAssignment"], $_POST["collaboratorAssignment"], $_POST["archiveStatus"], $_POST["numberOfSubtasks"], $_POST["numberOfFindings"]);
                 }
 
                 if($_SERVER['QUERY_STRING'] == "postedit") {
-                    editTask($_POST["taskID"], $_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST['associationToTask'], $_POST['analystAssignment'], $_POST['collaboratorAssignment'], $_POST["archiveStatus"], $_POST["numberOfSubtasks"], $_POST["numberOfFindings"]);
+                    @editTask($_POST["taskID"], $_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST['associationToTask'], $_POST['analystAssignment'], $_POST['collaboratorAssignment'], $_POST["archiveStatus"], $_POST["numberOfSubtasks"], $_POST["numberOfFindings"]);
                 }
 
                 $taskTable = table::tableByType("Task Overview", taskOverviewTable());

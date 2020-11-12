@@ -4,11 +4,11 @@ Jebel
 - sync
 
 Daniel
-- fix event contentview attribute "Derived from" the selected item should display First and Last name not ID.
-- add functionality to event team information. Have the drop downs list actual analysts. Add/remove analyst from team.
-- Complete functionality of Task, subtask, finding overview and content table.
-- fix progress tables (some of the changes you maded affected them and now have invalid arguements)
-- please let Jebel and I know when you need stuff to make any of these functions work. 
+- fix event contentview attribute "Derived from" the selected item should display First and Last name not ID. ###COMPLETE
+- add functionality to event team information. Have the drop downs list actual analysts. Add/remove analyst from team. ###NOT COMPLETE
+- Complete functionality of Task, subtask, finding overview and content table. ###MOSTLY THERE
+- fix progress tables (some of the changes you maded affected them and now have invalid arguements) ###COMPLETE
+- please let Jebel and I know when you need stuff to make any of these functions work. ###NOT AN ASSIGNMENT
 
 William
 - Create ERB Report
