@@ -50,7 +50,7 @@ class TaskDatabase extends Database{
             $table  = array();
             foreach($cursor as $document){
                 foreach($document->analystAssignment as $assignedAnalyst){
-                    if($assignedAnalyst == $analystFirstName." ".$analystLastName and date($document->dueDate) <= date("Y-M-D") and strtolower($document->taskProgress) != "complete" and strtolower($document->taskProgress) != "not applicable"){
+                    if($assignedAnalyst == $analystFirstName." ".$analystLastName and date($document->taskDueDate) <= date("Y-M-D") and strtolower($document->taskProgress) != "complete" and strtolower($document->taskProgress) != "not applicable"){
                         $row = array();
                         array_push($row, $document->_id, $document->taskTitle, $document->taskDueDate);
                         array_push($table, $row);
