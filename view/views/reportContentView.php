@@ -38,15 +38,15 @@
                     include('../../controller/reportController.php');
                     if (isset($_POST['submit'])){
                         if  (isset($_POST['final'])){
-                            createFinalReport();
+                            readFinalReport();
                             echo '<h5 class="text-center">Final Report Has Been Generated<h5>';
                         }
                         if  (isset($_POST['erb'])){
-                            createERBReport();
+                            readERBReport();
                             echo '<h5 class="text-center">ERB Report Has Been Generated<h5>';
                         }
                         if  (isset($_POST['matrix'])){
-                            createMatrixReport();
+                            readMatrixReport();
                             echo '<h5 class="text-center">Risk Matrix Report Has Been Generated<h5>';
                         }
                     }
