@@ -43,6 +43,9 @@
                 <a class="nav-link" href="../views/archiveContentView.php">Archive</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="../views/reportContentView.php">Reports</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="../views/configurationContentView.php">Configuration</a>
             </li>
             <li class="nav-item">
