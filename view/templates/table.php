@@ -120,7 +120,7 @@ class table
             }
             for($col = $this->columns["C"]; $col<($this->dims["columns"] - $this->columns["C"]); $col++) {
                 if($col == 3) {
-                    $this->contents[$row][$col] = implode(", ", $this->contents[$row][$col]);
+                    $this->contents[$row][$col] = @implode(", ", $this->contents[$row][$col]);
                 }
                     $stringPreface = "";
                     $stringEnd = "";
@@ -154,7 +154,7 @@ class table
     }
 
     public function printTable() {
-        if($this->tableTitle == "Task Overview") {
+        if(($this->tableTitle == "Task Overview") || ($this->tableTitle == "Subtask Overview")) {
             table::printTaskOverviewTable();
             return;
         }
