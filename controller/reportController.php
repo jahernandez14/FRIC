@@ -8,11 +8,11 @@
     }
 
     function readERBReport($list){
-
+        createERB($list);
     }
 
     function readMatrixReport($list){
-
+        new RiskMatrixReport($list);
     }
 
 ?>
