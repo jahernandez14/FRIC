@@ -128,18 +128,18 @@ class AnalystDatabase extends Database{
             $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Finding', $query);
             $myCursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
             foreach($cursor as $document){
-                $checkIfSameName = false;
+                /*$checkIfSameName = false;
                 foreach($myCursor as $myDocument){
                     if($myDocument->findingTitle == $document->findingTitle){
                         $checkIfSameName = true;
                     }
                 }
-                if($checkIfSameName == false){
-                    new Finding($myDb, $document->findingTitle, $document->hostName, $document->ipPort, $document->associatedTask, $document->associatedSystem, $document->associatedSubtask, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, 
+                if($checkIfSameName == false){*/
+                new Finding($myDb, $document->findingTitle, $document->hostName, $document->ipPort, $document->associatedTask, $document->associatedSystem, $document->associatedSubtask, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, 
                     $document->findingClassification, $document->associationToFinding, $document->evidence, $document->archiveStatus, $document->collaboratorAssignment, $document->confidentiality, $document->integrity, $document->availability, $document->analystAssignment, $document->posture, $document->briefDescription, 
                     $document->longDescription, $document->relevance, $document->effectivenessRating, $document->impactDescription, $document->impactLevel, $document->severityCatCode, $document->severityCatScore, $document->vulnerabilitySeverity, $document->quantitativeVulnerabilitySeverity, $document->risk, $document->likelihood, 
                     $document->confidentialityImpactOnSystem, $document->integrityImpactOnSystem, $document->availabilityImpactOnSystem, $document->impactScore);
-                }
+                //}
             }
             
             $myDb     = new TaskDatabase(); 
@@ -147,15 +147,15 @@ class AnalystDatabase extends Database{
             $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Task', $query);
             $myCursor = $this->manager->executeQuery('FRIC_Database.Task', $query);
             foreach($cursor as $document){   
-                $checkIfSameName = false;
+                /*$checkIfSameName = false;
                 foreach($myCursor as $myDocument){
                     if($myDocument->taskTitle == $document->taskTitle){
                         $checkIfSameName = true;
                     }
                 }
-                if($checkIfSameName == false){
-                    new Task($myDb, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
-                }
+                if($checkIfSameName == false){*/
+                new Task($myDb, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
+                //}
             }
             
             $myDb     = new SubtaskDatabase(); 
@@ -163,15 +163,15 @@ class AnalystDatabase extends Database{
             $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Subtask', $query);
             $myCursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
             foreach($cursor as $document){
-                $checkIfSameName = false;
+                /*$checkIfSameName = false;
                 foreach($myCursor as $myDocument){
                     if($myDocument->taskTitle == $document->taskTitle){
                         $checkIfSameName = true;
                     }
                 }
-                if($checkIfSameName == false){
-                    new Subtask($myDb, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfFindings);
-                }
+                if($checkIfSameName == false){*/
+                new Subtask($myDb, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfFindings);
+                //}
             }
             
             $myDb     = new SystemDatabase(); 
@@ -179,37 +179,37 @@ class AnalystDatabase extends Database{
             $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.System', $query);
             $myCursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
             foreach($cursor as $document){
-                $checkIfSameName = false;
+                /*$checkIfSameName = false;
                 foreach($myCursor as $myDocument){
                     if($myDocument->systemName == $document->systemName){
                         $checkIfSameName = true;
                     }
                 }
-                if($checkIfSameName == false){
-                    new Systeme($myDb, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
-                }
+                if($checkIfSameName == false){*/
+                new Systeme($myDb, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
+                //}
             }
             
             $myDb     = new EventDatabase(); 
             $query    = new MongoDB\Driver\Query([]);
             $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Event', $query);
-            $myCursor = $this->manager->executeQuery('FRIC_Database.Event', $query);
+            //$myCursor = $this->manager->executeQuery('FRIC_Database.Event', $query);
             foreach($cursor as $document){
-                $checkIfSameName = false;
+                /*$checkIfSameName = false;
                 foreach($myCursor as $myDocument){
                     if($myDocument->eventName == $document->eventName){
                         $checkIfSameName = true;
                     }
-                }
-                if($checkIfSameName == false){
-                    new Event($myDb, $document->eventName, $document->eventDescription, $document->eventType, $document->eventVersion, $document->assessmentDate, $document->organizationName, $document->securityClassifcation, $document->eventClassification, $document->declassificationDate, $document->customerName, $document->archiveStatus, $document->eventTeam, $document->derivedFrom, $document->numberOfFindings, $document->numberOfSystems, $document->progress);
-                }
+                }*/
+                //if($checkIfSameName == false){
+                new Event($myDb, $document->eventName, $document->eventDescription, $document->eventType, $document->eventVersion, $document->assessmentDate, $document->organizationName, $document->securityClassifcation, $document->eventClassification, $document->declassificationDate, $document->customerName, $document->archiveStatus, $document->eventTeam, $document->derivedFrom, $document->numberOfFindings, $document->numberOfSystems, $document->progress);
+                //}
             }
 
             $myDb     = new TransactionLogDatabase(); 
             $query    = new MongoDB\Driver\Query([]);
             $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.TransactionLog', $query);
-            $myCursor = $this->manager->executeQuery('FRIC_Database.TransactionLog', $query);
+            //$myCursor = $this->manager->executeQuery('FRIC_Database.TransactionLog', $query);
             foreach($cursor as $document){
                 new TransactionLog($myDb, $document->dateTime, $document->actionPerformed, $document->analyst);
             }
@@ -217,17 +217,17 @@ class AnalystDatabase extends Database{
             $myDb     = new AnalystDatabase(); 
             $query    = new MongoDB\Driver\Query([]);
             $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Analyst', $query);
-            $myCursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);
+            //$myCursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);
             foreach($cursor as $document){
-                $checkIfSameName = false;
+                /*$checkIfSameName = false;
                 foreach($myCursor as $myDocument){
                     if($myDocument->firstName == $document->firstName and $myDocument->lastName == $document->lastName){
                         $checkIfSameName = true;
                     }
                 }
-                if($checkIfSameName == false){
-                    new Analyst($myDb, $document->firstName, $document->lastName, $document->initial, $document->ipAddress, $document->title, $document->role);
-                }
+                if($checkIfSameName == false){*/
+                new Analyst($myDb, $document->firstName, $document->lastName, $document->initial, $document->ipAddress, $document->title, $document->role);
+                //}
             }
 
             echo <<< SCRIPT
