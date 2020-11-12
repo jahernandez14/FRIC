@@ -14,8 +14,6 @@
             <div class="col-10">
             <?php 
                 include '../templates/table.php';
-                include '/xampp/htdocs/FRIC/controller/subTaskController.php';
-
                 if($_SERVER['QUERY_STRING'] == "postnew") {
                     @createSubTask($_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST["associationToTask"], $_POST["analystAssignment"], $_POST["collaboratorAssignment"], $_POST["archiveStatus"], $_POST["numberOfSubtasks"], $_POST["numberOfFindings"]);
                 }

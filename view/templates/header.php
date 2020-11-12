@@ -67,7 +67,32 @@
         ?>
         &nbsp;
         <form method="post">
-            <input type="submit" name="notification" class ="btn btn-warning font-weight-bold" value = "!">
+            <?php
+                $flag = FALSE;
+                include_once('../../controller/taskController.php');
+                include_once('../../controller/subtaskController.php');
+                $subTaskList = readUpcomingSubTasks($_SESSION['fName'], $_SESSION['lName']);
+                $taskList = readUpcomingTasks($_SESSION['fName'], $_SESSION['lName']);
+                $i = 0;
+                while($i < count($taskList)){
+                    if(new DateTime($taskList[$i][2]) > new DateTime()){
+                        $flag = TRUE;
+                        break;
+                    }
+                    $i++;
+                }
+                $i = 0;
+                while($i < count($subTaskList)){
+                    if(new DateTime($subTaskList[$i][2]) > new DateTime()){
+                        $flag = TRUE;
+                        break;
+                    }
+                    $i++;
+                }
+                if($flag){
+                    echo '<input type="submit" name="notification" class ="btn btn-warning font-weight-bold" value = "!">';
+                }
+            ?>
         </form>
     </nav>
     <script>
