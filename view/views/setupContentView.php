@@ -14,11 +14,9 @@
             </div>
             <div class="col-10">
                 <h2>Finding and Reporting Information Console (FRIC)</h2>
-                <div class="input-group">
-                    <form method="post" class="input-group">
-                </div>
-                Select Analyst Initials:
-                <div class="input-group" method = "post">
+                <form method="POST">
+                    Select Analyst Initials:
+                    <div class="input-group">
                         <?php 
                             require_once('/xampp/htdocs/FRIC/controller/analystController.php');
                             $placeholder = "No Analyst have been added to FRIC";
@@ -39,40 +37,37 @@
                             }
                             echo '</datalist>';
                         ?>
-                    
-                </div>
-                Please enter your IP:
-                <div class="input-group">
-                    <form method="post" class="input-group">
-                    <input id="userIP" type="text" class="form-control" name= 'userIP' placeholder="IP" required>
-                </div>
-                <div class="form-group">
-                    <label for="setupAction">Please select an option:</label>
-                    <select class="form-control" id="setupAction">
-                        <option>Create a new event (any existing event will be archived)</option>
-                        <option>Edit IP address</option>
-                    </select>
-                </div>
-                First time sync with lead analyst. Please enter the lead analyst's IP:
-                <div class="input-group">
-                    <input type="text" list="leadAnalystIP" placeholder="IP Address" class="form-control" />
-                    <datalist id="leadAnalystIP">
-                        <option>192.168.1.1</option>
-                        <option>10.0.0.1</option>
-                        <option>10.0.0.2</option>
-                    </datalist>
-                </div>
-                <br>
-                <input class="btn btn-sm btn-light" name='Submit' type="submit" value="Submit">
-                <a href="../views/eventOverview.php" class="btn btn-sm btn-light" style="color:black">Cancel</a>
-                <!-- <input name="submit" type="button" onclick="location.href= 'google.com'"/>Test -->
-                    </form>
+                    </div>
+                    Please enter your IP:
+                    <div class="form-group">
+                        <input id="userIP" type="text" class="form-control" name= 'userIP' placeholder="IP" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="leadIP">First time sync with lead analyst. Please enter the lead analyst's IP:</label>
+                        <input type="text" id="leadIP" class="form-control"  name="leadIP" placeholder="IP Address">
+                    </div>
 
-                <?php
-                    if (isset($_POST['Submit'])){
-                        update(1, $_POST['initials'], $_POST['userIP']);
-                    }
-                ?>
+                    <br>
+                    <input class="btn btn-sm btn-light" name='Submit' type="submit" value="Submit">
+                    <a href="../views/eventOverview.php" class="btn btn-sm btn-light" style="color:black">Cancel</a>
+                 </form>
+
+                            <?php
+                                require_once('/xampp/htdocs/FRIC/controller/analystController.php');
+                                $analystList = analystNames();
+                                if (isset($_POST['Submit'])){
+                                    $i =0;
+                                    while($i < count($analystList)){
+                                        if(array_search($_POST['initials'], $analystList[$i])){
+                                            $key = array_search($_POST['initials'], $analystList[$i]);
+                                        }
+                                        $i++;
+                                    }
+                                    update(1, $_POST['initials'], $_POST['userIP'],$analystList[$key][2],$analystList[$key][3]);
+                                    //echo '<meta http-equiv="refresh" content="0; URL= eventOverview.php"/>';
+                                    echo $_SESSION['fName'] . " " . $_SESSION['lName'];
+                                }
+                            ?>
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>

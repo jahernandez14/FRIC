@@ -1,7 +1,7 @@
 <?php
-    require_once('/xampp/htdocs/FRIC/model/finalReport.php');
-    require_once('/xampp/htdocs/FRIC/model/erbReport.php');
-    require_once('/xampp/htdocs/FRIC/model/riskMatrixReport.php');
+    require_once('../model/finalReport.php');
+    require_once('../model/erbReport.php');
+    require_once('../model/riskMatrixReport.php');
 
     function readFinalReport(){
 
