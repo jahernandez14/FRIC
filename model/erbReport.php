@@ -18,15 +18,20 @@
     $alignLeft = Alignment::HORIZONTAL_LEFT;
     $alignRight = Alignment::HORIZONTAL_RIGHT;
 
-    $objPHPPowerPoint = new PhpPresentation();
+    function createERBreport($findingsArray){
+        //Array with findings information
+        $objPHPPowerPoint = new PhpPresentation();
 
-    //Slides Properties?
-    $oMasterSlide = $objPHPPowerPoint->getAllMasterSlides()[0];
-    $oSlideLayout = $oMasterSlide->getAllSlideLayouts()[0];
+        //Slides Properties?
+        $oMasterSlide = $objPHPPowerPoint->getAllMasterSlides()[0];
+        $oSlideLayout = $oMasterSlide->getAllSlideLayouts()[0];
+    }
 
-    // Create slide
-    $currentSlide = $objPHPPowerPoint->getActiveSlide();
-    $currentSlide->setSlideLayout($oSlideLayout);
+    function createSlide(){
+        // Create slide
+        $currentSlide = $objPHPPowerPoint->getActiveSlide();
+        $currentSlide->setSlideLayout($oSlideLayout);
+    }
 
     function addText($slide, $w, $h, $xOffset, $yOffset, $alignment, $text, $bold, $fontName, $fontSize, $fontColor){
         $textBox = $slide->createRichTextShape()
