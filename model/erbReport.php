@@ -8,9 +8,11 @@
     use PhpOffice\PhpPresentation\IOFactory;
     use PhpOffice\PhpPresentation\Style\Color;
     use PhpOffice\PhpPresentation\Style\Alignment;
+    use PhpOffice\PhpPresentation\Style\Bullet;
 
     function createERB($findingArray){
         //Colors used
+
         $colorBlack = new Color('FF000000');
         $colorDGray = new Color('FF090909');
         
@@ -29,7 +31,6 @@
         // Create slide
         $currentSlide = $objPHPPowerPoint->getActiveSlide();
         $currentSlide->setSlideLayout($oSlideLayout);
-
 
 
         //Adding little disclaimer in the upper/lower-center of the slide
@@ -57,7 +58,7 @@
         addImage($currentSlide, '../../view/images/cead2.png', 'CEAD logo', 0, 120, 210, 60);
         addImage($currentSlide, '../../view/images/devcom.png', 'DEVCOM logo', 0, 105, 585, 60);
 
-    
+        #SLIDE 2
         //Add a new slide to the presentation
         $slide2 = $objPHPPowerPoint->createSlide();
         $slide2->setSlideLayout($oSlideLayout);
@@ -70,23 +71,68 @@
         addImage($slide2, '../../view/images/cead2.png', 'CEAD logo', 0, 60, 120, 34);
         addImage($slide2, '../../view/images/devcom.png', 'DEVCOM logo', 0, 53, 768, 30);
 
+        //Adding SCOPE title
+        addText($slide2, 624, 53, 170, 35, $alignLeft, 'SCOPE', true, $mainFont, 20, $colorBlack);
+
+        //Adding little instruction
+        addBullet($slide2, 850, 496, 48, 130, $alignLeft, 'Systems accessed during the CVPA are as follow:', true, $mainFont, 18, $colorBlack, '•');
+
+        //Loop where system names will be displayed
+        
+        #SLIDE 3
+        //Adding a new slide
+        $slide3 = $objPHPPowerPoint->createSlide();
+        $slide3->setSlideLayout($oSlideLayout);
+
+        //Adding little disclaimer in the upper/lower-center of the slide
+        addDisclaimer($slide3, $alignCenter, $mainFont, $colorDGray);
+
+        //Add small images
+        addImage($slide3, '../../view/images/army2.png', 'ARMY logo', 0, 85, 30, 30);
+        addImage($slide3, '../../view/images/cead2.png', 'CEAD logo', 0, 60, 120, 34);
+        addImage($slide3, '../../view/images/devcom.png', 'DEVCOM logo', 0, 53, 768, 30);
+        
+        //Adding FINDINGS title
+        addText($slide3, 624, 53, 170, 35, $alignLeft, 'FINDINGS', true, $mainFont, 20, $colorBlack);
+
         $oWriterPPTX = IOFactory::createWriter($objPHPPowerPoint, 'PowerPoint2007');
         $oWriterPPTX->save("../../model/ERBreport/ERBreport.pptx");
     }
 
     function addText($slide, $w, $h, $xOffset, $yOffset, $alignment, $text, $bold, $fontName, $fontSize, $fontColor){
         $textBox = $slide->createRichTextShape()
-                            ->setWidth($w)
-                            ->setHeight($h)
-                            ->setOffsetX($xOffset)
-                            ->setOffsetY($yOffset);
+                         ->setWidth($w)
+                         ->setHeight($h)
+                         ->setOffsetX($xOffset)
+                         ->setOffsetY($yOffset);
         $textBox->getActiveParagraph()->getAlignment()->setHorizontal($alignment);
 
         $textWriter = $textBox->createTextRun($text);
         $textWriter->getFont()->setBold($bold)
-                                ->setSize($fontSize)
-                                ->setName($fontName)
-                                ->setColor($fontColor);
+                              ->setSize($fontSize)
+                              ->setName($fontName)
+                              ->setColor($fontColor);
+    }
+
+    function addBullet($slide, $w, $h, $xOffset, $yOffset, $alignment, $text, $bold, $fontName, $fontSize, $fontColor, $bullChar){
+        $textBox = $slide->createRichTextShape()
+                         ->setWidth($w)
+                         ->setHeight($h)
+                         ->setOffsetX($xOffset)
+                         ->setOffsetY($yOffset);
+        $textBox->getActiveParagraph()
+                ->getAlignment()
+                ->setHorizontal($alignment);
+        $textBox->getActiveParagraph()
+                ->getBulletStyle()
+                ->setBulletType(Bullet::TYPE_BULLET)
+                ->setBulletChar($bullChar);
+
+        $textWriter = $textBox->createTextRun($text);
+        $textWriter->getFont()->setBold($bold)
+                              ->setSize($fontSize)
+                              ->setName($fontName)
+                              ->setColor($fontColor);
     }
 
     function addDisclaimer($currentSlide, $alignCenter, $mainFont, $colorDGray){
