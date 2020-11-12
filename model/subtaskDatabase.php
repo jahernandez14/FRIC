@@ -43,8 +43,25 @@ class SubtaskDatabase extends Database{
         }
     }
 
-    public function getAllUpcomingSubtask($initials){
-        #Array(SubtaskID, Subtask Title, Due Data)
+    public function getAllUpcomingSubtask($analystFirstName, $analystLastName){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                foreach($document->analystAssignment as $assignedAnalyst){
+                    if($assignedAnalyst == $analystFirstName." ".$analystLastName and date($document->dueDate) <= date("Y-M-D") and strtolower($document->taskProgress) != "complete" and strtolower($document->taskProgress) != "not applicable"){
+                        $row = array();
+                        array_push($row, $document->_id, $document->taskTitle, $document->taskDueDate);
+                        array_push($table, $row);
+                    } 
+                }
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
     }
 
     public function getSubtaskAttributes($id){

@@ -43,8 +43,25 @@ class TaskDatabase extends Database{
         }
     }
 
-    public function getAllUpcomingTask($initials){
-        //Not Implemented
+    public function getAllUpcomingTask($analystFirstName, $analystLastName){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                foreach($document->analystAssignment as $assignedAnalyst){
+                    if($assignedAnalyst == $analystFirstName." ".$analystLastName and date($document->dueDate) <= date("Y-M-D") and strtolower($document->taskProgress) != "complete" and strtolower($document->taskProgress) != "not applicable"){
+                        $row = array();
+                        array_push($row, $document->_id, $document->taskTitle, $document->taskDueDate);
+                        array_push($table, $row);
+                    } 
+                }
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
     }
 
     public function getAllTaskForAssociation(){
