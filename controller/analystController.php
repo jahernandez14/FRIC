@@ -31,7 +31,6 @@
     function syncIP($ip){
         $db = new AnalystDatabase();
         $db->syncWithAnalyst($ip);
-        echo "Sync Complete";
-
+        echo "<h3>Sync Complete</h3>";
     }
 ?>
