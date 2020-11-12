@@ -107,7 +107,7 @@
                         ->setSize(12)
                         ->setColor( $colorBlack );
     */
-    mkdir("ERBreport");
+    // mkdir('../../model/ERBreport');
     $oWriterPPTX = IOFactory::createWriter($objPHPPowerPoint, 'PowerPoint2007');
-    $oWriterPPTX->save("./ERBreport/ERBreport.pptx");
+    $oWriterPPTX->save("../../model/ERBreport/ERBreport.pptx");
 ?>
