@@ -56,4 +56,10 @@
         logEntry($findingTitle . " Finding Edited");
     }
 
+    function findingsList(){
+        $db = new FindingDatabase();
+        $list = $db->getAllFindingsForReports(); 
+        return $list; 
+    }
+
 ?>
