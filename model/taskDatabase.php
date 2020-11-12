@@ -43,6 +43,10 @@ class TaskDatabase extends Database{
         }
     }
 
+    public function getAllUpcomingTask($initials){
+        //Not Implemented
+    }
+
     public function getAllTaskForAssociation(){
         try{
             $query  = new MongoDB\Driver\Query([]);

@@ -82,6 +82,10 @@ class AnalystDatabase extends Database{
         }
     }
 
+    public function syncWithAnalyst($ipAddress){
+        
+    }
+
     public function getAllProgressForTask($firstName, $lastName){
         try{
             $taskIDArray = $this->searchForAssignedInCollection('FRIC_Database.Task', $firstName, $lastName);

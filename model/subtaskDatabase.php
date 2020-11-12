@@ -43,6 +43,10 @@ class SubtaskDatabase extends Database{
         }
     }
 
+    public function getAllUpcomingSubtask($initials){
+        #Array(SubtaskID, Subtask Title, Due Data)
+    }
+
     public function getSubtaskAttributes($id){
         try{
             $query  = new MongoDB\Driver\Query(['_id' => $id], []);
@@ -71,7 +75,7 @@ class SubtaskDatabase extends Database{
             'associationToSubtask'   => $associationToSubtask,
             'analystAssignment'      => $analystAssignment,
             'collaboratorAssignment' => $collaboratorAssignment,
-            'archiveStatus'          => $archiveStatus,
+            'archiveStatus'          => false,
             'numberOfFindings'       => $numberOfFindings]
         ];
 
