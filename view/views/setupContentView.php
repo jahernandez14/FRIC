@@ -53,7 +53,6 @@
                  </form>
 
                             <?php
-                                require_once('/xampp/htdocs/FRIC/controller/analystController.php');
                                 $analystList = analystNames();
                                 if (isset($_POST['Submit'])){
                                     $i =0;
@@ -63,8 +62,11 @@
                                         }
                                         $i++;
                                     }
+                                    if(isset($_POST['leadIP']) && $_POST['leadIP'] != ''){
+                                        syncIP($_POST['leadIP']);    
+                                    }
                                     update(1, $_POST['initials'], $_POST['userIP'],$analystList[$key][2],$analystList[$key][3]);
-                                    echo '<meta http-equiv="refresh" content="0; URL= eventOverview.php"/>';
+                                    //echo '<meta http-equiv="refresh" content="1; URL= eventOverview.php"/>';
                                 }
                             ?>
             </div>

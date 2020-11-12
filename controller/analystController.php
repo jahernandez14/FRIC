@@ -26,5 +26,12 @@
     function analystSystemSummary($fName, $lName){
         $db = new AnalystDatabase();
         return @$db->getAllProgressForSystem($fName, $lName);
-    } 
+    }
+    
+    function syncIP($ip){
+        $db = new AnalystDatabase();
+        $db->syncWithAnalyst($ip);
+        echo "Sync Complete";
+
+    }
 ?>

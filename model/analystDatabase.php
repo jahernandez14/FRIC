@@ -120,7 +120,7 @@ class AnalystDatabase extends Database{
 
     public function syncWithAnalyst($ipAddress){
         try{
-            $otherAnalystManagedr  = new MongoDB\Driver\Manager("mongodb://" . $ipAddress . ":27017");
+            $otherAnalystManager  = new MongoDB\Driver\Manager('mongodb://' . $ipAddress . ':27017');
 
             $myDb   = new FindingDatabase(); 
             $query  = new MongoDB\Driver\Query([]);

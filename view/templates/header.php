@@ -68,7 +68,7 @@
         &nbsp;
         <form method="post">
             <?php
-                $flag = FALSE;
+                $flag = False;
                 include_once('../../controller/taskController.php');
                 include_once('../../controller/subtaskController.php');
                 if(isset($_SESSION['fName'])){
@@ -76,7 +76,7 @@
                     $taskList = readUpcomingTasks($_SESSION['fName'], $_SESSION['lName']);
                     $i = 0;
                     while($i < count($taskList)){
-                        if(new DateTime($taskList[$i][2]) > new DateTime()){
+                        if(new DateTime($taskList[$i][2]) < new DateTime()){
                             $flag = TRUE;
                             break;
                         }
@@ -84,7 +84,7 @@
                     }
                     $i = 0;
                     while($i < count($subTaskList)){
-                        if(new DateTime($subTaskList[$i][2]) > new DateTime()){
+                        if(new DateTime($subTaskList[$i][2]) < new DateTime()){
                             $flag = TRUE;
                             break;
                         }
