@@ -25,4 +25,10 @@
         $db->editTaskDocument($id, $taskTitle, $associatedSystem, $taskDescription, $taskPriority, $taskProgress, $taskDueDate, $attachment, $associationToTask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfSubtasks, $numberOfFindings);
         logEntry($taskTitle . " Task Edited");
     }
+
+    function readUpcomingTasks($fName, $lName){
+        $db = new TaskDatabase();
+        $taskList = $db->getAllUpcomingTask($fName, $lName);
+        return $taskList;
+    }
 ?>

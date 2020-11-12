@@ -12,7 +12,7 @@
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
                 <?php include '../templates/eventTree.php';?>
             </div>
-            <div class="col-10" style="background-color:#303030">
+            <div class="col-10">
                 <div class="container" style="font-size:20px">
                     <form action="reportContentView.php" method="POST">
                         <h2 class = "text-center">Reports</h2>

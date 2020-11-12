@@ -25,4 +25,10 @@
         $db->editSubTaskDocument($id, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfFindings);
         logEntry($taskTitle . "Subtask Edited");
     }
+
+    function readUpcomingSubTasks($fName, $lName){
+        $db = new SubTaskDatabase();
+        $list = $db->getAllUpcomingSubtask($fName, $lName);
+        return $list;
+    }
 ?>

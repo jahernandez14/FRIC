@@ -10,14 +10,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Prototype Presentation</td>
-                    <td>9/17/2020</td>
-                </tr>
-                <tr>
-                    <td>Demo Overlay</td>
-                    <td>9/14/2020</td>
-                </tr>
+            <?php
+                include_once('../../controller/taskController.php');
+                if(isset($_SESSION['fName'])){
+                    $taskList = readUpcomingTasks($_SESSION['fName'], $_SESSION['lName']);
+                    $status = '<td style="color:red">';
+                    $i=0;
+                    while($i < count($taskList)){
+                        
+                        if(new DateTime($taskList[$i][2]) > new DateTime()){
+                            $status = "<td>";
+                        }
+                        echo "<tr>";
+                        echo $status . $taskList[$i][1] ."</td>";
+                        echo $status . $taskList[$i][2]. "</td>";
+                        echo "</tr>";
+                        $i++;
+                    }
+                }
+                    ?>
             </tbody>
         </table>
         <table class="table table-sm table-light table-striped">
@@ -28,10 +39,24 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Complete Notification Overlay</td>
-                    <td>9/13/2020</td>
-                </tr>
+                    <?php
+                        include_once('../../controller/subtaskController.php');
+                        if(isset($_SESSION['fName'])){
+                            $subTaskList = readUpcomingSubTasks($_SESSION['fName'], $_SESSION['lName']);
+                            $status = '<td style="color:red">';
+                            $i=0;
+                            while($i < count($subTaskList)){
+                                if(new DateTime($subTaskList[$i][2]) > new DateTime()){
+                                    $status = "<td>";
+                                }
+                                echo "<tr>";
+                                echo $status . $subTaskList[$i][1] ."</td>";
+                                echo $status . $subTaskList[$i][2]. "</td>";
+                                echo "</tr>";
+                                $i++;
+                            }
+                        }
+                    ?>
             </tbody>
         </table>
         <button type="button" href="javascript:void(0)" class="btn btn-light" onclick="closeNotification()">OK</button>
