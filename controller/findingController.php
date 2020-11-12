@@ -19,7 +19,7 @@
                            $findingType, $findingClassification, $associationToFinding, $evidence, 
                            $archiveStatus, $collaboratorAssignment, $confidentiality, $integrity, 
                            $availability, $analystAssignment, $posture, $briefDescription, $longDescription, 
-                           $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatScore, 
+                           $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatcode, $severityCatScore, 
                            $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,$risk, $likelihood, 
                            $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, 
                            $impactScore){
@@ -29,7 +29,7 @@
                     $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, 
                     $collaboratorAssignment, $confidentiality, $integrity, $availability, $analystAssignment, 
                     $posture, $briefDescription, $longDescription, $relevance, $effectivenessRating, 
-                    $impactDescription, $impactLevel, $severityCatScore, $vulnerabilitySeverity, 
+                    $impactDescription, $impactLevel, $severityCatcode, $severityCatScore, $vulnerabilitySeverity, 
                     $quantitativeVulnerabilitySeverity, $risk, $likelihood, $confidentialityImpactOnSystem, 
                     $integrityImpactOnSystem, $availabilityImpactOnSystem, $impactScore);
         logEntry($findingTitle . " Finding Created");
@@ -40,7 +40,7 @@
                            $findingType, $findingClassification, $associationToFinding, $evidence, 
                            $archiveStatus, $collaboratorAssignment, $confidentiality, $integrity, 
                            $availability, $analystAssignment, $posture, $briefDescription, $longDescription, 
-                           $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatScore, 
+                           $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatcode, $severityCatScore, 
                            $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,$risk, $likelihood, 
                            $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, 
                            $impactScore){
@@ -50,7 +50,7 @@
                     $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, 
                     $collaboratorAssignment, $confidentiality, $integrity, $availability, $analystAssignment, 
                     $posture, $briefDescription, $longDescription, $relevance, $effectivenessRating, 
-                    $impactDescription, $impactLevel, $severityCatScore, $vulnerabilitySeverity, 
+                    $impactDescription, $impactLevel, $severityCatcode, $severityCatScore, $vulnerabilitySeverity, 
                     $quantitativeVulnerabilitySeverity, $risk, $likelihood, $confidentialityImpactOnSystem, 
                     $integrityImpactOnSystem, $availabilityImpactOnSystem, $impactScore);
         logEntry($findingTitle . " Finding Edited");
