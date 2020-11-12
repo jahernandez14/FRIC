@@ -41,6 +41,25 @@ class FindingDatabase extends Database{
         }
     }
 
+    public function getAllFindingsForReports(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if($document->archiveStatus != true){
+                    $row = array();
+                    array_push($row, $document->_id, $document->findingTitle);
+                    array_push($table, $row);
+                }
+            } 
+            return $table;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     public function getFindingAttributes($id){
         try{
             $query  = new MongoDB\Driver\Query(['_id' => $id], []);

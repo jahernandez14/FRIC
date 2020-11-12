@@ -18,55 +18,35 @@
             <div class="col-10">
                 <h2 class="text-center">Subtask Detailed View</h2>
                 <?php
-                $taskTitle = urldecode($_SERVER['QUERY_STRING']);
-                if($taskTitle == "createNew") {
+                $subtaskTitle = urldecode($_SERVER['QUERY_STRING']);
+                if($subtaskTitle == "createNew") {
                     $dataArray = array();
                     $postTag = "postnew";
                     $editTag = "";
                     /* tagging for systems */
                 } else {
-                    $dataArray = readTask($taskTitle);
+                    $dataArray = readsubTask($subtaskTitle);
                     $postTag = "postedit";
                     // things without forms:
-                    $taskID = $dataArray[0];
-                    $attachment = $dataArray[7];
-                    $archiveStatus = $dataArray[11];
-                    $numberOfSubtasks = $dataArray[12];
-                    $numberOfFindings = $dataArray[13];
+                    $subtaskID = $dataArray[0];
+                    $attachment = $dataArray[6];
+                    $archiveStatus = $dataArray[10];
+                    $numberOfFindings = $dataArray[11];
                     // selection box things:
-                    $associatedSystem = $dataArray[2];
-                    $taskPriority = $dataArray[4];
-                    $taskProgress = $dataArray[5];
-                    $associationToTask = implode(",",$dataArray[8]);
-                    $analystAssignment = implode(",",$dataArray[9]);
-                    $collaboratorAssignment = implode(",",$dataArray[10]);
+                    $associatedTask = $dataArray[2];
+                    $subtaskProgress = $dataArray[4];
+                    $associationToSubtask = @implode(",",$dataArray[7]);
+                    $analystAssignment = @implode(",",$dataArray[8]);
+                    $collaboratorAssignment = @implode(",",$dataArray[9]);
                     /* editTag contents to add hidden fields, to POST things that aren't edited here */
                     $editTag = <<< HEREDOC
-                    <input name="taskID" type="hidden" value="$taskID"/>
+                    <input name="subtaskID" type="hidden" value="$subtaskID"/>
                     <input name="attachment" type="hidden" value=" "/>
                     <input name="archiveStatus" type="hidden" value="$archiveStatus"/>
-                    <input name="numberOfSubtasks" type="hidden" value="$numberOfSubtasks"/>
                     <input name="numberOfFindings" type="hidden" value="$numberOfFindings"/>
                     HEREDOC;
 
                     // preset selections (priority, progress):
-
-                    $priorityLowSelected = "";
-                    $priorityMediumSelected = "";
-                    $priorityHighSelected = "";
-                    switch ($taskPriority) {
-                        case "low":
-                            $priorityLowSelected = " selected";
-                            break;
-                        case "medium":
-                            $priorityMediumSelected = " selected";
-                            break;
-                        case "high":
-                            $priorityHighSelected = " selected";
-                            break;
-                        default:
-                            break;
-                    }
 
                     $notStartedSelected = "";
                     $assignedSelected = "";
@@ -74,7 +54,7 @@
                     $inProgressSelected = "";
                     $completeSelected = "";
                     $notApplicableSelected = "";
-                    switch ($taskProgress) {
+                    switch ($subtaskProgress) {
                         case "not started":
                             $notStartedSelected = " selected";
                             break;
@@ -99,66 +79,58 @@
 
                     // prepping programmatic selections (systems, assoc. to task, assigned analysts, collaborators):
 
-                    $systemTable = systemOverviewTable();
-                    for($i=0; $i<sizeof($systemTable); $i++){
-                        $systemList[$i] = $systemTable[$i][1];
-                    }
                     $analystTable = analystNames();
                     for($i=0; $i<sizeof($analystTable); $i++){
-                        $analystList[$i] = $analystTable[$i][1].".".$analystTable[$i][4];
+                        $analystList[$i] = $analystTable[$i][2]." ".$analystTable[$i][3];
                     }
                     $taskTable = taskOverviewTable();
                     for($i=0; $i<sizeof($taskTable); $i++){
                         $taskList[$i] = $taskTable[$i][1];
                     }
+                    $subtaskTable = subtaskOverviewTable();
+                    for($i=0; $i<sizeof($subtaskTable); $i++){
+                        $subtaskList[$i] = $subtaskTable[$i][1];
+                    }
 
                 }
-                $taskTitle = $dataArray[1];
-                $taskDescription = $dataArray[3];
-                $taskDueDate = $dataArray[6];
+                $subtaskTitle = $dataArray[1];
+                $subtaskDescription = $dataArray[3];
+                $subtaskDueDate = $dataArray[5];
 
                 echo <<< HEREDOC
-                            <form method="post" action="taskOverview.php?$postTag">
+                            <form method="post" action="subtaskOverview.php?$postTag">
                                 $editTag
                                 <div class="row">
                                     <div class="col">
                                         <label>Title</label>
-                                        <input type="text" class="form-control" placeholder="Task Name" name="taskTitle" value="$taskTitle">
+                                        <input type="text" class="form-control" placeholder="Subtask Name" name="subtaskTitle" value="$subtaskTitle">
                                     </div>
-                                    <div class="col-3">
-                                        <label>System</label>
-                                        <select name="associatedSystem" class="form-control" id="system">
+                                    <div class="col-5">
+                                        <label>Task</label>
+                                        <select name="associatedTask" class="form-control" id="system">
                                         <option></option>
                             HEREDOC;
-                                foreach($systemList as $system) {
+                                foreach($taskList as $task) {
                                     $selected = "";
-                                    if ($system == $associatedSystem) $selected = " selected";
+                                    if ($task == $associatedTask) $selected = " selected";
                                     echo <<< OPTIONOVER
-                                    <option value="$system"$selected>$system</option>
+                                    <option value="$task"$selected>$task</option>
                                     OPTIONOVER;
                                 }
                             echo <<< HEREDOC
-                                        </select>
-                                    </div>
-                                    <div class="col-2">
-                                        <label>Priority</label>
-                                        <select name="taskPriority" class="form-control" id="taskPriority">
-                                            <option value="low"$priorityLowSelected>Low</option>
-                                            <option value="medium"$priorityMediumSelected>Medium</option>
-                                            <option value="high"$priorityHighSelected>High</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <label>Description</label>
-                                        <textarea class="form-control" id="Desc" rows="5" name="taskDescription">$taskDescription</textarea>
+                                        <textarea class="form-control" id="Desc" rows="5" name="subtaskDescription">$subtaskDescription</textarea>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-3">
                                         <label>Progress</label>
-                                        <select name="taskProgress" class="form-control" id="taskProgress">
+                                        <select name="subtaskProgress" class="form-control" id="subtaskProgress">
                                             <option value="not started"$notStartedSelected>Not Started</option>
                                             <option value="assigned"$assignedSelected>Assigned</option>
                                             <option value="transferred"$transferredSelected>Transferred</option>
@@ -204,17 +176,17 @@
                                         </select>
                                     </div>
                                     <div class="col-2">
-                                        <label>Related Task(s)</label>
-                                        <select name='associationToTask[]' class="form-control" multiple>
+                                        <label>Related Subtask(s)</label>
+                                        <select name='associationToSubtask[]' class="form-control" multiple>
 
                             HEREDOC;
-                                foreach($taskList as $task) {
+                                foreach($subtaskList as $subtask) {
                                     $selected="";
-                                    if(in_array($task, explode(",",$associationToTask))) {
+                                    if(in_array($subtask, explode(",",$associationToSubtask))) {
                                         $selected=" selected";
                                     }
                                     echo <<< OPTIONOVER
-                                        <option value="$task"$selected>$task</option>
+                                        <option value="$subtask"$selected>$subtask</option>
 
                                     OPTIONOVER;
                                 }
@@ -225,7 +197,7 @@
                     <div class="row">
                         <div class="col-3">
                             <label>Due Date</label>
-                            <input type="date" class="form-control" name="taskDueDate" id="date" value="$taskDueDate">
+                            <input type="date" class="form-control" name="subtaskDueDate" id="date" value="$subtaskDueDate">
                         </div>
                         <div class="col-2">
                             <label>Attachments</label>
