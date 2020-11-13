@@ -71,9 +71,24 @@ class FindingDatabase extends Database{
     4. Impact
     5. Risk
     6. Name of all systems in the scope
-    */
+    *///System Association, Finding Titlke, Impact, Risk, Systems
     public function getFindingsForERBReport($ids){
-        //Not Done
+        try{
+            $allFindings = array();
+            foreach($ids as $id){
+                $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+                $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
+                $object = array(); 
+                foreach($cursor as $document){
+                    array_push($object, $document->_id, $document->associatedSystem, $document->findingTitle, $document->impactLevel, $document->risk);
+                } 
+                array_push($allFindings, $object);
+            }
+            return $allFindings;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array();
+        }
     }
 
     public function getFindingsForFinalReport($ids){

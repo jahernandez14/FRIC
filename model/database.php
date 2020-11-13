@@ -34,6 +34,21 @@ class Database{
         }
     }
 
+    public function deleteOldData($collection){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $bulk = new MongoDB\Driver\BulkWrite;
+            $cursor = $this->manager->executeQuery($collection, $query);  
+            foreach($cursor as $document){
+                $bulk->delete($document);
+            } 
+            $this->manager->executeBulkWrite($collection, $bulk);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     /****public function storeFile($file){
         $record = [
             '_id' => (string) new MongoDB\BSON\ObjectId(),

@@ -14,6 +14,7 @@ class testerClass{
     }
 
     public function testEvents(){
+        $this->deleteOldData('FRIC_Database.Event');
         $eventDB   = new EventDatabase();
         $e1        = new Event($eventDB, "Event 1", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .80);
         $e2        = new Event($eventDB, "Event 2", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .70);
@@ -23,6 +24,7 @@ class testerClass{
     }
 
     public function testSystems(){
+        $this->deleteOldData('FRIC_Database.System');
         $systemDB  = new SystemDatabase();
         $s1        = new Systeme($systemDB, "System 1", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
         $s2        = new Systeme($systemDB, "System 2", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
@@ -30,6 +32,7 @@ class testerClass{
     }
 
     public function testTasks(){
+        $this->deleteOldData('FRIC_Database.Task');
         $taskDB    = new TaskDatabase();
         $t1        = new Task($taskDB, "Task 1", "System 3", "This is test description", "High", "in progress", "11/10/2020", "Need to test this attribute", [], ["Wim Bonks" , "Julio Hernandez"], [], false, 10, 10);
         $t2        = new Task($taskDB, "Task 2", "System 1", "This is test description", "High", "in progress", "11/11/2020", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
@@ -43,6 +46,7 @@ class testerClass{
     }
 
     public function testSubtasks(){
+        $this->deleteOldData('FRIC_Database.Subtask');
         $subtaskDB = new SubtaskDatabase();
         $st1       = new Subtask($subtaskDB,"Subtask 1", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [] ,["Danny O'Boy"], [], false, 10);
         $st2       = new Subtask($subtaskDB,"Subtask 2", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [] , ["Wim Bonks"], [], false, 10);
@@ -52,6 +56,7 @@ class testerClass{
     }
 
     public function testFindings(){
+        $this->deleteOldData('FRIC_Database.Finding');
         $findingDB = new FindingDatabase();
         $f1        = new Finding($findingDB,"Finding 1", "Host1", "127.19.12.2:80", "Task 1", "", "", "This is a test description", "This is a test long description", "Open", "Creds", "Information", "Finding 10", "Im testing this attribute", false, [], "low", "low", "high", ["Julio Hernandez", "Jebel Macias"], "Nearsider", "This is a test brief description", "This is a test long description", "Confirmed", "VH", "This is a test impact description", "VH", "I", 4, "40.0", "M", "M", "VH", "Y", "Y", "Y", "4");
         $f2        = new Finding($findingDB,"Finding 2", "Host2", "127.19.12.2:80", "Task 2", "", "", "This is a test description", "This is a test long description", "Closed", "Creds", "Information", "Finding 10", "Im testing this attribute", false, [], "low", "low", "high", ["Tim Honks", "Jebel Macias"], "Outsider", "This is a test brief description", "This is a test long description", "Confirmed", "L", "This is a test impact description", "VH", "II", 7, "40.0", "M", "M", "VH", "Y", "Y", "Y", "4");
@@ -68,14 +73,20 @@ class testerClass{
     }
 
     public function testAnalysts(){
+        $this->deleteOldData('FRIC_Database.Analyst');
         $analystDB = new AnalystDatabase();
-        $a1        = new Analyst($analystDB,"Tim", "Honks", "TH", "123.12.111.1", "Forrest Gumpy", "Lead Role");
-        $a2        = new Analyst($analystDB,"Wim", "Bonks", "WB", "123.12.111.1", "Forrest Gumpy", "Lead Role");
-        $a3        = new Analyst($analystDB,"Julio", "Hernandez", "JH", "123.12.111.1", "Forrest Gumpy", "Lead Role");
-        $a4        = new Analyst($analystDB,"Jebel", "Macias", "JM", "123.12.111.2", "Forrest Gumpy", "Analyst");
-        $a5        = new Analyst($analystDB,"Slick", "Will", "SW", "123.12.111.2", "Forrest Gumpy", "Lead Analyst");
-        $a6        = new Analyst($analystDB,"Danny", "O'Boy", "DO", "123.12.111.2", "Forrest Gumpy", "Lead Analyst");
+        $a1        = new Analyst($analystDB,"Tim", "Honks", "TH", "123.12.111.1", "Forrest Gumpy", "lead");
+        $a2        = new Analyst($analystDB,"Wim", "Bonks", "WB", "123.12.111.1", "Forrest Gumpy", "analyst");
+        $a3        = new Analyst($analystDB,"Julio", "Hernandez", "JH", "123.12.111.1", "Forrest Gumpy", "analyst");
+        $a4        = new Analyst($analystDB,"Jebel", "Macias", "JM", "123.12.111.2", "Forrest Gumpy", "analyst");
+        $a5        = new Analyst($analystDB,"Slick", "Will", "SW", "123.12.111.2", "Forrest Gumpy", "Analyst");
+        $a6        = new Analyst($analystDB,"Danny", "O'Boy", "DO", "123.12.111.2", "Forrest Gumpy", "Analyst");
         echo "<h5>6 Analysts have been created</h5>";
+    }
+
+    public function deleteOldData($collection){
+        $db = new Database();
+        $db->deleteOldData($collection);
     }
 
     public function testStoringFile(){
@@ -90,7 +101,6 @@ class testerClass{
 
 <?php
 $tester = new TesterClass();
-
 
 //$tester->testSystems();
 //$tester->testTasks();
