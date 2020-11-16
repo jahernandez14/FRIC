@@ -77,15 +77,14 @@ class SystemDatabase extends Database{
 
     public function getAllSystemTitles(){
         try{
-            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
-            $object = array(); 
+            $systems = array(); 
             foreach($cursor as $document){
-                array_push($object, $document->_id, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, 
-                           $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks,
-                           $document->numberOfFindings, $document->progress);
+                array_push($systems, $document->systemName);
             }
-            return $object;
+
+            return $systems;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
             return array();
