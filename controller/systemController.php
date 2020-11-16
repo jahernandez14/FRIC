@@ -25,4 +25,10 @@
         $db->editSystemDocument($id, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $archiveStatus, $numberOfTasks, $numberOfFindings, $progress);
         logEntry($systemName . " system edited");
     }
+
+    function readSystemTitles(){
+        $db = new SystemDatabase();
+        $sysTitles = $db->getAllSystemTitles();
+        return $sysTitles;
+    }
 ?>
