@@ -71,7 +71,7 @@
                             echo '<h5 class="text-center">Final Report Has Been Generated<h5>';
                         }
                         if  (isset($_POST['erb'])){
-                            readERBReport($fList);
+                            createERBReport($fList);
                             echo '<h5 class="text-center">ERB Report Has Been Generated<h5>';
                         }
                         if  (isset($_POST['matrix'])){
