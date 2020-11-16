@@ -22,6 +22,7 @@ use PhpOffice\PhpPresentation\Shape\RichText\Paragraph;
 use PhpOffice\PhpPresentation\Shape\RichText\TextElementInterface;
 use PhpOffice\PhpPresentation\Style\Borders;
 use PhpOffice\PhpPresentation\Style\Fill;
+use PhpOffice\PhpPresentation\Style\Color;
 
 /**
  * Table cell
@@ -333,6 +334,21 @@ class Cell implements ComparableInterface
         $this->borders = $borders;
 
         return $this;
+    }
+
+    /**
+     * Set All Borders Color
+     * 
+     * @param \PhpOffice\PhpPresentation\Style\Color  $color
+     * @throws \Exception
+     * @return void
+     */
+    function setSidesColor(Color $color = null){
+        //Setting border's color white
+        $this->getBorders()->getTop()->setColor($color);
+        $this->getBorders()->getBottom()->setColor($color);
+        $this->getBorders()->getLeft()->setColor($color);
+        $this->getBorders()->getRight()->setColor($color);
     }
 
     /**
