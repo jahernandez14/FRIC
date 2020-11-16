@@ -62,4 +62,10 @@
         return $list; 
     }
 
+    function ERBFindings($id_list){
+        $db = new FindingDatabase();
+        $list = $db->getFindingsForERBReport($id_list);
+        return $list;
+    }
+
 ?>
