@@ -15,7 +15,7 @@ class GUIList
      *                      POST tag (controller method variable name),
      *                      items (as an array),
      *                      selection (as an array if MULTI=TRUE),
-     *                      MULTI [optional parameter, default value FALSE])
+     *                      MULTI [optional parameter, default value FALSE] (this makes it a multiselect, e.g. selecting analyst assignment for a task))
      */
     public function __construct() {
         $argList = func_get_args();
