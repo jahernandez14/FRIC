@@ -2,7 +2,13 @@
 <html lang="en">
 
 <head>
-    <?php include '../templates/header.php';?>
+    <?php include '../templates/header.php';
+    require_once('../../controller/taskController.php');
+    require_once('../../controller/subtaskController.php');
+    require_once('../../controller/analystController.php');
+    require_once('../../controller/systemController.php');
+    require_once('../../controller/findingController.php');
+    require_once('../templates/GUIList.php');?>
 </head>
 
 <body>
@@ -11,309 +17,387 @@
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
                 <?php include '../templates/eventTree.php';?>
             </div>
-            <div class="col-10">
-                <h2 class="text-center">Finding Detailed View</h2>
-                <form>
-                    <div class="row">
-                        <div class="col">
-                            <label>Title</label>
-                            <input type="text" class="form-control" placeholder="Finding 1">
-                        </div>
-                        <div class="col-3">
-                            <label>Host Name</label>
-                            <input type="text" class="form-control" id="hostName">
-                        </div>
-                        <div class="col-2">
-                            <label>IP Port</label>
-                            <input type="text" class="form-control" id="ipPort">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label>Description</label>
-                            <textarea class="form-control" id="Desc" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label>Long Description</label>
-                            <textarea class="form-control" id="Desc" rows="5"></textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <label>Status</label>
-                            <select name="status" class="form-control" id="status">
-                                <option value="open">Open</option>
-                                <option value="closed">Closed</option>
-                            </select>
-                        </div>
-                        <div class="col-4">
-                            <label>Type</label>
-                            <select name="type" class="form-control" id="type">
-                                <option value="credentialsComplexity">Credentials Complexity</option>
-                                <option value="manufactureDefault">Manufacture Default</option>
-                                <option value="creds">Creds</option>
-                                <option value="lOA">Lack Of Autentication</option>
-                                <option value="plainTextProtocols">Plain Text Protocols</option>
-                                <option value="plainTextWebLogin">Plain Text Web Login</option>
-                                <option value="encryption">Encryption</option>
-                                <option value="authenticationBypass">Autentication Bypass</option>
-                                <option value="portSecurity">Port Security</option>
-                                <option value="accessContr">Access Control</option>
-                                <option value="leastPriv">Least Privilege</option>
-                                <option value="privEscalation">Privilege Escalation</option>
-                                <option value="missingPatches">Missing Patches</option>
-                                <option value="physicalSec">Physical Security</option>
-                                <option value="infoDisclosure">Information Disclosure</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <label>Classification</label>
-                            <select name="classification" class="form-control" id="classification">
-                                <option value="vul">Vulnerability</option>
-                                <option value="info">Information</option>
-                            </select>
-                        </div>
-                        <div class="col-2">
-                            <label>Evidence:</label>
-                            <input type="button" class="form-control" id="evidence" value="Choose File">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label>System</label>
-                            <select name="system" class="form-control" id="system">
-                                <option value="system1">System 1</option>
-                                <option value="system2">System 2</option>
-                                <option value="system3">System 3</option>
-                                <option value="system4">System 4</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>OR</label>
-                        </div>
-                        <div class="col">
-                            <label>Task</label>
-                            <select name="task" class="form-control" id="task">
-                                <option value="task1">Task 1</option>
-                                <option value="task2">Task 2</option>
-                                <option value="task3">Task 3</option>
-                                <option value="task4">Task 4</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>OR</label>
-                        </div>
-                        <div class="col">
-                            <label for="subtask">Subtask:</label>
-                            <select name="subtask" class="form-control" id="subtask">
-                                <option value="subtask1">Subtask 1</option>
-                                <option value="subtask2">Subtask 2</option>
-                                <option value="subtask3">Subtask 3</option>
-                                <option value="subtask4">Subtask 4</option>
-                            </select>
-                        </div>
-                        <div class="col">
-                            <label>Related Finding(s):</label>
-                            <select name="relatedFinding" class="form-control" id="relatedFinding" multiple>
-                                <option value="finding4">Finding 4</option>
-                                <option value="finding1">Finding 1</option>
-                                <option value="finding2">Finding 2</option>
-                                <option value="finding7">Finding 7</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
+                <?php
+                /**
+                 * hardcoding this psuedo-enumeration until it's implemented by Setup:
+                 * array numerically indexed from 0, of strings. array("First List Item")
+                 */
+                $findingTypeArray = array("", "Credentials Complexity", "Manufacture Default",
+                                        "Creds", "Lack Of Authentication", "Plain Text Protocols",
+                                        "Plain Text Web Login", "Encryption",
+                                        "Authentication Bypass", "Port Security", "Access Control",
+                                        "Least Privilege", "Privilege Escalation", "Missing Patches",
+                                        "Physical Security", "Information Disclosure");
+                $findingStatusArray = array("", "Open", "Closed");
+                $findingClassificationArray = array("", "Vulnerability", "Information");
+                $findingCIAArray = array("", "Low", "Medium", "High", "Information");
+                $findingPostureArray = array("", "Insider", "Insider-Nearsider", "Nearsider", "Outsider", "Nearsider-Outsider");
+                $findingRelevanceArray = array("", "Confirmed", "Expected", "Anticipated", "Predicted", "Possible");
+                $findingImpactLevelArray = array("", "VH", "H", "M", "L", "VL", "Information");
+                $effectivenessArray = array("", "10 - Very High", "9 - High", "8 - High", "7 - High", "6 - Moderate", "5 - Moderate", "4 - Moderate", "3 - Low", "2 - Low", "1 - Low", "0 - Very Low");
 
+                
+                $findingTitle = urldecode($_SERVER['QUERY_STRING']);
+                if($findingTitle == "createNew") {
+                    $dataArray = array();
+                    $postTag = "postnew";
+                    $editTag = <<< HEREDOC
+                    <input name="evidence" type="hidden" value=" "/>
+                    <input name="archiveStatus" type="hidden" value="FALSE"/>
+                    HEREDOC;
+
+                    $associatedSystem = "";
+                    $associatedTask = "";
+                    $associatedSubtask = "";
+                    $analystAssignment = "";
+                    $collaboratorAssignment = "";
+
+                    $findingTitle = "";
+                    $findingHost = "";
+                    $findingIPPort = "";
+                    $description = "";
+                    $longDescription = "";
+                    $findingStatus = "";
+                    $findingType = "";
+                    $findingClassification = "";
+                    $associationToFinding = "";
+                    $evidence = "";
+                    $confidentiality = "";
+                    $integrity = "";
+                    $availability = "";
+                    $posture = "";
+                    $mitigationBriefDescription = "";
+                    $mitigationLongDescription = "";
+                    $relevance = "";
+                    $effectivenessRating = "";
+                    $impactDescription = "";
+                    $impactLevel = "";
+                    $severityCatCode = "";
+                    $severityCatScore = "";
+                    $vulnerabilitySeverity = "";
+                    $quantitativeVulnerabilitySeverity = "";
+                    $risk = "";
+                    $likelihood = "";
+                    $confidentialityImpact = "";
+                    $integrityImpact = "";
+                    $availabilityImpact = "";
+                    $impactScore = "";
+                    // tagging for systems
+                } else {
+                    $dataArray = readFinding($findingTitle);
+                    $postTag = "postedit";
+                    // things without forms:
+                    $findingID = $dataArray[0];
+                    $archiveStatus = $dataArray[14];
+                    // selection box things:
+                    $associatedSystem = $dataArray[8];
+                    $associatedTask = $dataArray[9];
+                    $associatedSubtask = $dataArray[10];
+                    $analystAssignment = $dataArray[19];
+                    $collaboratorAssignment = $dataArray[15];
+                    // editTag contents to add hidden fields, to POST things that aren't edited here
+                    $editTag = <<< HEREDOC
+                    <input name="findingID" type="hidden" value="$findingID"/>
+                    <input name="evidence" type="hidden" value=" "/>
+                    <input name="archiveStatus" type="hidden" value="$archiveStatus"/>
+                    HEREDOC;
+                    
+                    $findingTitle = $dataArray[1];
+                    $findingHost = $dataArray[2];
+                    $findingIPPort = $dataArray [3];
+                    $description = $dataArray[4];
+                    $longDescription = $dataArray[5];
+                    $findingStatus = $dataArray[6];
+                    $findingType = $dataArray[7];
+                    $findingClassification = $dataArray[11];
+                    $associationToFinding = $dataArray[12];
+                    $evidence = $dataArray[13];
+                    $confidentiality = $dataArray[16];
+                    $integrity = $dataArray[17];
+                    $availability = $dataArray[18];
+                    $posture = $dataArray[20];
+                    $mitigationBriefDescription = $dataArray[21];
+                    $mitigationLongDescription = $dataArray[22];
+                    $relevance = $dataArray[23];
+                    $effectivenessRating = $dataArray[24];
+                    $impactDescription = $dataArray[25];
+                    $impactLevel = $dataArray[26];
+                    $severityCatCode = $dataArray[27];
+                    $severityCatScore = $dataArray[28];
+                    $vulnerabilitySeverity = $dataArray[29];
+                    $quantitativeVulnerabilitySeverity = $dataArray[30];
+                    $risk = $dataArray[31];
+                    $likelihood = $dataArray[32];
+                    $confidentialityImpact = $dataArray[33];
+                    $integrityImpact = $dataArray[34];
+                    $availabilityImpact = $dataArray[35];
+                    $impactScore = $dataArray[36];
+
+                }
+                $analystTable = analystNames();
+                for($i=0; $i<sizeof($analystTable); $i++){
+                    $analystList[$i] = $analystTable[$i][2]." ".$analystTable[$i][3];
+                }
+                $taskList[0] = "";
+                $taskTable = taskOverviewTable();
+                for($i=0; $i<sizeof($taskTable); $i++){
+                    $taskList[$i+1] = $taskTable[$i][1];
+                }
+                $subtaskList[0] = "";
+                $subtaskTable = subtaskOverviewTable();
+                for($i=0; $i<sizeof($subtaskTable); $i++){
+                    $subtaskList[$i+1] = $subtaskTable[$i][1];
+                }
+                $systemList[0] = "";
+                $systemTable = systemOverviewTable();
+                for($i=0; $i<sizeof($systemTable); $i++){
+                    $systemList[$i+1] = $systemTable[$i][1];
+                }
+                $findingTable = findingOverviewTable();
+                for($i=0; $i<sizeof($findingTable); $i++){
+                    $findingList[$i] = $findingTable[$i][1];
+                }
+
+                echo <<< HEREDOC
+                            <div class="col-10">
+                            <form method="post" action="findingsOverview.php?$postTag">
+                                $editTag
+                                <div>
+                                    <h2 class="text-center">Finding Detailed View</h2>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Title</label>
+                                            <input type="text" class="form-control" placeholder="Finding Title" name="findingTitle" value="$findingTitle">
+                                        </div>
+                                        <div class="col-3">
+                                            <label>Host Name</label>
+                                            <input type="text" class="form-control" placeholder="Host" name="findingHost" value="$findingHost">
+                                        </div>
+                                        <div class="col-2">
+                                            <label>IP Port</label>
+                                            <input type="text" class="form-control" placeholder="Port" name="findingIPPort" value="$findingIPPort">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Description</label>
+                                            <textarea class="form-control" id="Desc" rows="5" name="findingDescription">$description</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>Long Description</label>
+                                            <textarea class="form-control" id="Desc" rows="5" name="findingLongDescription">$longDescription</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+                HEREDOC;
+                $statusList = new GUIList("Status", "findingStatus", $findingStatusArray, $findingStatus);
+                $statusList->printContents();
+                echo <<< HEREDOC
+                                        </div>
+                                        <div class="col-4">
+                HEREDOC;
+                $typeList = new GUIList("Type", "findingType", $findingTypeArray, $findingType);
+                $typeList->printContents();
+                echo <<< HEREDOC
+                                        </div>
+                                        <div class="col-2">
+                HEREDOC;
+                $classificationList = new GUIList("Classification", "findingClass", $findingClassificationArray, $findingClassification);
+                $classificationList->printContents();
+                echo <<< HEREDOC
+                                        </div>
+                                        <div class="col-2">
+                                            <label>Evidence:</label>
+                                            <input type="button" class="form-control" id="evidence" value="Choose File">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                HEREDOC;
+                $systemGUIList = new GUIList("System", "associatedSystem", $systemList, $associatedSystem);
+                $systemGUIList->printContents();
+                echo <<< HEREDOC
+                                        </div>
+                                        <div>
+                                            <label>OR</label>
+                                        </div>
+                                        <div class="col">
+                HEREDOC;
+                $taskGUIList = new GUIList("Task", "associatedTask", $taskList, $associatedTask);
+                $taskGUIList->printContents();
+                echo <<< HEREDOC
+                                        </div>
+                                        <div>
+                                            <label>OR</label>
+                                        </div>
+                                        <div class="col">
+                HEREDOC;
+                $subtaskGUIList = new GUIList("Subtask", "associatedSubtask", $subtaskList, $associatedSubtask);
+                $subtaskGUIList->printContents();
+                echo <<< HEREDOC
+                                        </div>
+                                        <div class="col">
+                HEREDOC;
+                $findingGUIList = new GUIList("Related Finding(s):", "associationToFinding", $findingList, $associationToFinding, TRUE);
+                $findingGUIList->printContents();
+                echo <<< HEREDOC
+                                        </div>
+                                    </div>
                 <h3>Finding Impact</h3>
-                <form>
                     <div class="row">
                         <div class="col">
-                            <label>Confidentiality</label>
-                            <select name="confidentiality" class="form-control" id="confidentiality">
-                                <option value="low">Low</option>
-                                <option value="medium">Medium</option>
-                                <option value="high">High</option>
-                                <option value="information">Information</option>
-                            </select>
+                HEREDOC;
+                $confidentialityList = new GUIList("Confidentiality", "confidentiality", $findingCIAArray, $confidentiality);
+                $confidentialityList->printContents();
+                echo <<< HEREDOC
                         </div>
                         <div class="col">
-                            <label>Integrity</label>
-                            <select name="integrity" class="form-control" id="integrity">
-                                <option value="low">Low</option>
-                                <option value="medium">Medium</option>
-                                <option value="high">High</option>
-                                <option value="information">Information</option>
-                            </select>
+                HEREDOC;
+                $integrityList = new GUIList("Integrity", "integrity", $findingCIAArray, $integrity);
+                $integrityList->printContents();
+                echo <<< HEREDOC
                         </div>
                         <div class="col">
-                            <label>Availability</label>
-                            <select name="availability" class="form-control" id="availability">
-                                <option value="low">Low</option>
-                                <option value="medium">Medium</option>
-                                <option value="high">High</option>
-                                <option value="information">Information</option>
-                            </select>
+                HEREDOC;
+                $availabilityList = new GUIList("Availability", "availability", $findingCIAArray, $availability);
+                $availabilityList->printContents();
+                echo <<< HEREDOC
                         </div>
                     </div>
-                </form>
-
                 <h3>Analyst Information</h3>
-                <form>
                     <div class="row">
                         <div class="col-4">
-                            <label>Analyst</label>
-                            <select name="analyst" class="form-control" id="analyst" multiple>
-                                <option value="anal1">am.123.1.123.2</option>
-                                <option value="anal2">ja.123.1.127.3</option>
-                                <option value="anal3">do.123.1.121.1</option>
-                                <option value="anal4">wb.123.1.125.7</option>
-                            </select>
+                HEREDOC;
+                $analystGUIList = new GUIList("Analyst(s)", "analystAssignment", $analystList, $analystAssignment, TRUE);
+                $analystGUIList->printContents();
+                echo <<< HEREDOC
                         </div>
                         <div class="col-4">
-                            <label>Collaborator</label>
-                            <select name="collaborator" class="form-control" id="collaborator" multiple>
-                                <option value="anal1">am.123.1.123.2</option>
-                                <option value="anal2">ja.123.1.127.3</option>
-                                <option value="anal3">do.123.1.121.1</option>
-                                <option value="anal4">wb.123.1.125.7</option>
-                            </select>
+                HEREDOC;
+                $analystGUIList = new GUIList("Collaborator(s)", "collaboratorAssignment", $analystList, $collaboratorAssignment, TRUE);
+                $analystGUIList->printContents();
+                echo <<< HEREDOC
                         </div>
                         <div class="col-4">
-                            <label>Posture</label>
-                            <select name="posture" class="form-control" id="posture">
-                                <option value="insider">Insider</option>
-                                <option value="insiderNearsider">Insider-Nearsider</option>
-                                <option value="outsider">Outsider</option>
-                                <option value="nearsider">Nearsider</option>
-                                <option value="nearsiderOutsider">Nearsider-outsider</option>
-                            </select>
+                HEREDOC;
+                $postureList = new GUIList("Posture", "posture", $findingPostureArray, $posture);
+                $postureList->printContents();
+                echo <<< HEREDOC
                         </div>
                     </div>
-                </form>
-
+                <h3>Countermeasure</h3>
+                    <div class="row">
+                        <div class="col-2">
+                HEREDOC;
+                $countermeasureList = new GUIList("Countermeasure Effectiveness", "effectivenessRating", $effectivenessArray, $effectivenessRating);
+                $countermeasureList->printContents();
+                echo <<< HEREDOC
+                        </div>
+                    </div>
                 <h3>Mitigation</h3>
-                <form>
                     <div class="row">
                         <div class="col">
                             <label>Brief Description</label>
-                            <textarea class="form-control" id="Desc" rows="3"></textarea>
+                            <textarea class="form-control" id="Desc" rows="3" name="mitigationBriefDescription">$mitigationBriefDescription</textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <label>Long Description</label>
-                            <textarea class="form-control" id="Desc" rows="5"></textarea>
+                            <textarea class="form-control" id="Desc" rows="5" name="mitigationLongDescription">$mitigationLongDescription</textarea>
                         </div>
                     </div>
-                </form>
-
                 <h3>Threat Relevance</h3>
-                <form>
                     <div class="row">
                         <div class="col">
-                            <label>Relevance</label>
-                            <select name="relevance" class="form-control" id="relevance">
-                                <option value="confirmed">Confirmed</option>
-                                <option value="expected">Expected</option>
-                                <option value="anticipated">Anticipated</option>
-                                <option value="predicted">Predicted</option>
-                                <option value="possible">Possible</option>
-                            </select>
+                HEREDOC;
+                $relevanceList = new GUIList("Relevance", "relevance", $findingRelevanceArray, $relevance);
+                $relevanceList->printContents();
+                echo <<< HEREDOC
                         </div>
                     </div>
-                </form>
-
                 <h3>Counter Measure</h3>
-                <form>
                     <div class="row">
                         <div class="col">
                             <label>Impact Description</label>
-                            <textarea class="form-control" id="Desc" rows="3"></textarea>
+                            <textarea class="form-control" id="Desc" rows="3" name="impactDescription">$impactDescription</textarea>
                         </div>
                         <div class="col">
-                            <label>Impact Level</label>
-                            <select name="impactLevel" class="form-control" id="impactLevel">
-                                <option value="vh">VH</option>
-                                <option value="h">H</option>
-                                <option value="m">M</option>
-                                <option value="l">L</option>
-                                <option value="vl">VL</option>
-                                <option value="info">Information</option>
-                            </select>
+                HEREDOC;
+                $impactLevelList = new GUIList("Impact Level", "impactLevel", $findingImpactLevelArray, $impactLevel);
+                $impactLevelList->printContents();
+                echo <<< HEREDOC
                         </div>
                     </div>
-                </form>
-
                 <h3>Severity</h3>
-                <form>
                     <div class="row">
                         <div class="col">
-                            <label>Severity Category Score:</label>
-                            <input type="text" class="form-control" id="severityCategoryScore">
+                            <label>Severity Category Code</label>
+                            <input type="text" class="form-control" placeholder="Code" name="severityCatCode" value="$severityCatCode">
                         </div>
                         <div class="col">
-                            <label>Severity Category Score:</label>
-                            <input type="text" class="form-control" id="severityCategoryScore">
+                            <label>Severity Category Score</label>
+                            <input type="text" class="form-control" placeholder="Score" name="severityCatScore" value="$severityCatScore">
                         </div>
                         <div class="col">
-                            <label>Vulnerability Severity:</label>
-                            <input type="text" class="form-control" id="vulnerabilitySeverity">
+                            <label>Vulnerability Severity</label>
+                            <input type="text" class="form-control" placeholder="Severity" name="vulnerabilitySeverity" value="$vulnerabilitySeverity">
                         </div>
                         <div class="col">
-                            <label>Quantative Vulnerability Severity:</label>
-                            <input type="text" class="form-control" id="quantativeVulnerabilitySeverity">
+                            <label>Quantative Vulnerability Severity</label>
+                            <input type="text" class="form-control" placeholder="QVS" name="quantitativeVulnerabilitySeverity" value="$quantitativeVulnerabilitySeverity">
                         </div>
                     </div>
-                </form>
-
                 <h3>Risk</h3>
-                <form>
                     <div class="row">
                         <div class="col">
                             <label>Risk</label>
-                            <input type="text" class="form-control" id="risk">
+                            <input type="text" class="form-control" placeholder="" name="risk" value="$risk">
                         </div>
                         <div class="col">
                             <label>Likelihood</label>
-                            <input type="text" class="form-control" id="likelihood">
+                            <input type="text" class="form-control" placeholder="" name="likelihood" value="$likelihood">
                         </div>
                     </div>
-                </form>
-
                 <h3>Finding System Level Impact</h3>
-                <form>
                     <div class="row">
                         <div class="col">
-                            <label>Confidentiality Finding Impact On System</label>
-                            <input type="text" class="form-control" id="confidentialityFindingImpactOnSys">
+                            <label>Impact On System Confidentiality</label>
+                            <input type="text" class="form-control" placeholder="Impact" name="confidentialityFindingImpact" value="$confidentialityImpact">
                         </div>
                         <div class="col">
-                            <label>Integrity Finding Impact On System</label>
-                            <input type="text" class="form-control" id="integrityFindingImpactOnSys">
+                            <label>Impact On System Integrity</label>
+                            <input type="text" class="form-control" placeholder="Impact" name="integrityFindingImpact" value="$integrityImpact">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label>Availability Finding Impact On System</label>
-                            <input type="text" class="form-control" id="availabilityFindingImpactOnSys">
+                            <label>Impact On System Availability</label>
+                            <input type="text" class="form-control" placeholder="Impact" name="availabilityFindingImpact" value="$availabilityImpact">
                         </div>
                         <div class="col">
                             <label>Impact Score</label>
-                            <input type="text" class="form-control" id="impact">
+                            <input type="text" class="form-control" placeholder="Impact" name="impactScore" value="$impactScore">
                         </div>
                     </div>
-                </form>
                 <br>
                 </br>
-                <button type="button" class="btn btn-light">Delete</button>
-                <button type="button" class="btn btn-light">Save</button>
-                <button type="button" class="btn btn-light">Cancel</button>
+                    <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
+                    <a class="btn btn-sm btn-light" role="button"
+                        style=color:black>Archive</a>
+                    <a href="../views/findingsOverview.php" class="btn btn-sm btn-light" role="button"
+                        style=color:black>Cancel</a>
                 <br>
                 <br>
                 </br>
                 </br>
+                HEREDOC;
+                ?>
+            </form>
+            </div>
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>

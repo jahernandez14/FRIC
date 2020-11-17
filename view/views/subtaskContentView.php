@@ -206,11 +206,11 @@
                     </div>
                     <br>
                     </br>
-                    <button type="button" class="btn btn-sm btn-light">Demote</button>
+                    <button type="button" class="btn btn-sm btn-light">Promote</button>
                     <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
                     <a class="btn btn-sm btn-light" role="button"
                         style=color:black>Archive</a>
-                    <a href="../views/taskOverview.php" class="btn btn-sm btn-light" role="button"
+                    <a href="../views/subtaskOverview.php" class="btn btn-sm btn-light" role="button"
                         style=color:black>Cancel</a>
                 </form>
                 HEREDOC;

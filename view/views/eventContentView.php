@@ -125,6 +125,104 @@
                             }
                             echo "</datalist></div></div>";
                         
+                            /*
+                            echo <<< EVENTTEAMINFO
+                                <h4><br></br>Event Team Information</h4>
+                                <script>
+                                    var leadAnalystCount = 0;
+                                    function addLeadAnalyst() {
+                                        var numbering = updateLeadAnalystCount("add");
+                                        var newRow = document.createElement("div");
+                                        var rowClass = document.createAttribute("class");
+                                        var rowID = document.createAttribute("id");
+                                        rowClass.value = "row";
+                                        rowID.value = "leadAnalystRow" + numbering;
+                                        newRow.attributes.setNamedItem(rowClass);
+                                        newRow.attributes.setNamedItem(rowID);
+                                        var firstColumn = document.createElement("div");
+                                        var firstColClass = document.createAttribute("class");
+                                        firstColClass.value = "col-3";
+                                        firstColumn.attributes.setNamedItem(firstColClass);
+                                        var newSelect = document.createElement("select");
+                                        var selectName = document.createAttribute("name");
+                                        var selectClass = document.createAttribute("class);
+                                        selectName.value = "leadAnalyst" + numbering;
+                                        selectClass.value = "form-control";
+
+                                    }
+                                    function updateLeadAnalystCount(leadAnalystAction) {
+                                        if(leadAnalystAction == "add") {
+                                            leadAnalystCount++;
+                                        }
+                                        if(leadAnalystAction == "remove") {
+                                            leadAnalystCount--;
+                                        }
+                                        return leadAnalystCount.toString();
+                                    }
+                                </script>
+                                <div class="col-10">
+                                    <div id="leadAnalystRows">
+                                        <div class="row">
+                                            <h5>Lead Analyst &nbsp;</h5>
+                                            <button class="btn btn-sm btn-light" type="button" onclick="addLeadAnalyst()">+</button>
+                                        </div>
+                                        <p></p>
+                                        <div class="row">
+                                            <div class="col-3">
+                                                <select name="leadAnalystActions" class="form-control" id="leadAnalystActions">
+                                                    <option value="Remove">Edit</option>
+                                                    <option value="Edit">Remove</option>
+                                                    <option value="Sync">Sync</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-3">
+                                                <select name="leadAnalysts" class="form-control"
+                                                    id="leadAnalysts">
+                                                    <option value="am.123.1.123.2">am.123.1.123.2</option>
+                                                    <option value="mm.123.1.123.3">mm.123.1.123.3</option>
+                                                    <option value="sr.123.1.123.4">sr.123.1.123.4</option>
+                                                </select>
+                                            </div>
+                                            <button class="btn btn-sm btn-light" type="button" onclick="removeLeadAnalyst()">Remove</button>
+                                        </div>
+                                    </div>
+                                    <br></br>
+                                </div>
+                                <div class="col-10">
+                                    <div class="row">
+                                        <h5>Analyst &nbsp;</h5>
+                                        <button class="btn btn-sm btn-light" type="button">+</button>
+                                    </div>
+                                    <p></p>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <select name="Confidentiality" class="form-control" id="confidentiality">
+                                                <option value="Remove">Edit</option>
+                                                <option value="Edit">Remove</option>
+                                                <option value="Sync">Sync</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-3">
+                                            <select name="Confidentiality" onchange="javascript:handleSelect()" class="form-control"
+                                                id="confidentiality">
+                                                <option value="am.123.1.123.2">am.123.1.123.2</option>
+                                                <option value="mm.123.1.123.3">mm.123.1.123.3</option>
+                                                <option value="sr.123.1.123.4">sr.123.1.123.4</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><br />
+                                            <button class="btn btn-sm btn-light" type="submit">Save</button>
+                                            <a class="btn btn-sm btn-light" role="button"
+                                                style=color:black>Archive</a>
+                                            <a href="../views/eventOverview.php" class="btn btn-sm btn-light" role="button"
+                                                style=color:black>Cancel</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            EVENTTEAMINFO;
+                            */
 
                 ?>
                 <h4><br></br>Event Team Information</h4>

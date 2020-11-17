@@ -17,27 +17,27 @@
                 include '/xampp/htdocs/FRIC/controller/findingController.php';
 
                 if($_SERVER['QUERY_STRING'] == "postnew") {
-                    createfinding($_POST["findingTitle"], $_POST["hostName"], $_POST["ipPort"], $_POST["associatedTask"], $_POST["associatedSystem"], 
+                    createfinding($_POST["findingTitle"], $_POST["findingHost"], $_POST["findingIPPort"], $_POST["associatedTask"], $_POST["associatedSystem"], 
                            $_POST["associatedSubtask"], $_POST["findingDescription"], $_POST["findingLongDescription"], $_POST["findingStatus"], 
-                           $_POST["findingType"], $_POST["findingClassification"], $_POST["associationToFinding"], $_POST["evidence"], 
-                           $_POST["archiveStatus"], $_POST["collaboratorAssignment"], $_POST["confidentiality"], $_POST["integrity"], 
-                           $_POST["availability"], $_POST["analystAssignment"], $_POST["posture"], $_POST["briefDescription"], $_POST["longDescription"], 
-                           $_POST["relevance"], $_POST["effectivenessRating"], $_POST["impactDescription"], $_POST["impactLevel"], $_POST["severityCatScore"], 
+                           $_POST["findingType"], $_POST["findingClass"], $_POST['associationToFinding'], $_POST["evidence"], 
+                           $_POST["archiveStatus"], $_POST['collaboratorAssignment'], $_POST["confidentiality"], $_POST["integrity"], 
+                           $_POST["availability"], $_POST['analystAssignment'], $_POST["posture"], $_POST["mitigationBriefDescription"], $_POST["mitigationLongDescription"], 
+                           $_POST["relevance"], $_POST["effectivenessRating"], $_POST["impactDescription"], $_POST["impactLevel"], $_POST["severityCatCode"], $_POST["severityCatScore"], 
                            $_POST["vulnerabilitySeverity"], $_POST["quantitativeVulnerabilitySeverity"],$_POST["risk"], $_POST["likelihood"], 
-                           $_POST["confidentialityImpactOnSystem"], $_POST["integrityImpactOnSystem"], $_POST["availabilityImpactOnSystem"], 
+                           $_POST["confidentialityFindingImpact"], $_POST["integrityFindingImpact"], $_POST["availabilityFindingImpact"], 
                            $_POST["impactScore"]);
                 }
 
                 if($_SERVER['QUERY_STRING'] == "postedit") {
-                    editfinding($_POST["id"], $_POST["findingTitle"], $_POST["hostName"], $_POST["ipPort"], $_POST["associatedTask"], $_POST["associatedSystem"], 
-                           $_POST["associatedSubtask"], $_POST["findingDescription"], $_POST["findingLongDescription"], $_POST["findingStatus"], 
-                           $_POST["findingType"], $_POST["findingClassification"], $_POST["associationToFinding"], $_POST["evidence"], 
-                           $_POST["archiveStatus"], $_POST["collaboratorAssignment"], $_POST["confidentiality"], $_POST["integrity"], 
-                           $_POST["availability"], $_POST["analystAssignment"], $_POST["posture"], $_POST["briefDescription"], $_POST["longDescription"], 
-                           $_POST["relevance"], $_POST["effectivenessRating"], $_POST["impactDescription"], $_POST["impactLevel"], $_POST["severityCatScore"], 
-                           $_POST["vulnerabilitySeverity"], $_POST["quantitativeVulnerabilitySeverity"],$_POST["risk"], $_POST["likelihood"], 
-                           $_POST["confidentialityImpactOnSystem"], $_POST["integrityImpactOnSystem"], $_POST["availabilityImpactOnSystem"], 
-                           $_POST["impactScore"]);
+                    editfinding($_POST["findingID"], $_POST["findingTitle"], $_POST["findingHost"], $_POST["findingIPPort"], $_POST["associatedTask"], $_POST["associatedSystem"], 
+                    $_POST["associatedSubtask"], $_POST["findingDescription"], $_POST["findingLongDescription"], $_POST["findingStatus"], 
+                    $_POST["findingType"], $_POST["findingClass"], $_POST['associationToFinding'], $_POST["evidence"], 
+                    $_POST["archiveStatus"], $_POST['collaboratorAssignment'], $_POST["confidentiality"], $_POST["integrity"], 
+                    $_POST["availability"], $_POST['analystAssignment'], $_POST["posture"], $_POST["mitigationBriefDescription"], $_POST["mitigationLongDescription"], 
+                    $_POST["relevance"], $_POST["effectivenessRating"], $_POST["impactDescription"], $_POST["impactLevel"], $_POST["severityCatCode"], $_POST["severityCatScore"], 
+                    $_POST["vulnerabilitySeverity"], $_POST["quantitativeVulnerabilitySeverity"],$_POST["risk"], $_POST["likelihood"], 
+                    $_POST["confidentialityFindingImpact"], $_POST["integrityFindingImpact"], $_POST["availabilityFindingImpact"], 
+                    $_POST["impactScore"]);
                 }
 
                 $findingTable = table::tableByType("Findings Overview", findingOverviewTable());
