@@ -17,7 +17,7 @@
                 include '/xampp/htdocs/FRIC/controller/findingController.php';
 
                 if($_SERVER['QUERY_STRING'] == "postnew") {
-                    createfinding($_POST["findingTitle"], $_POST["findingHost"], $_POST["findingIPPort"], $_POST["associatedTask"], $_POST["associatedSystem"], 
+                    @createfinding($_POST["findingTitle"], $_POST["findingHost"], $_POST["findingIPPort"], $_POST["associatedTask"], $_POST["associatedSystem"], 
                            $_POST["associatedSubtask"], $_POST["findingDescription"], $_POST["findingLongDescription"], $_POST["findingStatus"], 
                            $_POST["findingType"], $_POST["findingClass"], $_POST['associationToFinding'], $_POST["evidence"], 
                            $_POST["archiveStatus"], $_POST['collaboratorAssignment'], $_POST["confidentiality"], $_POST["integrity"], 
@@ -29,7 +29,7 @@
                 }
 
                 if($_SERVER['QUERY_STRING'] == "postedit") {
-                    editfinding($_POST["findingID"], $_POST["findingTitle"], $_POST["findingHost"], $_POST["findingIPPort"], $_POST["associatedTask"], $_POST["associatedSystem"], 
+                    @editfinding($_POST["findingID"], $_POST["findingTitle"], $_POST["findingHost"], $_POST["findingIPPort"], $_POST["associatedTask"], $_POST["associatedSystem"], 
                     $_POST["associatedSubtask"], $_POST["findingDescription"], $_POST["findingLongDescription"], $_POST["findingStatus"], 
                     $_POST["findingType"], $_POST["findingClass"], $_POST['associationToFinding'], $_POST["evidence"], 
                     $_POST["archiveStatus"], $_POST['collaboratorAssignment'], $_POST["confidentiality"], $_POST["integrity"], 

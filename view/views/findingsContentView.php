@@ -13,7 +13,7 @@
 
 <body>
     <div class="container-fluid content">
-        <div class="row fluid-col-md">
+        <div class="row fluid-col-lg">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
                 <?php include '../templates/eventTree.php';?>
             </div>
