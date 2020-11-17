@@ -93,9 +93,9 @@
                     }
 
                 }
-                $subtaskTitle = $dataArray[1];
-                $subtaskDescription = $dataArray[3];
-                $subtaskDueDate = $dataArray[5];
+                $subtaskTitle = @$dataArray[1];
+                $subtaskDescription = @$dataArray[3];
+                $subtaskDueDate = @$dataArray[5];
 
                 echo <<< HEREDOC
                             <form method="post" action="subtaskOverview.php?$postTag">
