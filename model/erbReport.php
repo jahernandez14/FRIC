@@ -97,6 +97,7 @@
             $tableHeight += $table->getRow($j)->getHeight();
             if($tableHeight > 450){
                 //Create a new finding Table slide
+                //Containing the remaining findings
                 $currentSlide = $objPHPPowerPoint->createSlide();
                 $currentSlide->setSlideLayout($oSlideLayout);
 
