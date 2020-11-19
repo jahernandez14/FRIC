@@ -28,7 +28,7 @@
 
     function readUpcomingSubTasks($fName, $lName){
         $db = new SubTaskDatabase();
-        $list = $db->getAllUpcomingSubtask($fName, $lName);
+        $list = @$db->getAllUpcomingSubtask($fName, $lName);
         return $list;
     }
 ?>

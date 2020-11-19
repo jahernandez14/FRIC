@@ -28,7 +28,7 @@
 
     function readUpcomingTasks($fName, $lName){
         $db = new TaskDatabase();
-        $taskList = $db->getAllUpcomingTask($fName, $lName);
+        $taskList = @$db->getAllUpcomingTask($fName, $lName);
         return $taskList;
     }
 ?>
