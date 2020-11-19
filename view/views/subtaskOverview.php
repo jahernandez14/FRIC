@@ -15,11 +15,11 @@
             <?php 
                 include '../templates/table.php';
                 if($_SERVER['QUERY_STRING'] == "postnew") {
-                    @createSubTask($_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST["associationToTask"], $_POST["analystAssignment"], $_POST["collaboratorAssignment"], $_POST["archiveStatus"], $_POST["numberOfSubtasks"], $_POST["numberOfFindings"]);
+                    @createSubTask($_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST["associationToTask"], $_POST["analystAssignment"], $_POST["collaboratorAssignment"], $_POST["archiveStatus"], $_POST["numberOfFindings"]);
                 }
 
                 if($_SERVER['QUERY_STRING'] == "postedit") {
-                    @editSubTask($_POST["subtaskID"], $_POST["subtaskTitle"], $_POST["associatedTask"], $_POST["subtaskDescription"], $_POST["subtaskProgress"], $_POST["subtaskDueDate"], $_POST["attachment"], $_POST['associationToSubtask'], $_POST['analystAssignment'], $_POST['collaboratorAssignment'], $_POST["archiveStatus"], $_POST["archiveStatus"], $_POST["numberOfFindings"]);
+                    @editSubTask($_POST["subtaskID"], $_POST["subtaskTitle"], $_POST["associatedTask"], $_POST["subtaskDescription"], $_POST["subtaskProgress"], $_POST["subtaskDueDate"], $_POST["attachment"], $_POST['associationToSubtask'], $_POST['analystAssignment'], $_POST['collaboratorAssignment'], $_POST["archiveStatus"], $_POST["numberOfFindings"]);
                 }
 
                 $subTaskTable = table::tableByType("Subtask Overview", subTaskOverviewTable());

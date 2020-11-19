@@ -6,7 +6,8 @@
     require_once('../../controller/taskController.php');
     require_once('../../controller/subtaskController.php');
     require_once('../../controller/analystController.php');
-    require_once('../../controller/systemController.php')?>
+    require_once('../../controller/systemController.php');
+    require_once('../templates/GUIList.php');?>
 </head>
 
 <body>
@@ -18,6 +19,7 @@
             <div class="col-10">
                 <h2 class="text-center">Subtask Detailed View</h2>
                 <?php
+                $subtaskProgressArray = array("", "Not Started", "Assigned", "Transferred", "In Progress", "Complete", "Not Applicable");
                 $subtaskTitle = urldecode($_SERVER['QUERY_STRING']);
                 if($subtaskTitle == "createNew") {
                     $dataArray = array();
@@ -35,9 +37,9 @@
                     // selection box things:
                     $associatedTask = $dataArray[2];
                     $subtaskProgress = $dataArray[4];
-                    $associationToSubtask = @implode(",",$dataArray[7]);
-                    $analystAssignment = @implode(",",$dataArray[8]);
-                    $collaboratorAssignment = @implode(",",$dataArray[9]);
+                    $associationToSubtask = $dataArray[7];
+                    $analystAssignment = $dataArray[8];
+                    $collaboratorAssignment = $dataArray[9];
                     /* editTag contents to add hidden fields, to POST things that aren't edited here */
                     $editTag = <<< HEREDOC
                     <input name="subtaskID" type="hidden" value="$subtaskID"/>
@@ -83,9 +85,10 @@
                     for($i=0; $i<sizeof($analystTable); $i++){
                         $analystList[$i] = $analystTable[$i][2]." ".$analystTable[$i][3];
                     }
+                    $taskList[0] = "";
                     $taskTable = taskOverviewTable();
                     for($i=0; $i<sizeof($taskTable); $i++){
-                        $taskList[$i] = $taskTable[$i][1];
+                        $taskList[$i+1] = $taskTable[$i][1];
                     }
                     $subtaskTable = subtaskOverviewTable();
                     for($i=0; $i<sizeof($subtaskTable); $i++){
@@ -106,19 +109,10 @@
                                         <input type="text" class="form-control" placeholder="Subtask Name" name="subtaskTitle" value="$subtaskTitle">
                                     </div>
                                     <div class="col-5">
-                                        <label>Task</label>
-                                        <select name="associatedTask" class="form-control" id="system">
-                                        <option></option>
                             HEREDOC;
-                                foreach($taskList as $task) {
-                                    $selected = "";
-                                    if ($task == $associatedTask) $selected = " selected";
-                                    echo <<< OPTIONOVER
-                                    <option value="$task"$selected>$task</option>
-                                    OPTIONOVER;
-                                }
+                            $taskGUIList = new GUIList("Associated Task", "associatedTask", $taskList, $associatedTask);
+                            $taskGUIList->printContents();
                             echo <<< HEREDOC
-                                        </select>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -129,69 +123,30 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-3">
-                                        <label>Progress</label>
-                                        <select name="subtaskProgress" class="form-control" id="subtaskProgress">
-                                            <option value="not started"$notStartedSelected>Not Started</option>
-                                            <option value="assigned"$assignedSelected>Assigned</option>
-                                            <option value="transferred"$transferredSelected>Transferred</option>
-                                            <option value="in progress"$inProgressSelected>In Progress</option>
-                                            <option value="complete"$completeSelected>Complete</option>
-                                            <option value="not applicable"$notApplicableSelected>Not Applicable</option>
-                                        </select>
+                            HEREDOC;
+                            $subtaskProgressList = new GUIList("Progress", "subtaskProgress", $subtaskProgressArray, $subtaskProgress);
+                            $subtaskProgressList->printContents();
+                            echo <<< HEREDOC
                                     </div>
                                     <div class="col-2">
-                                        <label>Analyst(s)</label>
-                                        <select name='analystAssignment[]' class="form-control" multiple>
-
                             HEREDOC;
-                                foreach($analystList as $analyst) {
-                                    $selected="";
-                                    if(in_array($analyst, explode(",",$analystAssignment))) {
-                                        $selected=" selected";
-                                    }
-                                    echo <<< OPTIONOVER
-                                        <option value="$analyst"$selected>$analyst</option>
-                                        
-                                    OPTIONOVER;
-                                }
+                            $analystAssignmentList = new GUIList("Analyst Assignment", "analystAssignment", $analystList, $analystAssignment, TRUE);
+                            $analystAssignmentList->printContents();
                             echo <<< HEREDOC
                                         </select>
                                     </div>
                                     <div class="col-2">
-                                        <label>Collaborator(s)</label>
-                                        <select name='collaboratorAssignment[]' class="form-control" multiple>
 
                             HEREDOC;
-                                foreach($analystList as $analyst) {
-                                    $selected="";
-                                    if(in_array($analyst, explode(",",$collaboratorAssignment))) {
-                                        $selected=" selected";
-                                    }
-                                    echo <<< OPTIONOVER
-                                        <option value="$analyst"$selected>$analyst</option>
-
-                                    OPTIONOVER;
-                                }
+                            $collaboratorAssignmentList = new GUIList("Collaborator Assignment", "collaboratorAssignment", $analystList, $collaboratorAssignment, TRUE);
+                            $collaboratorAssignmentList->printContents();
                             echo <<< HEREDOC
-                                        </select>
                                     </div>
                                     <div class="col-2">
-                                        <label>Related Subtask(s)</label>
-                                        <select name='associationToSubtask[]' class="form-control" multiple>
-
                             HEREDOC;
-                                foreach($subtaskList as $subtask) {
-                                    $selected="";
-                                    if(in_array($subtask, explode(",",$associationToSubtask))) {
-                                        $selected=" selected";
-                                    }
-                                    echo <<< OPTIONOVER
-                                        <option value="$subtask"$selected>$subtask</option>
-
-                                    OPTIONOVER;
-                                }
+                            $associatedSubtaskList = new GUIList("Related Subtasks", "associationToSubtask", $subtaskList, $associationToSubtask, TRUE);
+                            $associatedSubtaskList->printContents();
                             echo <<< HEREDOC
-                            </select>
                         </div>
                     </div>
                     <div class="row">
