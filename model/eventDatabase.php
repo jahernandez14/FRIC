@@ -7,6 +7,7 @@ require_once ('systemDatabase.php');
 class EventDatabase extends Database{
     public function getAllEventNames(){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.Event', $query);  
             $table  = array();
@@ -25,11 +26,11 @@ class EventDatabase extends Database{
     /*  Returns a 2d array of all attributes required for a Event table */
     public function getAllEvents(){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.Event', $query);  
             $table  = array();
             foreach($cursor as $document){
-                $this->updateCounts($document->eventName);
                 if($document->archiveStatus != true){
                     $row = array();
                     array_push($row, $document->_id, $document->eventName, $document->numberOfSystems, $document->numberOfFindings, $document->progress);
@@ -46,6 +47,7 @@ class EventDatabase extends Database{
     /*  Returns a 2d array of all attributes required for a Event table */
     public function getEventForFinalReport(){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.Event', $query);  
             $table  = array();
@@ -53,6 +55,22 @@ class EventDatabase extends Database{
                 if($document->archiveStatus != true){
                     array_push($table, $document->eventType, $document->declassificationDate, $document->securityClassifcation);
                     return $table;
+                }
+            } 
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
+    public function updateBefore(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Event', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if($document->archiveStatus != true){
+                    $this->updateCounts($document->eventName);
                 }
             } 
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
@@ -76,6 +94,7 @@ class EventDatabase extends Database{
     /* Returns an array of all the required attributes of a system for detailed view.*/ 
     public function getEventAttributes($id){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query(['_id' => $id], []);
             $cursor = $this->manager->executeQuery('FRIC_Database.Event', $query);
             $object = array(); 

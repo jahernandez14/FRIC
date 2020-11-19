@@ -27,12 +27,12 @@ class TaskDatabase extends Database{
 
     public function getAllTasks(){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);  
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                $this->updateCounts($document->taskTitle);
                 if($document->archiveStatus != true){
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedSystem, $document->analystAssignment, $document->taskPriority, 
                                $document->taskProgress, $document->numberOfSubtasks, $document->numberOfFindings, $document->taskDueDate);
@@ -48,6 +48,7 @@ class TaskDatabase extends Database{
 
     public function getAllUpcomingTask($analystFirstName, $analystLastName){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);  
             $table  = array();
@@ -69,11 +70,11 @@ class TaskDatabase extends Database{
 
     public function getAllTaskForAssociation(){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);  
             $table  = array();
             foreach($cursor as $document){
-                $this->updateCounts($document->taskTitle);
                 if($document->archiveStatus != true){
                     array_push($table, $document->taskTitle);
                 }
@@ -87,6 +88,7 @@ class TaskDatabase extends Database{
 
     public function getTaskAttributes($id){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query(['_id' => $id], []);
             $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);
             $object = array(); 
@@ -152,6 +154,22 @@ class TaskDatabase extends Database{
         }
     }
 
+    public function updateBefore(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if($document->archiveStatus != true){
+                    $this->updateCounts($document->taskTitle);
+                }
+            } 
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     public function updateCounts($taskName){
         try{
             $bulk      = new MongoDB\Driver\BulkWrite;
@@ -202,8 +220,6 @@ class TaskDatabase extends Database{
                 $bulk = new MongoDB\Driver\BulkWrite;
                 $bulk->update(['_id' => $id], $dbEntry);
                 $this->manager->executeBulkWrite('FRIC_Database.Task', $bulk);
-                $systemDB = new SystemDatabase();
-                $systemDB->updateCounts($associatedSystem);
             }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";

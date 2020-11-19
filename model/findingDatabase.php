@@ -2,7 +2,6 @@
 require_once ("finding.php");
 require_once ('taskDatabase.php');
 require_once ('subTaskDatabase.php');
-require_once ('systemDatabase.php');
 require_once ('database.php');
 
 class FindingDatabase extends Database{
@@ -266,12 +265,6 @@ class FindingDatabase extends Database{
                 $bulk = new MongoDB\Driver\BulkWrite;
                 $bulk->update(['_id' => $id], $dbEntry);
                 $this->manager->executeBulkWrite('FRIC_Database.Finding', $bulk);
-                $subtaskDB = new SubtaskDatabase();
-                $taskDB    = new TaskDatabase();
-                $systemDB  = new SystemDatabase();
-                $subtaskDB->updateCounts($associatedSubtask);
-                $taskDB->updateCounts($associatedTask);
-                $systemDB->updateCounts($associatedSystem);
             }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";

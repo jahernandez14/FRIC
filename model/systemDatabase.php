@@ -26,12 +26,12 @@ class SystemDatabase extends Database{
 
     public function getAllSystemForAssociations(){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
             $table  = array();
             foreach($cursor as $document){
                 if($document->archiveStatus != true){
-                    $this->updateCounts($document->systemName);
                     array_push($table, $document->systemName);
                 }
             } 
@@ -44,13 +44,13 @@ class SystemDatabase extends Database{
 
     public function getAllSystems(){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
             $table  = array();
             foreach($cursor as $document){
                 if($document->archiveStatus != true){
                     $row = array();
-                    $this->updateCounts($document->systemName);
                     array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
                     array_push($table, $row);
                 }
@@ -62,7 +62,23 @@ class SystemDatabase extends Database{
         }
     }
 
-    public function updateCounts($systemName){
+    private function updateBefore(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
+            $table  = array();
+            foreach($cursor as $document){
+                if($document->archiveStatus != true){
+                    $this->updateCounts($document->systemName);
+                }
+            } 
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
+    private function updateCounts($systemName){
         try{
             $bulk      = new MongoDB\Driver\BulkWrite;
             $findingDB = new FindingDatabase(); 
@@ -76,13 +92,13 @@ class SystemDatabase extends Database{
 
     public function getAllSystemProgress(){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
             $totalProgress     = 0;
             $totalNumOfSystems = 0;
             foreach($cursor as $document){
                 if($document->archiveStatus != true){
-                    $this->updateCounts($document->systemName);
                     $totalProgress     += str_replace('%', '', $document->progress);
                     $totalNumOfSystems += 1;
                 }
@@ -95,6 +111,7 @@ class SystemDatabase extends Database{
 
     public function getSystemAttributes($id){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query(['_id' => $id], []);
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
             $object = array(); 
@@ -129,11 +146,11 @@ class SystemDatabase extends Database{
 
     public function getAllSystemTitles(){
         try{
+            $this->updateBefore();
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
             $systems = array(); 
             foreach($cursor as $document){
-                $this->updateCounts($document->systemName);
                 array_push($systems, $document->systemName);
             }
 
