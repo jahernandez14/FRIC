@@ -25,7 +25,23 @@
                     $dataArray = array();
                     $postTag = "postnew";
                     $editTag = "";
-                    /* tagging for systems */
+                    // things without forms:
+                    $attachment = "";
+                    $archiveStatus = "";
+                    $numberOfFindings = "";
+                    // selection box things:
+                    $associatedTask = "";
+                    $subtaskProgress = "";
+                    $associationToSubtask = "";
+                    $analystAssignment = "";
+                    $collaboratorAssignment = "";
+                    $archiveStatus = FALSE;
+                    $numberOfFindings = 0;
+                    $editTag = <<< HEREDOC
+                    <input name="attachment" type="hidden" value=" "/>
+                    <input name="archiveStatus" type="hidden" value="$archiveStatus"/>
+                    <input name="numberOfFindings" type="hidden" value="$numberOfFindings"/>
+                    HEREDOC;
                 } else {
                     $dataArray = readsubTask($subtaskTitle);
                     $postTag = "postedit";
@@ -81,20 +97,21 @@
 
                     // prepping programmatic selections (systems, assoc. to task, assigned analysts, collaborators):
 
-                    $analystTable = analystNames();
-                    for($i=0; $i<sizeof($analystTable); $i++){
-                        $analystList[$i] = $analystTable[$i][2]." ".$analystTable[$i][3];
-                    }
-                    $taskList[0] = "";
-                    $taskTable = taskOverviewTable();
-                    for($i=0; $i<sizeof($taskTable); $i++){
-                        $taskList[$i+1] = $taskTable[$i][1];
-                    }
-                    $subtaskTable = subtaskOverviewTable();
-                    for($i=0; $i<sizeof($subtaskTable); $i++){
-                        $subtaskList[$i] = $subtaskTable[$i][1];
-                    }
+                    
 
+                }
+                $analystTable = analystNames();
+                for($i=0; $i<sizeof($analystTable); $i++){
+                    $analystList[$i] = $analystTable[$i][2]." ".$analystTable[$i][3];
+                }
+                $taskList[0] = "";
+                $taskTable = taskOverviewTable();
+                for($i=0; $i<sizeof($taskTable); $i++){
+                    $taskList[$i+1] = $taskTable[$i][1];
+                }
+                $subtaskTable = subtaskOverviewTable();
+                for($i=0; $i<sizeof($subtaskTable); $i++){
+                    $subtaskList[$i] = $subtaskTable[$i][1];
                 }
                 $subtaskTitle = @$dataArray[1];
                 $subtaskDescription = @$dataArray[3];
