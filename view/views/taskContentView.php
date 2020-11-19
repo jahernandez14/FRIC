@@ -112,9 +112,9 @@
                     }
 
                 }
-                $taskTitle = $dataArray[1];
-                $taskDescription = $dataArray[3];
-                $taskDueDate = $dataArray[6];
+                $taskTitle = @$dataArray[1];
+                $taskDescription = @$dataArray[3];
+                $taskDueDate = @$dataArray[6];
 
                 echo <<< HEREDOC
                             <form method="post" action="taskOverview.php?$postTag">
