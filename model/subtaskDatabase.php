@@ -162,6 +162,8 @@ class SubtaskDatabase extends Database{
                 $bulk = new MongoDB\Driver\BulkWrite;
                 $bulk->update(['_id' => $id], $dbEntry);
                 $this->manager->executeBulkWrite('FRIC_Database.Subtask', $bulk);
+                $taskDB = new TaskDatabase();
+                $taskDB->updateCounts($associatedTask);
             }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";

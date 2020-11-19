@@ -1,6 +1,7 @@
 <?php
 require_once ("task.php");
 require_once ('findingDatabase.php');
+require_once ('systemDatabase.php');
 require_once ('database.php');
 
 class TaskDatabase extends Database{
@@ -201,6 +202,8 @@ class TaskDatabase extends Database{
                 $bulk = new MongoDB\Driver\BulkWrite;
                 $bulk->update(['_id' => $id], $dbEntry);
                 $this->manager->executeBulkWrite('FRIC_Database.Task', $bulk);
+                $systemDB = new SystemDatabase();
+                $systemDB->updateCounts($associatedSystem);
             }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
