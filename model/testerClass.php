@@ -34,11 +34,11 @@ class testerClass{
     public function testTasks(){
         $this->deleteOldData('FRIC_Database.Task');
         $taskDB    = new TaskDatabase();
-        $t1        = new Task($taskDB, "Task 1", "System 3", "This is test description", "High", "in progress", "11/10/2020", "Need to test this attribute", [], ["Wim Bonks" , "Julio Hernandez"], [], false, 10, 10);
-        $t2        = new Task($taskDB, "Task 2", "System 1", "This is test description", "High", "in progress", "11/11/2020", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
-        $t3        = new Task($taskDB, "Task 3", "System 2", "This is test description", "High", "in progress", "11/12/2020", "Need to test this attribute", [], ["Tim Honks", "Danny O'Boy"], [], false, 10, 10);
-        $t4        = new Task($taskDB, "Task 4", "System 1", "This is test description", "High", "in progress", "11/13/2020", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
-        $t5        = new Task($taskDB, "Task 5", "System 3", "This is test description", "High", "in progress", "11/14/2020", "Need to test this attribute", [], ["Jebel Macias", "Julio Hernandez"], [], false, 10, 10);
+        $t1        = new Task($taskDB, "Task 1", "System 3", "This is test description", "High", "In progress", "2020-11-16", "Need to test this attribute", [], ["Wim Bonks" , "Julio Hernandez"], [], false, 10, 10);
+        $t2        = new Task($taskDB, "Task 2", "System 1", "This is test description", "High", "In progress", "2020-11-17", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
+        $t3        = new Task($taskDB, "Task 3", "System 2", "This is test description", "High", "In progress", "2020-11-18", "Need to test this attribute", [], ["Tim Honks", "Danny O'Boy"], [], false, 10, 10);
+        $t4        = new Task($taskDB, "Task 4", "System 1", "This is test description", "High", "In progress", "2020-11-19", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
+        $t5        = new Task($taskDB, "Task 5", "System 3", "This is test description", "High", "In progress", "2020-11-20", "Need to test this attribute", [], ["Jebel Macias", "Julio Hernandez"], [], false, 10, 10);
         
         echo "<h5>5 Tasks have been created</h5>";
         //$analystDB = new AnalystDatabase();
@@ -48,11 +48,11 @@ class testerClass{
     public function testSubtasks(){
         $this->deleteOldData('FRIC_Database.Subtask');
         $subtaskDB = new SubtaskDatabase();
-        $st1       = new Subtask($subtaskDB,"Subtask 1", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [] ,["Danny O'Boy"], [], false, 10);
-        $st2       = new Subtask($subtaskDB,"Subtask 2", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [] , ["Wim Bonks"], [], false, 10);
-        $st3       = new Subtask($subtaskDB,"Subtask 3", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [], ["Julio Hernandez","Wim Bonks"], [], false, 10);
-        $st4       = new Subtask($subtaskDB,"Subtask 4", "Task 3", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [] , ["Jebel Macias"], [], false, 10);
-        $st5       = new Subtask($subtaskDB,"Subtask 5", "Task 1", "This is test description", "not started", "11/01/2020", "Need to test this attribute", [], ["Julio Hernandez","Jebel Macias"], [], false, 10);
+        $st1       = new Subtask($subtaskDB,"Subtask 1", "Task 1", "This is test description", "Not Started", "2020-11-16", "Need to test this attribute", [] ,["Danny O'Boy"], [], false, 10);
+        $st2       = new Subtask($subtaskDB,"Subtask 2", "Task 1", "This is test description", "Not Started", "2020-11-17", "Need to test this attribute", [] , ["Wim Bonks"], [], false, 10);
+        $st3       = new Subtask($subtaskDB,"Subtask 3", "Task 1", "This is test description", "Not Started", "2020-11-18", "Need to test this attribute", [], ["Julio Hernandez","Wim Bonks"], [], false, 10);
+        $st4       = new Subtask($subtaskDB,"Subtask 4", "Task 3", "This is test description", "Not Started", "2020-11-19", "Need to test this attribute", [] , ["Jebel Macias"], [], false, 10);
+        $st5       = new Subtask($subtaskDB,"Subtask 5", "Task 1", "This is test description", "Not Started", "2020-11-20", "Need to test this attribute", [], ["Julio Hernandez","Jebel Macias"], [], false, 10);
     }
 
     public function testFindings(){
@@ -102,11 +102,11 @@ class testerClass{
 <?php
 $tester = new TesterClass();
 
-// $tester->testSystems();
-// $tester->testTasks();
-// $tester->testSubtasks();
-// $tester->testFindings();
-// $tester->testAnalysts();
-// $tester->testEvents();
+$tester->testSystems();
+$tester->testTasks();
+$tester->testSubtasks();
+$tester->testFindings();
+$tester->testAnalysts();
+$tester->testEvents();
 //$tester->testStoringFile();
 ?>
