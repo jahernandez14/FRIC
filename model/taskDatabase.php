@@ -147,6 +147,11 @@ class TaskDatabase extends Database{
                     $totalNumOfTask += 1;
                 }
             } 
+
+            if($totalNumOfTask <= 0){
+                return 0 . "%";
+            }
+
             return round((100/ (10 * $totalNumOfTask)) * $totalProgress) . "%";
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";

@@ -103,6 +103,11 @@ class SystemDatabase extends Database{
                     $totalNumOfSystems += 1;
                 }
             } 
+
+            if($totalNumOfSystems <= 0){
+                return 0 . "%";
+            }
+
             return round((100/ (100 * $totalNumOfSystems)) * $totalProgress) . "%";
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
