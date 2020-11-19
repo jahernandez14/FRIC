@@ -1,6 +1,6 @@
 <?php
-    require_once('/xampp/htdocs/FRIC/model/transactionLogDatabase.php');
-    require_once('/xampp/htdocs/FRIC/model/transactionLog.php');
+    require_once('../../model/transactionLogDatabase.php');
+    require_once('../../model/transactionLog.php');
 
     function logTable(){
         $db = new TransactionLogDatabase();
@@ -12,5 +12,4 @@
         $db = new TransactionLogDatabase();
         $log = new TransactionLog($db,date("Ymd H:i:s"), $action, $_SESSION["initials"]);
     }
-
 ?>
