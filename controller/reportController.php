@@ -1,5 +1,6 @@
 <?php
     require_once('../../model/finalReport.php');
+    require_once('../../model/test.php');
     require_once('../../model/erbReport.php');
     require_once('../../model/riskMatrixReport.php');
 
@@ -17,7 +18,8 @@
     }
 
     function readMatrixReport($list){
-        new RiskMatrixReport($list);
+        //new RiskMatrixReport($list);
+        testReport($list);
     }
 
 ?>

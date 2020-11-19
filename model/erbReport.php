@@ -124,6 +124,7 @@
         //Saving the presentation
         $oWriterPPTX = IOFactory::createWriter($objPHPPowerPoint, 'PowerPoint2007');
         $oWriterPPTX->save("../../model/ERBreport/ERBreport.pptx");
+        echo "<meta http-equiv='refresh' content='0;url=../../model/ERBreport/ERBreport.pptx'/>";
     }
 
     function addText($slide, $w, $h, $xOffset, $yOffset, $alignment, $text, $bold, $fontName, $fontSize){
