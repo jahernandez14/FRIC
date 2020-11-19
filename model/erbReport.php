@@ -13,16 +13,11 @@
 
     const HOR_CENTER = 480;
     const VER_CENTER = 360;
+    const ARIAL = 'Arial';
+    const ARIAL_BODY = 'Arial (Body)';
+    const TIMES_NEW_ROMAN = 'Times New Roman';
 
     function createERB($findingArray, $systemArray){
-        //Colors used
-
-        $mainFont = 'Arial';
-
-        $alignCenter = Alignment::HORIZONTAL_CENTER;
-        $alignLeft = Alignment::HORIZONTAL_LEFT;
-        $alignRight = Alignment::HORIZONTAL_RIGHT;
-
         $objPHPPowerPoint = new PhpPresentation();
 
         //Slides Properties?
@@ -35,24 +30,24 @@
 
 
         //Adding little disclaimer in the upper/lower-center of the slide
-        addDisclaimer($currentSlide, $alignCenter, $mainFont);
+        addDisclaimer($currentSlide, Alignment::HORIZONTAL_CENTER, ARIAL);
 
         //MainTitle
-        addText($currentSlide, 780, 115, 33, 250, $alignLeft, 'U.S. ARMY COMBAT CAPABILITIES DEVELOPMENT COMMAND —', false, $mainFont, 30);
+        addText($currentSlide, 780, 115, 33, 250, Alignment::HORIZONTAL_LEFT, 'U.S. ARMY COMBAT CAPABILITIES DEVELOPMENT COMMAND —', false, ARIAL, 30);
 
         //Additional title
-        addText($currentSlide, 780, 80, 33, 350, $alignLeft, 'DATA & ANALYSIS CENTER', false, $mainFont, 30);
+        addText($currentSlide, 780, 80, 33, 350, Alignment::HORIZONTAL_LEFT, 'DATA & ANALYSIS CENTER', false, ARIAL, 30);
 
         //CVPA title
-        addText($currentSlide, 780, 80, 33, 460, $alignLeft, '[ CVPA Title ]', false, $mainFont, 20);
+        addText($currentSlide, 780, 80, 33, 460, Alignment::HORIZONTAL_LEFT, '[ CVPA Title ]', false, ARIAL, 20);
 
         //Presenter info
-        addText($currentSlide, 780, 30, 33, 565, $alignLeft, 'Name of Presenter', false, $mainFont, 12);
-        addText($currentSlide, 780, 30, 33, 595, $alignLeft, 'Rank/Title of Presenter (Ex. CISSP, CELH, Security+)', false, $mainFont, 12);
-        addText($currentSlide, 780, 30, 33, 627, $alignLeft, 'Cyber Experimentation & Analysis Division', false, $mainFont, 12);
+        addText($currentSlide, 780, 30, 33, 565, Alignment::HORIZONTAL_LEFT, 'Name of Presenter', false, ARIAL, 12);
+        addText($currentSlide, 780, 30, 33, 595, Alignment::HORIZONTAL_LEFT, 'Rank/Title of Presenter (Ex. CISSP, CELH, Security+)', false, ARIAL, 12);
+        addText($currentSlide, 780, 30, 33, 627, Alignment::HORIZONTAL_LEFT, 'Cyber Experimentation & Analysis Division', false, ARIAL, 12);
 
         //Adding today's date
-        addText($currentSlide, 780, 30, 33, 682, $alignLeft, date("d m Y"), false, $mainFont, 8);
+        addText($currentSlide, 780, 30, 33, 682, Alignment::HORIZONTAL_LEFT, date("d m Y"), false, ARIAL, 8);
 
         //Adding all images in first slide
         addImage($currentSlide, '../../view/images/army2.png', 'ARMY logo', 0, 170, 50, 50);
@@ -65,7 +60,7 @@
         $slide2->setSlideLayout($oSlideLayout);
 
         //Adding little disclaimer in the upper/lower-center of the slide
-        addDisclaimer($slide2, $alignCenter, $mainFont);
+        addDisclaimer($slide2, Alignment::HORIZONTAL_CENTER, ARIAL);
 
         //Add small images
         addImage($slide2, '../../view/images/army2.png', 'ARMY logo', 0, 85, 30, 30);
@@ -73,54 +68,45 @@
         addImage($slide2, '../../view/images/devcom.png', 'DEVCOM logo', 0, 53, 768, 30);
 
         //Adding SCOPE title
-        addText($slide2, 624, 53, 170, 35, $alignLeft, 'SCOPE', true, $mainFont, 20);
+        addText($slide2, 624, 53, 170, 35, Alignment::HORIZONTAL_LEFT, 'SCOPE', true, ARIAL, 20);
 
         //Adding little instruction
-        addBullet($slide2, 850, 496, 48, 130, $alignLeft, 'Systems accessed during the CVPA are as follow:', true, $mainFont, 18, '•');
+        addBullet($slide2, 850, 496, 48, 130, Alignment::HORIZONTAL_LEFT, 'Systems accessed during the CVPA are as follow:', true, ARIAL, 18, '•');
 
         //Loop where system names will be displayed
         for($i = 0, $y = 160; $i < count($systemArray); $i++){
-            addBullet($slide2, 600, 50, 80, $y, $alignLeft, $systemArray[$i], false, $mainFont, 16, '— ');
+            addBullet($slide2, 600, 50, 80, $y, Alignment::HORIZONTAL_LEFT, $systemArray[$i], false, ARIAL, 16, '— ');
             $y += 25;
         }
 
-        
         #SLIDE 3
         //Adding a new slide
+        $remainingFindings = count($findingArray);
         $slide3 = $objPHPPowerPoint->createSlide();
         $slide3->setSlideLayout($oSlideLayout);
 
-        //Adding little disclaimer in the upper/lower-center of the slide
-        addDisclaimer($slide3, $alignCenter, $mainFont);
+        $table = createFindingSlide($slide3);
 
-        //Add small images
-        addImage($slide3, '../../view/images/army2.png', 'ARMY logo', 0, 80, 25, 27);
-        addImage($slide3, '../../view/images/cead2.png', 'CEAD logo', 0, 55, 96, 30);
-        addImage($slide3, '../../view/images/devcom.png', 'DEVCOM logo', 0, 43, 805, 35);
-        
-        //Adding FINDINGS title
-        addText($slide3, 624, 53, 170, 35, $alignLeft, 'FINDINGS', true, $mainFont, 20);
+        //Initial location for the table
+        $tableHeight = $table->getOffsetY();
+        $remainingFindings = count($findingArray);
+        $i = 0;
+        $j = 0;
+        while($i < $remainingFindings){
+            addRow($table, $findingArray[$i], $i+1);
+            $tableHeight += $table->getRow($j)->getHeight();
+            if($tableHeight > 450){
+                //Create a new finding Table slide
+                $currentSlide = $objPHPPowerPoint->createSlide();
+                $currentSlide->setSlideLayout($oSlideLayout);
 
-        $findingsTable = $slide3->createTableShape(5);
-        $findingsTable->setHeight(600);
-        $findingsTable->setWidth(900);
-        $findingsTable->setOffsetX(32);
-        $findingsTable->setOffsetY(117);
- 
-        // Add row
-        //Dark green, accent 1
-        $headersRow = $findingsTable->createRow();
-        addTableHeaders($headersRow, "ID");
-        addTableHeaders($headersRow, "System");
-        addTableHeaders($headersRow, "Finding");
-        addTableHeaders($headersRow, "Impact");
-        addTableHeaders($headersRow, "Risk");
-
-        //Loop to add all the findings' information
-        for($i = 0; $i < count($findingArray); $i+=1){
-            addRow($findingsTable, $findingArray[$i], ($i+1));    
+                $table = createFindingSlide($currentSlide);
+                $tableHeight = $table->getOffsetY();
+                $j = 0;
+            }
+            $i+=1;
         }
-
+        
         //Saving the presentation
         $oWriterPPTX = IOFactory::createWriter($objPHPPowerPoint, 'PowerPoint2007');
         $oWriterPPTX->save("../../model/ERBreport/ERBreport.pptx");
@@ -160,12 +146,12 @@
                               ->setName($fontName);
     }
 
-    function addDisclaimer($currentSlide, $alignCenter, $mainFont){
+    function addDisclaimer($currentSlide, $alignment, $fontType){
         //Adding little disclaimer in the upper/lower-center of the slide
-        addText($currentSlide, 960, 0, 5, 10, $alignCenter, 'FOR OFFICIAL USE ONLY', true, $mainFont, 8); 
+        addText($currentSlide, 960, 0, 5, 10, $alignment, 'FOR OFFICIAL USE ONLY', true, $fontType, 8); 
     
         //Disclaimer on lower center
-        addText($currentSlide, 960, 0, 5, 700, $alignCenter, 'FOR OFFICIAL USE ONLY', true, $mainFont, 8);
+        addText($currentSlide, 960, 0, 5, 700, $alignment, 'FOR OFFICIAL USE ONLY', true, $fontType, 8);
     }
 
     function addImage($currentSlide, $path, $name, $w, $h, $xOffset, $yOffset){
@@ -181,7 +167,7 @@
         $a1 = $header->nextCell();
 
         //Setting text
-        $a1->createTextRun($title)->getFont()->setBold(true)->setSize(18)->setColor(new Color('FFFFFFFF'))->setName('Arial (Body)');
+        $a1->createTextRun($title)->getFont()->setBold(true)->setSize(18)->setColor(new Color('FFFFFFFF'))->setName(ARIAL_BODY);
         
         //Setting cell fill color
         $a1->getFill()->setFillType(Fill::FILL_SOLID);
@@ -208,7 +194,7 @@
         }
 
         //Setting the ID number for a finding, not the same as MongoDB ID
-        addCell($newRow, $num, 18, false, 'Arial (Body)', $rowColor);
+        addCell($newRow, $num, 18, false, ARIAL_BODY, $rowColor);
 
         if(empty($finding->associatedSystem)){
             $associatedSystem = "No System Association";
@@ -222,8 +208,8 @@
         3. Impact (not initials)
         4. Risk (not initials)
         */
-        addCell($newRow, $associatedSystem, 18, false, 'Arial (Body)', $rowColor);
-        addCell($newRow, $finding[2], 18, false, 'Arial (Body)', $rowColor);
+        addCell($newRow, $associatedSystem, 18, false, ARIAL_BODY, $rowColor);
+        addCell($newRow, $finding[2], 18, false, ARIAL_BODY, $rowColor);
         addCell($newRow, $finding[3], 11, true, 'Times New Roman', $rowColor);
         addCell($newRow, $finding[4], 11, true, 'Times New Roman', $rowColor);
     }
@@ -241,6 +227,38 @@
             $cell->createTextRun($text)->getFont()->setBold($isBold)->setSize($fontSize)->setName($fontType);
         $cell->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
         $cell->getFill()->setFillType(Fill::FILL_SOLID)->setStartColor($fillColor);
+    }
+
+    function createFindingSlide($slide){
+        #SLIDE 3
+        //Adding a new slide
+        //Adding little disclaimer in the upper/lower-center of the slide
+        addDisclaimer($slide, Alignment::HORIZONTAL_CENTER, ARIAL);
+
+        //Add small images
+        addImage($slide, '../../view/images/army2.png', 'ARMY logo', 0, 80, 25, 27);
+        addImage($slide, '../../view/images/cead2.png', 'CEAD logo', 0, 55, 96, 30);
+        addImage($slide, '../../view/images/devcom.png', 'DEVCOM logo', 0, 43, 805, 35);
+        
+        //Adding FINDINGS title
+        addText($slide, 624, 53, 170, 35, Alignment::HORIZONTAL_LEFT, 'FINDINGS', true, ARIAL, 20);
+
+        $findingsTable = $slide->createTableShape(5);
+        $findingsTable->setHeight(600);
+        $findingsTable->setWidth(900);
+        $findingsTable->setOffsetX(32);
+        $findingsTable->setOffsetY(117);
+ 
+        // Add row
+        //Dark green, accent 1
+        $headersRow = $findingsTable->createRow();
+        addTableHeaders($headersRow, "ID");
+        addTableHeaders($headersRow, "System");
+        addTableHeaders($headersRow, "Finding");
+        addTableHeaders($headersRow, "Impact");
+        addTableHeaders($headersRow, "Risk");
+
+        return $findingsTable;
     }
 
     //This function translates the initials for both the impact and the risk
