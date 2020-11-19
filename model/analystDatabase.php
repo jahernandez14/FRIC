@@ -315,9 +315,9 @@ class AnalystDatabase extends Database{
 
     public function getAllProgressForSystem($analystFirstName, $analystLastName){
         try{
-            $query       = new MongoDB\Driver\Query([]);
-            $cursor      = $this->manager->executeQuery('FRIC_Database.Task', $query);
-            $totalTask   = array();
+            $query    = new MongoDB\Driver\Query([]);
+            $cursor   = $this->manager->executeQuery('FRIC_Database.Task', $query);
+            $totalTask= array();
             $totalCal = array();
             foreach($cursor as $document){
                 foreach($document->analystAssignment as $assignedAnalyst){
@@ -340,7 +340,7 @@ class AnalystDatabase extends Database{
                 $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
                 foreach($cursor as $document){
                     $row = array();
-                    array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, round((100/ (3 * $value)) * $totalCal[$key]) . "%");
+                    array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, round((100/ (10 * $value)) * $totalCal[$key]) . "%");
                     array_push($table, $row);
                 }
             }
@@ -375,15 +375,14 @@ class AnalystDatabase extends Database{
         $progress = strtolower($progress);
         switch($progress){
             case "not applicable":
-                return 0;
             case "not started":
             case "assigned":
             case "transferred":
-                return 1;
+                return 0;
             case "in progress":
-                return 2;
+                return 5;
             case "complete":
-                return 3;
+                return 10;
             default:
                 return 0;        
         }

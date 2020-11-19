@@ -1,5 +1,6 @@
 <?php
     require_once('../../model/finalReport.php');
+    require_once('../../model/test.php');
     require_once('../../model/erbReport.php');
     require_once('../../model/riskMatrixReport.php');
 
@@ -16,8 +17,8 @@
         createERB($findings, $systemTitles);
     }
 
-    function readMatrixReport($list){
-        new RiskMatrixReport($list);
+    function readMatrixReport($findings){
+        testReport($findings);
     }
 
 ?>

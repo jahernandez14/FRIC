@@ -1,5 +1,6 @@
 {
     "require": {
-        "phpoffice/phppresentation": "dev-master"
+        "phpoffice/phppresentation": "dev-master",
+        "phpoffice/phpspreadsheet": "^1.15"
     }
 }

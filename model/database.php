@@ -13,16 +13,16 @@ class Database{
             echo "Error: Failed to load mongoDB extension.";
         }
     }
-
-    /*public function checkDatabaseForSameName($name){
-        $query  = new MongoDB\Driver\Query(['eventName' => $name], []);
+    
+    public function checkDatabaseForSameName($dbAttribute, $title, $collection){
+        $query  = new MongoDB\Driver\Query([$dbAttribute => $title], []);
         $cursor = $this->manager->executeQuery($collection, $query);
         if(count($cursor->toArray()) == 0){
-            return $name;
+            return False;
         }
-        $name = $name . " - Copy";
-        return $this->checkDatabaseForSameID($name, $collection);
-    }*/
+        
+        return True;
+    }
 
     public function insertDocument($dbEntry, $collection){
         try{

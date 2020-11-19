@@ -18,7 +18,15 @@ class Task {
             'numberOfFindings'       => $numberOfFindings
         ];
 
-        $db->insertDocument($dbEntry, 'FRIC_Database.Task');
+        if($db->checkDatabaseForSameName('taskTitle', $taskTitle, 'FRIC_Database.Task')){
+            echo <<< SCRIPT
+                <script>
+                    alert("Task with the same title already exist in the database. The task was not created.");
+                </script>
+            SCRIPT;
+        }else{
+            $db->insertDocument($dbEntry, 'FRIC_Database.Task');
+        }
     }
 }
 ?>

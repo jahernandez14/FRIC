@@ -43,7 +43,15 @@ class Finding {
             'impactScore'                       => $impactScore
         ];
 
-        $db->insertDocument($dbEntry, 'FRIC_Database.Finding');
+        if($db->checkDatabaseForSameName('findingTitle', $findingTitle, 'FRIC_Database.Finding')){
+            echo <<< SCRIPT
+                <script>
+                    alert("Finding with the same title already exist in the database. The finding was not created.");
+                </script>
+            SCRIPT;
+        }else{
+            $db->insertDocument($dbEntry, 'FRIC_Database.Finding');
+        }
     }
 }
 ?>

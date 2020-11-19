@@ -19,7 +19,15 @@ class Systeme {
             'progress'          => $progress
         ];
 
-        $db->insertDocument($dbEntry, 'FRIC_Database.System');
+        if($db->checkDatabaseForSameName('systemName', $systemName, 'FRIC_Database.System')){
+            echo <<< SCRIPT
+                <script>
+                    alert("System with the same title already exist in the database. The system was not created.");
+                </script>
+            SCRIPT;
+        }else{
+            $db->insertDocument($dbEntry, 'FRIC_Database.System');
+        }
     }
 }
 ?>
