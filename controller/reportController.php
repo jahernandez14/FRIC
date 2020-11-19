@@ -17,9 +17,8 @@
         createERB($findings, $systemTitles);
     }
 
-    function readMatrixReport($list){
-        //new RiskMatrixReport($list);
-        testReport($list);
+    function readMatrixReport($findings){
+        testReport($findings);
     }
 
 ?>
