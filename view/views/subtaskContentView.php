@@ -63,42 +63,6 @@
                     <input name="archiveStatus" type="hidden" value="$archiveStatus"/>
                     <input name="numberOfFindings" type="hidden" value="$numberOfFindings"/>
                     HEREDOC;
-
-                    // preset selections (priority, progress):
-
-                    $notStartedSelected = "";
-                    $assignedSelected = "";
-                    $transferredSelected = "";
-                    $inProgressSelected = "";
-                    $completeSelected = "";
-                    $notApplicableSelected = "";
-                    switch ($subtaskProgress) {
-                        case "not started":
-                            $notStartedSelected = " selected";
-                            break;
-                        case "assigned":
-                            $assignedSelected = " selected";
-                            break;
-                        case "transferred":
-                            $transferredSelected = " selected";
-                            break;
-                        case "in progress":
-                            $inProgressSelected = " selected";
-                            break;
-                        case "complete":
-                            $completeSelected = " selected";
-                            break;
-                        case "not applicable":
-                            $notApplicableSelected = " selected";
-                            break;
-                        default:
-                            break;
-                    }
-
-                    // prepping programmatic selections (systems, assoc. to task, assigned analysts, collaborators):
-
-                    
-
                 }
                 $analystTable = analystNames();
                 for($i=0; $i<sizeof($analystTable); $i++){
@@ -116,7 +80,6 @@
                 $subtaskTitle = @$dataArray[1];
                 $subtaskDescription = @$dataArray[3];
                 $subtaskDueDate = @$dataArray[5];
-
                 echo <<< HEREDOC
                             <form method="post" action="subtaskOverview.php?$postTag">
                                 $editTag

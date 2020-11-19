@@ -5,7 +5,8 @@
     <?php include '../templates/header.php';
     require_once('../../controller/taskController.php');
     require_once('../../controller/analystController.php');
-    require_once('../../controller/systemController.php')?>
+    require_once('../../controller/systemController.php');
+    require_once('../templates/GUIList.php');?>
 </head>
 
 <body>
@@ -17,12 +18,31 @@
             <div class="col-10">
                 <h2 class="text-center">Task Detailed View</h2>
                 <?php
+                $taskPriorityArray = array("", "Low", "Medium", "High");
+                $taskProgressArray = array("", "Not Started", "Assigned", "Transferred", "In Progress", "Complete", "Not Applicable");
                 $taskTitle = urldecode($_SERVER['QUERY_STRING']);
                 if($taskTitle == "createNew") {
                     $dataArray = array();
                     $postTag = "postnew";
-                    $editTag = "";
-                    /* tagging for systems */
+                    // things without forms:
+                    $attachment = "";
+                    $archiveStatus = "";
+                    $numberOfSubtasks = 0;
+                    $numberOfFindings = 0;
+                    // selection box things:
+                    $associatedSystem = "";
+                    $taskPriority = "";
+                    $taskProgress = "";
+                    $associationToTask = "";
+                    $analystAssignment = "";
+                    $collaboratorAssignment = "";
+                    /* editTag contents to add hidden fields, to POST things that aren't edited here */
+                    $editTag = <<< HEREDOC
+                    <input name="attachment" type="hidden" value=" "/>
+                    <input name="archiveStatus" type="hidden" value="$archiveStatus"/>
+                    <input name="numberOfSubtasks" type="hidden" value="$numberOfSubtasks"/>
+                    <input name="numberOfFindings" type="hidden" value="$numberOfFindings"/>
+                    HEREDOC;
                 } else {
                     $dataArray = readTask($taskTitle);
                     $postTag = "postedit";
@@ -36,9 +56,9 @@
                     $associatedSystem = $dataArray[2];
                     $taskPriority = $dataArray[4];
                     $taskProgress = $dataArray[5];
-                    $associationToTask = @implode(",",$dataArray[8]);
-                    $analystAssignment = @implode(",",$dataArray[9]);
-                    $collaboratorAssignment = @implode(",",$dataArray[10]);
+                    $associationToTask = $dataArray[8];
+                    $analystAssignment = $dataArray[9];
+                    $collaboratorAssignment = $dataArray[10];
                     /* editTag contents to add hidden fields, to POST things that aren't edited here */
                     $editTag = <<< HEREDOC
                     <input name="taskID" type="hidden" value="$taskID"/>
@@ -47,70 +67,19 @@
                     <input name="numberOfSubtasks" type="hidden" value="$numberOfSubtasks"/>
                     <input name="numberOfFindings" type="hidden" value="$numberOfFindings"/>
                     HEREDOC;
-
-                    // preset selections (priority, progress):
-
-                    $priorityLowSelected = "";
-                    $priorityMediumSelected = "";
-                    $priorityHighSelected = "";
-                    switch ($taskPriority) {
-                        case "low":
-                            $priorityLowSelected = " selected";
-                            break;
-                        case "medium":
-                            $priorityMediumSelected = " selected";
-                            break;
-                        case "high":
-                            $priorityHighSelected = " selected";
-                            break;
-                        default:
-                            break;
-                    }
-
-                    $notStartedSelected = "";
-                    $assignedSelected = "";
-                    $transferredSelected = "";
-                    $inProgressSelected = "";
-                    $completeSelected = "";
-                    $notApplicableSelected = "";
-                    switch ($taskProgress) {
-                        case "not started":
-                            $notStartedSelected = " selected";
-                            break;
-                        case "assigned":
-                            $assignedSelected = " selected";
-                            break;
-                        case "transferred":
-                            $transferredSelected = " selected";
-                            break;
-                        case "in progress":
-                            $inProgressSelected = " selected";
-                            break;
-                        case "complete":
-                            $completeSelected = " selected";
-                            break;
-                        case "not applicable":
-                            $notApplicableSelected = " selected";
-                            break;
-                        default:
-                            break;
-                    }
-
-                    // prepping programmatic selections (systems, assoc. to task, assigned analysts, collaborators):
-
-                    $systemTable = systemOverviewTable();
-                    for($i=0; $i<sizeof($systemTable); $i++){
-                        $systemList[$i] = $systemTable[$i][1];
-                    }
-                    $analystTable = analystNames();
-                    for($i=0; $i<sizeof($analystTable); $i++){
-                        $analystList[$i] = $analystTable[$i][2]." ".$analystTable[$i][3];
-                    }
-                    $taskTable = taskOverviewTable();
-                    for($i=0; $i<sizeof($taskTable); $i++){
-                        $taskList[$i] = $taskTable[$i][1];
-                    }
-
+                }
+                $systemList[0] = "";
+                $systemTable = systemOverviewTable();
+                for($i=0; $i<sizeof($systemTable); $i++){
+                    $systemList[$i+1] = $systemTable[$i][1];
+                }
+                $analystTable = analystNames();
+                for($i=0; $i<sizeof($analystTable); $i++){
+                    $analystList[$i] = $analystTable[$i][2]." ".$analystTable[$i][3];
+                }
+                $taskTable = taskOverviewTable();
+                for($i=0; $i<sizeof($taskTable); $i++){
+                    $taskList[$i] = $taskTable[$i][1];
                 }
                 $taskTitle = @$dataArray[1];
                 $taskDescription = @$dataArray[3];
@@ -125,27 +94,16 @@
                                         <input type="text" class="form-control" placeholder="Task Name" name="taskTitle" value="$taskTitle">
                                     </div>
                                     <div class="col-3">
-                                        <label>System</label>
-                                        <select name="associatedSystem" class="form-control" id="system">
-                                        <option></option>
-                            HEREDOC;
-                                foreach($systemList as $system) {
-                                    $selected = "";
-                                    if ($system == $associatedSystem) $selected = " selected";
-                                    echo <<< OPTIONOVER
-                                    <option value="$system"$selected>$system</option>
-                                    OPTIONOVER;
-                                }
-                            echo <<< HEREDOC
-                                        </select>
+                HEREDOC;
+                $systemGUIList = new GUIList("Associated System", "associatedSystem", $systemList, $associatedSystem);
+                $systemGUIList->printContents();
+                echo <<< HEREDOC
                                     </div>
                                     <div class="col-2">
-                                        <label>Priority</label>
-                                        <select name="taskPriority" class="form-control" id="taskPriority">
-                                            <option value="low"$priorityLowSelected>Low</option>
-                                            <option value="medium"$priorityMediumSelected>Medium</option>
-                                            <option value="high"$priorityHighSelected>High</option>
-                                        </select>
+                HEREDOC;
+                $priorityList = new GUIList("Priority", "taskPriority", $taskPriorityArray, $taskPriority);
+                $priorityList->printContents();
+                echo <<< HEREDOC
                                     </div>
                                 </div>
                                 <div class="row">
@@ -156,69 +114,28 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-3">
-                                        <label>Progress</label>
-                                        <select name="taskProgress" class="form-control" id="taskProgress">
-                                            <option value="not started"$notStartedSelected>Not Started</option>
-                                            <option value="assigned"$assignedSelected>Assigned</option>
-                                            <option value="transferred"$transferredSelected>Transferred</option>
-                                            <option value="in progress"$inProgressSelected>In Progress</option>
-                                            <option value="complete"$completeSelected>Complete</option>
-                                            <option value="not applicable"$notApplicableSelected>Not Applicable</option>
-                                        </select>
+                HEREDOC;
+                $progressList = new GUIList("Progress", "taskProgress", $taskProgressArray, $taskProgress);
+                $progressList->printContents();
+                echo <<< HEREDOC
                                     </div>
                                     <div class="col-2">
-                                        <label>Analyst(s)</label>
-                                        <select name='analystAssignment[]' class="form-control" multiple>
-
-                            HEREDOC;
-                                foreach($analystList as $analyst) {
-                                    $selected="";
-                                    if(in_array($analyst, explode(",",$analystAssignment))) {
-                                        $selected=" selected";
-                                    }
-                                    echo <<< OPTIONOVER
-                                        <option value="$analyst"$selected>$analyst</option>
-                                        
-                                    OPTIONOVER;
-                                }
-                            echo <<< HEREDOC
-                                        </select>
+                HEREDOC;
+                $analystAssignmentList = new GUIList("Analyst(s)", "analystAssignment", $analystList, $analystAssignment, TRUE);
+                $analystAssignmentList->printContents();
+                echo <<< HEREDOC
                                     </div>
                                     <div class="col-2">
-                                        <label>Collaborator(s)</label>
-                                        <select name='collaboratorAssignment[]' class="form-control" multiple>
-
-                            HEREDOC;
-                                foreach($analystList as $analyst) {
-                                    $selected="";
-                                    if(in_array($analyst, explode(",",$collaboratorAssignment))) {
-                                        $selected=" selected";
-                                    }
-                                    echo <<< OPTIONOVER
-                                        <option value="$analyst"$selected>$analyst</option>
-
-                                    OPTIONOVER;
-                                }
-                            echo <<< HEREDOC
-                                        </select>
+                HEREDOC;
+                $collaboratorAssignmentList = new GUIList("Collaborator(s)", "collaboratorAssignment", $analystList, $collaboratorAssignment, TRUE);
+                $collaboratorAssignmentList->printContents();
+                echo <<< HEREDOC
                                     </div>
                                     <div class="col-2">
-                                        <label>Related Task(s)</label>
-                                        <select name='associationToTask[]' class="form-control" multiple>
-
-                            HEREDOC;
-                                foreach($taskList as $task) {
-                                    $selected="";
-                                    if(in_array($task, explode(",",$associationToTask))) {
-                                        $selected=" selected";
-                                    }
-                                    echo <<< OPTIONOVER
-                                        <option value="$task"$selected>$task</option>
-
-                                    OPTIONOVER;
-                                }
-                            echo <<< HEREDOC
-                            </select>
+                HEREDOC;
+                $associationToTaskList = new GUIList("Related Task(s)", "associationToTask", $taskList, $associationToTask, TRUE);
+                $associationToTaskList->printContents();
+                echo <<< HEREDOC
                         </div>
                     </div>
                     <div class="row">
