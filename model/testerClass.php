@@ -16,7 +16,7 @@ class testerClass{
     public function testEvents(){
         $this->deleteOldData('FRIC_Database.Event');
         $eventDB   = new EventDatabase();
-        $e1        = new Event($eventDB, "Event 1", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .80);
+        $e1        = new Event($eventDB, "Event 1", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "2020-11-17", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .80);
         $e2        = new Event($eventDB, "Event 2", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .70);
         $e3        = new Event($eventDB, "Event 3", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .60);
         $e4        = new Event($eventDB, "Event 4", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .50);
@@ -102,11 +102,11 @@ class testerClass{
 <?php
 $tester = new TesterClass();
 
-//$tester->testSystems();
-//$tester->testTasks();
-//$tester->testSubtasks();
+// $tester->testSystems();
+// $tester->testTasks();
+// $tester->testSubtasks();
 // $tester->testFindings();
 // $tester->testAnalysts();
-//$tester->testEvents();
+// $tester->testEvents();
 //$tester->testStoringFile();
 ?>
