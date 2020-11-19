@@ -22,7 +22,15 @@ class Event {
             'progress'              => $progress
         ];
 
-        $db->insertDocument($dbEntry, 'FRIC_Database.Event');
+        if($db->checkDatabaseForSameName('eventName', $eventName, 'FRIC_Database.Event')){
+            echo <<< SCRIPT
+                <script>
+                    alert("Event with the same title already exist in the database. The event was not created.");
+                </script>
+            SCRIPT;
+        }else{
+            $db->insertDocument($dbEntry, 'FRIC_Database.Event');
+        }
     }
 }
 ?>

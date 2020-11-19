@@ -1,10 +1,10 @@
 <?php
-include ("eventDatabase.php");
-include ("systemDatabase.php");
-include ("taskDatabase.php");
-include ("subtaskDatabase.php");
-include ("findingDatabase.php");
-include ("analystDatabase.php");
+require_once ("eventDatabase.php");
+require_once ("systemDatabase.php");
+require_once ("taskDatabase.php");
+require_once ("subtaskDatabase.php");
+require_once ("findingDatabase.php");
+require_once ("analystDatabase.php");
 
 class testerClass{
     private function printEachIndexInAnArray($arr){
@@ -16,29 +16,29 @@ class testerClass{
     public function testEvents(){
         $this->deleteOldData('FRIC_Database.Event');
         $eventDB   = new EventDatabase();
-        $e1        = new Event($eventDB, "Event 1", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "2020-11-17", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .80);
-        $e2        = new Event($eventDB, "Event 2", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .70);
-        $e3        = new Event($eventDB, "Event 3", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .60);
-        $e4        = new Event($eventDB, "Event 4", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .50);
-        $e5        = new Event($eventDB, "Event 5", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 10, 10, .40);
+        $e1        = new Event($eventDB, "Event 1", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "2020-11-17", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 0, 0, .80);
+        //$e2        = new Event($eventDB, "Event 2", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 0, 0, .70);
+        //$e3        = new Event($eventDB, "Event 3", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 0, 0, .60);
+        //$e4        = new Event($eventDB, "Event 4", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 0, 0, .50);
+        //$e5        = new Event($eventDB, "Event 5", "This is a test descritpion", "Cooperative Vulnerability Penetration Assessment", "2", "11/01/2020", "Space Force", "Guide 2", "Top Secret", "11/02/2020", "Mc Cool", false, [], "jm", 0, 0, .40);
     }
 
     public function testSystems(){
         $this->deleteOldData('FRIC_Database.System');
         $systemDB  = new SystemDatabase();
-        $s1        = new Systeme($systemDB, "System 1", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
-        $s2        = new Systeme($systemDB, "System 2", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
-        $s3        = new Systeme($systemDB, "System 3", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 10, 10, .83);
+        $s1        = new Systeme($systemDB, "System 1", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 0, 0, .83);
+        $s2        = new Systeme($systemDB, "System 2", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 0, 0, .83);
+        $s3        = new Systeme($systemDB, "System 3", "This is a test Description", "location", "1.1.1.1", "switch", "room", "This is a test test plan", "Low", "Medium", "High", false, 0, 0, .83);
     }
 
     public function testTasks(){
         $this->deleteOldData('FRIC_Database.Task');
         $taskDB    = new TaskDatabase();
-        $t1        = new Task($taskDB, "Task 1", "System 3", "This is test description", "High", "In progress", "2020-11-16", "Need to test this attribute", [], ["Wim Bonks" , "Julio Hernandez"], [], false, 10, 10);
-        $t2        = new Task($taskDB, "Task 2", "System 1", "This is test description", "High", "In progress", "2020-11-17", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
-        $t3        = new Task($taskDB, "Task 3", "System 2", "This is test description", "High", "In progress", "2020-11-18", "Need to test this attribute", [], ["Tim Honks", "Danny O'Boy"], [], false, 10, 10);
-        $t4        = new Task($taskDB, "Task 4", "System 1", "This is test description", "High", "In progress", "2020-11-19", "Need to test this attribute", [], ["Wim Bonks"], [], false, 10, 10);
-        $t5        = new Task($taskDB, "Task 5", "System 3", "This is test description", "High", "In progress", "2020-11-20", "Need to test this attribute", [], ["Jebel Macias", "Julio Hernandez"], [], false, 10, 10);
+        $t1        = new Task($taskDB, "Task 1", "System 3", "This is test description", "High", "In progress", "2020-11-16", "Need to test this attribute", [], ["Wim Bonks" , "Julio Hernandez"], [], false, 0, 0);
+        $t2        = new Task($taskDB, "Task 2", "System 1", "This is test description", "High", "In progress", "2020-11-17", "Need to test this attribute", [], ["Wim Bonks"], [], false, 0, 0);
+        $t3        = new Task($taskDB, "Task 3", "System 2", "This is test description", "High", "In progress", "2020-11-18", "Need to test this attribute", [], ["Tim Honks", "Danny O'Boy"], [], false, 0, 0);
+        $t4        = new Task($taskDB, "Task 4", "System 1", "This is test description", "High", "In progress", "2020-11-19", "Need to test this attribute", [], ["Wim Bonks"], [], false, 0, 0);
+        $t5        = new Task($taskDB, "Task 5", "System 3", "This is test description", "High", "In progress", "2020-11-20", "Need to test this attribute", [], ["Jebel Macias", "Julio Hernandez"], [], false, 0, 0);
         
         echo "<h5>5 Tasks have been created</h5>";
         //$analystDB = new AnalystDatabase();
@@ -48,11 +48,11 @@ class testerClass{
     public function testSubtasks(){
         $this->deleteOldData('FRIC_Database.Subtask');
         $subtaskDB = new SubtaskDatabase();
-        $st1       = new Subtask($subtaskDB,"Subtask 1", "Task 1", "This is test description", "Not Started", "2020-11-16", "Need to test this attribute", [] ,["Danny O'Boy"], [], false, 10);
-        $st2       = new Subtask($subtaskDB,"Subtask 2", "Task 1", "This is test description", "Not Started", "2020-11-17", "Need to test this attribute", [] , ["Wim Bonks"], [], false, 10);
-        $st3       = new Subtask($subtaskDB,"Subtask 3", "Task 1", "This is test description", "Not Started", "2020-11-18", "Need to test this attribute", [], ["Julio Hernandez","Wim Bonks"], [], false, 10);
-        $st4       = new Subtask($subtaskDB,"Subtask 4", "Task 3", "This is test description", "Not Started", "2020-11-19", "Need to test this attribute", [] , ["Jebel Macias"], [], false, 10);
-        $st5       = new Subtask($subtaskDB,"Subtask 5", "Task 1", "This is test description", "Not Started", "2020-11-20", "Need to test this attribute", [], ["Julio Hernandez","Jebel Macias"], [], false, 10);
+        $st1       = new Subtask($subtaskDB,"Subtask 1", "Task 1", "This is test description", "Not Started", "2020-11-16", "Need to test this attribute", [] ,["Danny O'Boy"], [], false, 0);
+        $st2       = new Subtask($subtaskDB,"Subtask 2", "Task 1", "This is test description", "Not Started", "2020-11-17", "Need to test this attribute", [] , ["Wim Bonks"], [], false, 0);
+        $st3       = new Subtask($subtaskDB,"Subtask 3", "Task 1", "This is test description", "Not Started", "2020-11-18", "Need to test this attribute", [], ["Julio Hernandez","Wim Bonks"], [], false, 0);
+        $st4       = new Subtask($subtaskDB,"Subtask 4", "Task 3", "This is test description", "Not Started", "2020-11-19", "Need to test this attribute", [] , ["Jebel Macias"], [], false, 0);
+        $st5       = new Subtask($subtaskDB,"Subtask 5", "Task 1", "This is test description", "Not Started", "2020-11-20", "Need to test this attribute", [], ["Julio Hernandez","Jebel Macias"], [], false, 0);
     }
 
     public function testFindings(){

@@ -9,6 +9,7 @@ class SubtaskDatabase extends Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);  
             $table  = array();
             foreach($cursor as $document){
+                $this->updateCounts($document->taskTitle);
                 if($document->archiveStatus == true){
                     $row = array();
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
@@ -29,6 +30,7 @@ class SubtaskDatabase extends Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);  
             $table  = array();
             foreach($cursor as $document){
+                $this->updateCounts($document->taskTitle);
                 if($document->archiveStatus != true){
                     $row = array();
                     array_push($row, $document->_id, $document->taskTitle, $document->associatedTask, $document->analystAssignment, 
@@ -64,12 +66,47 @@ class SubtaskDatabase extends Database{
         }
     }
 
+    public function checkSubtaskForSystemAssociation($subtaskName, $systemName){
+        try{
+            $query  = new MongoDB\Driver\Query(['taskTitle' => $subtaskName], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
+            $taskDatabase = new TaskDatabase();
+            foreach($cursor as $document){
+                if($taskDatabase->checkTaskForSystemAssociation($document->associatedTask, $systemName)){
+                    return True;
+                }
+            }
+            return False;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return False;
+        }
+    }
+
+    public function getNumOfSubtaskAssociatedToATask($taskName){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
+            $count  = 0;
+            foreach($cursor as $document){
+                if($document->associatedTask == $taskName){
+                    $count += 1;
+                }
+            } 
+            return $count;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     public function getSubtaskAttributes($id){
         try{
             $query  = new MongoDB\Driver\Query(['_id' => $id], []);
             $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
             $object = array(); 
             foreach($cursor as $document){
+                $this->updateCounts($document->taskTitle);
                 array_push($object, $document->_id, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, $document->taskDueDate,
                            $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus,
                            $document->numberOfFindings);
@@ -81,9 +118,20 @@ class SubtaskDatabase extends Database{
         }
     }
 
+    public function updateCounts($taskName){
+        try{
+            $bulk      = new MongoDB\Driver\BulkWrite;
+            $findingDB = new FindingDatabase();
+            $bulk->update(['taskTitle' => $taskName], ['$set'=> ['numberOfFindings' => $findingDB->getNumOfFindingsAssociatedToASubtask($taskName)]]);
+            $this->manager->executeBulkWrite('FRIC_Database.Subtask', $bulk);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+        }
+    }
+
     public function editSubtaskDocument($id, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfFindings){
         $dbEntry = ['$set'=>
-            ['taskTitle'              => $taskTitle,
+            ['taskTitle'             => $taskTitle,
             'associatedTask'         => $associatedTask,
             'taskDescription'        => $taskDescription,    
             'taskProgress'           => $taskProgress,    
@@ -97,9 +145,24 @@ class SubtaskDatabase extends Database{
         ];
 
         try{
-            $bulk = new MongoDB\Driver\BulkWrite;
-            $bulk->update(['_id' => $id], $dbEntry);
-            $this->manager->executeBulkWrite('FRIC_Database.Subtask', $bulk);
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
+            $originalName = "";
+            foreach($cursor as $document){
+                $originalName = $document->taskTitle;
+            }
+
+            if($originalName != $taskTitle and $this->checkDatabaseForSameName('taskTitle', $taskTitle, 'FRIC_Database.Subtask')){
+                echo <<< SCRIPT
+                    <script>
+                        alert("Subtask with the same title already exist in the database. The subtask was not edited.");
+                    </script>
+                SCRIPT;
+            }else{
+                $bulk = new MongoDB\Driver\BulkWrite;
+                $bulk->update(['_id' => $id], $dbEntry);
+                $this->manager->executeBulkWrite('FRIC_Database.Subtask', $bulk);
+            }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
         }

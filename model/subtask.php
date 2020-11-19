@@ -1,5 +1,5 @@
 <?php
-require_once('task.php');
+require_once ('task.php');
 
 class Subtask extends Task {
     public function __construct($db, $taskTitle, $associatedTask, $taskDescription, $taskProgress, $taskDueDate, $attachment, $associationToSubtask, $analystAssignment, $collaboratorAssignment, $archiveStatus, $numberOfFindings){
@@ -18,7 +18,15 @@ class Subtask extends Task {
             'numberOfFindings'       => $numberOfFindings
         ];
 
-        $db->insertDocument($dbEntry, 'FRIC_Database.Subtask');
+        if($db->checkDatabaseForSameName('taskTitle', $taskTitle, 'FRIC_Database.Subtask')){
+            echo <<< SCRIPT
+                <script>
+                    alert("Subtask with the same title already exist in the database. The subtask was not created.");
+                </script>
+            SCRIPT;
+        }else{
+            $db->insertDocument($dbEntry, 'FRIC_Database.Subtask');
+        }
     }
 }
 ?>

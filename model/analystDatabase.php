@@ -375,11 +375,10 @@ class AnalystDatabase extends Database{
         $progress = strtolower($progress);
         switch($progress){
             case "not applicable":
-                return 0;
             case "not started":
             case "assigned":
             case "transferred":
-                return 1;
+                return 0;
             case "in progress":
                 return 5;
             case "complete":

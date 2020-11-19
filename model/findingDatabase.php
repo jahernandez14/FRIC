@@ -1,5 +1,8 @@
 <?php
 require_once ("finding.php");
+require_once ('taskDatabase.php');
+require_once ('subTaskDatabase.php');
+require_once ('systemDatabase.php');
 require_once ('database.php');
 
 class FindingDatabase extends Database{
@@ -112,6 +115,81 @@ class FindingDatabase extends Database{
         }
     }
 
+    public function getNumOfFindingsAssociatedToASystem($systemName){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
+            $count  = 0;
+            $taskDatabase    = new TaskDatabase();
+            $subtaskDatabase = new SubTaskDatabase();
+            foreach($cursor as $document){
+                if($document->associatedSystem == $systemName){
+                    $count += 1;
+                } else if($taskDatabase->checkTaskForSystemAssociation($document->associatedTask, $systemName)){
+                    $count += 1;
+                } else if($subtaskDatabase->checkSubtaskForSystemAssociation($document->associatedSubtask, $systemName)){
+                    $count += 1;
+                }
+            } 
+            return $count;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
+    public function getNumOfFindingsAssociatedToATask($taskName){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
+            $count  = 0;
+            foreach($cursor as $document){
+                if($document->associatedTask == $taskName){
+                    $count += 1;
+                } 
+        
+            } 
+            return $count;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
+    public function getNumOfFindingsAssociatedToAnEvent(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
+            $count  = 0;
+            foreach($cursor as $document){
+                if($document->archiveStatus != true){
+                    $count += 1;
+                }
+            } 
+            return $count;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
+    public function getNumOfFindingsAssociatedToASubtask($subtaskName){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
+            $count  = 0;
+            foreach($cursor as $document){
+                if($document->associatedSubtask == $subtaskName){
+                    $count += 1;
+                }
+            } 
+            return $count;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     public function getFindingAttributes($id){
         try{
             $query  = new MongoDB\Driver\Query(['_id' => $id], []);
@@ -171,9 +249,24 @@ class FindingDatabase extends Database{
         ];
 
         try{
-            $bulk = new MongoDB\Driver\BulkWrite;
-            $bulk->update(['_id' => $id], $dbEntry);
-            $this->manager->executeBulkWrite('FRIC_Database.Finding', $bulk);
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
+            $originalName = "";
+            foreach($cursor as $document){
+                $originalName = $document->findingTitle;
+            }
+
+            if($originalName != $findingTitle and $this->checkDatabaseForSameName('findingTitle', $findingTitle, 'FRIC_Database.Finding')){
+                echo <<< SCRIPT
+                    <script>
+                        alert("Finding with the same title already exist in the database. The finding was not edited.");
+                    </script>
+                SCRIPT;
+            }else{
+                $bulk = new MongoDB\Driver\BulkWrite;
+                $bulk->update(['_id' => $id], $dbEntry);
+                $this->manager->executeBulkWrite('FRIC_Database.Finding', $bulk);
+            }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
         }

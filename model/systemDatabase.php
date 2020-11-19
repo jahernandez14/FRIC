@@ -1,6 +1,8 @@
 <?php
-require_once ("systeme.php");
+require_once ('systeme.php');
 require_once ('database.php');
+require_once ('findingDatabase.php');
+require_once ('taskDatabase.php');
 
 class SystemDatabase extends Database{
     public function getAllArchivedSystems(){
@@ -29,6 +31,7 @@ class SystemDatabase extends Database{
             $table  = array();
             foreach($cursor as $document){
                 if($document->archiveStatus != true){
+                    $this->updateCounts($document->systemName);
                     array_push($table, $document->systemName);
                 }
             } 
@@ -47,6 +50,7 @@ class SystemDatabase extends Database{
             foreach($cursor as $document){
                 if($document->archiveStatus != true){
                     $row = array();
+                    $this->updateCounts($document->systemName);
                     array_push($row, $document->_id, $document->systemName, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
                     array_push($table, $row);
                 }
@@ -55,6 +59,37 @@ class SystemDatabase extends Database{
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
             return array(array());
+        }
+    }
+
+    public function updateCounts($systemName){
+        try{
+            $bulk      = new MongoDB\Driver\BulkWrite;
+            $findingDB = new FindingDatabase(); 
+            $taskDB    = new TaskDatabase();
+            $bulk->update(['systemName' => $systemName], ['$set'=> ['numberOfFindings' => $findingDB->getNumOfFindingsAssociatedToASystem($systemName), 'numberOfTasks' => $taskDB->getNumOfTaskAssociatedToASystem($systemName), 'progress' => $taskDB->getTaskForSystemProgress($systemName)]], ['multi' => false, 'upsert' => false]);//$findingDB->getNumOfFindingsAssociatedToASystem($systemName)]]);
+            $this->manager->executeBulkWrite('FRIC_Database.System', $bulk);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+        }
+    }
+
+    public function getAllSystemProgress(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);  
+            $totalProgress     = 0;
+            $totalNumOfSystems = 0;
+            foreach($cursor as $document){
+                if($document->archiveStatus != true){
+                    $this->updateCounts($document->systemName);
+                    $totalProgress     += str_replace('%', '', $document->progress);
+                    $totalNumOfSystems += 1;
+                }
+            } 
+            return round((100/ (100 * $totalNumOfSystems)) * $totalProgress) . "%";
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
         }
     }
 
@@ -75,12 +110,30 @@ class SystemDatabase extends Database{
         }
     }
 
+    public function getNumOfSystemsAssociatedToAnEvent(){
+        try{
+            $query  = new MongoDB\Driver\Query([]);
+            $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
+            $count  = 0;
+            foreach($cursor as $document){
+                if($document->archiveStatus != true){
+                    $count += 1;
+                }
+            } 
+            return $count;
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+            return array(array());
+        }
+    }
+
     public function getAllSystemTitles(){
         try{
             $query  = new MongoDB\Driver\Query([]);
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
             $systems = array(); 
             foreach($cursor as $document){
+                $this->updateCounts($document->systemName);
                 array_push($systems, $document->systemName);
             }
 
@@ -110,9 +163,24 @@ class SystemDatabase extends Database{
         ];
 
         try{
-            $bulk = new MongoDB\Driver\BulkWrite;
-            $bulk->update(['_id' => $id], $dbEntry);
-            $this->manager->executeBulkWrite('FRIC_Database.System', $bulk);
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
+            $originalName = "";
+            foreach($cursor as $document){
+                $originalName = $document->systemName;
+            }
+
+            if($originalName != $systemName and $this->checkDatabaseForSameName('systemName', $systemName, 'FRIC_Database.System')){
+                echo <<< SCRIPT
+                    <script>
+                        alert("System with the same title already exist in the database. The system was not edited.");
+                    </script>
+                SCRIPT;
+            }else{
+                $bulk = new MongoDB\Driver\BulkWrite;
+                $bulk->update(['_id' => $id], $dbEntry);
+                $this->manager->executeBulkWrite('FRIC_Database.System', $bulk);
+            }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
         }
