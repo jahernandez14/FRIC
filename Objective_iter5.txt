@@ -1,0 +1,30 @@
+Jebel
+- Implement promote/demote subtask and task
+- attachments
+- search database methods
+- Finish Final Report
+- log method compare to indetify what has changed
+- event methods
+- Notification methods
+
+Will
+- Sorting
+- Search
+- Finish ERB Report
+- Finish Help
+
+Danny
+- Team configuration
+- Archive buttons/ select
+- Demote/Promote
+- attachment list/button
+- Complete config 
+
+Julio Hernandez
+- Event Tree
+- Notification customization
+- Analyst session bug
+- Finish Risk Matrix
+- Detailed Log Completion
+
+

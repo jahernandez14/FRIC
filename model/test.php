@@ -57,6 +57,7 @@ function testReport($findings){
     $spreadsheet->getActiveSheet()->getColumnDimension('F')->setWidth(24);
     $spreadsheet->getActiveSheet()->getColumnDimension('G')->setWidth(24);
     $spreadsheet->getActiveSheet()->getColumnDimension('H')->setWidth(24);
+    $spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(26);
 
     //Findings Table
     $spreadsheet->getActiveSheet()
@@ -93,7 +94,6 @@ function testReport($findings){
     
     $i=10;
     foreach($findingsDetailedList as $a){
-        print_r($a);
         $spreadsheet->getActiveSheet()
             ->setCellValue('C'.$i,$a[0])
             ->setCellValue('D'.$i,$a[2])
@@ -120,9 +120,9 @@ function testReport($findings){
             ->setCellValue('Y'.$i,'Impact')
             ->setCellValue('Z'.$i,'Impact Rationale')
             ->setCellValue('AA'.$i,'Risk')
-            ->setCellValue('AB'.$i,'Mitigation 1-Liner')
-            ->setCellValue('AC'.$i,'Mitigation (Hide)')
-            ->setCellValue('AD'.$i,'Analyst');
+            ->setCellValue('AB'.$i,$a[21])
+            ->setCellValue('AC'.$i,$a[35])
+            ->setCellValue('AD'.$i,$a[19][0]);
         $i++;
 
     }
