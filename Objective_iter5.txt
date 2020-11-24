@@ -26,5 +26,6 @@ Julio Hernandez
 - Analyst session bug
 - Finish Risk Matrix
 - Detailed Log Completion
+- Edit Reports
 
 
