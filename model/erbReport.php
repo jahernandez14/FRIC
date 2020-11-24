@@ -79,6 +79,13 @@
             $y += 25;
         }
 
+        /*
+        Simple code
+        $tableShape = $slide2->createTableShape(5)->setHeight(600)->setWidth(900)->setOffsetX(32)->setOffsetY(417);
+        $row = $tableShape->createRow();
+        $cellA1 = $row->nextCell();
+        $cellA1->setWidth(50);*/
+
         #SLIDE 3
         //Adding a new slide
         $remainingFindings = count($findingArray);
