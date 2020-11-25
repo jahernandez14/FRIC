@@ -822,10 +822,32 @@
                             <ol>
                                 <li>Open Control Panel</li>
                                 <li>Search for Administrative Tools</li>
-                                <li>Doble-click in Service</li>
+                                <li>Double-click in Service</li>
                                 <li>Look for "MongoDB", right click on it and select "Start"</li>
                                 <ul>
                                     <li>Under "Status" it should read "Running"</li>
+                                </ul>
+                                <li>Another solution to this problem is to visit the <em>mongod.cfg</em> file and make some adjustments.</li>
+                                <ul>
+                                    This file can found in:
+                                    <p style="text-align:center">
+                                        <samp>
+                                            C:[Mongo Location]\MongoDB\Server\[Mongo Version]\bin\mongod.cfg
+                                        </samp>
+                                    </p>
+                                </ul>
+                                <li>Check that the following information is in there as follows:</li>
+                                <ul>
+                                    <p style="text-align:center">
+                                        <samp>
+                                            #Network interfaces
+                                            net:
+                                            <ul>
+                                                <li>port: 27017</li>
+                                                <li>bindIpAll: true</li>
+                                            </ul>
+                                        </samp>
+                                    </p>
                                 </ul>
                             </ol>
                         </ol>
