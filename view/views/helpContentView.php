@@ -827,31 +827,41 @@
                                 <ul>
                                     <li>Under "Status" it should read "Running"</li>
                                 </ul>
-                                <li>Another solution to this problem is to visit the <em>mongod.cfg</em> file and make some adjustments.</li>
-                                <ul>
-                                    This file can found in:
-                                    <p style="text-align:center">
-                                        <samp>
-                                            C:[Mongo Location]\MongoDB\Server\[Mongo Version]\bin\mongod.cfg
-                                        </samp>
-                                    </p>
-                                </ul>
-                                <li>Check that the following information is in there as follows:</li>
-                                <ul>
-                                    <p style="text-align:center">
-                                        <samp>
-                                            #Network interfaces
-                                            net:
-                                            <ul>
-                                                <li>port: 27017</li>
-                                                <li>bindIpAll: true</li>
-                                            </ul>
-                                        </samp>
-                                    </p>
-                                </ul>
                             </ol>
                         </ol>
-
+                        <ul>
+                            <li>Another solution to this problem is to visit the <em>mongod.cfg</em> file and make some adjustments.</li>
+                            This file can found in:
+                            <ul>
+                                <p style="text-align:center">
+                                    <samp>
+                                        C:Program Files\MongoDB\Server\[Mongo Version]\bin\mongod.cfg
+                                    </samp>
+                                </p>
+                            </ul>
+                            <li>Check that the following information is in there as follows:</li>
+                            <ul>
+                                <samp>
+                                    #Network interfaces
+                                    net:
+                                    <ul>
+                                        <li>port: 27017</li>
+                                        <li>bindIpAll: true</li>
+                                    </ul>
+                                </samp>
+                                    <li>Make sure that you have Administrative rights when you save these changes</li>
+                            </ul>
+                        </ul>
+                        <ul style="font-size:13px"><b>
+                            <li>[NOTE] There is a chance that the this solution triggers Windows' firewall, you may:</li>
+                            <ol>
+                                <li>Disable Windows' firewall</li>
+                                <li>Custumize your security settings to dismiss the warning</li>
+                            </ol>
+                            <li>Both fixes are up to the user's discretion and knowledge</li>
+                        </ul></b>
+                    </ul>
+                    <ul>
                         <br><a id = "linuxProblems"></a>
                         <li><b>Linux</b> Common Problems</li>
                         <ol type = "I">
