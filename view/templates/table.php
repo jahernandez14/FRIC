@@ -77,7 +77,12 @@ class table
         }
         $colCount = sizeof(table::$tableTypes[$type]) - (2*table::$tableTypes[$type]["F"]) - table::$tableTypes[$type]["R"] - 3 + table::$tableTypes[$type]["C"];
         $rowCount = sizeof($data);
-        return new table($type, $colCount, $rowCount, table::$tableTypes[$type], $data);
+
+        //Testing Data
+        //table::sortAscending($data, 1);
+        $sorted = table::sortAscending($data, 1);
+        //return new table($type, $colCount, $rowCount, table::$tableTypes[$type], $data);
+        return new table($type, $colCount, $rowCount, table::$tableTypes[$type], $sorted);
     }
 
     public function printFindingOverviewTable() {
@@ -335,6 +340,34 @@ class table
         }
         unset($this->contents["rows"]);
         $this->dims["rows"]--;
+    }
+    /*
+        $i: Index of the super array        
+        $j: Attribute column
+    */
+    //The following 2 functions are used in all the tables, as long as the $column value is a valid one
+    public function sortAscending($data, $column){
+        $size = count($data)-1;
+        for($i = 0; $i < $size; $i++){
+            for($j = 0; $j < $size-$i; $j++){
+                $k = $j+1;
+                if($data[$k][$column] < $data[$j][$column])
+                    list($data[$j][$column], $data[$k][$column]) = array($data[$k][$column], $data[$j][$column]);
+            }
+        }
+        return $data;
+    }
+
+    public function sortDescending($data, $column){
+        $size = count($data)-1;
+        for($i = 0; $i < $size; $i++){
+            for($j = 0; $j < $size-$i; $j++){
+                $k = $j+1;
+                if($data[$k][$column] > $data[$j][$column])
+                    list($data[$j][$column], $data[$k][$column]) = array($data[$k][$column], $data[$j][$column]);
+            }
+        }
+        return $data;
     }
 }
 ?>
