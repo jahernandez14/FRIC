@@ -80,9 +80,9 @@ class table
 
         //Testing Data
         //table::sortAscending($data, 1);
-        $sorted = table::sortAscending($data, 1);
-        //return new table($type, $colCount, $rowCount, table::$tableTypes[$type], $data);
-        return new table($type, $colCount, $rowCount, table::$tableTypes[$type], $sorted);
+        //$sorted = table::sortAscending($data, 1);
+        return new table($type, $colCount, $rowCount, table::$tableTypes[$type], $data);
+        //return new table($type, $colCount, $rowCount, table::$tableTypes[$type], $sorted);
     }
 
     public function printFindingOverviewTable() {
@@ -278,7 +278,7 @@ class table
                             <th scope="col">$item&nbsp;
                                 <div class="btn-group-vertical">
                                     <button class="btn btn-sm btn-secondary py-0"
-                                        style="font-size: .6em;">&uarr;</button>
+                                        style="font-size: .6em;" id="upArrow">&uarr;</button>
                                     <button class="btn btn-sm btn-secondary py-0"
                                         style="font-size: .6em;">&darr;</button>
                                 </div>
@@ -327,6 +327,7 @@ class table
             <br></br>
             RESTOREBUTTONS;
         }
+
     }
 
     public function addRow($data) {
