@@ -66,14 +66,6 @@ class FindingDatabase extends Database{
         //NotDone
     }
 
-    /*I need
-    1. ID
-    2. Associated System
-    3. Finding title
-    4. Impact
-    5. Risk
-    6. Name of all systems in the scope
-    *///System Association, Finding Titlke, Impact, Risk, Systems
     public function getFindingsForERBReport($ids){
         try{
             $allFindings = array();
@@ -206,6 +198,25 @@ class FindingDatabase extends Database{
         }
     }
 
+    public function syncAllFindings($otherAnalystManager){
+        $query    = new MongoDB\Driver\Query([]);
+        $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Finding', $query);
+        $myCursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
+        foreach($cursor as $document){    
+            if($this->checkDatabaseForSameName('findingTitle', $document->findingTitle, 'FRIC_Database.Finding')){
+                $this->editFindingDocument($document->_id, $document->findingTitle, $document->hostName, $document->ipPort, $document->associatedTask, $document->associatedSystem, $document->associatedSubtask, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, 
+                $document->findingClassification, $document->associationToFinding, $document->evidence, $document->archiveStatus, $document->collaboratorAssignment, $document->confidentiality, $document->integrity, $document->availability, $document->analystAssignment, $document->posture, $document->briefDescription, 
+                $document->longDescription, $document->relevance, $document->effectivenessRating, $document->impactDescription, $document->impactLevel, $document->severityCatCode, $document->severityCatScore, $document->vulnerabilitySeverity, $document->quantitativeVulnerabilitySeverity, $document->risk, $document->likelihood, 
+                $document->confidentialityImpactOnSystem, $document->integrityImpactOnSystem, $document->availabilityImpactOnSystem, $document->impactScore);
+            } else{
+                new Finding($myDb, $document->findingTitle, $document->hostName, $document->ipPort, $document->associatedTask, $document->associatedSystem, $document->associatedSubtask, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, 
+                    $document->findingClassification, $document->associationToFinding, $document->evidence, $document->archiveStatus, $document->collaboratorAssignment, $document->confidentiality, $document->integrity, $document->availability, $document->analystAssignment, $document->posture, $document->briefDescription, 
+                    $document->longDescription, $document->relevance, $document->effectivenessRating, $document->impactDescription, $document->impactLevel, $document->severityCatCode, $document->severityCatScore, $document->vulnerabilitySeverity, $document->quantitativeVulnerabilitySeverity, $document->risk, $document->likelihood, 
+                    $document->confidentialityImpactOnSystem, $document->integrityImpactOnSystem, $document->availabilityImpactOnSystem, $document->impactScore);
+            }
+        }
+    }
+
     public function editFindingDocument($id, $findingTitle, $hostName, $ipPort, $associatedTask, $associatedSystem, $associatedSubtask, $findingDescription, $findingLongDescription, $findingStatus, $findingType, $findingClassification, $associationToFinding, $evidence, $archiveStatus, $collaboratorAssignment,
                                         $confidentiality, $integrity, $availability, $analystAssignment, $posture, $briefDescription, $longDescription, $relevance, $effectivenessRating, $impactDescription, $impactLevel, $severityCatCode, $severityCatScore, $vulnerabilitySeverity, $quantitativeVulnerabilitySeverity,
                                         $risk, $likelihood, $confidentialityImpactOnSystem, $integrityImpactOnSystem, $availabilityImpactOnSystem, $impactScore){
@@ -262,9 +273,11 @@ class FindingDatabase extends Database{
                     </script>
                 SCRIPT;
             }else{
+                $changes = $this->checkForChanges('FRIC_Database.Finding', $id, $dbEntry['$set']);
                 $bulk = new MongoDB\Driver\BulkWrite;
                 $bulk->update(['_id' => $id], $dbEntry);
                 $this->manager->executeBulkWrite('FRIC_Database.Finding', $bulk);
+                return $changes;
             }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";

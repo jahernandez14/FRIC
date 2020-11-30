@@ -1,9 +1,9 @@
 Jebel
-- Implement promote/demote subtask and task
+- Implement promote/demote subtask and task(complete)
 - attachments
-- search database methods
+- search database methods(complete)
 - Finish Final Report
-- log method compare to indetify what has changed
+- log method compare to indetify what has changed(complete)
 - event methods
 - Notification methods
 

@@ -110,6 +110,19 @@ class EventDatabase extends Database{
         }
     }
 
+    public function syncAllEvents($otherAnalystManager){
+        $query    = new MongoDB\Driver\Query([]);
+        $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Event', $query);
+        $myCursor = $this->manager->executeQuery('FRIC_Database.Event', $query);
+        foreach($cursor as $document){
+            if($this->checkDatabaseForSameName('eventName', $document->eventName, 'FRIC_Database.Event')){
+                $this->editEventDocument($document_id, $document->eventName, $document->eventDescription, $document->eventType, $document->eventVersion, $document->assessmentDate, $document->organizationName, $document->securityClassifcation, $document->eventClassification, $document->declassificationDate, $document->customerName, $document->archiveStatus, $document->eventTeam, $document->derivedFrom, $document->numberOfFindings, $document->numberOfSystems, $document->progress);
+            } else {
+                new Event($myDb, $document->eventName, $document->eventDescription, $document->eventType, $document->eventVersion, $document->assessmentDate, $document->organizationName, $document->securityClassifcation, $document->eventClassification, $document->declassificationDate, $document->customerName, $document->archiveStatus, $document->eventTeam, $document->derivedFrom, $document->numberOfFindings, $document->numberOfSystems, $document->progress);
+            }
+        }
+    }
+
     /* Edit system document attributes in db */
     public function editEventDocument($id, $eventName, $eventDescription, $eventType, $eventVersion, $assessmentDate, $organizationName, $securityClassifcation, $eventClassification, $declassificationDate, $customerName, $archiveStatus, $eventTeam, $derivedFrom, $numberOfFindings, $numberOfSystems, $progress){
         $dbEntry = ['$set'=>
@@ -146,9 +159,11 @@ class EventDatabase extends Database{
                     </script>
                 SCRIPT;
             }else{
+                $changes = $this->checkForChanges('FRIC_Database.Event', $id, $dbEntry['$set']);
                 $bulk = new MongoDB\Driver\BulkWrite;
                 $bulk->update(['_id' => $id], $dbEntry);
                 $this->manager->executeBulkWrite('FRIC_Database.Event', $bulk);
+                return $changes;
             }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";

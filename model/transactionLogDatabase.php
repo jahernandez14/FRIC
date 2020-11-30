@@ -19,5 +19,14 @@ class TransactionLogDatabase extends Database{
             return array(array());
         }
     }
+
+    public function syncAllTransactionLogs($otherAnalystManager){
+        $query    = new MongoDB\Driver\Query([]);
+        $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.TransactionLog', $query);
+        $myCursor = $this->manager->executeQuery('FRIC_Database.TransactionLog', $query);
+        foreach($cursor as $document){
+            new TransactionLog($myDb, $document->dateTime, $document->actionPerformed, $document->analyst);
+        }
+    }
 }
 ?>

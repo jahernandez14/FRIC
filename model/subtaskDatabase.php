@@ -96,7 +96,20 @@ class SubtaskDatabase extends Database{
             return $count;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
-            return array(array());
+            return 0;
+        }
+    }
+
+    public function promoteToTask($id){
+        try{
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
+            foreach($cursor as $document){
+                new Task($this, $document->taskTitle, "", $document->taskDescription, "Low", $document->taskProgress, $document->taskDueDate, $document->attachment, [$document->associatedTask], $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, 0, $document->numberOfFindings);
+            }
+            $this->removeFromDB('FRIC_Database.Subtask', $id);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
         }
     }
 
@@ -114,7 +127,7 @@ class SubtaskDatabase extends Database{
             return $object;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
-            return array();
+            return Null;
         }
     }
 
@@ -130,7 +143,6 @@ class SubtaskDatabase extends Database{
             } 
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
-            return array(array());
         }
     }
 
@@ -142,6 +154,19 @@ class SubtaskDatabase extends Database{
             $this->manager->executeBulkWrite('FRIC_Database.Subtask', $bulk);
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
+        }
+    }
+
+    public function syncAllSubtasks($otherAnalystManager){
+        $query    = new MongoDB\Driver\Query([]);
+        $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Subtask', $query);
+        $myCursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
+        foreach($cursor as $document){
+            if($this->checkDatabaseForSameName('taskTitle', $document->taskTitle, 'FRIC_Database.Subtask')){
+                $this->editSubtaskDocument($document->_id, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfFindings);
+            } else {
+                new Subtask($myDb, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfFindings);
+            }
         }
     }
 
@@ -175,9 +200,11 @@ class SubtaskDatabase extends Database{
                     </script>
                 SCRIPT;
             }else{
+                $changes = $this->checkForChanges('FRIC_Database.Subtask', $id, $dbEntry['$set']);
                 $bulk = new MongoDB\Driver\BulkWrite;
                 $bulk->update(['_id' => $id], $dbEntry);
                 $this->manager->executeBulkWrite('FRIC_Database.Subtask', $bulk);
+                return $changes;
             }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";

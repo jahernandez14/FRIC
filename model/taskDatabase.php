@@ -1,5 +1,6 @@
 <?php
 require_once ("task.php");
+require_once ("subtask.php");
 require_once ('findingDatabase.php');
 require_once ('systemDatabase.php');
 require_once ('database.php');
@@ -159,6 +160,19 @@ class TaskDatabase extends Database{
         }
     }
 
+    public function demoteToSubtask($id){
+        try{
+            $query  = new MongoDB\Driver\Query(['_id' => $id], []);
+            $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);
+            foreach($cursor as $document){
+                new SubTask($this, $document->taskTitle, "", $document->taskDescription, $document->taskProgress, $document->taskDueDate, $document->attachment, [], $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfFindings);
+            }
+            $this->removeFromDB('FRIC_Database.Task', $id);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+        }
+    }
+
     public function updateBefore(){
         try{
             $query  = new MongoDB\Driver\Query([]);
@@ -184,6 +198,19 @@ class TaskDatabase extends Database{
             $this->manager->executeBulkWrite('FRIC_Database.Task', $bulk);
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
+        }
+    }
+
+    public function syncAllTasks($otherAnalystManager){
+        $query    = new MongoDB\Driver\Query([]);
+        $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Task', $query);
+        $myCursor = $this->manager->executeQuery('FRIC_Database.Task', $query);
+        foreach($cursor as $document){   
+            if($this->checkDatabaseForSameName('taskTitle', $document->taskTitle, 'FRIC_Database.Task')){
+                $this->editTaskDocument($document->_id, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
+            } else {
+                new Task($myDb, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
+            }
         }
     }
 
@@ -222,9 +249,11 @@ class TaskDatabase extends Database{
                     </script>
                 SCRIPT;
             }else{
+                $changes = $this->checkForChanges('FRIC_Database.Task', $id, $dbEntry['$set']);
                 $bulk = new MongoDB\Driver\BulkWrite;
                 $bulk->update(['_id' => $id], $dbEntry);
                 $this->manager->executeBulkWrite('FRIC_Database.Task', $bulk);
+                return $changes;
             }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";

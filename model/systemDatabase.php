@@ -166,6 +166,19 @@ class SystemDatabase extends Database{
         }
     }
 
+    public function syncAllSystems($otherAnalystManager){
+        $query    = new MongoDB\Driver\Query([]);
+        $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.System', $query);
+        $myCursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
+        foreach($cursor as $document){
+            if($this->checkDatabaseForSameName('systemName', $document->systemName, 'FRIC_Database.System')){
+                $this->editSystemDocument($document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
+            } else {
+                new Systeme($myDb, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
+            }
+        }
+    }
+
     public function editSystemDocument($id, $systemName, $systemDescription, $systemLocation, $systemRouter, $systemSwitch, $systemRoom, $testPlan, $confidentiality, $integrity, $availability, $archiveStatus, $numberOfTasks, $numberOfFindings, $progress){
         $dbEntry = ['$set'=>
             ['systemName'       => $systemName,
@@ -199,9 +212,11 @@ class SystemDatabase extends Database{
                     </script>
                 SCRIPT;
             }else{
+                $changes = $this->checkForChanges('FRIC_Database.System', $id, $dbEntry['$set']);
                 $bulk = new MongoDB\Driver\BulkWrite;
                 $bulk->update(['_id' => $id], $dbEntry);
                 $this->manager->executeBulkWrite('FRIC_Database.System', $bulk);
+                return $changes;
             }
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
             echo "Error: $failedLoser";
