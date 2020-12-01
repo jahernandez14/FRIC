@@ -11,15 +11,14 @@
     <div class="container-fluid content">
         <div class="row fluid-col">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
-                <?php include '../templates/eventTree.php';?>
+                <?php include '../templates/eventTree.php'; ?>
             </div>
             <div class="col-10">
                 <h2 class="text-center">Event Detailed View</h2>
-                <h4>Event Basic Information <a href="../views/helpContentView.php" class="btn-sm btn-light"
-                        style=color:black>?</a></h4>
+                <h4>Event Basic Information <a href="../views/helpContentView.php" class="btn-sm btn-light" style=color:black>?</a></h4>
                 <?php
                 $eventName = urldecode($_SERVER['QUERY_STRING']);
-                if($eventName == "createNew") {
+                if ($eventName == "createNew") {
                     $dataArray = array("", "", "", "", "", date("Ymd H:i:s"), "", "", "", "", "", "", array(""), "", "", "", "");
                     $postTag = "postnew";
                     $eventID = 0;
@@ -110,27 +109,27 @@
                             <label>Derived From</label>
                 HEREDOC;
 
-                
-                            require_once('/xampp/htdocs/FRIC/controller/analystController.php');
-                            $placeholder = "Analyst (none detected)";
-                            $analystList = analystNames();
-                            if(count($analystList) > 0){
-                                $placeholder = "Analyst";
-                            }
-                            echo <<< LIST
+
+                require_once('/xampp/htdocs/FRIC/controller/analystController.php');
+                $placeholder = "Analyst (none detected)";
+                $analystList = analystNames();
+                if (count($analystList) > 0) {
+                    $placeholder = "Analyst";
+                }
+                echo <<< LIST
                                 <input id = "derivedFrom" type="text" list="analystNames" placeholder= "$placeholder" value="$derivedFrom"
                                 class="form-control" name= "derivedFrom">
                                 <datalist id="analystNames">
                             LIST;
 
-                            $i=0;
-                            while($i < count($analystList)){
-                                echo '<option value = "'. $analystList[$i][1] .'">' . $analystList[$i][2] . " " . $analystList[$i][3],  "</option>";
-                                $i++;
-                            }
-                            echo "</datalist></div></div>";
-                        
-                            /*
+                $i = 0;
+                while ($i < count($analystList)) {
+                    echo '<option value = "' . $analystList[$i][1] . '">' . $analystList[$i][2] . " " . $analystList[$i][3],  "</option>";
+                    $i++;
+                }
+                echo "</datalist></div></div>";
+
+                /*
                             echo <<< EVENTTEAMINFO
                                 <h4><br></br>Event Team Information</h4>
                                 <script>
@@ -253,8 +252,7 @@
                         </div>
 
                         <div class="col-3">
-                            <select name="Confidentiality" onchange="javascript:handleSelect()" class="form-control"
-                                id="confidentiality">
+                            <select name="Confidentiality" onchange="javascript:handleSelect()" class="form-control" id="confidentiality">
                                 <option value="am.123.1.123.2">am.123.1.123.2</option>
                                 <option value="mm.123.1.123.3">mm.123.1.123.3</option>
                                 <option value="sr.123.1.123.4">sr.123.1.123.4</option>
@@ -281,43 +279,34 @@
                         </div>
 
                         <div class="col-3">
-                            <select name="Confidentiality" onchange="javascript:handleSelect()" class="form-control"
-                                id="confidentiality">
+                            <select name="Confidentiality" onchange="javascript:handleSelect()" class="form-control" id="confidentiality">
                                 <option value="am.123.1.123.2">am.123.1.123.2</option>
                                 <option value="mm.123.1.123.3">mm.123.1.123.3</option>
                                 <option value="sr.123.1.123.4">sr.123.1.123.4</option>
                             </select>
                         </div>
-
-
+                        <br></br><br></br>
                     </div>
                     <div class="row">
-                        <div class="col-1"><br />
-                            <button class="btn btn-md btn-light" type="submit">Save</button>
-                            </form>
-                        </div>
-                        <div class="col-1"><br />
-                            <form method="post" action="eventOverview.php?archive">
+                        <button class="btn btn-md btn-light" type="submit">Save</button>
+                        </form>
+                        <form method="post" action="eventOverview.php?archive">
                             <?php
                             echo <<< HEREDOC
-                            <input type="hidden" name="id[]" id="id" value="$eventID">
+                            <input type="hidden" name="id[]" id="id" value="$eventID">&nbsp;&nbsp;&nbsp;
                             HEREDOC;
                             ?>
-                            <button class="btn btn-md btn-light" type="submit">Archive</button>
-                            </form>
-                        </div>
-                        <div class="col-1"><br />
-                            <a href="../views/eventOverview.php" class="btn btn-md btn-light" role="button"
-                                style=color:black>Cancel</a>
-                        </div>
+                            <button class="btn btn-md btn-light" type="submit">Archive</button>&nbsp;&nbsp;&nbsp;
+                        </form>
+                        <a href="../views/eventOverview.php" class="btn btn-md btn-light" role="button" style=color:black>Cancel</a>
                     </div>
                 </div>
             </div>
             <div class="col-2" style="background-color:#202020">
-                <?php include '../templates/search.php';?>
+                <?php include '../templates/search.php'; ?>
             </div>
         </div>
-        <?php include '../templates/footer.php';?>
+        <?php include '../templates/footer.php'; ?>
     </div>
 </body>
 
