@@ -22,6 +22,20 @@
                     @editSubTask($_POST["subtaskID"], $_POST["subtaskTitle"], $_POST["associatedTask"], $_POST["subtaskDescription"], $_POST["subtaskProgress"], $_POST["subtaskDueDate"], $_POST["attachment"], $_POST['associationToSubtask'], $_POST['analystAssignment'], $_POST['collaboratorAssignment'], $_POST["archiveStatus"], $_POST["numberOfFindings"]);
                 }
 
+                if($_SERVER['QUERY_STRING'] == "archive" && array_key_exists('id', $_POST)) {
+                    $archList = $_POST['id'];
+                    foreach($archList as $archItem){
+                        archiveSubTask($archItem);
+                    }
+                }
+
+                if($_SERVER['QUERY_STRING'] == "restore" && array_key_exists('id', $_POST)) {
+                    $archList = $_POST['id'];
+                    foreach($archList as $archItem){
+                        restoreSubTask($archItem);
+                    }
+                }
+
                 $subTaskTable = table::tableByType("Subtask Overview", subTaskOverviewTable());
                 $subTaskTable->printTable();
                 ?>

@@ -24,6 +24,20 @@
                     editSystem($_POST["systemID"], $_POST["systemName"], $_POST["systemDescription"], $_POST["systemLocation"], $_POST["systemRouter"], $_POST["systemSwitch"], $_POST["systemRoom"], $_POST["testPlan"], $_POST["confidentiality"], $_POST["integrity"], $_POST["availability"], FALSE, $_POST["numberOfTasks"], $_POST["numberOfFindings"], $_POST["progress"]);
                 }
 
+                if($_SERVER['QUERY_STRING'] == "archive" && array_key_exists('id', $_POST)) {
+                    $archList = $_POST['id'];
+                    foreach($archList as $archItem){
+                        archiveSystem($archItem);
+                    }
+                }
+
+                if($_SERVER['QUERY_STRING'] == "restore" && array_key_exists('id', $_POST)) {
+                    $archList = $_POST['id'];
+                    foreach($archList as $archItem){
+                        restoreSystem($archItem);
+                    }
+                }
+
                 $systemTable = table::tableByType("System Overview Table", systemOverviewTable());
                 $systemTable->printTable();
                 ?>

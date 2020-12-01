@@ -120,9 +120,18 @@ class SubtaskDatabase extends Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
             $object = array(); 
             foreach($cursor as $document){
-                array_push($object, $document->_id, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, $document->taskDueDate,
-                           $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus,
-                           $document->numberOfFindings);
+                array_push($object, $document->_id, 
+                                    $document->taskTitle, 
+                                    $document->associatedTask, 
+                                    $document->taskDescription, 
+                                    $document->taskProgress, 
+                                    $document->taskDueDate,
+                                    $document->attachment, 
+                                    $document->associationToSubtask, 
+                                    $document->analystAssignment, 
+                                    $document->collaboratorAssignment,
+                                    $document->archiveStatus,
+                                    $document->numberOfFindings);
             }
             return $object;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {

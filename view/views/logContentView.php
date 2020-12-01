@@ -51,8 +51,8 @@
                     while($i < count($logTable)){
                         echo '<tr>';
                         echo '<td>' . $logTable[$i][0] . '</td>';
-                        echo '<td>' . $logTable[$i][1] . '</td>';
                         echo '<td>' . $logTable[$i][2] . '</td>';
+                        echo '<td>' . $logTable[$i][3] . '</td>';
                         echo '</tr>';
                         $i++;
                     }
