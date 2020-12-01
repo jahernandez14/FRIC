@@ -172,7 +172,7 @@ class SystemDatabase extends Database{
         $myCursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
         foreach($cursor as $document){
             if($this->checkDatabaseForSameName('systemName', $document->systemName, 'FRIC_Database.System')){
-                $this->editSystemDocument($document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
+                $this->editSystemDocument($document->_id, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
             } else {
                 new Systeme($this, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
             }
