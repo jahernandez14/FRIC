@@ -10,7 +10,7 @@ class TransactionLogDatabase extends Database{
             $table  = array();
             foreach($cursor as $document){
                 $row = array();
-                array_push($row, $document->_id, $document->actionPerformed, $document->analyst);
+                array_push($row, $document->_id, $document->dateTime, $document->actionPerformed, $document->analyst);
                 array_push($table, $row);
             } 
             return $table;

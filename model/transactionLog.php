@@ -2,7 +2,8 @@
 class TransactionLog {
     public function __construct($db, $dateTime, $actionPerformed, $analyst){
         $dbEntry = [
-            '_id'             => $dateTime,   
+            '_id'             => (string) new MongoDB\BSON\ObjectId(),
+            'dateTime'        => $dateTime,   
             'actionPerformed' => $actionPerformed,
             'analyst'         => $analyst
         ];
