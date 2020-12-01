@@ -40,6 +40,20 @@
                     $_POST["impactScore"]);
                 }
 
+                if($_SERVER['QUERY_STRING'] == "archive" && array_key_exists('id', $_POST)) {
+                    $archList = $_POST['id'];
+                    foreach($archList as $archItem){
+                        archiveFunction($archItem);
+                    }
+                }
+
+                if($_SERVER['QUERY_STRING'] == "restore" && array_key_exists('id', $_POST)) {
+                    $archList = $_POST['id'];
+                    foreach($archList as $archItem){
+                        restoreFunction($archItem);
+                    }
+                }
+
                 $findingTable = table::tableByType("Findings Overview", findingOverviewTable());
                 $findingTable->printTable();
                 ?>

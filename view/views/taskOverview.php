@@ -23,6 +23,20 @@
                     @editTask($_POST["taskID"], $_POST["taskTitle"], $_POST["associatedSystem"], $_POST["taskDescription"], $_POST["taskPriority"], $_POST["taskProgress"], $_POST["taskDueDate"], $_POST["attachment"], $_POST['associationToTask'], $_POST['analystAssignment'], $_POST['collaboratorAssignment'], $_POST["archiveStatus"], $_POST["numberOfSubtasks"], $_POST["numberOfFindings"]);
                 }
 
+                if($_SERVER['QUERY_STRING'] == "archive" && array_key_exists('id', $_POST)) {
+                    $archList = $_POST['id'];
+                    foreach($archList as $archItem){
+                        archiveTask($archItem);
+                    }
+                }
+
+                if($_SERVER['QUERY_STRING'] == "restore" && array_key_exists('id', $_POST)) {
+                    $archList = $_POST['id'];
+                    foreach($archList as $archItem){
+                        restoreTask($archItem);
+                    }
+                }
+
                 $taskTable = table::tableByType("Task Overview", taskOverviewTable());
                 $taskTable->printTable();
                 ?>
