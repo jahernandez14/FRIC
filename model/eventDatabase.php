@@ -114,9 +114,9 @@ class EventDatabase extends Database{
         $query    = new MongoDB\Driver\Query([]);
         $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Event', $query);
         $myCursor = $this->manager->executeQuery('FRIC_Database.Event', $query);
-        foreach($myCursor as $document){
+        foreach($cursor as $document){
             if($this->checkDatabaseForSameName('eventName', $document->eventName, 'FRIC_Database.Event')){
-                foreach($cursor as $d){
+                foreach($myCursor as $d){
                     if($d->eventName == $document->eventName){
                         $this->editEventDocument($d->_id, $document->eventName, $document->eventDescription, $document->eventType, $document->eventVersion, $document->assessmentDate, $document->organizationName, $document->securityClassifcation, $document->eventClassification, $document->declassificationDate, $document->customerName, $document->archiveStatus, $document->eventTeam, $document->derivedFrom, $document->numberOfFindings, $document->numberOfSystems, $document->progress);
                     }

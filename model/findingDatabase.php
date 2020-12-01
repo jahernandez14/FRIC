@@ -204,7 +204,7 @@ class FindingDatabase extends Database{
         $myCursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
         foreach($cursor as $document){    
             if($this->checkDatabaseForSameName('findingTitle', $document->findingTitle, 'FRIC_Database.Finding')){
-                foreach($cursor as $d){
+                foreach($myCursor as $d){
                     if($d->findingTitle == $document->findingTitle){
                         $this->editFindingDocument($document->_id, $document->findingTitle, $document->hostName, $document->ipPort, $document->associatedTask, $document->associatedSystem, $document->associatedSubtask, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, 
                         $document->findingClassification, $document->associationToFinding, $document->evidence, $document->archiveStatus, $document->collaboratorAssignment, $document->confidentiality, $document->integrity, $document->availability, $document->analystAssignment, $document->posture, $document->briefDescription, 

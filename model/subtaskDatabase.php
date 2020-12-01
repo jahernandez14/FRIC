@@ -170,9 +170,9 @@ class SubtaskDatabase extends Database{
         $query    = new MongoDB\Driver\Query([]);
         $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Subtask', $query);
         $myCursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
-        foreach($myCursor as $document){
+        foreach($cursor as $document){
             if($this->checkDatabaseForSameName('taskTitle', $document->taskTitle, 'FRIC_Database.Subtask')){
-                foreach($cursor as $d){
+                foreach($myCursor as $d){
                     if($d->taskTitle == $document->taskTitle){
                         $this->editSubtaskDocument($document->_id, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfFindings);
                     }

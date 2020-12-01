@@ -173,9 +173,9 @@ class AnalystDatabase extends Database{
         $query    = new MongoDB\Driver\Query([]);
         $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Analyst', $query);
         $myCursor = $this->manager->executeQuery('FRIC_Database.Analyst', $query);
-        foreach($myCursor as $document){
+        foreach($cursor as $document){
             if($this->checkForAnalystWithSameName($document->firstName, $document->lastName)){
-                foreach($cursor as $d){
+                foreach($myCursor as $d){
                     if($d->firstName == $document->firstName and $d->lastName == $document->lastName){
                         $this->editAnalyst($document->_id, $document->firstName, $document->lastName, $document->initial, $document->ipAddress, $document->title, $document->role);
                     }
