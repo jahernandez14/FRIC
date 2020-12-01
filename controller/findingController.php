@@ -8,6 +8,12 @@
         return $findingsArray;
     }
 
+    function archivedFindingOverviewTable(){
+        $db = new FindingDatabase();
+        $findingsArray = $db->getAllArchivedFindings();
+        return $findingsArray;
+    }
+
     function readFinding($findingName){
         $db = new FindingDatabase();
         $finding = $db->getfindingAttributes($findingName);

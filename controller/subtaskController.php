@@ -8,6 +8,12 @@
         return $subTaskArray;
     }
 
+    function archivedSubTaskOverviewTable(){
+        $db = new SubTaskDatabase();
+        $subTaskArray = $db->getAllArchivedSubTasks();
+        return $subTaskArray;
+    }
+
     function readSubTask($subTaskName){
         $db = new SubTaskDatabase();
         $subTaskArray = $db->getSubTaskAttributes($subTaskName);

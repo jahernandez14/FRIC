@@ -8,6 +8,12 @@
         return $systemArray;
     }
 
+    function archivedSystemOverviewTable(){
+        $db = new SystemDatabase();
+        $systemArray = $db->getAllArchivedSystems();
+        return $systemArray;
+    }
+
     function readSystem($systemName){
         $db = new SystemDatabase();
         $systemArray = $db->getSystemAttributes($systemName);
