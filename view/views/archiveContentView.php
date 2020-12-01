@@ -22,7 +22,7 @@
                     $archivedTasksTable->printTable();
                     $archivedSubtasksTable = table::tableByType("Archived Subtasks", archivedSubTaskOverviewTable());
                     $archivedSubtasksTable->printTable();
-                    $archivedFindingsTable = table::tableByType("Archived Findings", archivedFindingOverviewTable());
+                    $archivedFindingsTable = @table::tableByType("Archived Findings", archivedFindingOverviewTable());
                     $archivedFindingsTable->printTable();
                     $archivedSystemsTable = table::tableByType("Archived Systems", archivedSystemOverviewTable());
                     $archivedSystemsTable->printTable();
