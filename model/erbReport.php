@@ -60,12 +60,7 @@
         $slide2->setSlideLayout($oSlideLayout);
 
         //Adding little disclaimer in the upper/lower-center of the slide
-        addDisclaimer($slide2, Alignment::HORIZONTAL_CENTER, ARIAL);
-
-        //Add small images
-        addImage($slide2, '../../view/images/army2.png', 'ARMY logo', 0, 85, 30, 30);
-        addImage($slide2, '../../view/images/cead2.png', 'CEAD logo', 0, 60, 120, 34);
-        addImage($slide2, '../../view/images/devcom.png', 'DEVCOM logo', 0, 53, 768, 30);
+        addPresetItems($slide2);
 
         //Adding SCOPE title
         addText($slide2, 624, 53, 170, 35, Alignment::HORIZONTAL_LEFT, 'SCOPE', true, ARIAL, 20);
@@ -86,7 +81,7 @@
         $cellA1 = $row->nextCell();
         $cellA1->setWidth(50);*/
 
-        #SLIDE 3
+        #SLIDE 3 -> number of findings that fit in a slide
         //Adding a new slide
         $remainingFindings = count($findingArray);
         $slide3 = $objPHPPowerPoint->createSlide();
@@ -113,6 +108,16 @@
                 $j = 0;
             }
             $i+=1;
+        }
+
+        for($i=0; $i<count($findingArray); $i++){
+            $slide4 = $objPHPPowerPoint->createSlide();
+            $slide4->setSlideLayout($oSlideLayout);
+            //Slide n -> m; number of findings
+            addPresetItems($slide4);
+
+            addText($slide4, 624, 53, 170, 35, Alignment::HORIZONTAL_LEFT, $findingArray[$i][2], true, ARIAL, 20);
+            createFilledCard($slide4, $findingArray, $i+1);
         }
         
         //Saving the presentation
@@ -203,7 +208,7 @@
         }
 
         //Setting the ID number for a finding, not the same as MongoDB ID
-        addCell($newRow, $num, 18, false, ARIAL_BODY, $rowColor);
+        addCell($newRow, $num, 18, false, ARIAL_BODY, $rowColor, new Color(Color::COLOR_WHITE), 900);
 
         if(empty($finding->associatedSystem)){
             $associatedSystem = "No System Association";
@@ -217,17 +222,17 @@
         3. Impact (not initials)
         4. Risk (not initials)
         */
-        addCell($newRow, $associatedSystem, 18, false, ARIAL_BODY, $rowColor);
-        addCell($newRow, $finding[2], 18, false, ARIAL_BODY, $rowColor);
-        addCell($newRow, $finding[3], 11, true, 'Times New Roman', $rowColor);
-        addCell($newRow, $finding[4], 11, true, 'Times New Roman', $rowColor);
+        addCell($newRow, $associatedSystem, 18, false, ARIAL_BODY, $rowColor, new Color(Color::COLOR_WHITE), 900);
+        addCell($newRow, $finding[2], 18, false, ARIAL_BODY, $rowColor, new Color(Color::COLOR_WHITE), 900);
+        addCell($newRow, $finding[3], 11, true, 'Times New Roman', $rowColor, new Color(Color::COLOR_WHITE), 900);
+        addCell($newRow, $finding[4], 11, true, 'Times New Roman', $rowColor, new Color(Color::COLOR_WHITE), 900);
     }
 
-    function addCell($row, $text, $fontSize, $isBold, $fontType, $fillColor){
+    function addCell($row, $text, $fontSize, $isBold, $fontType, $fillColor, $edgesColor, $width){
         $cell = $row->nextCell();
 
         //Setting border's color white
-        $cell->setSidesColor(new Color(Color::COLOR_WHITE));
+        $cell->setSidesColor($edgesColor);//new Color(Color::COLOR_WHITE));
 
         //Setting text
         if(strlen($text) < 3 && !(is_numeric($text)))
@@ -235,19 +240,23 @@
         else
             $cell->createTextRun($text)->getFont()->setBold($isBold)->setSize($fontSize)->setName($fontType);
         $cell->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_CENTER)->setVertical(Alignment::VERTICAL_CENTER);
+        $cell->setWidth($width);
         $cell->getFill()->setFillType(Fill::FILL_SOLID)->setStartColor($fillColor);
     }
 
-    function createFindingSlide($slide){
-        #SLIDE 3
-        //Adding a new slide
-        //Adding little disclaimer in the upper/lower-center of the slide
+    function addPresetItems($slide){
         addDisclaimer($slide, Alignment::HORIZONTAL_CENTER, ARIAL);
 
         //Add small images
         addImage($slide, '../../view/images/army2.png', 'ARMY logo', 0, 80, 25, 27);
         addImage($slide, '../../view/images/cead2.png', 'CEAD logo', 0, 55, 96, 30);
         addImage($slide, '../../view/images/devcom.png', 'DEVCOM logo', 0, 43, 805, 35);
+    }
+
+    function createFindingSlide($slide){
+        #SLIDE 3
+        //Adding a new slide
+        addPresetItems($slide);
         
         //Adding FINDINGS title
         addText($slide, 624, 53, 170, 35, Alignment::HORIZONTAL_LEFT, 'FINDINGS', true, ARIAL, 20);
@@ -286,5 +295,20 @@
             default:
                 return "Info";
         }
+    }
+
+    function createFilledCard($slide, $findings, $index){
+        $baby_blue = new Color('FFC5D9F1');
+
+        $table = $slide->createTableShape(8);
+        $table->setHeight(600);
+        $table->setWidth(900);
+        $table->setOffsetX(32);
+        $table->setOffsetY(117);
+
+        $newRow = $table->createRow();
+        //for($a = 0; $a < 8; $a++){
+            addCell($newRow, $index, 10, false, TIMES_NEW_ROMAN, $baby_blue, new Color(Color::COLOR_BLACK), 100);
+        //}
     }
 ?>
