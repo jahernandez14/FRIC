@@ -232,6 +232,7 @@ class FindingDatabase extends Database{
             'findingStatus'                     => $findingStatus,
             'findingType'                       => $findingType,
             'findingClassification'             => $findingClassification,
+            'associationToFinding'              => $associationToFinding,
             'evidence'                          => $evidence,
             'archiveStatus'                     => $archiveStatus,
             'collaboratorAssignment'            => $collaboratorAssignment,
