@@ -22,6 +22,7 @@
                 $taskProgressArray = array("", "Not Started", "Assigned", "Transferred", "In Progress", "Complete", "Not Applicable");
                 $taskTitle = urldecode($_SERVER['QUERY_STRING']);
                 if($taskTitle == "createNew") {
+                    $taskID = 0;
                     $dataArray = array();
                     $postTag = "postnew";
                     // things without forms:
@@ -150,15 +151,30 @@
                     </div>
                     <br>
                     </br>
-                    <button type="button" class="btn btn-sm btn-light">Demote</button>
-                    <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
-                    <a class="btn btn-sm btn-light" role="button"
-                        style=color:black>Archive</a>
-                    <a href="../views/taskOverview.php" class="btn btn-sm btn-light" role="button"
-                        style=color:black>Cancel</a>
-                </form>
-                HEREDOC;
-                ?>
+                HEREDOC;?>
+                    <div class="row">
+                        <div class="col-1"><br />
+                            <button type="button" class="btn btn-md btn-light">Demote</button>
+                        </div>
+                        <div class="col-1"><br />
+                            <button class="btn btn-md btn-light" type="submit">Save</button>
+                            </form>
+                        </div>
+                        <div class="col-1"><br />
+                            <form method="post" action="taskOverview.php?archive">
+                            <?php
+                            echo <<< HEREDOC
+                            <input type="hidden" name="id[]" id="id" value="$taskID">
+                            HEREDOC;
+                            ?>
+                            <button class="btn btn-md btn-light" type="submit">Archive</button>
+                            </form>
+                        </div>
+                        <div class="col-1"><br />
+                            <a href="../views/taskOverview.php" class="btn btn-md btn-light" role="button"
+                                style=color:black>Cancel</a>
+                        </div>
+                    </div>
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>

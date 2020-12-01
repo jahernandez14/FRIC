@@ -45,6 +45,7 @@
                     <input name="evidence" type="hidden" value=" "/>
                     <input name="archiveStatus" type="hidden" value="FALSE"/>
                     HEREDOC;
+                    $findingID = 0;
 
                     $associatedSystem = "";
                     $associatedTask = "";
@@ -385,18 +386,31 @@
                     </div>
                 <br>
                 </br>
-                    <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
-                    <a class="btn btn-sm btn-light" role="button"
-                        style=color:black>Archive</a>
-                    <a href="../views/findingsOverview.php" class="btn btn-sm btn-light" role="button"
-                        style=color:black>Cancel</a>
+                HEREDOC;?>
+                <div class="row">
+                    <div class="col-1"><br />
+                        <button class="btn btn-md btn-light" type="submit">Save</button>
+                        </form>
+                    </div>
+                    <div class="col-1"><br />
+                        <form method="post" action="findingsOverview.php?archive">
+                        <?php
+                        echo <<< HEREDOC
+                        <input type="hidden" name="id[]" id="id" value="$findingID">
+                        HEREDOC;
+                        ?>
+                        <button class="btn btn-md btn-light" type="submit">Archive</button>
+                        </form>
+                    </div>
+                    <div class="col-1"><br />
+                        <a href="../views/findingsOverview.php" class="btn btn-md btn-light" role="button"
+                            style=color:black>Cancel</a>
+                    </div>
+                </div>
                 <br>
                 <br>
                 </br>
                 </br>
-                HEREDOC;
-                ?>
-            </form>
             </div>
             </div>
             <div class="col-2" style="background-color:#202020">

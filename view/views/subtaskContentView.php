@@ -22,6 +22,7 @@
                 $subtaskProgressArray = array("", "Not Started", "Assigned", "Transferred", "In Progress", "Complete", "Not Applicable");
                 $subtaskTitle = urldecode($_SERVER['QUERY_STRING']);
                 if($subtaskTitle == "createNew") {
+                    $subtaskID = 0;
                     $dataArray = array();
                     $postTag = "postnew";
                     $editTag = "";
@@ -141,15 +142,30 @@
                     </div>
                     <br>
                     </br>
-                    <button type="button" class="btn btn-sm btn-light">Promote</button>
-                    <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
-                    <a class="btn btn-sm btn-light" role="button"
-                        style=color:black>Archive</a>
-                    <a href="../views/subtaskOverview.php" class="btn btn-sm btn-light" role="button"
-                        style=color:black>Cancel</a>
-                </form>
-                HEREDOC;
-                ?>
+                HEREDOC;?>
+                    <div class="row">
+                        <div class="col-1"><br />
+                            <button type="button" class="btn btn-md btn-light">Promote</button>
+                        </div>
+                        <div class="col-1"><br />
+                            <button class="btn btn-md btn-light" type="submit">Save</button>
+                            </form>
+                        </div>
+                        <div class="col-1"><br />
+                            <form method="post" action="subtaskOverview.php?archive">
+                            <?php
+                            echo <<< HEREDOC
+                            <input type="hidden" name="id[]" id="id" value="$subtaskID">
+                            HEREDOC;
+                            ?>
+                            <button class="btn btn-md btn-light" type="submit">Archive</button>
+                            </form>
+                        </div>
+                        <div class="col-1"><br />
+                            <a href="../views/subtaskOverview.php" class="btn btn-md btn-light" role="button"
+                                style=color:black>Cancel</a>
+                        </div>
+                    </div>
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>
