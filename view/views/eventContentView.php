@@ -293,7 +293,7 @@
                         <form method="post" action="eventOverview.php?archive">
                             <?php
                             echo <<< HEREDOC
-                            <input type="hidden" name="id[]" id="id" value="$eventID">&nbsp;&nbsp;&nbsp;
+                            <input type="hidden" name="id[]" id="id" value="$eventID">&nbsp;&nbsp;
                             HEREDOC;
                             ?>
                             <button class="btn btn-md btn-light" type="submit">Archive</button>&nbsp;&nbsp;&nbsp;

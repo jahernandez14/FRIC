@@ -388,24 +388,18 @@
                 </br>
                 HEREDOC;?>
                 <div class="row">
-                    <div class="col-1"><br />
-                        <button class="btn btn-md btn-light" type="submit">Save</button>
+                &nbsp;&nbsp;<button class="btn btn-md btn-light" type="submit">Save</button>&nbsp;&nbsp;
                         </form>
-                    </div>
-                    <div class="col-1"><br />
                         <form method="post" action="findingsOverview.php?archive">
                         <?php
                         echo <<< HEREDOC
                         <input type="hidden" name="id[]" id="id" value="$findingID">
                         HEREDOC;
                         ?>
-                        <button class="btn btn-md btn-light" type="submit">Archive</button>
+                        <button class="btn btn-md btn-light" type="submit">Archive</button>&nbsp;&nbsp;
                         </form>
-                    </div>
-                    <div class="col-1"><br />
                         <a href="../views/findingsOverview.php" class="btn btn-md btn-light" role="button"
                             style=color:black>Cancel</a>
-                    </div>
                 </div>
                 <br>
                 <br>

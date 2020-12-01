@@ -7,21 +7,21 @@
     require_once('../../controller/subtaskController.php');
     require_once('../../controller/analystController.php');
     require_once('../../controller/systemController.php');
-    require_once('../templates/GUIList.php');?>
+    require_once('../templates/GUIList.php'); ?>
 </head>
 
 <body>
     <div class="container-fluid content">
         <div class="row fluid-col">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
-                <?php include '../templates/eventTree.php';?>
+                <?php include '../templates/eventTree.php'; ?>
             </div>
             <div class="col-10">
                 <h2 class="text-center">Subtask Detailed View</h2>
                 <?php
                 $subtaskProgressArray = array("", "Not Started", "Assigned", "Transferred", "In Progress", "Complete", "Not Applicable");
                 $subtaskTitle = urldecode($_SERVER['QUERY_STRING']);
-                if($subtaskTitle == "createNew") {
+                if ($subtaskTitle == "createNew") {
                     $subtaskID = 0;
                     $dataArray = array();
                     $postTag = "postnew";
@@ -66,16 +66,16 @@
                     HEREDOC;
                 }
                 $analystTable = analystNames();
-                for($i=0; $i<sizeof($analystTable); $i++){
-                    $analystList[$i] = $analystTable[$i][2]." ".$analystTable[$i][3];
+                for ($i = 0; $i < sizeof($analystTable); $i++) {
+                    $analystList[$i] = $analystTable[$i][2] . " " . $analystTable[$i][3];
                 }
                 $taskList[0] = "";
                 $taskTable = taskOverviewTable();
-                for($i=0; $i<sizeof($taskTable); $i++){
-                    $taskList[$i+1] = $taskTable[$i][1];
+                for ($i = 0; $i < sizeof($taskTable); $i++) {
+                    $taskList[$i + 1] = $taskTable[$i][1];
                 }
                 $subtaskTable = subtaskOverviewTable();
-                for($i=0; $i<sizeof($subtaskTable); $i++){
+                for ($i = 0; $i < sizeof($subtaskTable); $i++) {
                     $subtaskList[$i] = $subtaskTable[$i][1];
                 }
                 $subtaskTitle = @$dataArray[1];
@@ -91,9 +91,9 @@
                                     </div>
                                     <div class="col-5">
                             HEREDOC;
-                            $taskGUIList = new GUIList("Associated Task", "associatedTask", $taskList, $associatedTask);
-                            $taskGUIList->printContents();
-                            echo <<< HEREDOC
+                $taskGUIList = new GUIList("Associated Task", "associatedTask", $taskList, $associatedTask);
+                $taskGUIList->printContents();
+                echo <<< HEREDOC
                                     </div>
                                 </div>
                                 <div class="row">
@@ -105,29 +105,29 @@
                                 <div class="row">
                                     <div class="col-3">
                             HEREDOC;
-                            $subtaskProgressList = new GUIList("Progress", "subtaskProgress", $subtaskProgressArray, $subtaskProgress);
-                            $subtaskProgressList->printContents();
-                            echo <<< HEREDOC
+                $subtaskProgressList = new GUIList("Progress", "subtaskProgress", $subtaskProgressArray, $subtaskProgress);
+                $subtaskProgressList->printContents();
+                echo <<< HEREDOC
                                     </div>
                                     <div class="col-2">
                             HEREDOC;
-                            $analystAssignmentList = new GUIList("Analyst Assignment", "analystAssignment", $analystList, $analystAssignment, TRUE);
-                            $analystAssignmentList->printContents();
-                            echo <<< HEREDOC
+                $analystAssignmentList = new GUIList("Analyst Assignment", "analystAssignment", $analystList, $analystAssignment, TRUE);
+                $analystAssignmentList->printContents();
+                echo <<< HEREDOC
                                         </select>
                                     </div>
                                     <div class="col-2">
 
                             HEREDOC;
-                            $collaboratorAssignmentList = new GUIList("Collaborator Assignment", "collaboratorAssignment", $analystList, $collaboratorAssignment, TRUE);
-                            $collaboratorAssignmentList->printContents();
-                            echo <<< HEREDOC
+                $collaboratorAssignmentList = new GUIList("Collaborator Assignment", "collaboratorAssignment", $analystList, $collaboratorAssignment, TRUE);
+                $collaboratorAssignmentList->printContents();
+                echo <<< HEREDOC
                                     </div>
                                     <div class="col-2">
                             HEREDOC;
-                            $associatedSubtaskList = new GUIList("Related Subtasks", "associationToSubtask", $subtaskList, $associationToSubtask, TRUE);
-                            $associatedSubtaskList->printContents();
-                            echo <<< HEREDOC
+                $associatedSubtaskList = new GUIList("Related Subtasks", "associationToSubtask", $subtaskList, $associationToSubtask, TRUE);
+                $associatedSubtaskList->printContents();
+                echo <<< HEREDOC
                         </div>
                     </div>
                     <div class="row">
@@ -142,36 +142,28 @@
                     </div>
                     <br>
                     </br>
-                HEREDOC;?>
-                    <div class="row">
-                        <div class="col-1"><br />
-                            <button type="button" class="btn btn-md btn-light">Promote</button>
-                        </div>
-                        <div class="col-1"><br />
-                            <button class="btn btn-md btn-light" type="submit">Save</button>
-                            </form>
-                        </div>
-                        <div class="col-1"><br />
-                            <form method="post" action="subtaskOverview.php?archive">
-                            <?php
-                            echo <<< HEREDOC
+                HEREDOC; ?>
+                <div class="row">
+                    &nbsp;&nbsp;<button type="button" class="btn btn-md btn-light">Promote</button>&nbsp;&nbsp;
+                    <button class="btn btn-md btn-light" type="submit">Save</button>&nbsp;&nbsp;
+                    </form>
+                    <form method="post" action="subtaskOverview.php?archive">
+                        <?php
+                        echo <<< HEREDOC
                             <input type="hidden" name="id[]" id="id" value="$subtaskID">
                             HEREDOC;
-                            ?>
-                            <button class="btn btn-md btn-light" type="submit">Archive</button>
-                            </form>
-                        </div>
-                        <div class="col-1"><br />
-                            <a href="../views/subtaskOverview.php" class="btn btn-md btn-light" role="button"
-                                style=color:black>Cancel</a>
-                        </div>
-                    </div>
+                        ?>
+                        <button class="btn btn-md btn-light" type="submit">Archive</button>&nbsp;&nbsp;
+                    </form>
+                    <a href="../views/subtaskOverview.php" class="btn btn-md btn-light" role="button" style=color:black>Cancel</a>
+                </div>
             </div>
             <div class="col-2" style="background-color:#202020">
-                <?php include '../templates/search.php';?>
+                <?php include '../templates/search.php'; ?>
             </div>
         </div>
-        <?php include '../templates/footer.php';?>
+        <?php include '../templates/footer.php'; ?>
     </div>
 </body>
+
 </html>
