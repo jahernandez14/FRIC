@@ -16,15 +16,6 @@
                 <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-10">
-                <!--Config content start-->
-
-                <?php
-                $table = new table("Finding Type", 2, 2, array(0 => "Finding", 1 => "Type", "F" => 0, "C" => 0, "R" => 0), array(
-                    0 => array(0 => "Finding 1", 1 => "Lack of Authentication"),
-                    1 => array(0 => "Finding 2", 1 => "Privilege Escalation")
-                ));
-                $table->printTable();
-                ?>
                 <h3>Finding Type</h3>
                 <table class="table table-light table-striped">
                     <thead>
@@ -58,14 +49,6 @@
                         </tr>
                     </tbody>
                 </table>
-
-                <?php
-                $posturetable = table::tableByType("Posture", array(
-                    0 => array(0 => "Finding 1", 1 => "Insider"),
-                    1 => array(0 => "Finding 2", 1 => "Nearsider")));
-                $posturetable->printTable();
-                ?>
-
                 <h3>Posture</h3>
                 <table class="table table-light table-striped">
                     <thead>
