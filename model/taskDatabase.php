@@ -94,7 +94,21 @@ class TaskDatabase extends Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.Task', $query);
             $object = array(); 
             foreach($cursor as $document){
-                array_push($object, $document->_id, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
+                array_push($object, 
+                $document->_id, 
+                $document->taskTitle, 
+                $document->associatedSystem, 
+                $document->taskDescription, 
+                $document->taskPriority, 
+                $document->taskProgress, 
+                $document->taskDueDate, 
+                $document->attachment, 
+                $document->associationToTask, 
+                $document->analystAssignment, 
+                $document->collaboratorAssignment, 
+                $document->archiveStatus, 
+                $document->numberOfSubtasks, 
+                $document->numberOfFindings);
             }
             return $object;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
