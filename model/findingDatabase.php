@@ -204,10 +204,42 @@ class FindingDatabase extends Database{
         $myCursor = $this->manager->executeQuery('FRIC_Database.Finding', $query);
         foreach($cursor as $document){    
             if($this->checkDatabaseForSameName('findingTitle', $document->findingTitle, 'FRIC_Database.Finding')){
-                $this->editFindingDocument($document->_id, $document->findingTitle, $document->hostName, $document->ipPort, $document->associatedTask, $document->associatedSystem, $document->associatedSubtask, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, 
-                $document->findingClassification, $document->associationToFinding, $document->evidence, $document->archiveStatus, $document->collaboratorAssignment, $document->confidentiality, $document->integrity, $document->availability, $document->analystAssignment, $document->posture, $document->briefDescription, 
-                $document->longDescription, $document->relevance, $document->effectivenessRating, $document->impactDescription, $document->impactLevel, $document->severityCatCode, $document->severityCatScore, $document->vulnerabilitySeverity, $document->quantitativeVulnerabilitySeverity, $document->risk, $document->likelihood, 
-                $document->confidentialityImpactOnSystem, $document->integrityImpactOnSystem, $document->availabilityImpactOnSystem, $document->impactScore);
+                $this->editFindingDocument($document->_id, 
+                $document->findingTitle, 
+                $document->hostName, 
+                $document->ipPort, 
+                $document->associatedTask, 
+                $document->associatedSystem, 
+                $document->associatedSubtask, 
+                $document->findingDescription, 
+                $document->findingLongDescription, 
+                $document->findingStatus, 
+                $document->findingType, 
+                $document->findingClassification, 
+                $document->associationToFinding,
+                $document->evidence, 
+                $document->archiveStatus, 
+                $document->collaboratorAssignment, 
+                $document->confidentiality, 
+                $document->integrity, 
+                $document->availability, 
+                $document->analystAssignment, 
+                $document->posture, 
+                $document->briefDescription, 
+                $document->longDescription, 
+                $document->relevance, 
+                $document->effectivenessRating, 
+                $document->impactDescription, 
+                $document->impactLevel, 
+                $document->severityCatCode, 
+                $document->severityCatScore, 
+                $document->vulnerabilitySeverity, 
+                $document->quantitativeVulnerabilitySeverity, 
+                $document->risk, $document->likelihood, 
+                $document->confidentialityImpactOnSystem, 
+                $document->integrityImpactOnSystem, 
+                $document->availabilityImpactOnSystem,
+                $document->impactScore);
             } else{
                 new Finding($this, $document->findingTitle, $document->hostName, $document->ipPort, $document->associatedTask, $document->associatedSystem, $document->associatedSubtask, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, 
                     $document->findingClassification, $document->associationToFinding, $document->evidence, $document->archiveStatus, $document->collaboratorAssignment, $document->confidentiality, $document->integrity, $document->availability, $document->analystAssignment, $document->posture, $document->briefDescription, 
@@ -285,4 +317,3 @@ class FindingDatabase extends Database{
         }
     }
 }
-?>

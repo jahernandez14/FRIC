@@ -15,8 +15,6 @@
                 <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-10">
-                <!--Code Goes Here-->
-                
                     <?php
                     $archivedTasksTable = table::tableByType("Archived Tasks", archivedTaskOverviewTable());
                     $archivedTasksTable->printTable();
