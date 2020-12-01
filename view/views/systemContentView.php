@@ -21,6 +21,7 @@
                 if ($systemName == "createNew") {
                     $dataArray = array("", "", "", "", "", "", "", "", "", "", "", "", "", "");
                     $postTag = "postnew";
+                    $systemID=0;
                     $editTag = "";
                     $confidentiality1Selected = "";
                     $confidentiality2Selected = "";
