@@ -15,14 +15,12 @@
                 <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-10">
-                <!--Code Goes Here-->
-                
                     <?php
                     $archivedTasksTable = table::tableByType("Archived Tasks", archivedTaskOverviewTable());
                     $archivedTasksTable->printTable();
                     $archivedSubtasksTable = table::tableByType("Archived Subtasks", archivedSubTaskOverviewTable());
                     $archivedSubtasksTable->printTable();
-                    $archivedFindingsTable = table::tableByType("Archived Findings", archivedFindingOverviewTable());
+                    $archivedFindingsTable = @table::tableByType("Archived Findings", archivedFindingOverviewTable());
                     $archivedFindingsTable->printTable();
                     $archivedSystemsTable = table::tableByType("Archived Systems", archivedSystemOverviewTable());
                     $archivedSystemsTable->printTable();

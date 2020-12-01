@@ -15,7 +15,7 @@
             <?php 
                 include '../templates/table.php';
                 if($_SERVER['QUERY_STRING'] == "postnew") {
-                    createSubTask($_POST["subtaskTitle"], $_POST["associatedTask"], $_POST["subtaskDescription"], $_POST["subtaskProgress"], $_POST["subtaskDueDate"], $_POST["attachment"], $_POST['associationToSubtask'], $_POST['analystAssignment'], $_POST['collaboratorAssignment'], $_POST["archiveStatus"], $_POST["numberOfFindings"]);
+                    @createSubTask($_POST["subtaskTitle"], $_POST["associatedTask"], $_POST["subtaskDescription"], $_POST["subtaskProgress"], $_POST["subtaskDueDate"], $_POST["attachment"], $_POST['associationToSubtask'], $_POST['analystAssignment'], $_POST['collaboratorAssignment'], $_POST["archiveStatus"], $_POST["numberOfFindings"]);
                 }
 
                 if($_SERVER['QUERY_STRING'] == "postedit") {
@@ -25,7 +25,7 @@
                 if($_SERVER['QUERY_STRING'] == "archive" && array_key_exists('id', $_POST)) {
                     $archList = $_POST['id'];
                     foreach($archList as $archItem){
-                        archiveSubTask($archItem);
+                        if($archItem != 0) archiveSubTask($archItem);
                     }
                 }
 

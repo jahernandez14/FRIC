@@ -194,7 +194,7 @@ class SubtaskDatabase extends Database{
             'associationToSubtask'   => $associationToSubtask,
             'analystAssignment'      => $analystAssignment,
             'collaboratorAssignment' => $collaboratorAssignment,
-            'archiveStatus'          => false,
+            'archiveStatus'          => $archiveStatus,
             'numberOfFindings'       => $numberOfFindings]
         ];
 

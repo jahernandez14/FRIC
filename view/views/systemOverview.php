@@ -27,7 +27,7 @@
                 if($_SERVER['QUERY_STRING'] == "archive" && array_key_exists('id', $_POST)) {
                     $archList = $_POST['id'];
                     foreach($archList as $archItem){
-                        archiveSystem($archItem);
+                        if($archItem != 0) archiveSystem($archItem);
                     }
                 }
 

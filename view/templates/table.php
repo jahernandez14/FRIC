@@ -31,7 +31,7 @@ class table
         "Findings Overview" => array("newLink" => "findingsContentView.php", "delLink" => "archiveContentView.php", "F" => 1, "C" => 1, "R" => 0, 0 => "ID", 1 => "Title", 2 => "System", 3 => "Task", 4 => "Subtask", 5 => "Analyst", 6 => "Status", 7 => "Classification", 8 => "Type", 9 => "Risk"),
         "Finding Overview" => array("newLink" => "../views/findingsContentView.php", "delLink" => "../views/archiveContentView.php", "F" => 1, "C" => 1, "R" => 0, 0 => "ID", 1 => "Title", 2 => "System", 3 => "Task", 4 => "Subtask", 5 => "Analyst", 6 => "Status", 7 => "Classification", 8 => "Type", 9 => "Risk"),
         "Archived Tasks" => array("restoreLink" => "../views/taskOverview.php?restore", "F" => 0, "C" => 1, "R" => 1, 0 => "Title", 1 => "System", 2 => "Analyst", 3 => "Priority", 4 => "Progress", 5 => "No. of Subtask", 6 => "No. of Findings", 7 => "Due Date"),
-        "Archived Subtasks" => array("restoreLink" => "../views/subtasksOverview.php?restore", "F" => 0, "C" => 1, "R" => 1, 0 => "Title", 2 => "Task", 3 => "Analyst", 4 => "Progress", 5 => "No. of Findings", 6 => "Due Date"),
+        "Archived Subtasks" => array("restoreLink" => "../views/subtaskOverview.php?restore", "F" => 0, "C" => 1, "R" => 1, 0 => "Title", 1 => "Task", 2 => "Analyst", 3 => "Progress", 4 => "No. of Findings", 5 => "Due Date"),
         "Archived Findings" => array("restoreLink" => "../views/findingsOverview.php?restore", "F" => 0, "C" => 1, "R" => 1, 0 => "ID", 1 => "Title", 2 => "System", 3 => "Task", 4 => "Subtask", 5 => "Analyst", 6 => "Status", 7 => "Classification", 8 => "Type", 9 => "Risk"),
         "Archived Systems" => array("restoreLink" => "../views/systemOverview.php?restore", "F" => 0, "C" => 1, "R" => 1, 0 => "System", 1 => "No. of Systems", 2 => "No. of Findings", 3 => "Progress"),
         "Finding Type" => array("F" => 0, "C" => 0, "R" => 0, 0 => "Finding", 1 => "Type"),
@@ -68,7 +68,7 @@ class table
     }
 
     public static function tableByType ($type, $data) {
-        if($type == "Findings Overview") {
+        if(($type == "Findings Overview") || ($type == "Archived Findings")) {
             for ($i=sizeof($data[0]); $i>0; $i--) {
                 for($j=0; $j<sizeof($data); $j++) {
                     $data[$j][$i] = $data[$j][$i-1];
@@ -95,12 +95,13 @@ class table
             echo <<< FILEBUTTONS
             <a class="btn btn-sm btn-light" href="$createNew?createNew" role="button" style=color:black>+</a>
             FILEBUTTONS;
-            echo "<input type=\"submit\" value=\"Archive\">";
+            echo '&nbsp;<input class="btn btn-sm btn-light" type="submit" value= "Archive">';
             echo "<br></br>";
         } else {
             $restoreLink = "";
             if($this->columns["R"] == 1) $restoreLink = $this->columns["restoreLink"];
             echo "<form name=\"$tableTitle\" id=\"$tableTitle\" method=\"post\" action='$restoreLink'>";
+            if($this->columns["R"] == 1) echo "<input class=\"btn btn-sm btn-light\" type=\"submit\" value=\"Restore\"><br></br>";
         }
         echo <<< TABLE
         <table class="table table-light table-striped">
@@ -163,14 +164,6 @@ class table
         </tbody>
         </table>
         TABLE;
-        if($this->columns["R"] == 1) {
-            echo "<input type=\"submit\" value=\"Restore\">";
-            /*echo <<< RESTOREBUTTONS
-            $restoreSelection = $this->columns["restoreLink"];
-            <a href="$restoreSelection" class="btn-sm btn-light" style=color:black>Restore</a>
-            <br></br>
-            RESTOREBUTTONS;*/
-        }
         echo "</form>";
     }
 
@@ -184,7 +177,7 @@ class table
             echo <<< FILEBUTTONS
             <a class="btn btn-sm btn-light" href="$createNew?createNew" role="button" style=color:black>+</a>
             FILEBUTTONS;
-            echo "<input type=\"submit\" value=\"Archive\">";
+            echo '&nbsp;<input class="btn btn-sm btn-light" type="submit" value= "Archive">';
             echo "<br></br>";
         } else {
             $restoreLink = "";
@@ -251,7 +244,7 @@ class table
         </table>
         TABLE;
         if($this->columns["R"] == 1) {
-            echo "<input type=\"submit\" value=\"Restore\">";
+            echo '<input class="btn btn-sm btn-light" type="submit" value= "Restore">';
             /*echo <<< RESTOREBUTTONS
             $restoreSelection = $this->columns["restoreLink"];
             <a href="$restoreSelection" class="btn-sm btn-light" style=color:black>Restore</a>
@@ -266,7 +259,7 @@ class table
             table::printTaskOverviewTable();
             return;
         }
-        if($this->tableTitle == "Findings Overview") {
+        if(($this->tableTitle == "Findings Overview") || ($this->tableTitle == "Archived Findings")) {
             table::printFindingOverviewTable();
             return;
         }
@@ -279,12 +272,12 @@ class table
             echo <<< FILEBUTTONS
             <a class="btn btn-sm btn-light" href="$createNew?createNew" role="button" style=color:black>+</a>
             FILEBUTTONS;
-            echo "<input type=\"submit\" value=\"Archive\">";
+            echo '&nbsp;<input class="btn btn-sm btn-light" type="submit" value= "Archive">';
             echo "<br></br>";
         } elseif($this->columns["R"] == 1) {
             $restoreSelection = $this->columns["restoreLink"];
             echo "<form name=\"$tableTitle\" id=\"$tableTitle\" method=\"post\" action='$restoreSelection'>";
-            echo "<input type=\"submit\" value=\"Restore\">";
+            echo '<input class="btn btn-sm btn-light" type="submit" value= "Restore">';
             echo "<br></br>";
         } else {
             $restoreLink = "";
@@ -328,6 +321,9 @@ class table
             }
             for($col = $this->columns["C"]; $col<($this->dims["columns"] - $this->columns["C"]); $col++) {
                 if(($col == 3) && ($this->tableTitle == "Archived Tasks")) {
+                    $this->contents[$row][$col] = @implode(", ", $this->contents[$row][$col]);
+                }
+                if(($col == 3) && ($this->tableTitle == "Archived Subtasks")) {
                     $this->contents[$row][$col] = @implode(", ", $this->contents[$row][$col]);
                 }
                 $stringPreface = "";

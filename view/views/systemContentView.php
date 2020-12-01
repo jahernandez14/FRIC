@@ -11,113 +11,114 @@
     <div class="container-fluid content">
         <div class="row fluid-col">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
-                <?php include '../templates/eventTree.php';?>
+                <?php include '../templates/eventTree.php'; ?>
             </div>
             <div class="col-10">
                 <h2 class="text-center">System Detailed View</h2>
                 <h4>System Information</h4>
-                    <?php
-                    $systemName = urldecode($_SERVER['QUERY_STRING']);
-                    if($systemName == "createNew") {
-                        $dataArray = array("", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                        $postTag = "postnew";
-                        $editTag = "";
-                        $confidentiality1Selected = "";
-                        $confidentiality2Selected = "";
-                        $confidentiality3Selected = "";
-                        $confidentialityINFOSelected = "";
-                        $integrity1Selected = "";
-                        $integrity2Selected = "";
-                        $integrity3Selected = "";
-                        $integrityINFOSelected = "";
-                        $availability1Selected = "";
-                        $availability2Selected = "";
-                        $availability3Selected = "";
-                        $availabilityINFOSelected = "";
-                    } else {
-                        $dataArray = readSystem($systemName);
-                        $postTag = "postedit";
-                        $systemID = $dataArray[0];
-                        $confidentiality = $dataArray[8];
-                        $integrity = $dataArray[9];
-                        $availability = $dataArray[10];
-                        $numberOfTasks = $dataArray[11];
-                        $numberOfFindings = $dataArray[12];
-                        $progress = $dataArray[13];
-                        $editTag = <<< HEREDOC
+                <?php
+                $systemName = urldecode($_SERVER['QUERY_STRING']);
+                if ($systemName == "createNew") {
+                    $dataArray = array("", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                    $postTag = "postnew";
+                    $systemID=0;
+                    $editTag = "";
+                    $confidentiality1Selected = "";
+                    $confidentiality2Selected = "";
+                    $confidentiality3Selected = "";
+                    $confidentialityINFOSelected = "";
+                    $integrity1Selected = "";
+                    $integrity2Selected = "";
+                    $integrity3Selected = "";
+                    $integrityINFOSelected = "";
+                    $availability1Selected = "";
+                    $availability2Selected = "";
+                    $availability3Selected = "";
+                    $availabilityINFOSelected = "";
+                } else {
+                    $dataArray = readSystem($systemName);
+                    $postTag = "postedit";
+                    $systemID = $dataArray[0];
+                    $confidentiality = $dataArray[8];
+                    $integrity = $dataArray[9];
+                    $availability = $dataArray[10];
+                    $numberOfTasks = $dataArray[11];
+                    $numberOfFindings = $dataArray[12];
+                    $progress = $dataArray[13];
+                    $editTag = <<< HEREDOC
                         <input name="systemID" type="hidden" value="$systemID"/>
                         <input name="numberOfTasks" type="hidden" value="$numberOfTasks"/>
                         <input name="numberOfFindings" type="hidden" value="$numberOfFindings"/>
                         <input name="progress" type="hidden" value="$progress"/>
                         HEREDOC;
-                        $confidentiality1Selected = "";
-                        $confidentiality2Selected = "";
-                        $confidentiality3Selected = "";
-                        $confidentialityINFOSelected = "";
-                        switch ($confidentiality) {
-                            case "1":
-                                $confidentiality1Selected = " selected";
-                                break;
-                            case "2":
-                                $confidentiality2Selected = " selected";
-                                break;
-                            case "3":
-                                $confidentiality3Selected = " selected";
-                                break;
-                            case "INFO":
-                                $confidentialityINFOSelected = " selected";
-                                break;
-                            default:
-                                break;
-                        }
-                        $integrity1Selected = "";
-                        $integrity2Selected = "";
-                        $integrity3Selected = "";
-                        $integrityINFOSelected = "";
-                        switch ($integrity) {
-                            case "1":
-                                $integrity1Selected = " selected";
-                                break;
-                            case "2":
-                                $integrity2Selected = " selected";
-                                break;
-                            case "3":
-                                $integrity3Selected = " selected";
-                                break;
-                            case "INFO":
-                                $integrityINFOSelected = " selected";
-                                break;
-                            default:
-                                break;
-                        }
-                        $availability1Selected = "";
-                        $availability2Selected = "";
-                        $availability3Selected = "";
-                        $availabilityINFOSelected = "";
-                        switch ($availability) {
-                            case "1":
-                                $availability1Selected = " selected";
-                                break;
-                            case "2":
-                                $availability2Selected = " selected";
-                                break;
-                            case "3":
-                                $availability3Selected = " selected";
-                                break;
-                            case "INFO":
-                                $availabilityINFOSelected = " selected";
-                                break;
-                            default:
-                                break;
-                        }
+                    $confidentiality1Selected = "";
+                    $confidentiality2Selected = "";
+                    $confidentiality3Selected = "";
+                    $confidentialityINFOSelected = "";
+                    switch ($confidentiality) {
+                        case "1":
+                            $confidentiality1Selected = " selected";
+                            break;
+                        case "2":
+                            $confidentiality2Selected = " selected";
+                            break;
+                        case "3":
+                            $confidentiality3Selected = " selected";
+                            break;
+                        case "INFO":
+                            $confidentialityINFOSelected = " selected";
+                            break;
+                        default:
+                            break;
                     }
-                    $systemName = $dataArray[1];
-                    $systemDescription = $dataArray[2];
-                    $systemLocation = $dataArray[3];
-                    $systemRouter = $dataArray[4];
-                    $systemSwitch = $dataArray[5];
-                    $systemRoom = $dataArray[6];
-                    $testPlan = $dataArray[7];
+                    $integrity1Selected = "";
+                    $integrity2Selected = "";
+                    $integrity3Selected = "";
+                    $integrityINFOSelected = "";
+                    switch ($integrity) {
+                        case "1":
+                            $integrity1Selected = " selected";
+                            break;
+                        case "2":
+                            $integrity2Selected = " selected";
+                            break;
+                        case "3":
+                            $integrity3Selected = " selected";
+                            break;
+                        case "INFO":
+                            $integrityINFOSelected = " selected";
+                            break;
+                        default:
+                            break;
+                    }
+                    $availability1Selected = "";
+                    $availability2Selected = "";
+                    $availability3Selected = "";
+                    $availabilityINFOSelected = "";
+                    switch ($availability) {
+                        case "1":
+                            $availability1Selected = " selected";
+                            break;
+                        case "2":
+                            $availability2Selected = " selected";
+                            break;
+                        case "3":
+                            $availability3Selected = " selected";
+                            break;
+                        case "INFO":
+                            $availabilityINFOSelected = " selected";
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                $systemName = $dataArray[1];
+                $systemDescription = $dataArray[2];
+                $systemLocation = $dataArray[3];
+                $systemRouter = $dataArray[4];
+                $systemSwitch = $dataArray[5];
+                $systemRoom = $dataArray[6];
+                $testPlan = $dataArray[7];
                 echo <<< HEREDOC
                     <form method="post" action="systemOverview.php?$postTag">
                     $editTag
@@ -197,24 +198,28 @@
                         </div>
                 HEREDOC;
                 ?>
-                    
-                    <div class="row">
-                        <div class="col"><br />
-                            <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
-                            <a class="btn btn-sm btn-light" role="button"
-                                style=color:black>Archive</a>
-                            <a href="../views/systemOverview.php" class="btn btn-sm btn-light" role="button"
-                                style=color:black>Cancel</a>
-                        </div>
-                    </div>
-                    <br>
-                </form>
+                <br></br>
+                <div class="row">
+                    &nbsp;&nbsp;<button class="btn btn-md btn-light" type="submit">Save</button>&nbsp;&nbsp;
+                    </form>
+                    <form method="post" action="systemOverview.php?archive">
+                        <?php
+                        echo <<< HEREDOC
+                        <input type="hidden" name="id[]" id="id" value="$systemID">
+                        HEREDOC;
+                        ?>
+                        <button class="btn btn-md btn-light" type="submit">Archive</button>&nbsp;&nbsp;
+                    </form>
+                    <a href="../views/systemOverview.php" class="btn btn-md btn-light" role="button" style=color:black>Cancel</a>
+                </div>
+                <br>
             </div>
             <div class="col-2" style="background-color:#202020">
-                <?php include '../templates/search.php';?>
+                <?php include '../templates/search.php'; ?>
             </div>
         </div>
-        <?php include '../templates/footer.php';?>
+        <?php include '../templates/footer.php'; ?>
     </div>
 </body>
+
 </html>

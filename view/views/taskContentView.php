@@ -6,14 +6,14 @@
     require_once('../../controller/taskController.php');
     require_once('../../controller/analystController.php');
     require_once('../../controller/systemController.php');
-    require_once('../templates/GUIList.php');?>
+    require_once('../templates/GUIList.php'); ?>
 </head>
 
 <body>
     <div class="container-fluid content">
         <div class="row fluid-col">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
-                <?php include '../templates/eventTree.php';?>
+                <?php include '../templates/eventTree.php'; ?>
             </div>
             <div class="col-10">
                 <h2 class="text-center">Task Detailed View</h2>
@@ -21,7 +21,8 @@
                 $taskPriorityArray = array("", "Low", "Medium", "High");
                 $taskProgressArray = array("", "Not Started", "Assigned", "Transferred", "In Progress", "Complete", "Not Applicable");
                 $taskTitle = urldecode($_SERVER['QUERY_STRING']);
-                if($taskTitle == "createNew") {
+                if ($taskTitle == "createNew") {
+                    $taskID = 0;
                     $dataArray = array();
                     $postTag = "postnew";
                     // things without forms:
@@ -70,15 +71,15 @@
                 }
                 $systemList[0] = "";
                 $systemTable = systemOverviewTable();
-                for($i=0; $i<sizeof($systemTable); $i++){
-                    $systemList[$i+1] = $systemTable[$i][1];
+                for ($i = 0; $i < sizeof($systemTable); $i++) {
+                    $systemList[$i + 1] = $systemTable[$i][1];
                 }
                 $analystTable = analystNames();
-                for($i=0; $i<sizeof($analystTable); $i++){
-                    $analystList[$i] = $analystTable[$i][2]." ".$analystTable[$i][3];
+                for ($i = 0; $i < sizeof($analystTable); $i++) {
+                    $analystList[$i] = $analystTable[$i][2] . " " . $analystTable[$i][3];
                 }
                 $taskTable = taskOverviewTable();
-                for($i=0; $i<sizeof($taskTable); $i++){
+                for ($i = 0; $i < sizeof($taskTable); $i++) {
                     $taskList[$i] = $taskTable[$i][1];
                 }
                 $taskTitle = @$dataArray[1];
@@ -150,21 +151,28 @@
                     </div>
                     <br>
                     </br>
-                    <button type="button" class="btn btn-sm btn-light">Demote</button>
-                    <button class="btn btn-sm btn-light" name="submit" type="submit">Save</button>
-                    <a class="btn btn-sm btn-light" role="button"
-                        style=color:black>Archive</a>
-                    <a href="../views/taskOverview.php" class="btn btn-sm btn-light" role="button"
-                        style=color:black>Cancel</a>
-                </form>
-                HEREDOC;
-                ?>
+                HEREDOC; ?>
+                <div class="row">
+                    &nbsp;&nbsp;<button type="button" class="btn btn-md btn-light">Demote</button>&nbsp;&nbsp;
+                    <button class="btn btn-md btn-light" type="submit">Save</button>&nbsp;&nbsp;
+                    </form>
+                    <form method="post" action="taskOverview.php?archive">
+                        <?php
+                        echo <<< HEREDOC
+                            <input type="hidden" name="id[]" id="id" value="$taskID">
+                            HEREDOC;
+                        ?>
+                        <button class="btn btn-md btn-light" type="submit">Archive</button>&nbsp;&nbsp;
+                    </form>
+                    <a href="../views/taskOverview.php" class="btn btn-md btn-light" role="button" style=color:black>Cancel</a>
+                </div>
             </div>
             <div class="col-2" style="background-color:#202020">
-                <?php include '../templates/search.php';?>
+                <?php include '../templates/search.php'; ?>
             </div>
         </div>
-        <?php include '../templates/footer.php';?>
+        <?php include '../templates/footer.php'; ?>
     </div>
 </body>
+
 </html>
