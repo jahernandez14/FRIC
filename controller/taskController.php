@@ -8,6 +8,12 @@
         return $taskArray;
     }
 
+    function archivedTaskOverviewTable(){
+        $db = new TaskDatabase();
+        $taskArray = $db->getAllArchivedTasks();
+        return $taskArray;
+    }
+
     function readTask($taskName){
         $db = new TaskDatabase();
         $taskArray = $db->getTaskAttributes($taskName);
@@ -31,4 +37,21 @@
         $taskList = @$db->getAllUpcomingTask($fName, $lName);
         return $taskList;
     }
+
+    function archiveTask($id){
+        $db = new TaskDatabase();
+        $attr = $db->getTaskAttributes($id);
+        $db->editTaskDocument($attr[0],$attr[1],$attr[2],$attr[3],$attr[4],$attr[5],$attr[6],$attr[7],$attr[8],
+                              $attr[9],$attr[10],true,$attr[12],$attr[13]);
+        logEntry($attr[1] . " has been archived");
+    }
+
+    function restoreTask($id){
+        $db = new TaskDatabase();
+        $attr = $db->getTaskAttributes($id);
+        $db->editTaskDocument($attr[0],$attr[1],$attr[2],$attr[3],$attr[4],$attr[5],$attr[6],$attr[7],$attr[8],
+                              $attr[9],$attr[10],false,$attr[12],$attr[13]);
+        logEntry($attr[1] . " has been restored");
+    }
+
 ?>

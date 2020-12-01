@@ -121,9 +121,22 @@ class SystemDatabase extends Database{
             $cursor = $this->manager->executeQuery('FRIC_Database.System', $query);
             $object = array(); 
             foreach($cursor as $document){
-                array_push($object, $document->_id, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, 
-                           $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks,
-                           $document->numberOfFindings, $document->progress);
+                array_push($object, 
+                $document->_id, 
+                $document->systemName, 
+                $document->systemDescription, 
+                $document->systemLocation, 
+                $document->systemRouter, 
+                $document->systemSwitch, 
+                $document->systemRoom, 
+                $document->testPlan, 
+                $document->confidentiality, 
+                $document->integrity, 
+                $document->availability, 
+                $document->archiveStatus, 
+                $document->numberOfTasks,
+                $document->numberOfFindings, 
+                $document->progress);
             }
             return $object;
         } catch(MongoDB\Driver\Exception\Exception $failedLoser) {

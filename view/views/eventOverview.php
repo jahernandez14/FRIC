@@ -24,6 +24,20 @@
                         editEvent($_POST["eventID"], $_POST["eventName"], $_POST["eventDescription"], $_POST["eventType"], $_POST["eventVersion"], $_POST["assessmentDate"], $_POST["organizationName"], $_POST["securityClassification"], $_POST["eventClassification"], $_POST["declassificationDate"], $_POST["customerName"], FALSE, array(""), $_POST["derivedFrom"], $_POST["numberOfFindings"], $_POST["numberOfSystems"], $_POST["progress"]);
                     }
 
+                    if($_SERVER['QUERY_STRING'] == "archive" && array_key_exists('id', $_POST)) {
+                        $archList = $_POST['id'];
+                        foreach($archList as $archItem){
+                            archiveEvent($archItem);
+                        }
+                    }
+
+                    if($_SERVER['QUERY_STRING'] == "restore" && array_key_exists('id', $_POST)) {
+                        $archList = $_POST['id'];
+                        foreach($archList as $archItem){
+                            restoreEvent($archItem);
+                        }
+                    }
+
                     $eventTable = table::tableByType("Event Overview Table", eventOverviewTable());
                     $eventTable->printTable();
                 ?>
