@@ -174,7 +174,7 @@ class SubtaskDatabase extends Database{
             if($this->checkDatabaseForSameName('taskTitle', $document->taskTitle, 'FRIC_Database.Subtask')){
                 foreach($myCursor as $d){
                     if($d->taskTitle == $document->taskTitle){
-                        $this->editSubtaskDocument($document->_id, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfFindings);
+                        $this->editSubtaskDocument($d->_id, $document->taskTitle, $document->associatedTask, $document->taskDescription, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToSubtask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfFindings);
                     }
                 }
             } else {

@@ -206,7 +206,7 @@ class FindingDatabase extends Database{
             if($this->checkDatabaseForSameName('findingTitle', $document->findingTitle, 'FRIC_Database.Finding')){
                 foreach($myCursor as $d){
                     if($d->findingTitle == $document->findingTitle){
-                        $this->editFindingDocument($document->_id, $document->findingTitle, $document->hostName, $document->ipPort, $document->associatedTask, $document->associatedSystem, $document->associatedSubtask, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, 
+                        $this->editFindingDocument($d->_id, $document->findingTitle, $document->hostName, $document->ipPort, $document->associatedTask, $document->associatedSystem, $document->associatedSubtask, $document->findingDescription, $document->findingLongDescription, $document->findingStatus, $document->findingType, 
                         $document->findingClassification, $document->associationToFinding, $document->evidence, $document->archiveStatus, $document->collaboratorAssignment, $document->confidentiality, $document->integrity, $document->availability, $document->analystAssignment, $document->posture, $document->briefDescription, 
                         $document->longDescription, $document->relevance, $document->effectivenessRating, $document->impactDescription, $document->impactLevel, $document->severityCatCode, $document->severityCatScore, $document->vulnerabilitySeverity, $document->quantitativeVulnerabilitySeverity, $document->risk, $document->likelihood, 
                         $document->confidentialityImpactOnSystem, $document->integrityImpactOnSystem, $document->availabilityImpactOnSystem, $document->impactScore);

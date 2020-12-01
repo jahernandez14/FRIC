@@ -223,7 +223,7 @@ class TaskDatabase extends Database{
             if($this->checkDatabaseForSameName('taskTitle', $document->taskTitle, 'FRIC_Database.Task')){
                 foreach($myCursor as $d){
                     if($d->taskTitle == $document->taskTitle){
-                        $this->editTaskDocument($document->_id, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
+                        $this->editTaskDocument($d->_id, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
                     }
                 }
             } else {

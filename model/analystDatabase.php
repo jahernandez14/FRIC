@@ -177,7 +177,7 @@ class AnalystDatabase extends Database{
             if($this->checkForAnalystWithSameName($document->firstName, $document->lastName)){
                 foreach($myCursor as $d){
                     if($d->firstName == $document->firstName and $d->lastName == $document->lastName){
-                        $this->editAnalyst($document->_id, $document->firstName, $document->lastName, $document->initial, $document->ipAddress, $document->title, $document->role);
+                        $this->editAnalyst($d->_id, $document->firstName, $document->lastName, $document->initial, $document->ipAddress, $document->title, $document->role);
                     }
                 }
             }else{
