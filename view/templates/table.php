@@ -68,7 +68,7 @@ class table
     }
 
     public static function tableByType ($type, $data) {
-        if($type == "Findings Overview") {
+        if(($type == "Findings Overview") || ($type == "Archived Findings")) {
             for ($i=sizeof($data[0]); $i>0; $i--) {
                 for($j=0; $j<sizeof($data); $j++) {
                     $data[$j][$i] = $data[$j][$i-1];
@@ -266,7 +266,7 @@ class table
             table::printTaskOverviewTable();
             return;
         }
-        if($this->tableTitle == "Findings Overview") {
+        if(($this->tableTitle == "Findings Overview") || ($this->tableTitle == "Archived Findings")) {
             table::printFindingOverviewTable();
             return;
         }
