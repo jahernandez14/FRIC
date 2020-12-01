@@ -53,6 +53,5 @@
                               $attr[9],$attr[10],false,$attr[12],$attr[13]);
         logEntry($attr[1] . " has been restored");
     }
-    }
 
 ?>
