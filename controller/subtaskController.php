@@ -39,7 +39,7 @@
     }
 
     function archiveSubTask($id){
-        $db = new subTaskDatabase();
+        $db = new SubTaskDatabase();
         $attr = $db->getSubTaskAttributes($id);
         $db->editSubTaskDocument($attr[0],$attr[1],$attr[2],$attr[3],$attr[4],$attr[5],$attr[6],$attr[7],$attr[8],
                               $attr[9],true,$attr[11]);
@@ -47,10 +47,10 @@
     }
 
     function restoreSubTask($id){
-        $db = new subTaskDatabase();
+        $db = new SubTaskDatabase();
         $attr = $db->getSubTaskAttributes($id);
         $db->editSubTaskDocument($attr[0],$attr[1],$attr[2],$attr[3],$attr[4],$attr[5],$attr[6],$attr[7],$attr[8],
-                              $attr[9],true,$attr[11]);
+                              $attr[9],false,$attr[11]);
         logEntry($attr[1] . " has been restored");
     }
 ?>
