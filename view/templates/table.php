@@ -95,7 +95,7 @@ class table
             echo <<< FILEBUTTONS
             <a class="btn btn-sm btn-light" href="$createNew?createNew" role="button" style=color:black>+</a>
             FILEBUTTONS;
-            echo "<input type=\"submit\" value=\"Archive\">";
+            echo '&nbsp;<input class="btn btn-sm btn-light" type="submit" value= "Archive">';
             echo "<br></br>";
         } else {
             $restoreLink = "";
@@ -164,7 +164,7 @@ class table
         </table>
         TABLE;
         if($this->columns["R"] == 1) {
-            echo "<input type=\"submit\" value=\"Restore\">";
+            echo '<input class="btn btn-sm btn-light" type="submit" value= "Restore">';
             /*echo <<< RESTOREBUTTONS
             $restoreSelection = $this->columns["restoreLink"];
             <a href="$restoreSelection" class="btn-sm btn-light" style=color:black>Restore</a>
@@ -184,7 +184,7 @@ class table
             echo <<< FILEBUTTONS
             <a class="btn btn-sm btn-light" href="$createNew?createNew" role="button" style=color:black>+</a>
             FILEBUTTONS;
-            echo "<input type=\"submit\" value=\"Archive\">";
+            echo '&nbsp;<input class="btn btn-sm btn-light" type="submit" value= "Archive">';
             echo "<br></br>";
         } else {
             $restoreLink = "";
@@ -251,7 +251,7 @@ class table
         </table>
         TABLE;
         if($this->columns["R"] == 1) {
-            echo "<input type=\"submit\" value=\"Restore\">";
+            echo '<input class="btn btn-sm btn-light" type="submit" value= "Restore">';
             /*echo <<< RESTOREBUTTONS
             $restoreSelection = $this->columns["restoreLink"];
             <a href="$restoreSelection" class="btn-sm btn-light" style=color:black>Restore</a>
@@ -279,12 +279,12 @@ class table
             echo <<< FILEBUTTONS
             <a class="btn btn-sm btn-light" href="$createNew?createNew" role="button" style=color:black>+</a>
             FILEBUTTONS;
-            echo "<input type=\"submit\" value=\"Archive\">";
+            echo '&nbsp;<input class="btn btn-sm btn-light" type="submit" value= "Archive">';
             echo "<br></br>";
         } elseif($this->columns["R"] == 1) {
             $restoreSelection = $this->columns["restoreLink"];
             echo "<form name=\"$tableTitle\" id=\"$tableTitle\" method=\"post\" action='$restoreSelection'>";
-            echo "<input type=\"submit\" value=\"Restore\">";
+            echo '<input class="btn btn-sm btn-light" type="submit" value= "Restore">';
             echo "<br></br>";
         } else {
             $restoreLink = "";
