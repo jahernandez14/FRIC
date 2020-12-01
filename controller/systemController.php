@@ -45,4 +45,12 @@
                                 $attr[9],$attr[10],true,$attr[12],$attr[13],$attr[14]);
         logEntry($attr[1] . " has been archived");
     }
+
+    function restoreSystem($id){
+        $db = new SystemDatabase();
+        $attr = $db->getSystemAttributes($id);
+        $db->editSystemDocument($attr[0],$attr[1],$attr[2],$attr[3],$attr[4],$attr[5],$attr[6],$attr[7],$attr[8],
+                                $attr[9],$attr[10],false,$attr[12],$attr[13],$attr[14]);
+        logEntry($attr[1] . " has been restored");
+    }
 ?>
