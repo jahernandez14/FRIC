@@ -25,7 +25,7 @@ class TransactionLogDatabase extends Database{
         $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.TransactionLog', $query);
         $myCursor = $this->manager->executeQuery('FRIC_Database.TransactionLog', $query);
         foreach($cursor as $document){
-            new TransactionLog($myDb, $document->dateTime, $document->actionPerformed, $document->analyst);
+            new TransactionLog($this, $document->dateTime, $document->actionPerformed, $document->analyst);
         }
     }
 }

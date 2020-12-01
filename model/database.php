@@ -153,26 +153,21 @@ class Database{
         return substr($changes, 0, -2) . ".";
     }
 
-    /****public function storeFile($file){
-        $record = [
-            '_id' => (string) new MongoDB\BSON\ObjectId(),
-            'test'=> array()
-        ];
+    public function storeFile($fileList, $filePaths){
+        foreach($filePaths as $filePath){
+            array_push($fileList, ['fileName' => basename($filePath), 'originalFilePath' => $filePath, 'fileData' => new MongoDB\BSON\Binary(file_get_contents($filePath), 0)]);
+        }
+        return $fileList;
+    }
 
-        if($record['test'] == null){
-            $arr = array();
-            $record['test'] = array_push($arr, ['fileName' => "cp.PNG", 'fileData' => new MongoDB\BSON\Binary(file_get_contents("cp.PNG"), 0)]);
+    public function getFile($file){
+        if(file_exists($file['originalFilePath']) != true){
+            $file = fopen("temp/" . $file['fileName'], 'w');
+            fwrite($file, $file['fileData']->getData());
         } else{
-            $record['test'] = array_push($record['test'], ['fileName' => "cp.PNG", 'fileData' => new MongoDB\BSON\Binary(file_get_contents("cp.PNG"), 0)]);
+            $file = fopen($file['originalFilePath'], 'w');
         }
+    }
 
-        print_r($record);
-        /*if(file_exists("temp/" . $file) != true){
-            $file = fopen("temp/" . $record['test'][0]['fileName'], 'w');
-            fwrite($file, "temp/" . $record['test'][0]['fileData']->getData());
-        }
-        
-        //$this->insertDocument($record, 'FRIC_Database.Test');
-    }**/
 }
 ?>
