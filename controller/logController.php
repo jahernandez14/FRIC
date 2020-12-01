@@ -10,6 +10,6 @@
 
     function logEntry($action){
         $db = new TransactionLogDatabase();
-        $log = new TransactionLog($db,date("Ymd H:i:s"), $action, $_SESSION["initials"]);
+        $log = new TransactionLog($db,date("Ymd H:i:s"), $action, @$_SESSION["initials"]);
     }
 ?>
