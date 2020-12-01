@@ -22,7 +22,12 @@
                 if($eventName == "createNew") {
                     $dataArray = array("", "", "", "", "", date("Ymd H:i:s"), "", "", "", "", "", "", array(""), "", "", "", "");
                     $postTag = "postnew";
-                    $editTag = "";
+                    $eventID = 0;
+                    $editTag = <<< HEREDOC
+                    <input name="numberOfFindings" type="hidden" value="0"/>
+                    <input name="numberOfSystems" type="hidden" value="0"/>
+                    <input name="progress" type="hidden" value="0"/>
+                    HEREDOC;
                 } else {
                     $dataArray = readEvent($eventName);
                     $postTag = "postedit";
@@ -287,16 +292,26 @@
 
                     </div>
                     <div class="row">
-                        <div class="col"><br />
-                            <button class="btn btn-sm btn-light" type="submit">Save</button>
-                            <a class="btn btn-sm btn-light" role="button"
-                                style=color:black>Archive</a>
-                            <a href="../views/eventOverview.php" class="btn btn-sm btn-light" role="button"
+                        <div class="col-1"><br />
+                            <button class="btn btn-md btn-light" type="submit">Save</button>
+                            </form>
+                        </div>
+                        <div class="col-1"><br />
+                            <form method="post" action="eventOverview.php?archive">
+                            <?php
+                            echo <<< HEREDOC
+                            <input type="hidden" name="id[]" id="id" value="$eventID">
+                            HEREDOC;
+                            ?>
+                            <button class="btn btn-md btn-light" type="submit">Archive</button>
+                            </form>
+                        </div>
+                        <div class="col-1"><br />
+                            <a href="../views/eventOverview.php" class="btn btn-md btn-light" role="button"
                                 style=color:black>Cancel</a>
                         </div>
                     </div>
                 </div>
-                </form>
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>
