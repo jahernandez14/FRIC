@@ -16,7 +16,7 @@
             </div>
             <div class="col-10">
                 <!--Code Goes Here-->
-                <form class="col-12">
+                
                     <?php
                     $archivedTasksTable = table::tableByType("Archived Tasks", archivedTaskOverviewTable());
                     $archivedTasksTable->printTable();
@@ -27,7 +27,6 @@
                     $archivedSystemsTable = table::tableByType("Archived Systems", archivedSystemOverviewTable());
                     $archivedSystemsTable->printTable();
                     ?>
-                </form>
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>

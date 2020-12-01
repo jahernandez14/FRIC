@@ -349,14 +349,6 @@ class table
         </tbody>
         </table>
         TABLE;
-        if($this->columns["R"] == 1) {
-            echo "<input type=\"submit\" value=\"Restore\">";
-            /*echo <<< RESTOREBUTTONS
-            $restoreSelection = $this->columns["restoreLink"];
-            <a href="$restoreSelection" class="btn-sm btn-light" style=color:black>Restore</a>
-            <br></br>
-            RESTOREBUTTONS;*/
-        }
         echo "</form>";
     }
 
