@@ -16,7 +16,7 @@ class Systeme {
             'archiveStatus'     => false,
             'numberOfTasks'     => $numberOfTasks,
             'numberOfFindings'  => $numberOfFindings,
-            'progress'          => $progress
+            'progress'          => $progress,
         ];
 
         if($db->checkDatabaseForSameName('systemName', $systemName, 'FRIC_Database.System')){

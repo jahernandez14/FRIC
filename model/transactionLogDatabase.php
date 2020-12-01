@@ -24,7 +24,7 @@ class TransactionLogDatabase extends Database{
         $query    = new MongoDB\Driver\Query([]);
         $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.TransactionLog', $query);
         $myCursor = $this->manager->executeQuery('FRIC_Database.TransactionLog', $query);
-        foreach($cursor as $document){
+        foreach($myCursor as $document){
             new TransactionLog($this, $document->dateTime, $document->actionPerformed, $document->analyst);
         }
     }

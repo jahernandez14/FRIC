@@ -219,9 +219,13 @@ class TaskDatabase extends Database{
         $query    = new MongoDB\Driver\Query([]);
         $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.Task', $query);
         $myCursor = $this->manager->executeQuery('FRIC_Database.Task', $query);
-        foreach($cursor as $document){   
+        foreach($myCursor as $document){   
             if($this->checkDatabaseForSameName('taskTitle', $document->taskTitle, 'FRIC_Database.Task')){
-                $this->editTaskDocument($document->_id, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
+                foreach($cursor as $d){
+                    if($d->taskTitle == $document->taskTitle){
+                        $this->editTaskDocument($document->_id, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
+                    }
+                }
             } else {
                 new Task($this, $document->taskTitle, $document->associatedSystem, $document->taskDescription, $document->taskPriority, $document->taskProgress, $document->taskDueDate, $document->attachment, $document->associationToTask, $document->analystAssignment, $document->collaboratorAssignment, $document->archiveStatus, $document->numberOfSubtasks, $document->numberOfFindings);
             }

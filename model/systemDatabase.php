@@ -183,9 +183,13 @@ class SystemDatabase extends Database{
         $query    = new MongoDB\Driver\Query([]);
         $cursor   = $otherAnalystManager->executeQuery('FRIC_Database.System', $query);
         $myCursor = $this->manager->executeQuery('FRIC_Database.Subtask', $query);
-        foreach($cursor as $document){
+        foreach($myCursor as $document){
             if($this->checkDatabaseForSameName('systemName', $document->systemName, 'FRIC_Database.System')){
-                $this->editSystemDocument($document->_id, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
+                foreach($cursor as $d){
+                    if($d->systemName == $document->systemName){
+                        $this->editSystemDocument($document->_id, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
+                    }
+                }
             } else {
                 new Systeme($this, $document->systemName, $document->systemDescription, $document->systemLocation, $document->systemRouter, $document->systemSwitch, $document->systemRoom, $document->testPlan, $document->confidentiality, $document->integrity, $document->availability, $document->archiveStatus, $document->numberOfTasks, $document->numberOfFindings, $document->progress);
             }
