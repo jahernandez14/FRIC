@@ -94,6 +94,8 @@ class testerClass{
         
         // Get the configuration, <key>
         print_r($configDB->getConfig('Config 1'));
+
+        echo $configDB->editConfig('Config 1', ['5', '6', '7', '8']);
     }
 
     public function deleteOldData($collection){
@@ -121,5 +123,5 @@ $tester->testFindings();
 $tester->testAnalysts();
 $tester->testEvents();
 //$tester->testStoringFile();
-//$tester->testConfiguration();
+$tester->testConfiguration();
 ?>

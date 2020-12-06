@@ -16,5 +16,19 @@ class ConfigurationDatabase extends Database{
             return array();
         }
     }
+
+    public function editConfig($id, $array){
+        $dbEntry = ['$set'=>
+            ['configuration' => $array]
+        ];
+
+        try{
+            $bulk = new MongoDB\Driver\BulkWrite;
+            $bulk->update(['_id' => $id], $dbEntry);
+            $this->manager->executeBulkWrite('FRIC_Database.Configuration', $bulk);
+        } catch(MongoDB\Driver\Exception\Exception $failedLoser) {
+            echo "Error: $failedLoser";
+        }
+    }
 }
 ?>
