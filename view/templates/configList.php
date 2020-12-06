@@ -22,7 +22,7 @@ class configList
         $brackets = "[]"; //PHP doesn't like when you put brackets after a variable name, even in a heredoc
         $itemCount = @count($this->listItems);
         if($itemCount < 3) $itemCount = 3;
-        if($itemCount > 10) $itemCount = 10;
+        if($itemCount > 11) $itemCount = 11;
         echo <<< HEREDOC
                     <div class="row-12">
                         <div class="col-12">

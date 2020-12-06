@@ -45,7 +45,7 @@
             </form>
             <?php
             $listArray = array("Finding Type", "Posture", "Threat Level", "Impact Level", "Finding Classification", //DONE, DONE, DONE, DONE, DONE
-                                "Countermeasure", "Event Classification", "Event Type", "Finding Impact Level", //DONE, DONE, DONE, DONE
+                                "Countermeasure Effectiveness", "Event Classification", "Event Type", "Finding Impact Level", //DONE, DONE, DONE, DONE
                                 "Severity Category Code", "Event Rules", "Progress"); //DONE, DONE, DONE
             foreach($listArray as $listPrint) new configList($listPrint, getConfig(implode("_",explode(" ",$listPrint))));
             ?>

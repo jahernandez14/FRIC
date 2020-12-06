@@ -42,7 +42,7 @@
             //$findingImpactLevelArray = array("", "VH", "H", "M", "L", "VL", "Information");
             $findingImpactLevelArray = array_merge(array(""),getConfig(implode("_",explode(" ","Finding Impact Level"))));
             //$effectivenessArray = array("", "10 - Very High", "9 - High", "8 - High", "7 - High", "6 - Moderate", "5 - Moderate", "4 - Moderate", "3 - Low", "2 - Low", "1 - Low", "0 - Very Low");
-            $effectivenessArray = array_merge(array(""),getConfig(implode("_",explode(" ","Countermeasure"))));
+            $effectivenessArray = array_merge(array(""),getConfig(implode("_",explode(" ","Countermeasure Effectiveness"))));
             $sevCatCodes = array_merge(array(""),getConfig(implode("_",explode(" ","Severity Category Code"))));
 
             $findingTitle = urldecode($_SERVER['QUERY_STRING']);
