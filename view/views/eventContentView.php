@@ -239,11 +239,13 @@
                     include '../templates/GUIList.php';
                     require_once("../../controller/analystController.php");
 
-                    $analystList = array();
-                    $analystTable = analystNames();
-                    for ($i = 0; $i < sizeof($analystTable); $i++) {
-                        $analystList[$i] = $analystTable[$i][2] . " " . $analystTable[$i][3];
-                    }
+                    $leadAnalystList = leadNames();//array();
+                    $analystList = nonLeadNames();
+                    //$analystTable = analystNames();
+                    //for ($i = 0; $i < sizeof($analystTable); $i++) {
+                    //    $analystList[$i] = $analystTable[$i][2] . " " . $analystTable[$i][3];
+                    //}
+
                 echo <<< HEREDOC
                     <br></br>
                     <div class="row">
@@ -251,7 +253,7 @@
                     <div class="col-1"></div>
                         <div class="col-12">
                 HEREDOC;
-                $leadAnalystGUIList = new GUIList("Lead Analyst(s)", "leadAnalystAssignment", $analystList, $leadAnalystAssignment, TRUE);
+                $leadAnalystGUIList = new GUIList("Lead Analyst(s)", "leadAnalystAssignment", $leadAnalystList, $leadAnalystAssignment, TRUE);
                 $leadAnalystGUIList->printContents();
                 echo <<< HEREDOC
                         </div>
