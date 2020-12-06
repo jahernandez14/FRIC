@@ -44,7 +44,7 @@
                             array("Posture","Insider","Insider-Nearsider","Nearsider","Nearsider-Outsider"),
                             array("Severity_Category_Code","I","II","III"),
                             array("Threat_Level","Confirmed","Expected","Anticipated","Predicted Possible"),
-                            array("Countermeasure","10 - Very High","9 - High","8 - High","7 - High","6 - Moderate", "5 - Moderate", "4 - Moderate",
+                            array("Countermeasure_Effectiveness","10 - Very High","9 - High","8 - High","7 - High","6 - Moderate", "5 - Moderate", "4 - Moderate",
                                 "3 - Low", "2 - Low", "1 - Low", "0 - Very Low"),
                             array("Event_Classification","Top Secret","Secret","Confidential","Classified","Unclassified"),
                             array("Event_Type","Cooperative Vulnerability Penetration Assessment (CVPA)", "Cooperative Vulnerability Investigation (CVI)",
