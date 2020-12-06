@@ -117,7 +117,7 @@
                             </select>
                         </div>
                     </div>
-                    <button class="btn btn-md btn-light" type="submit" name="newAnalyst">Save</button>
+                    <br><button class="btn btn-md btn-light" type="submit" name="newAnalyst">Save</button>
                 </form>
             </div>
             <div class="col-2" style="background-color:#202020">

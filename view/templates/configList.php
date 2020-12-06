@@ -24,8 +24,8 @@ class configList
         if($itemCount < 3) $itemCount = 3;
         if($itemCount > 11) $itemCount = 11;
         echo <<< HEREDOC
-                    <div class="row-12">
-                        <div class="col-12">
+                    <div class="col-12">
+                        <div class="row-fluid">
                             <h3>$this->title</h3>
                                 <input type="text" class="form-control-sm" name="newItem">
                                 <button class="btn btn-sm btn-light" type="submit" name="addItem" value="$this->title">Add</button>
@@ -40,8 +40,8 @@ class configList
         }
         echo <<< HEREDOC
                             </select>
-                            <button class="btn btn-md btn-light" type="submit" name="removeItem" value="$this->title">Delete</button>
                         </div>
+                        <br><button class="btn btn-md btn-light" type="submit" name="removeItem" value="$this->title">Delete</button>
                     </div>
                     <br></br>
                 </form>
