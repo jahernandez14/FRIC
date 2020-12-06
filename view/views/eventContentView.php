@@ -3,7 +3,9 @@
 
 <head>
     <?php include '../templates/header.php';
+    require_once('../templates/GUIList.php');
     require_once('../../controller/eventController.php');
+    require_once('../../controller/configController.php');
     ?>
 </head>
 
@@ -64,42 +66,48 @@
                             <input type="text" class="form-control" placeholder="Event Name" value="$eventName" name="eventName">
                         </div>
                         <div class="col-3">
-                            <label>Event Type</label>
-                            <input type="text" class="form-control" placeholder="Event Type" value="$eventType" name="eventType">
+                HEREDOC;
+                $typeList = array_merge(array(""),getConfig(implode("_",explode(" ","Event Type"))));
+                $eventTypeList = new GUIList("Event Type", "eventType", $typeList, $eventType);
+                $eventTypeList->printContents();
+            echo <<< HEREDOC
                         </div>
                         <div class="col-2">
                             <label>Event Version</label>
                             <input type="text" class="form-control" placeholder="Event Version" value="$eventVersion" name="eventVersion">
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label>Event Description</label>
-                            <textarea class="form-control" id="Desc" rows="5" name="eventDescription">$eventDescription</textarea>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label>Organization Name</label>
-                            <input type="text" class="form-control" placeholder="Org Name" value="$organizationName" name="organizationName">
+                        <div class="row">
+                            <div class="col">
+                                <label>Event Description</label>
+                                <textarea class="form-control" id="Desc" rows="5" name="eventDescription">$eventDescription</textarea>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <label>Assessment Date</label>
-                            <input type="text" class="form-control" placeholder="Date" value="$assessmentDate" name="assessmentDate">
+                        <div class="row">
+                            <div class="col">
+                                <label>Organization Name</label>
+                                <input type="text" class="form-control" placeholder="Org Name" value="$organizationName" name="organizationName">
+                            </div>
+                            <div class="col-2">
+                                <label>Assessment Date</label>
+                                <input type="text" class="form-control" placeholder="Date" value="$assessmentDate" name="assessmentDate">
+                            </div>
+                            <div class="col-4">
+                                <label>Security Classification Title Guide</label>
+                                <input type="text" class="form-control" placeholder="" value="$securityClassifcation" name="securityClassification">
+                            </div>
                         </div>
-                        <div class="col-4">
-                            <label>Security Classification Title Guide</label>
-                            <input type="text" class="form-control" placeholder="" value="$securityClassifcation" name="securityClassification">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label>Client Name</label>
-                            <input type="text" class="form-control" placeholder="Client Name" value="$customerName" name="customerName">
-                        </div>
-                        <div class="col-3">
-                            <label>Event Classification</label>
-                            <input type="text" class="form-control" placeholder="" value="$eventClassification" name="eventClassification">
+                        <div class="row">
+                            <div class="col">
+                                <label>Client Name</label>
+                                <input type="text" class="form-control" placeholder="Client Name" value="$customerName" name="customerName">
+                            </div>
+                            <div class="col-3">
+                        HEREDOC;
+                        $classList = array_merge(array(""),getConfig(implode("_",explode(" ","Event Classification"))));
+                        $eventClassificationList = new GUIList("Event Classification", "eventClassification", $classList, $eventClassification);
+                        $eventClassificationList->printContents();
+                        echo <<< HEREDOC
                         </div>
                         <div class="col-3">
                             <label>Declassification Date</label>
@@ -236,7 +244,6 @@
                 <div class=col-10>
                     <div class="row">
                     <?php
-                    include '../templates/GUIList.php';
                     require_once("../../controller/analystController.php");
 
                     $leadAnalystList = leadNames();//array();

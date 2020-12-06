@@ -64,10 +64,13 @@ class GUIList
     }
 
     private function printMultiSelect() {
+        $itemCount = @count($this->listItems);
+        if($itemCount < 3) $itemCount = 3;
+        if($itemCount > 8) $itemCount = 8;
         $brackets = "[]"; //PHP doesn't like when you put brackets after a variable name, even in a heredoc
         echo <<< HEREDOC
                             <label>$this->title</label>
-                            <select name='$this->variableName$brackets' class="form-control" multiple>
+                            <select name='$this->variableName$brackets' class="form-control" size="$itemCount" multiple>
         HEREDOC;
         for($i=0; $i<sizeof($this->listItems); $i++){
             $selectTag = "";

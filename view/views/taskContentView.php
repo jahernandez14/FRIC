@@ -6,6 +6,7 @@
     require_once('../../controller/taskController.php');
     require_once('../../controller/analystController.php');
     require_once('../../controller/systemController.php');
+    require_once('../../controller/configController.php');
     require_once('../templates/GUIList.php'); ?>
 </head>
 
@@ -19,7 +20,8 @@
                 <h2 class="text-center">Task Detailed View</h2>
                 <?php
                 $taskPriorityArray = array("", "Low", "Medium", "High");
-                $taskProgressArray = array("", "Not Started", "Assigned", "Transferred", "In Progress", "Complete", "Not Applicable");
+                //$taskProgressArray = array("", "Not Started", "Assigned", "Transferred", "In Progress", "Complete", "Not Applicable");
+                $taskProgressArray = array_merge(array(""),getConfig(implode("_",explode(" ","Progress"))));
                 $taskTitle = urldecode($_SERVER['QUERY_STRING']);
                 if ($taskTitle == "createNew") {
                     $taskID = 0;

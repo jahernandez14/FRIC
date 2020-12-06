@@ -15,29 +15,35 @@
     <div class="container-fluid content">
         <div class="row fluid-col-lg">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
-                <?php include '../templates/eventTree.php'; ?>
+                <?php include '../templates/eventTree.php'; include '../../controller/configController.php';?>
             </div>
             <?php
             /**
              * hardcoding this psuedo-enumeration until it's implemented by Setup:
              * array numerically indexed from 0, of strings. array("First List Item")
              */
-            $findingTypeArray = array(
+            /*$findingTypeArray = array(
                 "", "Credentials Complexity", "Manufacture Default",
                 "Creds", "Lack Of Authentication", "Plain Text Protocols",
                 "Plain Text Web Login", "Encryption",
                 "Authentication Bypass", "Port Security", "Access Control",
                 "Least Privilege", "Privilege Escalation", "Missing Patches",
                 "Physical Security", "Information Disclosure"
-            );
+            );*/
+            $findingTypeArray = array_merge(array(""),getConfig(implode("_",explode(" ","Finding Type"))));
             $findingStatusArray = array("", "Open", "Closed");
-            $findingClassificationArray = array("", "Vulnerability", "Information");
+            //$findingClassificationArray = array("", "Vulnerability", "Information");
+            $findingClassificationArray = array_merge(array(""),getConfig(implode("_",explode(" ","Finding Classification"))));
             $findingCIAArray = array("", "Low", "Medium", "High", "Information");
-            $findingPostureArray = array("", "Insider", "Insider-Nearsider", "Nearsider", "Outsider", "Nearsider-Outsider");
-            $findingRelevanceArray = array("", "Confirmed", "Expected", "Anticipated", "Predicted", "Possible");
-            $findingImpactLevelArray = array("", "VH", "H", "M", "L", "VL", "Information");
-            $effectivenessArray = array("", "10 - Very High", "9 - High", "8 - High", "7 - High", "6 - Moderate", "5 - Moderate", "4 - Moderate", "3 - Low", "2 - Low", "1 - Low", "0 - Very Low");
-
+            //$findingPostureArray = array("", "Insider", "Insider-Nearsider", "Nearsider", "Outsider", "Nearsider-Outsider");
+            $findingPostureArray = array_merge(array(""),getConfig(implode("_",explode(" ","Posture"))));
+            //$findingRelevanceArray = array("", "Confirmed", "Expected", "Anticipated", "Predicted", "Possible");
+            $findingRelevanceArray = array_merge(array(""),getConfig(implode("_",explode(" ","Threat Level"))));
+            //$findingImpactLevelArray = array("", "VH", "H", "M", "L", "VL", "Information");
+            $findingImpactLevelArray = array_merge(array(""),getConfig(implode("_",explode(" ","Finding Impact Level"))));
+            //$effectivenessArray = array("", "10 - Very High", "9 - High", "8 - High", "7 - High", "6 - Moderate", "5 - Moderate", "4 - Moderate", "3 - Low", "2 - Low", "1 - Low", "0 - Very Low");
+            $effectivenessArray = array_merge(array(""),getConfig(implode("_",explode(" ","Countermeasure"))));
+            $sevCatCodes = array_merge(array(""),getConfig(implode("_",explode(" ","Severity Category Code"))));
 
             $findingTitle = urldecode($_SERVER['QUERY_STRING']);
             if ($findingTitle == "createNew") {
@@ -337,8 +343,10 @@
                 <h3>Severity</h3>
                     <div class="row">
                         <div class="col">
-                            <label>Severity Category Code</label>
-                            <input type="text" class="form-control" placeholder="Code" name="severityCatCode" value="$severityCatCode">
+            HEREDOC;
+            $sevCatCodeList = new GUIList("Severity Category Code", "severityCatCode", $sevCatCodes, $severityCatCode);
+            $sevCatCodeList->printContents();
+            echo <<< HEREDOC
                         </div>
                         <div class="col">
                             <label>Severity Category Score</label>

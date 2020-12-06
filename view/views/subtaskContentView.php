@@ -14,12 +14,16 @@
     <div class="container-fluid content">
         <div class="row fluid-col">
             <div id="eventTree" class="dm-popout" style="background-color:#202020">
-                <?php include '../templates/eventTree.php'; ?>
+                <?php include '../templates/eventTree.php';
+                require_once('../../controller/configController.php');
+                require_once('../templates/GUIList.php');
+                 ?>
             </div>
             <div class="col-10">
                 <h2 class="text-center">Subtask Detailed View</h2>
                 <?php
-                $subtaskProgressArray = array("", "Not Started", "Assigned", "Transferred", "In Progress", "Complete", "Not Applicable");
+                //$subtaskProgressArray = array("", "Not Started", "Assigned", "Transferred", "In Progress", "Complete", "Not Applicable");
+                $subtaskProgressArray = array_merge(array(""),getConfig(implode("_",explode(" ","Progress"))));
                 $subtaskTitle = urldecode($_SERVER['QUERY_STRING']);
                 if ($subtaskTitle == "createNew") {
                     $subtaskID = 0;
