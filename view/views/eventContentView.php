@@ -41,6 +41,8 @@
                     <input name="progress" type="hidden" value="$progress"/>
                     HEREDOC;
                 }
+                $leadAnalystAssignment = @$dataArray[12][0];
+                $analystAssignment = @$dataArray[12][1];
                 $eventName = $dataArray[1];
                 $eventDescription = $dataArray[2];
                 $eventType = $dataArray[3];
@@ -233,60 +235,42 @@
 
                 <div class=col-10>
                     <div class="row">
-                        <h5>Lead Analyst &nbsp;</h5>
-                        <form method="post">
-                            <input type="submit" name="addEdit" class="btn btn-light btn-sm" value="+">
-                        </form>
-                    </div>
-                    <p></p>
-                    <div class="row">
-                        <div class="col-1">
-                            <input type="checkbox" class="form-control">
-                        </div>
-                        <div class="col-3">
-                            <select name="Confidentiality" class="form-control" id="confidentiality">
-                                <option value="Remove">Edit</option>
-                                <option value="Edit">Remove</option>
-                                <option value="Sync">Sync</option>
-                            </select>
-                        </div>
+                    <?php
+                    include '../templates/GUIList.php';
+                    require_once("../../controller/analystController.php");
 
-                        <div class="col-3">
-                            <select name="Confidentiality" onchange="javascript:handleSelect()" class="form-control" id="confidentiality">
-                                <option value="am.123.1.123.2">am.123.1.123.2</option>
-                                <option value="mm.123.1.123.3">mm.123.1.123.3</option>
-                                <option value="sr.123.1.123.4">sr.123.1.123.4</option>
-                            </select>
+                    $analystList = array();
+                    $analystTable = analystNames();
+                    for ($i = 0; $i < sizeof($analystTable); $i++) {
+                        $analystList[$i] = $analystTable[$i][2] . " " . $analystTable[$i][3];
+                    }
+                echo <<< HEREDOC
+                    <br></br>
+                    <div class="row">
+                    
+                    <div class="col-1"></div>
+                        <div class="col-12">
+                HEREDOC;
+                $leadAnalystGUIList = new GUIList("Lead Analyst(s)", "leadAnalystAssignment", $analystList, $leadAnalystAssignment, TRUE);
+                $leadAnalystGUIList->printContents();
+                echo <<< HEREDOC
+                        </div>
+                        <div class="col-1"></div>
+                        <div class="col-12">
+                HEREDOC;
+                $analystGUIList = new GUIList("Analyst(s)", "analystAssignment", $analystList, $analystAssignment, TRUE);
+                $analystGUIList->printContents();
+                echo <<< HEREDOC
                         </div>
                     </div>
                     <br></br>
-                    <div class="row">
-                        <h5>Analyst &nbsp;<br /><br /></h5>
-                        <form method="post">
-                            <input type="submit" name="sync" class="btn btn-light btn-sm" value="+">
-                        </form>
+                HEREDOC;
+            ?>
+            </div>
                     </div>
-                    <div class="row">
-                        <div class="col-1">
-                            <input type="checkbox" class="form-control">
-                        </div>
-                        <div class="col-3">
-                            <select name="Confidentiality" class="form-control" id="confidentiality">
-                                <option value="Remove">Edit</option>
-                                <option value="Edit">Remove</option>
-                                <option value="Sync">Sync</option>
-                            </select>
-                        </div>
-
-                        <div class="col-3">
-                            <select name="Confidentiality" onchange="javascript:handleSelect()" class="form-control" id="confidentiality">
-                                <option value="am.123.1.123.2">am.123.1.123.2</option>
-                                <option value="mm.123.1.123.3">mm.123.1.123.3</option>
-                                <option value="sr.123.1.123.4">sr.123.1.123.4</option>
-                            </select>
-                        </div>
-                        <br></br><br></br>
-                    </div>
+                    <p></p>
+                    
+                    <br></br>
                     <div class="row">
                         <button class="btn btn-md btn-light" type="submit">Save</button>
                         </form>
@@ -300,7 +284,6 @@
                         </form>
                         <a href="../views/eventOverview.php" class="btn btn-md btn-light" role="button" style=color:black>Cancel</a>
                     </div>
-                </div>
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php'; ?>

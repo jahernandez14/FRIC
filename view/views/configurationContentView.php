@@ -16,6 +16,23 @@
                 <?php include '../templates/eventTree.php';?>
             </div>
             <div class="col-10">
+            <?php
+            require_once('../templates/configList.php');
+            require_once('../../controller/configController.php');
+            if(array_key_exists("removeItem", $_POST)) {
+                $listName = implode("_",explode(" ",$_POST["removeItem"]));
+                foreach($_POST[$listName] as $listItem) {
+                    removeItem($listName, $listItem);
+                }
+            }
+            if(array_key_exists("addItem", $_POST)) {
+                $listName = implode("_",explode(" ",$_POST["addItem"]));
+                addItem($listName, $_POST["newItem"]);
+            }
+            $testList = new configList("Test List", getConfig(implode("_",explode(" ","Test List"))));
+            new configList("Finding Type", getConfig(implode("_",explode(" ","Finding Type"))));
+            new configList("Posture", getConfig(implode("_",explode(" ","Posture"))));
+            ?>
                 <h3>Finding Type</h3>
                 <table class="table table-light table-striped">
                     <thead>

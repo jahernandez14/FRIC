@@ -19,6 +19,9 @@
                     <div class="input-group">
                         <?php 
                             require_once('/xampp/htdocs/FRIC/controller/analystController.php');
+                            if(array_key_exists("newAnalyst", $_POST)) {
+                                newAnalyst($_POST["firstName"],$_POST["lastName"],$_POST["initials"], $_POST["ip"], $_POST["analystTitle"],$_POST["role"]);
+                            }
                             $placeholder = "No Analyst have been added to FRIC";
                             $analystList = analystNames();
                             if(count($analystList) > 0){
@@ -69,6 +72,53 @@
                                     echo '<meta http-equiv="refresh" content="0; URL= eventOverview.php"/>';
                                 }
                             ?>
+                <div class="row-4">
+                <br></br>
+                </div>
+                <div class="row"></div>
+                <form method="post">
+                    <h3>Add Analysts</h3>
+                    <div class="row">
+                        <div class="col-1">
+                            <label>First Name</label>
+                        </div>
+                        <input type="text" class="form-control-sm" name="firstName">
+                    </div>
+                    <div class="row">
+                    <div class="col-1">
+                            <label>Last Name</label>
+                        </div>
+                        <input type="text" class="form-control-sm" name="lastName">
+                    </div>
+                    <div class="row">
+                    <div class="col-1">
+                            <label>Initials</label>
+                        </div>
+                        <input type="text" class="form-control-sm" name="initials">
+                    </div>
+                    <div class="row">
+                    <div class="col-1">
+                            <label>IP</label>
+                        </div>
+                        <input type="text" class="form-control-sm" name="ip">
+                    </div>
+                    <div class="row">
+                    <div class="col-1">
+                            <label>Title</label>
+                        </div>
+                        <input type="text" class="form-control-sm" name="analystTitle">
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <label>Role</label>
+                            <select name="role" class="form-control">
+                                    <option value="lead">Lead Analyst</option>
+                                    <option value="nonlead">Analyst</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-md btn-light" type="submit" name="newAnalyst">Save</button>
+                </form>
             </div>
             <div class="col-2" style="background-color:#202020">
                 <?php include '../templates/search.php';?>
