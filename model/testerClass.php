@@ -5,6 +5,7 @@ require_once ("taskDatabase.php");
 require_once ("subtaskDatabase.php");
 require_once ("findingDatabase.php");
 require_once ("analystDatabase.php");
+require_once ("configurationDatabase.php");
 
 class testerClass{
     private function printEachIndexInAnArray($arr){
@@ -84,6 +85,17 @@ class testerClass{
         echo "<h5>6 Analysts have been created</h5>";
     }
 
+    public function testConfiguration(){
+        $this->deleteOldData('FRIC_Database.Configuration');
+        $configDB = new ConfigurationDatabase();
+        
+        // Stores the configuration, <db reference>, <key>, <1d array of string>
+        $c1 = new Configuration($configDB, 'Config 1', ['1', '2', '3', '4']);
+        
+        // Get the configuration, <key>
+        print_r($configDB->getConfig('Config 1'));
+    }
+
     public function deleteOldData($collection){
         $db = new Database();
         $db->deleteOldData($collection);
@@ -109,4 +121,5 @@ $tester->testFindings();
 $tester->testAnalysts();
 $tester->testEvents();
 //$tester->testStoringFile();
+//$tester->testConfiguration();
 ?>
